@@ -1,0 +1,16 @@
+@import "../../variables";
+
+.homepage__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-inline: 1vw;
+}
+
+.homepage__title::after {
+  @include bean;
+  width: 80%;
+  height: 0.2rem;
+}
