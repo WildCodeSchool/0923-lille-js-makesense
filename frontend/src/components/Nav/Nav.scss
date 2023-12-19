@@ -1,0 +1,42 @@
+.nav__nav {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: pink;
+  padding-inline: 10vw;
+  padding-block: 2vh;
+}
+
+.nav__links {
+  color: red;
+  display: flex;
+}
+
+.nav__links::after {
+  display: inline-block;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  content: "";
+  border-radius: 0.25rem;
+  background-color: currentColor;
+  width: 0.5625rem;
+  height: 0.25rem;
+}
+
+.nav__logo {
+  width: 15%;
+}
+
+.nav__logo--img {
+  width: 100%;
+}
+
+.nav__avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
