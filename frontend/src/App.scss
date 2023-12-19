@@ -1,7 +1,7 @@
-@use "../1_variables_sass/variables";
+@import url("variables");
 body {
   margin: 0;
-  font-family: variables.$font-app;
+  font-family: $font-app;
 }
 
 code {
@@ -25,7 +25,7 @@ code {
 }
 
 .App-header {
-  background-color: variables.$dark-cerise;
+  background-color: $dark-cerise;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,0 +1,51 @@
+/*
+ IMPORT STYLE WITH:
+
+ @import url("variables");
+
+*/
+
+//MAKESENSE FONT
+$font-app: "Raleway", sans-serif;
+
+//MAKESENSE COLORS
+//BLUE
+$primary-pale: rgba(232, 240, 243);
+$primary-light: rgba(209, 226, 230);
+$primary-medium: rgba(25, 108, 132);
+$primary-dark: rgb(12, 57, 68);
+//GREEN
+$secondary-light: rgba(188, 219, 205);
+$secondary-medium: rgb(112, 175, 144);
+$secondary-dark: rgba(36, 103, 58);
+//RED
+$tertiary-pale: rgba(242, 181, 183);
+$tertiary-light: rgb(227, 97, 100);
+$tertiary-medium: rgb(198, 46, 67);
+$tertiary-dark: rgb(155, 8, 79);
+//YELLOW
+$accent-medium: rgb(255, 243, 13);
+$accent-light: rgb(252, 246, 160);
+
+//BUTTONS
+//STATUS
+$status-bg: rgba(188, 219, 205, 1);
+$status-solid: rgb(71, 65, 54);
+//LOCATION
+$location-bg: rgba(242, 181, 183, 1);
+$location-solid: rgb(71, 65, 54);
+//ADVICE
+$advice-bg: rgb(252, 246, 160);
+$advice-solid: rgb(71, 65, 54);
+//USERS
+$user-button_bg: rgba(25, 108, 132);
+$user-button_solid: rgb(12, 57, 68);
+//ADMIN
+$admin-button_bg: rgba(36, 103, 58);
+$admin-button_bg: rgb(71, 65, 54);
+
+//PROGRESS BAR
+$progress-bar: rgb(243, 151, 107);
+
+//INPUT LOGIN
+$input-login_bg: rgba(209, 226, 230);
