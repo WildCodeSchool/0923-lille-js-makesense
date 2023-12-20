@@ -1,9 +1,11 @@
+@import "../variables";
+
 body {
+  font-weight: bold;
+  color: $primary-dark;
+  font-family: $font-app;
   list-style: none;
-  text-decoration: none;
   overflow-y: hidden;
-  margin: 0;
-  margin-top: 0;
   background-image: url("../assets/image/background-image.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -18,18 +20,33 @@ body {
   }
   form {
     width: 14rem;
-    margin-left: 3rem;
+    margin-top: 1rem;
   }
   .logo {
-    width: 30%;
-    margin: 2rem;
+    width: 20rem;
   }
 
-  .button__log-in {
-    margin: 1.5rem;
+  .button-connect {
+    width: 60%;
+    padding: 0.4rem;
+    margin: 10%;
     border-radius: 15px;
-    height: 2rem;
     background-color: #196c84;
     color: white;
+    margin: 0 0 0 3rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: $primary-light;
+  }
+  @media screen and (max-width: 700px) {
+    .button-connect {
+      font-size: large;
+    }
   }
 }

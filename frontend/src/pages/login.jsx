@@ -9,7 +9,7 @@ function Login() {
         alt="logo"
       />
       <form>
-        <label className="identifier">
+        <label className="identify">
           Identifiant:
           <input type="text" />
         </label>
@@ -19,7 +19,7 @@ function Login() {
           <input type="password" />
         </label>
         <br />
-        <button className="button__log-in" type="submit">
+        <button className="button-connect" type="submit">
           Se Connecter
         </button>
       </form>

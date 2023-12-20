@@ -1,10 +1,6 @@
-import { Outlet } from "react-router-dom";
+import "./App.scss";
 
 function App() {
-  return (
-    <main>
-      <Outlet />
-    </main>
-  );
+  return <h1>Clean app</h1>;
 }
 export default App;
