@@ -9,6 +9,7 @@
 }
 
 .secondaryNav__links {
+  outline: 1px solid $primary-medium;
   background-color: $primary-medium;
   display: flex;
   justify-content: space-around;

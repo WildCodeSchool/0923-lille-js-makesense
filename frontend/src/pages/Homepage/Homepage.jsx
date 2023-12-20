@@ -1,4 +1,5 @@
 import "./Homepage.scss";
+import { mockDecision, mockUser, mockComments } from "../../mockData";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 
@@ -7,7 +8,18 @@ function Homepage() {
     <>
       <SecondaryNav />
       <h1 className="homepage__title">Décisions en cours</h1>
-      <DecisionCard />
+      <main className="homepage__main">
+        {mockDecision
+          ? mockDecision.map((card) => (
+              <DecisionCard
+                title={card.title}
+                status={card.status}
+                mockUser={mockUser[0]}
+                mockComments={mockComments}
+              />
+            ))
+          : "Loading"}
+      </main>
     </>
   );
 }

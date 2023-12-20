@@ -34,10 +34,7 @@
 }
 
 .nav__avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
+  @include avatar;
   margin-inline-start: 10px;
 }
 
