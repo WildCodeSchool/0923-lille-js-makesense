@@ -1,8 +1,3 @@
-/* 
-importer avec : 
-import { mockDecision, mockUser, mockComments } from "../../mockData";
-*/
-
 const mockUser = [
   {
     user_id: 1,
