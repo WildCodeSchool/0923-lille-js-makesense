@@ -1,13 +1,12 @@
 import "./App.scss";
 import Nav from "./components/Nav/Nav";
+import Homepage from "./pages/Homepage/Homepage";
 
 function App() {
   return (
     <>
       <Nav />
-      <main>
-        <h1 className="test">Hello</h1>
-      </main>
+      <Homepage />
     </>
   );
 }
