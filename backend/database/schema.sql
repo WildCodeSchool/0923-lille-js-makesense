@@ -4,7 +4,7 @@ lastname VARCHAR(100) NOT NULL,
 firstname VARCHAR(100) NOT NULL,
 email VARCHAR(100) NOT NULL,
 location VARCHAR(100) NOT NULL,
-picture IMAGE,
+picture BINARY,
 role VARCHAR(100)
 )
 
@@ -13,18 +13,20 @@ CREATE table authentification (
   password TEXT NOT NULL,
   date DATE NOT NULL,
   hour TIME NOT NULL,
-  FOREIGN KEY (user_id) 
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 )
 
 
 CREATE table decide_maker(
 decide_maker_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-FOREIGN KEY (user_id)
+user_id INT,
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 )
 
 CREATE table employee(
   employee_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  FOREIGN KEY (user_id)
+  user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
 )
 
 CREATE table decision(
@@ -32,35 +34,43 @@ CREATE table decision(
   date DATE NOT NULL,
   status VARCHAR(100) NOT NULL,
   title VARCHAR(100) NOT NULL,
-  FOREIGN KEY (decide_maker_id),
+  decide_maker_id INT,
+  FOREIGN KEY (decide_maker_id) REFERENCES decide_maker(decide_maker_id)
 )
 
 CREATE table assignement(
   assignement_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  FOREIGN KEY (decide_maker_id),
-  FOREIGN KEY (employee_id),
-  FOREIGN KEY (decision_id)
+  decide_maker_id INT,
+  employee_id INT,
+  decision_id INT,
+  FOREIGN KEY (decide_maker_id) REFERENCES decide_maker(decide_maker_id),
+  FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+  FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 )
 
 
 CREATE table admin (
   admin_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  FOREIGN KEY (user_id)
+  user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id) 
 )
-
 
 CREATE table comment (
 comment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 date_time DATETIME NOT NULL,
 message VARCHAR(100) NOT NULL,
-FOREIGN KEY (employee_id),
-FOREIGN KEY (admin_id),
-FOREIGN KEY (decision_id)
+employee_id INT,
+admin_id INT,
+decision_id INT,
+FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+FOREIGN KEY (admin_id) REFERENCES admin(admin_id),
+FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 )
 
 CREATE table paragraph(
-  paragraph_id PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  paragraph_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   title VARCHAR(100) NOT NULL,
   contains TEXT NOT NULL,
-  FOREIGN KEY (decision_id)
+  decision_id INT,
+  FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 )
