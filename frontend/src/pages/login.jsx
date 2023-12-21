@@ -1,9 +1,8 @@
 import "./login.scss";
-import { Link } from "react-router-dom";
 
 function Login() {
   return (
-    <div className="login__content">
+    <main className="login__content">
       <img
         className="login__content--logo"
         src="../src/assets/image/logo-Make_sense.png"
@@ -12,19 +11,19 @@ function Login() {
       <form>
         <label className="login__form--identify">
           Identifiant:
-          <input type="text" />
+          <input className="login__form--input-identify" type="text" />
         </label>
         <br />
         <label className="login__form--password">
           Mot de passe:
-          <input type="password" />
+          <input className="login__form--input-password" type="password" />
         </label>
-        <br />
-        <button className="login__fom--button-connect" type="submit">
-          <Link to="/NewUsers">Se Connecter</Link>
-        </button>
       </form>
-    </div>
+      <br />
+      <button className="login__fom--button-connect" type="submit">
+        Se Connecter
+      </button>
+    </main>
   );
 }
 

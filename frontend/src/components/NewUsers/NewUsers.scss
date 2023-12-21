@@ -1,10 +1,59 @@
 @import "../../variables";
 
+* {
+  text-decoration: none;
+}
 .newusers__content {
-  background: $secondary-medium;
+  font-family: $font-app;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+}
+
+.newusers__button {
+  background: $secondary-dark;
+  border-radius: 15px;
+  width: 10%;
+  padding: 0.7rem;
+  margin-top: 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+}
+
+.newusers__title {
+  color: $primary-dark;
+  font-weight: bold;
+  font-size: 150%;
+}
+.newusers__form {
+  background: $secondary-medium;
+  border-radius: 15px;
+  width: 25%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  outline: 4px dashed $secondary-dark;
+}
+
+.newusers__label {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  padding: 2px;
+}
+.newusers__text {
+  padding: 3px;
+}
+.newusers__input {
+  margin: auto;
+}
+@media screen and (max-width: 950px) {
+  .newusers__form {
+    width: 50%;
+  }
+  .newusers__button {
+    width: 30%;
+  }
 }
