@@ -1,6 +1,6 @@
 @import "../../variables";
 
-nav * {
+.nav__nav * {
   background-color: $background;
 }
 
@@ -11,7 +11,7 @@ nav * {
   justify-content: space-between;
   align-items: center;
   padding-inline: 10vw;
-  padding-block: 2vh;
+  padding-block: 1vh;
   background-color: $background;
   font-weight: bold;
 }
@@ -34,10 +34,7 @@ nav * {
 }
 
 .nav__avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
+  @include avatar;
   margin-inline-start: 10px;
 }
 
@@ -58,7 +55,6 @@ nav * {
   }
   .nav__nav {
     padding-inline: 2vw;
-    padding-block: 1vh;
   }
   .nav__logo {
     width: 100px;

@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.homepage__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-inline: 1vw;
+  padding-block-start: 1%;
+  &::after {
+    @include bean;
+    width: 80%;
+    height: 0.25rem;
+  }
+}
+
+.homepage__main {
+  padding: 1%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
