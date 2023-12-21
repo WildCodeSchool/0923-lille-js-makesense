@@ -1,0 +1,80 @@
+@import "../../variables";
+h4 {
+  margin: 0;
+  font-size: clamp(12px, 1.5vw, 1rem);
+}
+.descriptionBox {
+  @include box;
+  margin-top: 2vh;
+  height: 100vh;
+  width: 50vw;
+}
+.descriptionBox__header {
+  display: flex;
+}
+.descriptionBox__header--avatar {
+  border-radius: 50%;
+  border: 5px solid white;
+  height: 18vh;
+
+  margin-top: 5vh;
+  margin-left: 1vw;
+}
+.descriptionBox__header__right {
+  margin: 2vw;
+}
+.descriptionBox__header__right--title {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  margin: 0;
+}
+.descriptionBox__header__right--writer {
+  font-size: clamp(12px, 1.5vw, 1rem);
+  margin-top: 0.5rem;
+}
+.descriptionBox__body--details.expanded {
+  display: block;
+  padding-inline: 1vw;
+  border-radius: 10px;
+  background-color: white;
+  height: auto;
+  width: auto;
+  transform-origin: top center;
+  font-size: clamp(12px, 1.5vw, 1rem);
+  animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
+}
+.collapsed {
+  display: none;
+}
+.collapse-button {
+  background-color: $primary-light;
+  border-style: none;
+  cursor: pointer;
+}
+//     .collapse-content.collapsed {
+//         display: none;
+//     }
+//     .collapsed-content.expanded {
+//     display: block;
+//   }
+
+@keyframes slideOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideClose {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+}

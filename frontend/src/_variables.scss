@@ -49,3 +49,11 @@ $progress-bar: rgb(243, 151, 107);
 
 //INPUT LOGIN
 $input-login_bg: rgba(209, 226, 230);
+
+//MIXIN BOX
+@mixin box {
+  background-color: $primary-light;
+  border: 4px dashed $primary-dark;
+  border-radius: 4%;
+  padding: 1vw;
+}
