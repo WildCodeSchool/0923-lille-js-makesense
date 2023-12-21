@@ -1,14 +1,8 @@
-/*
- IMPORT STYLE WITH:
-
- @import url("variables");
-
-*/
-
 //MAKESENSE FONT
 $font-app: "Raleway", sans-serif;
 
 //MAKESENSE COLORS
+$background: #ffff;
 //BLUE
 $primary-pale: rgba(232, 240, 243);
 $primary-light: rgba(209, 226, 230);
@@ -56,4 +50,16 @@ $input-login_bg: rgba(209, 226, 230);
   border: 4px dashed $primary-dark;
   border-radius: 4%;
   padding: 1vw;
+}
+
+// Style
+@mixin bean {
+  display: inline-block;
+  margin-inline: 0.75rem;
+  margin-block: 0.15rem;
+  content: "";
+  border-radius: 0.25rem;
+  background-color: currentColor;
+  width: 1rem;
+  height: 0.3rem;
 }
