@@ -11,7 +11,7 @@ body {
   background-size: cover;
   background-position: center;
 
-  .content {
+  .login__content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,18 +22,20 @@ body {
     width: 14rem;
     margin-top: 1rem;
   }
-  .logo {
+  .login__content--logo {
     width: 20rem;
   }
 
-  .button-connect {
+  .login__fom--button-connect {
     width: 60%;
     padding: 0.4rem;
     margin: 10%;
     border-radius: 15px;
-    background-color: #196c84;
+    background-color: $primary-medium;
     color: white;
     margin: 0 0 0 3rem;
+    list-style: none;
+    text-decoration: none;
   }
 
   input {
