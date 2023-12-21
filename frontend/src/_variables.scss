@@ -47,9 +47,21 @@ $input-login_bg: rgba(209, 226, 230);
 //MIXIN BOX
 @mixin box {
   background-color: $primary-light;
-  border: 4px dashed $primary-dark;
-  border-radius: 4%;
+  outline: 4px dashed $primary-dark;
+  border-radius: 20px;
   padding: 1vw;
+}
+//MIXIN COLLAPSE PARAGRAPH
+@mixin collapseOpen {
+  display: block;
+  padding-inline: 1vw;
+  padding-block: 1vh;
+  border-radius: 10px;
+  background-color: white;
+  height: auto;
+  width: auto;
+  font-size: clamp(12px, 1.5vw, 1rem);
+  animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
 }
 
 // Style

@@ -1,13 +1,17 @@
 @import "../../variables";
 h4 {
-  margin: 0;
   font-size: clamp(12px, 1.5vw, 1rem);
+  margin-top: 7vh;
 }
+
 .descriptionBox {
   @include box;
   margin-top: 2vh;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 50vw;
+  padding-bottom: 7vh;
+  margin-bottom: 10vh;
 }
 .descriptionBox__header {
   display: flex;
@@ -31,31 +35,25 @@ h4 {
   font-size: clamp(12px, 1.5vw, 1rem);
   margin-top: 0.5rem;
 }
-.descriptionBox__body--details.expanded {
-  display: block;
-  padding-inline: 1vw;
-  border-radius: 10px;
-  background-color: white;
-  height: auto;
-  width: auto;
-  transform-origin: top center;
-  font-size: clamp(12px, 1.5vw, 1rem);
-  animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
+.descriptionBox__body--paragraphs {
+  display: flex;
+  flex-direction: column;
+}
+
+.expanded {
+  @include collapseOpen;
 }
 .collapsed {
   display: none;
+  height: 5vh;
+  background-color: azure;
 }
-.collapse-button {
+
+.collapse__button {
   background-color: $primary-light;
   border-style: none;
   cursor: pointer;
 }
-//     .collapse-content.collapsed {
-//         display: none;
-//     }
-//     .collapsed-content.expanded {
-//     display: block;
-//   }
 
 @keyframes slideOpen {
   0% {
