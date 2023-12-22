@@ -4,7 +4,7 @@ lastname VARCHAR(100) NOT NULL,
 firstname VARCHAR(100) NOT NULL,
 email VARCHAR(100) NOT NULL,
 location VARCHAR(100) NOT NULL,
-picture BINARY,
+picture VARCHAR(100),
 role VARCHAR(100)
 )
 
