@@ -1,0 +1,60 @@
+@import "../../variables";
+
+.createDecisionForm__content {
+  grid-area: 1 / 1 / 4 / 2;
+  @include box;
+  margin-block-start: 2%;
+  display: flex;
+  flex-direction: column;
+  @include scroll;
+}
+
+.createDecisionForm__experts {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.createDecisionForm__impacted {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.createDecisionForm__titles {
+  text-align: center;
+  padding-block: 1%;
+}
+
+.createDecisionForm__content {
+  @include box;
+}
+
+.createDecisionForm__chosen {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-block: 1%;
+  border-radius: 20px;
+  background-color: $background;
+  padding: 1%;
+  &--avatar {
+    @include avatar;
+    margin-inline-end: 3%;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.createDecisionForm__search {
+  background-color: $background;
+  & input {
+    all: unset;
+    background-color: $background;
+    padding: 2%;
+    width: 80%;
+  }
+  & button {
+    background-color: $background;
+    width: 10%;
+  }
+  &::before {
+    @include bean;
+  }
+}

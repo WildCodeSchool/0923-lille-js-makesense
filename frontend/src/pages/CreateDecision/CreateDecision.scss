@@ -1,0 +1,21 @@
+@import "../../variables";
+
+.createDecision__main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2%;
+  margin-inline: 2%;
+}
+
+.createDecisionForm__button {
+  grid-area: 3 / 2 / 4 / 3;
+  background-color: $primary-medium;
+  color: white;
+  text-align: center;
+  padding: 4%;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: larger;
+  margin-inline: 3%;
+}
