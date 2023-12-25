@@ -4,8 +4,8 @@ import { mockUser } from "../../mockData";
 function CreateDecisionFormExperts() {
   return (
     <article className="createDecisionForm__experts">
-      <h2 className="createDecisionForm__titles">Experts</h2>
-      <span className="createDecisionForm__content">
+      <h2 className="createDecisionForm__titles">Expert·e·s</h2>
+      <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
         <ul className="createDecisionForm__list">
           <li className="createDecisionForm__chosen">
             <img
@@ -32,9 +32,11 @@ function CreateDecisionFormExperts() {
           <input
             className="createDecisionForm__input"
             type="text"
-            placeholder="Rechercher expert.e.s"
+            placeholder="Rechercher expert·e·s"
           />
-          <button type="submit">Choisir</button>
+          <button className="createDecisionForm__submit" type="submit">
+            Choisir
+          </button>
         </form>
       </span>
     </article>

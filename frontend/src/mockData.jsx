@@ -15,7 +15,7 @@ const mockUser = [
     email: "evilchair@precinct41.rev",
     location: "Revachol",
     picture:
-      "https://static.wikia.nocookie.net/discoelysium_gamepedia_en/images/8/83/Portrait_you.png/revision/latest?cb=20191028100206",
+      "https://i.pinimg.com/564x/56/50/0f/56500f0ddf451688f11475525bd723ae.jpg",
     role: "employee",
   },
   {
@@ -25,7 +25,7 @@ const mockUser = [
     email: "kimball@precinct57.rev",
     location: "Revachol",
     picture:
-      "https://static.wikia.nocookie.net/discoelysium_gamepedia_en/images/f/f8/Portrait_jean.png/revision/latest?cb=20191028100303",
+      "https://i.pinimg.com/736x/e9/3d/3b/e93d3b076b60664048cf62626a711320.jpg",
     role: "employee",
   },
 ];

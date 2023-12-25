@@ -7,11 +7,13 @@ function CreateDecision() {
   return (
     <main className="createDecision__main">
       <CreateDecisionFormContent />
-      <CreateDecisionFormExperts />
-      <CreateDecisionFormImpacted />
-      <button type="submit" className="createDecisionForm__button">
-        Publier
-      </button>
+      <aside className="createDecision__aside">
+        <CreateDecisionFormExperts />
+        <CreateDecisionFormImpacted />
+        <button type="submit" className="createDecisionForm__button">
+          Publier
+        </button>
+      </aside>
     </main>
   );
 }

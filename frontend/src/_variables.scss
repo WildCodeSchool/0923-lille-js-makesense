@@ -99,3 +99,12 @@ $input-login_bg: rgba(209, 226, 230);
     border: 3px solid rgb($primary-medium, 0.5);
   }
 }
+
+@mixin buttons {
+  background-color: $primary-medium;
+  color: white;
+  text-align: center;
+  padding: 4%;
+  border-radius: 50px;
+  font-weight: bold;
+}
