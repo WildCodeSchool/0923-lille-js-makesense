@@ -2,36 +2,34 @@ import "./Nav.scss";
 
 function Nav() {
   return (
-    <ul className="nav__nav">
-      <li className="nav__logo">
+    <nav className="nav__nav">
+      <a href="*" className="nav__logo">
         <img
           className="nav__logo--img"
           src=".\src\assets\logo-makesense-dark.png"
           alt="Make Sense logo"
         />
-      </li>
-      <li>
+      </a>
+      <ul className="nav__items">
         <ul className="nav__links">
-          <li>
+          <li className="nav__list">
             <a className="nav__links--user" type="button" href="*">
               Nouvel utilisateur
             </a>
           </li>
-          <li>
+          <li className="nav__list">
             <a className="nav__links--decision" type="button" href="*">
               Nouvelle décision
             </a>
           </li>
         </ul>
-      </li>
-      <li>
         <img
           className="nav__avatar"
           alt="user avatar"
           src="https://placehold.co/600x400"
         />
-      </li>
-    </ul>
+      </ul>
+    </nav>
   );
 }
 

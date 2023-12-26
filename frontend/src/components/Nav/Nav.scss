@@ -1,42 +1,62 @@
+@import "../../variables";
+
+.nav__nav * {
+  background-color: $background;
+}
+
 .nav__nav {
   width: 100%;
   display: flex;
-  position: fixed;
+  position: sticky;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  background-color: pink;
   padding-inline: 10vw;
-  padding-block: 2vh;
+  padding-block: 1vh;
+  background-color: $background;
+  font-weight: bold;
 }
 
+.nav__items,
 .nav__links {
-  color: red;
   display: flex;
+  align-items: center;
 }
 
-.nav__links::after {
-  display: inline-block;
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-  content: "";
-  border-radius: 0.25rem;
-  background-color: currentColor;
-  width: 0.5625rem;
-  height: 0.25rem;
+.nav__links--decision::before {
+  @include bean;
 }
 
 .nav__logo {
   width: 15%;
-}
-
-.nav__logo--img {
-  width: 100%;
+  &--img {
+    width: 100%;
+  }
 }
 
 .nav__avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
+  @include avatar;
+  margin-inline-start: 10px;
+}
+
+// mobile version
+@media (max-width: 660px) {
+  .nav__links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    &--decision::before {
+      all: unset;
+    }
+  }
+  .nav__avatar {
+    width: 60px;
+    height: 60px;
+    margin-inline-start: 8px;
+  }
+  .nav__nav {
+    padding-inline: 2vw;
+  }
+  .nav__logo {
+    width: 100px;
+  }
 }
