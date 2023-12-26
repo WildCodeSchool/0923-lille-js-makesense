@@ -10,7 +10,7 @@ import CreateDecision from "./pages/CreateDecision/CreateDecision";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // Login
+    element: <App />,
   },
   {
     element: <App />,
