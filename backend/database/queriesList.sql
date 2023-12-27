@@ -1,17 +1,27 @@
 /* List of SQL queries we're going to need for this project */
 
+/* savoir si c'est un admin ou non */
+SELECT role FROM user
+WHERE user_id=?;
+
 /*  page: login
     query for: authentification. Appeler la bdd pour vérifier que le login et le mdp correspondent à un user.
 */
 SELECT user.user_id FROM user
 JOIN authentification ON user.user_id=authentification.user_id
-WHERE user.email="kimball@precinct57.rev" AND authentification.password="123";
+WHERE user.email=? AND authentification.password=?;
 
 /*  page: nav
     query for: appeler les infos (select) de l'utilisateur (user) dans le dropdown (lastname, firstname, email, location, picture, role)
     query for: changer (update) la photo (picture) de l'utilisateur (user). il faudra stocker les photos dans le backend pour insérer 
         seulement leur adresse dans la BDD.
 */
+SELECT lastname, firstname, email, location, picture FROM user
+WHERE user_id=?;
+
+UPDATE user 
+SET picture=?
+WHERE user_id=?;
 
 /*  page: homepage
     query for: filtrer les décisions (decision (title, status, lieu, nb de commentaires + auteur:  firstname, lastname, picture) en attente, 
