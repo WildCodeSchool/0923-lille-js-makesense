@@ -3,6 +3,9 @@
 /*  page: login
     query for: authentification. Appeler la bdd pour vérifier que le login et le mdp correspondent à un user.
 */
+SELECT user.user_id FROM user
+JOIN authentification ON user.user_id=authentification.user_id
+WHERE user.email="kimball@precinct57.rev" AND authentification.password="123";
 
 /*  page: nav
     query for: appeler les infos (select) de l'utilisateur (user) dans le dropdown (lastname, firstname, email, location, picture, role)
@@ -19,17 +22,25 @@
         lieu: decision_maker_id>decision_maker>user_id>user>location, commentaires: trouver le nombre d'occurences du decision_id dans comment)
     query for: filtrer les décisions qui concernent l'utilisateur en tant qu'auteur (user_id in decision_maker), expert (assignment), impacté (assignment) 
         ou commentateur (employee_id/admin_id = user_id à associer avec decision_id). Toujours beoin de title, status, lieu, nb de commentaires + 
-        auteur:  firstname, lastname, picture
+        auteur: firstname, lastname, picture
 */
 
 /*  page: decision
-    query for:
+    query for: afficher (select) toutes les infos d'une décision (titre, auteur, paragraphs, status, date de création) + les commentaires qui lui sont 
+        associés avec les auteurs des commentaires et leur rôle (expert/impacté/visiteur)
+    query for: ajouter un commentaire (update, comment) en tant que expert/impacté/visiteur, associer le commentaire à la decision_id
 */
 
 /*  page: create decision
-    query for:
+    query for: créer une decision, updater la table decision avec les paragraphes. INSERT INTO paragraph le title de chaque paragraphe et son contenu
+        (title, contains) associé à un id de decision (decision_id).
+        + INSERT INTO pour les rôles d'expert/impacté
+    query for: updater une décision. SELECT le contenu de la decision par son id, le insert into précédent devient un update qui utilise les id des
+        paragraphes (title, contains).
+        + les experts et impactés 
+    query for: chercher un expert/impacté. Besoin de select tous les firstname et lastname pour ensuite filtrer dessus ?
 */
 
 /*  page: create user
-    query for:
+    query for: créer un user, updater la table user (firstname, lastname, mai, location, avatar, role) et authentification (password).
 */
