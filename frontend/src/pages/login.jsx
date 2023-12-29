@@ -4,23 +4,23 @@ function Login() {
   return (
     <main className="login__content">
       <img
-        className="login__content--logo"
+        className="login__logo"
         src="../src/assets/image/logo-Make_sense.png"
         alt="logo"
       />
       <form>
-        <label className="login__form--identify">
+        <label className="login__identify">
           Identifiant:
-          <input className="login__form--input-identify" type="text" />
+          <input className="login__input" type="text" />
         </label>
         <br />
-        <label className="login__form--password">
+        <label className="login__password">
           Mot de passe:
-          <input className="login__form--input-password" type="password" />
+          <input className="login__input" type="password" />
         </label>
       </form>
       <br />
-      <button className="login__fom--button-connect" type="submit">
+      <button className="login__button-connect" type="submit">
         Se Connecter
       </button>
     </main>
