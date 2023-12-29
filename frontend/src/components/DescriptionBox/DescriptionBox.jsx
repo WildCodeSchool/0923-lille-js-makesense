@@ -10,41 +10,47 @@ function DescriptionBox() {
 
   return (
     <>
-      <h4>
+      <h2>
         Date d'ouverture: 00/00/2023 <br />
         Date de cloture: 00/00/2024
-      </h4>
-      <div className="descriptionBox">
-        <header className="descriptionBox__header">
-          <img
-            className="descriptionBox__header--avatar"
-            src="src/assets/vincent.png"
-            alt="avatar de l'auteur du poste"
-          />
-          <div className="descriptionBox__header__right">
-            <h2 className="descriptionBox__header__right--title">
-              Titre de la décision sur toute la zone très lisible
-            </h2>
-            <p className="descriptionBox__header__right--writer">
-              par Vincent Rousseaux
-            </p>
-          </div>
-        </header>
-        <body>
-          <div className="descriptionBox__body--paragraphs">
+      </h2>
+      <section className="descriptionBox">
+        <section className="descriptionBox__scroll">
+          <header className="descriptionBox__header">
+            <img
+              className="descriptionBox__header--avatar"
+              src="src/assets/vincent.png"
+              alt="avatar de l'auteur du poste"
+            />
+            <section className="descriptionBox__header__right">
+              <h1 className="descriptionBox__header__right--title">
+                Titre de la décision sur toute la zone très lisible
+              </h1>
+              <p className="descriptionBox__header__right--writer">
+                par Vincent Rousseaux
+              </p>
+              <span className="decision__beans">
+                <span className="decision__status">en cours</span>
+                <span className="decision__location">Lille</span>
+                <span className="decision__advices">4 avis</span>
+              </span>
+            </section>
+          </header>
+
+          <section className="descriptionBox__body--paragraphs">
             <button
               type="button"
-              className="collapse__button"
               onClick={() => setIsCollapsedDetails(!isCollapsedDetails)}
             >
-              <h4>{isCollapsedDetails ? "➖" : "➕"} Détails de la décision</h4>
+              <h2 className="title__paragraph">
+                {isCollapsedDetails ? "➕" : "➖"} Détails de la décision
+              </h2>
             </button>
             <hr />
-            <div
+            <article
               className={`descriptionBox__body--details ${
-                isCollapsedDetails ? "expanded" : "collapsed"
+                isCollapsedDetails ? "collapsed" : "expanded"
               }`}
-              aria-expanded={isCollapsedDetails}
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
@@ -56,22 +62,20 @@ function DescriptionBox() {
                 nulla dicta id alias a repellat labore enim veniam, aperiam
                 magni!
               </p>
-            </div>
+            </article>
             <button
               type="button"
-              className="collapse__button"
               onClick={() => setIsCollapsedImpact(!isCollapsedImpact)}
             >
-              <h4>
+              <h2 className="title__paragraph">
                 {isCollapsedImpact ? "➖" : "➕"} Impact sur l'organisation
-              </h4>
+              </h2>
             </button>
             <hr />
-            <div
+            <article
               className={`descriptionBox__body--impact ${
                 isCollapsedImpact ? "expanded" : "collapsed"
               }`}
-              aria-expanded={isCollapsedImpact}
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
@@ -83,20 +87,20 @@ function DescriptionBox() {
                 nulla dicta id alias a repellat labore enim veniam, aperiam
                 magni!
               </p>
-            </div>
+            </article>
             <button
               type="button"
-              className="collapse__button"
               onClick={() => setIsCollapsedBenefits(!isCollapsedBenefits)}
             >
-              <h4>{isCollapsedBenefits ? "➖" : "➕"} Bénéfices</h4>
+              <h2 className="title__paragraph">
+                {isCollapsedBenefits ? "➖" : "➕"} Bénéfices
+              </h2>
             </button>
             <hr />
-            <div
+            <article
               className={`descriptionBox__body--benefits ${
                 isCollapsedBenefits ? "expanded" : "collapsed"
               }`}
-              aria-expanded={isCollapsedBenefits}
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
@@ -108,20 +112,20 @@ function DescriptionBox() {
                 nulla dicta id alias a repellat labore enim veniam, aperiam
                 magni!
               </p>
-            </div>
+            </article>
             <button
               type="button"
-              className="collapse__button"
               onClick={() => setIsCollapsedHazards(!isCollapsedHazards)}
             >
-              <h4>{isCollapsedHazards ? "➖" : "➕"} Risques potentiels</h4>
+              <h2 className="title__paragraph">
+                {isCollapsedHazards ? "➖" : "➕"} Risques potentiels
+              </h2>
             </button>
             <hr />
-            <div
+            <article
               className={`descriptionBox__body--hazards ${
                 isCollapsedHazards ? "expanded" : "collapsed"
               }`}
-              aria-expanded={isCollapsedHazards}
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
@@ -133,22 +137,20 @@ function DescriptionBox() {
                 nulla dicta id alias a repellat labore enim veniam, aperiam
                 magni!
               </p>
-            </div>
+            </article>
             <button
               type="button"
-              className="collapse__button"
               onClick={() => setIsCollapsedStDecision(!isCollapsedStDecision)}
             >
-              <h4>
+              <h2 className="title__paragraph">
                 {isCollapsedStDecision ? "➖" : "➕"} Première décision prise
-              </h4>
+              </h2>
             </button>
             <hr />
-            <div
+            <article
               className={`descriptionBox__body--firstDecision ${
                 isCollapsedStDecision ? "expanded" : "collapsed"
               }`}
-              aria-expanded={isCollapsedStDecision}
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
@@ -160,10 +162,10 @@ function DescriptionBox() {
                 nulla dicta id alias a repellat labore enim veniam, aperiam
                 magni!
               </p>
-            </div>
-          </div>
-        </body>
-      </div>
+            </article>
+          </section>
+        </section>
+      </section>
     </>
   );
 }

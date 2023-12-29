@@ -1,26 +1,30 @@
 @import "../../variables";
-h4 {
-  font-size: clamp(12px, 1.5vw, 1rem);
-  margin-top: 7vh;
+.title__paragraph {
+  font-size: clamp(22px, 3vw, 1.8rem);
+  padding-block: 2vh;
+  cursor: pointer;
 }
 
 .descriptionBox {
   @include box;
   margin-top: 2vh;
-  min-height: 100vh;
-  height: auto;
+  height: 80vh;
   width: 50vw;
-  padding-bottom: 7vh;
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
+}
+.descriptionBox__scroll {
+  height: 74vh;
+  width: 48.5vw;
+  overflow-y: scroll;
 }
 .descriptionBox__header {
   display: flex;
+  padding-bottom: 5vh;
 }
 .descriptionBox__header--avatar {
   border-radius: 50%;
   border: 5px solid white;
-  height: 18vh;
-
+  height: 17vh;
   margin-top: 5vh;
   margin-left: 1vw;
 }
@@ -28,31 +32,43 @@ h4 {
   margin: 2vw;
 }
 .descriptionBox__header__right--title {
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-  margin: 0;
+  font-size: clamp(25px, 3vw, 2.5rem);
 }
 .descriptionBox__header__right--writer {
-  font-size: clamp(12px, 1.5vw, 1rem);
+  font-size: clamp(18px, 2vw, 1.5rem);
   margin-top: 0.5rem;
+  padding-bottom: 2vh;
+}
+.decision__beans {
+  display: flex;
+  justify-content: flex-start;
+}
+.decision__status {
+  @include statusButtons;
+  background-color: $status-bg;
+}
+.decision__location {
+  display: flex;
+  @include statusButtons;
+  background-color: $location-bg;
+  align-items: center;
+}
+.decision__advices {
+  @include statusButtons;
+  background-color: $advice-bg;
 }
 .descriptionBox__body--paragraphs {
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 2%;
 }
-
 .expanded {
   @include collapseOpen;
 }
 .collapsed {
+  animation: slideClose 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
   display: none;
-  height: 5vh;
-  background-color: azure;
-}
-
-.collapse__button {
-  background-color: $primary-light;
-  border-style: none;
-  cursor: pointer;
 }
 
 @keyframes slideOpen {

@@ -53,14 +53,13 @@ $input-login_bg: rgba(209, 226, 230);
 }
 //MIXIN COLLAPSE PARAGRAPH
 @mixin collapseOpen {
-  display: block;
-  padding-inline: 1vw;
+  padding-inline: 2vw;
   padding-block: 1vh;
   border-radius: 10px;
   background-color: white;
   height: auto;
   width: auto;
-  font-size: clamp(12px, 1.5vw, 1rem);
+  font-size: clamp(18px, 2vw, 1.5rem);
   animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
 }
 
@@ -81,4 +80,13 @@ $input-login_bg: rgba(209, 226, 230);
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+@mixin statusButtons {
+  border: 1px solid $status-solid;
+  border-radius: 20px;
+  padding: 1%;
+  padding-inline: 5%;
+  margin-inline: 2px;
+  text-align: center;
 }
