@@ -40,14 +40,12 @@
 .newusers__label {
   display: flex;
   flex-direction: column;
-  margin-right: 1rem;
-  padding: 2px;
 }
 .newusers__text {
   padding: 3px;
 }
 .newusers__input {
-  margin: auto;
+  border-radius: 5px;
 }
 @media screen and (max-width: 950px) {
   .newusers__form {

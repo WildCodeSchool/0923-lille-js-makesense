@@ -1,4 +1,3 @@
-import "./App.scss";
 import Nav from "./components/Nav/Nav";
 import Homepage from "./pages/Homepage/Homepage";
 

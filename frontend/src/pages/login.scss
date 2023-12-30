@@ -18,19 +18,20 @@ form {
   width: 14rem;
   margin-top: 1rem;
 }
-.login__content--logo {
+.login__logo {
   width: 20rem;
 }
 
-.login__fom--button-connect {
+.login__button {
   width: 10%;
   padding: 0.4rem;
   border-radius: 15px;
   background-color: $primary-medium;
-  color: white;
+  color: $background;
+  text-align: center;
 }
 
-input {
+.login__input {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #d0d0d0;
@@ -39,7 +40,7 @@ input {
   background-color: $primary-light;
 }
 @media screen and (max-width: 700px) {
-  .login__fom--button-connect {
+  .login__button {
     width: 30%;
   }
 }

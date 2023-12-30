@@ -13,14 +13,13 @@ function Login() {
           Identifiant:
           <input className="login__input" type="text" />
         </label>
-        <br />
+
         <label className="login__password">
           Mot de passe:
           <input className="login__input" type="password" />
         </label>
       </form>
-      <br />
-      <button className="login__button-connect" type="submit">
+      <button className="login__button" type="submit">
         Se Connecter
       </button>
     </main>
