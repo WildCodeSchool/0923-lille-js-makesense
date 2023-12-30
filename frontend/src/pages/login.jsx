@@ -2,28 +2,27 @@ import "./login.scss";
 
 function Login() {
   return (
-    <div className="content">
+    <main className="login__content">
       <img
-        className="logo"
+        className="login__logo"
         src="../src/assets/image/logo-Make_sense.png"
         alt="logo"
       />
       <form>
-        <label className="identify">
+        <label className="login__identify">
           Identifiant:
-          <input type="text" />
+          <input className="login__input" type="text" />
         </label>
-        <br />
-        <label className="password">
+
+        <label className="login__password">
           Mot de passe:
-          <input type="password" />
+          <input className="login__input" type="password" />
         </label>
-        <br />
-        <button className="button-connect" type="submit">
-          Se Connecter
-        </button>
       </form>
-    </div>
+      <button className="login__button" type="submit">
+        Se Connecter
+      </button>
+    </main>
   );
 }
 
