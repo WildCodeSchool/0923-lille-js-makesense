@@ -1,14 +1,8 @@
-/*
- IMPORT STYLE WITH:
-
- @import url("variables");
-
-*/
-
 //MAKESENSE FONT
 $font-app: "Raleway", sans-serif;
 
 //MAKESENSE COLORS
+$background: #ffff;
 //BLUE
 $primary-pale: rgba(232, 240, 243);
 $primary-light: rgba(209, 226, 230);
@@ -49,3 +43,22 @@ $progress-bar: rgb(243, 151, 107);
 
 //INPUT LOGIN
 $input-login_bg: rgba(209, 226, 230);
+
+// Style
+@mixin bean {
+  display: inline-block;
+  margin-inline: 0.75rem;
+  margin-block: 0.15rem;
+  content: "";
+  border-radius: 0.25rem;
+  background-color: currentColor;
+  width: 1rem;
+  height: 0.3rem;
+}
+
+@mixin avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
