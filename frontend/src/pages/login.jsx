@@ -9,14 +9,14 @@ function Login() {
         alt="logo"
       />
       <form>
-        <label className="login__identify">
+        <label htmlFor="identify" className="login__identify">
           Identifiant:
-          <input className="login__input" type="text" />
+          <input id="identify" className="login__input" type="text" />
         </label>
 
-        <label className="login__password">
+        <label htmlFor="password" className="login__password">
           Mot de passe:
-          <input className="login__input" type="password" />
+          <input id="password" className="login__input" type="password" />
         </label>
       </form>
       <button className="login__button" type="submit">
