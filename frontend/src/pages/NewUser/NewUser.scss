@@ -10,15 +10,12 @@
 }
 
 .newuser__button {
+  @include buttons;
   background: $secondary-dark;
-  border-radius: 15px;
   width: 10%;
-  padding: 0.7rem;
-  margin-top: 1rem;
+  padding: 1%;
   color: $lightFont;
-  font-weight: bold;
   font-size: large;
-  text-align: center;
 }
 
 .newuser__title {
@@ -30,9 +27,15 @@
   background: $secondary-medium;
   border-radius: 15px;
   width: 25%;
+  height: 60vh;
   padding: 1.5rem;
   box-sizing: border-box;
   outline: 4px dashed $secondary-dark;
+  margin-block: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .newuser__label {
@@ -44,6 +47,7 @@
 }
 .newuser__input {
   border-radius: 5px;
+  width: 100%;
 }
 
 @media screen and (max-width: 950px) {

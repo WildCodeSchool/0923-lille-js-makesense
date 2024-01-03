@@ -6,7 +6,7 @@ import App from "./App";
 import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import Decision from "./pages/Decision/Decision";
-import NewUser from "./components/NewUser/NewUser";
+import NewUser from "./pages/NewUser/NewUser";
 
 const router = createBrowserRouter([
   {

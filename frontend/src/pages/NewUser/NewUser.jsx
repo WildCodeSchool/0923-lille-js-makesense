@@ -3,7 +3,7 @@ import "./NewUser.scss";
 function newuser() {
   return (
     <main className="newuser__content">
-      <span className="newuser__title">Nouvel utilisateur</span>
+      <h1 className="newuser__title">Nouvel utilisateur</h1>
       <form className="newuser__form">
         <label className="newuser__label">
           <span className="newuser__text"> Nom :</span>
