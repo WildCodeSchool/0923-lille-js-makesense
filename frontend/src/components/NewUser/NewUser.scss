@@ -1,0 +1,54 @@
+@import "../../variables";
+
+.newuser__content {
+  font-family: $font-app;
+  color: $lightFont;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.newuser__button {
+  background: $secondary-dark;
+  border-radius: 15px;
+  width: 10%;
+  padding: 0.7rem;
+  margin-top: 1rem;
+  color: $lightFont;
+  font-weight: bold;
+  font-size: large;
+}
+
+.newuser__title {
+  color: $primary-dark;
+  font-weight: bold;
+  font-size: 150%;
+}
+.newuser__form {
+  background: $secondary-medium;
+  border-radius: 15px;
+  width: 25%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  outline: 4px dashed $secondary-dark;
+}
+
+.newuser__label {
+  display: flex;
+  flex-direction: column;
+}
+.newuser__text {
+  padding: 3px;
+}
+.newuser__input {
+  border-radius: 5px;
+}
+@media screen and (max-width: 950px) {
+  .newuser__form {
+    width: 50%;
+  }
+  .newuser__button {
+    width: 30%;
+  }
+}

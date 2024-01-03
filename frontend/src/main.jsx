@@ -5,9 +5,8 @@ import Login from "./pages/login";
 import App from "./App";
 import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
-/* import NewUsers from ".pages/NewUsers/NewUsers";
- */
 import Decision from "./pages/Decision/Decision";
+import NewUser from "./components/NewUser/NewUser";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +28,10 @@ const router = createBrowserRouter([
         path: "/createdecision",
         element: <CreateDecision />,
       },
-      /*       {
+      {
         path: "/newuser",
-        element: <NewUsers />,
-      }, */
+        element: <NewUser />,
+      },
     ],
   },
   {

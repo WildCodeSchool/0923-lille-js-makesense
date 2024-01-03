@@ -19,7 +19,7 @@ function SecondaryNav() {
       </ul>
       <img
         src="../src/assets/ban-bottom.png"
-        alt=""
+        alt="decoration navigation"
         className="secondaryNav__bottom"
       />
     </nav>
