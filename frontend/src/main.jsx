@@ -6,7 +6,6 @@ import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import Login from "./pages/login";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
