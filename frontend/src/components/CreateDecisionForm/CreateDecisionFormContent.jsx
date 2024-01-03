@@ -27,7 +27,7 @@ function CreateDecisionFormContent() {
       <textarea
         id="section1"
         name="section1"
-        placeholder="Expliquez l'idée dernière votre proposition."
+        placeholder="Expliquez l'idée derrière votre proposition."
         className="createDecisionForm__input"
         required
       />
