@@ -10,7 +10,7 @@ function CreateDecision() {
       <aside className="createDecision__aside">
         <CreateDecisionFormExperts />
         <CreateDecisionFormImpacted />
-        <button type="submit" className="createDecisionForm__button">
+        <button type="button" className="createDecisionForm__button">
           Publier
         </button>
       </aside>
