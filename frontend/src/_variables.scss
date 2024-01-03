@@ -44,6 +44,25 @@ $progress-bar: rgb(243, 151, 107);
 //INPUT LOGIN
 $input-login_bg: rgba(209, 226, 230);
 
+//MIXIN BOX
+@mixin box {
+  background-color: $primary-light;
+  outline: 4px dashed $primary-dark;
+  border-radius: 20px;
+  padding: 1vw;
+}
+//MIXIN COLLAPSE PARAGRAPH
+@mixin collapseOpen {
+  padding-inline: 2vw;
+  padding-block: 1vh;
+  border-radius: 10px;
+  background-color: white;
+  height: auto;
+  width: auto;
+  font-size: clamp(18px, 2vw, 1.5rem);
+  animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
+}
+
 // Style
 @mixin bean {
   display: inline-block;
@@ -107,4 +126,13 @@ $input-login_bg: rgba(209, 226, 230);
   padding: 4%;
   border-radius: 50px;
   font-weight: bold;
+}
+
+@mixin statusButtons {
+  border: 1px solid $status-solid;
+  border-radius: 20px;
+  padding: 1%;
+  padding-inline: 5%;
+  margin-inline: 2px;
+  text-align: center;
 }

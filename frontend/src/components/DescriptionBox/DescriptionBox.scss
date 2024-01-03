@@ -1,0 +1,94 @@
+@import "../../variables";
+.title__paragraph {
+  font-size: clamp(22px, 3vw, 1.8rem);
+  padding-block: 2vh;
+  cursor: pointer;
+}
+
+.descriptionBox {
+  @include box;
+  margin-top: 2vh;
+  height: 80vh;
+  width: 50vw;
+  margin-bottom: 5vh;
+}
+.descriptionBox__scroll {
+  height: 74vh;
+  width: 48.5vw;
+  overflow-y: scroll;
+}
+.descriptionBox__header {
+  display: flex;
+  padding-bottom: 5vh;
+}
+.descriptionBox__header--avatar {
+  border-radius: 50%;
+  border: 5px solid white;
+  height: 17vh;
+  margin-top: 5vh;
+  margin-left: 1vw;
+}
+.descriptionBox__header__right {
+  margin: 2vw;
+}
+.descriptionBox__header__right--title {
+  font-size: clamp(25px, 3vw, 2.5rem);
+}
+.descriptionBox__header__right--writer {
+  font-size: clamp(18px, 2vw, 1.5rem);
+  margin-top: 0.5rem;
+  padding-bottom: 2vh;
+}
+.decision__beans {
+  display: flex;
+  justify-content: flex-start;
+}
+.decision__status {
+  @include statusButtons;
+  background-color: $status-bg;
+}
+.decision__location {
+  display: flex;
+  @include statusButtons;
+  background-color: $location-bg;
+  align-items: center;
+}
+.decision__advices {
+  @include statusButtons;
+  background-color: $advice-bg;
+}
+.descriptionBox__body--paragraphs {
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
+.expanded {
+  @include collapseOpen;
+}
+.collapsed {
+  animation: slideClose 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
+  display: none;
+}
+
+@keyframes slideOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideClose {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+}
