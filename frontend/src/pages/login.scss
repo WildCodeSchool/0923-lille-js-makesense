@@ -14,7 +14,7 @@
   justify-content: center;
   height: 100vh;
 }
-form {
+.login__form {
   width: 14rem;
   margin-top: 1rem;
 }
@@ -29,6 +29,7 @@ form {
   background-color: $primary-medium;
   color: $background;
   text-align: center;
+  font-weight: bold;
 }
 
 .login__input {

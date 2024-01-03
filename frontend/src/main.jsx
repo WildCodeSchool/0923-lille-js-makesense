@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
+import Homepage from "./pages/Homepage/Homepage";
+import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import Login from "./pages/login";
 import NewUsers from "./components/NewUsers/NewUsers";
-import Homepage from "./pages/Homepage/Homepage";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +17,17 @@ const router = createBrowserRouter([
     element: <NewUsers />,
   },
   {
-    path: "/homepage",
-    element: <Homepage />,
+    element: <App />,
+    children: [
+      {
+        path: "/homepage",
+        element: <Homepage />,
+      },
+      {
+        path: "/createdecision",
+        element: <CreateDecision />,
+      },
+    ],
   },
 ]);
 
