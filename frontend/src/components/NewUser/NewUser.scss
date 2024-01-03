@@ -18,6 +18,7 @@
   color: $lightFont;
   font-weight: bold;
   font-size: large;
+  text-align: center;
 }
 
 .newuser__title {
@@ -44,6 +45,7 @@
 .newuser__input {
   border-radius: 5px;
 }
+
 @media screen and (max-width: 950px) {
   .newuser__form {
     width: 50%;
