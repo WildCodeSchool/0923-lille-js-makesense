@@ -1,25 +1,28 @@
+import { Link } from "react-router-dom";
 import "./Nav.scss";
 
 function Nav() {
   return (
     <nav className="nav__nav">
       <a href="*" className="nav__logo">
-        <img
-          className="nav__logo--img"
-          src=".\src\assets\logo-makesense-dark.png"
-          alt="Make Sense logo"
-        />
+        <Link to="/homepage">
+          <img
+            className="nav__logo--img"
+            src=".\src\assets\logo-makesense-dark.png"
+            alt="Make Sense logo"
+          />
+        </Link>
       </a>
       <ul className="nav__items">
         <ul className="nav__links">
           <li className="nav__list">
             <a className="nav__links--user" type="button" href="*">
-              Nouvel utilisateur
+              <Link to="/newuser"> Nouvel utilisateur</Link>
             </a>
           </li>
           <li className="nav__list">
             <a className="nav__links--decision" type="button" href="*">
-              Nouvelle décision
+              <Link to="/createdecision">Nouvelle décision</Link>
             </a>
           </li>
         </ul>
