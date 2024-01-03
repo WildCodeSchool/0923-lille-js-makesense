@@ -8,7 +8,7 @@ function Login() {
         src="../src/assets/image/logo-Make_sense.png"
         alt="logo"
       />
-      <form>
+      <form className="login__form">
         <label htmlFor="identify" className="login__identify">
           Identifiant:
           <input id="identify" className="login__input" type="text" />
