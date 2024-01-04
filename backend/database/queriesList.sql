@@ -1,8 +1,8 @@
 /* List of SQL queries we're going to need for this project */
 
 /* savoir si c'est un admin ou non, role??? */
-SELECT role FROM user
-WHERE user_id = ?;
+/* SELECT role FROM user
+WHERE user_id = ?; */
 
 /*  page: login
     query for: authentication. Appeler la bdd pour vérifier que le login et le mdp correspondent à un user.
@@ -35,21 +35,21 @@ WHERE user_id = ?;
         auteur: firstname, lastname, picture
 */
 
-SELECT decision.decision_id, decision.title, decision.status, user.firstname, user.lastname AS author_lastname, user.picture AS author_picture, user.location, COUNT(comment.comment_id) AS nb_comments
+/* SELECT decision.decision_id, decision.title, decision.status, user.firstname, user.lastname AS author_lastname, user.picture AS author_picture, user.location, COUNT(comment.comment_id) AS nb_comments
 FROM decision
 JOIN decision_maker ON decision.decision_maker_id = decision_maker.decision_maker_id
 JOIN user ON decision_maker.user_id = user.user_id
 LEFT JOIN comment ON decision.decision_id = comment.decision_id
 WHERE decision.status = 'en cours'
-GROUP BY decision.decision_id, decision.title, decision.status, user.firstname, user.lastname, user.picture, user.location;
+GROUP BY decision.decision_id, decision.title, decision.status, user.firstname, user.lastname, user.picture, user.location; */
 
 SELECT
   decision.decision_id,
   decision.title,
   decision.status,
-  user.firstname AS author_firstname,
-  user.lastname AS author_lastname,
-  user.picture AS author_picture,
+  user.firstname,
+  user.lastname,
+  user.picture,
   user.location,
   COUNT(comment.comment_id) AS nb_comments
 FROM decision
@@ -72,9 +72,9 @@ SELECT
   en théorie on ne devrait pas avoir de doublons mais c'est une sécurité*/
   decision.title,
   decision.status,
-  user.firstname AS author_firstname,
-  user.lastname AS author_lastname,
-  user.picture AS author_picture,
+  user.firstname,
+  user.lastname,
+  user.picture,
   user.location,
   COUNT(comment.comment_id) AS nb_comments
 FROM decision
