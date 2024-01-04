@@ -9,164 +9,153 @@ function DescriptionBox() {
   const [isCollapsedStDecision, setIsCollapsedStDecision] = useState();
 
   return (
-    <>
-      <h2>
-        Date d'ouverture: 00/00/2023 <br />
-        Date de cloture: 00/00/2024
-      </h2>
-      <section className="descriptionBox">
-        <section className="descriptionBox__scroll">
-          <header className="descriptionBox__header">
-            <img
-              className="descriptionBox__header--avatar"
-              src="src/assets/vincent.png"
-              alt="avatar de l'auteur du poste"
-            />
-            <section className="descriptionBox__header__right">
-              <h1 className="descriptionBox__header__right--title">
-                Titre de la décision sur toute la zone très lisible
-              </h1>
-              <p className="descriptionBox__header__right--writer">
-                par Vincent Rousseaux
-              </p>
-              <span className="decision__beans">
-                <span className="decision__status">en cours</span>
-                <span className="decision__location">Lille</span>
-                <span className="decision__advices">4 avis</span>
-              </span>
-            </section>
-          </header>
-
-          <section className="descriptionBox__body--paragraphs">
-            <button
-              type="button"
-              onClick={() => setIsCollapsedDetails(!isCollapsedDetails)}
-            >
-              <h2 className="title__paragraph">
-                {isCollapsedDetails ? "➕" : "➖"} Détails de la décision
-              </h2>
-            </button>
-            <hr />
-            <article
-              className={`descriptionBox__body--details ${
-                isCollapsedDetails ? "collapsed" : "expanded"
-              }`}
-            >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-                maiores sit tenetur repellat nulla deserunt dolorum eveniet
-                exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Quaerat, natus doloremque
-                numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-                nulla dicta id alias a repellat labore enim veniam, aperiam
-                magni!
-              </p>
-            </article>
-            <button
-              type="button"
-              onClick={() => setIsCollapsedImpact(!isCollapsedImpact)}
-            >
-              <h2 className="title__paragraph">
-                {isCollapsedImpact ? "➖" : "➕"} Impact sur l'organisation
-              </h2>
-            </button>
-            <hr />
-            <article
-              className={`descriptionBox__body--impact ${
-                isCollapsedImpact ? "expanded" : "collapsed"
-              }`}
-            >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-                maiores sit tenetur repellat nulla deserunt dolorum eveniet
-                exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Quaerat, natus doloremque
-                numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-                nulla dicta id alias a repellat labore enim veniam, aperiam
-                magni!
-              </p>
-            </article>
-            <button
-              type="button"
-              onClick={() => setIsCollapsedBenefits(!isCollapsedBenefits)}
-            >
-              <h2 className="title__paragraph">
-                {isCollapsedBenefits ? "➖" : "➕"} Bénéfices
-              </h2>
-            </button>
-            <hr />
-            <article
-              className={`descriptionBox__body--benefits ${
-                isCollapsedBenefits ? "expanded" : "collapsed"
-              }`}
-            >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-                maiores sit tenetur repellat nulla deserunt dolorum eveniet
-                exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Quaerat, natus doloremque
-                numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-                nulla dicta id alias a repellat labore enim veniam, aperiam
-                magni!
-              </p>
-            </article>
-            <button
-              type="button"
-              onClick={() => setIsCollapsedHazards(!isCollapsedHazards)}
-            >
-              <h2 className="title__paragraph">
-                {isCollapsedHazards ? "➖" : "➕"} Risques potentiels
-              </h2>
-            </button>
-            <hr />
-            <article
-              className={`descriptionBox__body--hazards ${
-                isCollapsedHazards ? "expanded" : "collapsed"
-              }`}
-            >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-                maiores sit tenetur repellat nulla deserunt dolorum eveniet
-                exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Quaerat, natus doloremque
-                numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-                nulla dicta id alias a repellat labore enim veniam, aperiam
-                magni!
-              </p>
-            </article>
-            <button
-              type="button"
-              onClick={() => setIsCollapsedStDecision(!isCollapsedStDecision)}
-            >
-              <h2 className="title__paragraph">
-                {isCollapsedStDecision ? "➖" : "➕"} Première décision prise
-              </h2>
-            </button>
-            <hr />
-            <article
-              className={`descriptionBox__body--firstDecision ${
-                isCollapsedStDecision ? "expanded" : "collapsed"
-              }`}
-            >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-                maiores sit tenetur repellat nulla deserunt dolorum eveniet
-                exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Quaerat, natus doloremque
-                numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-                nulla dicta id alias a repellat labore enim veniam, aperiam
-                magni!
-              </p>
-            </article>
+    <section className="descriptionBox">
+      <section className="descriptionBox__scroll">
+        <header className="descriptionBox__header">
+          <img
+            className="descriptionBox__header--avatar"
+            src="src/assets/vincent.png"
+            alt="avatar de l'auteur du poste"
+          />
+          <section className="descriptionBox__header__right">
+            <h1 className="descriptionBox__header__right--title">
+              Titre de la décision sur toute la zone très lisible
+            </h1>
+            <p className="descriptionBox__header__right--writer">
+              par Vincent Rousseaux
+            </p>
+            <span className="decision__beans">
+              <span className="decision__status">en cours</span>
+              <span className="decision__location">Lille</span>
+              <span className="decision__advices">4 avis</span>
+            </span>
           </section>
+        </header>
+
+        <section className="descriptionBox__body--paragraphs">
+          <button
+            type="button"
+            onClick={() => setIsCollapsedDetails(!isCollapsedDetails)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedDetails ? "➕" : "➖"} Détails de la décision
+            </h2>
+          </button>
+          <hr />
+          <article
+            className={`descriptionBox__body--details ${
+              isCollapsedDetails ? "collapsed" : "expanded"
+            }`}
+          >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
+              maiores sit tenetur repellat nulla deserunt dolorum eveniet
+              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Quaerat, natus doloremque
+              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
+              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+            </p>
+          </article>
+          <button
+            type="button"
+            onClick={() => setIsCollapsedImpact(!isCollapsedImpact)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedImpact ? "➖" : "➕"} Impact sur l'organisation
+            </h2>
+          </button>
+          <hr />
+          <article
+            className={`descriptionBox__body--impact ${
+              isCollapsedImpact ? "expanded" : "collapsed"
+            }`}
+          >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
+              maiores sit tenetur repellat nulla deserunt dolorum eveniet
+              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Quaerat, natus doloremque
+              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
+              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+            </p>
+          </article>
+          <button
+            type="button"
+            onClick={() => setIsCollapsedBenefits(!isCollapsedBenefits)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedBenefits ? "➖" : "➕"} Bénéfices
+            </h2>
+          </button>
+          <hr />
+          <article
+            className={`descriptionBox__body--benefits ${
+              isCollapsedBenefits ? "expanded" : "collapsed"
+            }`}
+          >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
+              maiores sit tenetur repellat nulla deserunt dolorum eveniet
+              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Quaerat, natus doloremque
+              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
+              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+            </p>
+          </article>
+          <button
+            type="button"
+            onClick={() => setIsCollapsedHazards(!isCollapsedHazards)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedHazards ? "➖" : "➕"} Risques potentiels
+            </h2>
+          </button>
+          <hr />
+          <article
+            className={`descriptionBox__body--hazards ${
+              isCollapsedHazards ? "expanded" : "collapsed"
+            }`}
+          >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
+              maiores sit tenetur repellat nulla deserunt dolorum eveniet
+              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Quaerat, natus doloremque
+              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
+              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+            </p>
+          </article>
+          <button
+            type="button"
+            onClick={() => setIsCollapsedStDecision(!isCollapsedStDecision)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedStDecision ? "➖" : "➕"} Première décision prise
+            </h2>
+          </button>
+          <hr />
+          <article
+            className={`descriptionBox__body--firstDecision ${
+              isCollapsedStDecision ? "expanded" : "collapsed"
+            }`}
+          >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
+              maiores sit tenetur repellat nulla deserunt dolorum eveniet
+              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Quaerat, natus doloremque
+              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
+              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+            </p>
+          </article>
         </section>
       </section>
-    </>
+    </section>
   );
 }
 export default DescriptionBox;

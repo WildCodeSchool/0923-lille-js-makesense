@@ -1,0 +1,53 @@
+@import "../../variables";
+
+.commentSection {
+  margin-left: 2vw;
+}
+.commentSection--title {
+  margin-left: 3vw;
+  font-size: clamp(25px, 3vw, 2.5rem);
+}
+.commentSection__container {
+  @include box;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+  height: 50vh;
+  width: 44vw;
+  margin-bottom: 5vh;
+}
+.commentSection__input__field {
+  height: 18vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.commentSection__textarea {
+  padding-inline: 0.5vw;
+  border-style: none;
+  border-radius: 10px;
+  height: 10vh;
+  width: 42vw;
+  font-size: clamp(18px, 2vw, 1.5rem);
+}
+.comment__button {
+  height: 5vh;
+  width: 10vw;
+  text-align: center;
+  border-radius: 15px;
+  background-color: $primary-dark;
+  color: white;
+  margin-block: 1vh;
+  font-size: clamp(18px, 2vw, 1.5rem);
+  cursor: pointer;
+}
+.commentSection__comment--container {
+  overflow-y: scroll;
+  margin-block: 2vh;
+}
+.commentSection__comment--box {
+  @include textBox;
+  word-break: break-all;
+  margin-block: 2vh;
+}

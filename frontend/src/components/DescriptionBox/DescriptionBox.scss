@@ -61,13 +61,19 @@
   max-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 2%;
+}
+hr {
+  margin-inline: 1.5vw;
+  width: auto;
+  height: 3px;
+  background-color: white;
+  border: none;
 }
 .expanded {
-  @include collapseOpen;
+  @include textBox;
+  padding-block: 1vh;
 }
 .collapsed {
-  animation: slideClose 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
   display: none;
 }
 
@@ -79,16 +85,5 @@
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes slideClose {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(-50px);
   }
 }
