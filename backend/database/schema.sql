@@ -10,13 +10,12 @@ CREATE TABLE user (
 
 CREATE TABLE authentication (
   authentication_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  password text 
-  date date 
-  hour time 
+  password TEXT 
+  date DATE
+  hour TIME 
   user_id INT
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 )
-
 
 CREATE TABLE decision_maker(
   decision_maker_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -48,7 +47,6 @@ CREATE TABLE assignement(
   FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 )
-
 
 CREATE TABLE admin(
   admin_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
