@@ -31,7 +31,6 @@
 
 .decisionCard__avatar {
   @include avatar;
-  border: 4px solid $background;
   margin-inline-end: 2%;
 }
 
@@ -45,12 +44,7 @@
 .decisionCard__status,
 .decisionCard__location,
 .decisionCard__advices {
-  border: 1px solid currentColor;
-  border-radius: 20px;
-  padding: 1%;
-  padding-inline: 5%;
-  margin-inline: 2px;
-  text-align: center;
+  @include statusButtons;
 }
 
 .decisionCard__status {
