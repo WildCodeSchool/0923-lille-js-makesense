@@ -8,6 +8,9 @@
   font-weight: bold;
   padding-inline: 1vw;
   padding-block-start: 1%;
+  position: absolute;
+  z-index: 1;
+  top: 23%;
   &::after {
     @include bean;
     width: 80%;
@@ -20,4 +23,6 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  position: absolute;
+  top: 31%;
 }
