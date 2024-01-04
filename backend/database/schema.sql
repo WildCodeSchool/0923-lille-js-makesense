@@ -18,7 +18,7 @@ CREATE TABLE authentication (
 )
 
 
-CREATE TABLE decide_maker(
+CREATE TABLE decision_maker(
   decision_maker_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
@@ -35,16 +35,16 @@ CREATE TABLE decision(
   date DATE NOT NULL,
   status VARCHAR(100) NOT NULL,
   title VARCHAR(100) NOT NULL,
-  decide_maker_id INT,
-  FOREIGN KEY (decide_maker_id) REFERENCES decide_maker(decide_maker_id)
+  decision_maker_id INT,
+  FOREIGN KEY (decision_maker_id) REFERENCES decision_maker(decision_maker_id)
 )
 
 CREATE TABLE assignement(
   assignement_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  decide_maker_id INT,
+  decision_maker_id INT,
   employee_id INT,
   decision_id INT,
-  FOREIGN KEY (decide_maker_id) REFERENCES decide_maker(decide_maker_id),
+  FOREIGN KEY (decision_maker_id) REFERENCES decision_maker(decision_maker_id),
   FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 )
