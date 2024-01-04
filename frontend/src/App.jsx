@@ -1,7 +1,13 @@
+import { Outlet } from "react-router-dom";
 import "./App.scss";
+import Nav from "./components/Nav/Nav";
 
 function App() {
-  return <h1>Clean app</h1>;
+  return (
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  );
 }
-
 export default App;
