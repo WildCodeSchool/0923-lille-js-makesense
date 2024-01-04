@@ -19,24 +19,24 @@ const seed = async () => {
 
     // Generating Seed Data
 
-    await database.query("SET FOREIGN_KEY_CHECKS = 0"); // empeche le controle des foeigns keys a cause des contraints
-    await database.query("truncate user");
-    await database.query("truncate authentification");
-    await database.query("truncate decide_maker");
-    await database.query("truncate employee");
-    await database.query("truncate decision");
-    await database.query("truncate assignement");
-    await database.query("truncate admin");
-    await database.query("truncate comment");
-    await database.query("truncate paragraph");
-    // truncate table
+    await database.query("SET FOREIGN_KEY_CHECKS = 0"); // prevents control of foreign keys due to contracts
+    await database.query("TRUNCATE user");
+    await database.query("TRUNCATE authentication");
+    await database.query("TRUNCATE decision_maker");
+    await database.query("TRUNCATE employee");
+    await database.query("TRUNCATE decision");
+    await database.query("TRUNCATE assignement");
+    await database.query("TRUNCATE admin");
+    await database.query("TRUNCATE comment");
+    await database.query("TRUNCATE paragraph");
+    // TRUNCATE table
 
     // Insert fake data into the table
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "insert into user(lastname, firstname, email, location, picture, role) values (?,?,?,?,?,?)",
+          "INSERT INTO user(lastname, firstname, email, location, picture, role) VALUES (?,?,?,?,?,?)",
           [
             faker.lorem.word(),
             faker.lorem.word(),
@@ -49,95 +49,95 @@ const seed = async () => {
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "insert into authentification (password, date, hour,user_id) values (?,?,?,?)",
+          "INSERT INTO authentication (password, date, hour,user_id) VALUES (?,?,?,?)",
           [
             faker.internet.password(),
             faker.date.past(),
             faker.date.recent(),
-            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 30 }),
           ]
         )
       );
     }
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
-        database.query("insert into decide_maker (user_id) values (?)", [
-          faker.number.int({ min: 1, max: 10 }),
+        database.query("INSERT INTO decision_maker (user_id) VALUES (?)", [
+          faker.number.int({ min: 1, max: 30 }),
         ])
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
-        database.query("insert into employee (user_id) values (?)", [
-          faker.number.int({ min: 1, max: 10 }),
+        database.query("INSERT INTO employee (user_id) VALUES (?)", [
+          faker.number.int({ min: 1, max: 30 }),
         ])
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "insert into decision (date, status, title, decide_maker_id) values (?,?,?,?)",
+          "INSERT INTO decision (date, status, title, decision_maker_id) VALUES (?,?,?,?)",
           [
             faker.date.past(),
             "pending",
             faker.lorem.paragraph(1),
-            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 30 }),
           ]
         )
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "insert into assignement (decide_maker_id,employee_id,decision_id) values (?,?,?)",
+          "INSERT INTO assignement (decision_maker_id,employee_id,decision_id) VALUES (?,?,?)",
           [
-            faker.number.int({ min: 1, max: 10 }),
-            faker.number.int({ min: 1, max: 10 }),
-            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 30 }),
+            faker.number.int({ min: 1, max: 30 }),
+            faker.number.int({ min: 1, max: 30 }),
           ]
         )
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
-        database.query("insert into admin (user_id) values (?)", [
-          faker.number.int({ min: 1, max: 10 }),
+        database.query("INSERT INTO admin (user_id) VALUES (?)", [
+          faker.number.int({ min: 1, max: 30 }),
         ])
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "insert into comment (date_time,message,employee_id,admin_id,decision_id) values (?,?,?,?,?)",
+          "INSERT INTO comment (date_time,message,employee_id,admin_id,decision_id) VALUES (?,?,?,?,?)",
 
           [
             faker.date.recent(),
             faker.lorem.paragraph(1),
-            faker.number.int({ min: 1, max: 10 }),
-            faker.number.int({ min: 1, max: 10 }),
-            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 30 }),
+            faker.number.int({ min: 1, max: 30 }),
+            faker.number.int({ min: 1, max: 30 }),
           ]
         )
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "insert into paragraph (title,contains,decision_id) values (?,?,?)",
+          "INSERT INTO paragraph (title,contains,decision_id) VALUES (?,?,?)",
 
           [
             faker.lorem.paragraph(1),
             faker.lorem.paragraph(3),
-            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 30 }),
           ]
         )
       );

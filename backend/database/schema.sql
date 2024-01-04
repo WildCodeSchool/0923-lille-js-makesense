@@ -1,4 +1,4 @@
-CREATE table user (
+CREATE TABLE user (
   user_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   lastname VARCHAR(100) NOT NULL,
   firstname VARCHAR(100) NOT NULL,
@@ -8,8 +8,8 @@ CREATE table user (
   role VARCHAR(100)
 )
 
-CREATE table authentification (
-  authentification_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE authentication (
+  authentication_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   password text 
   date date 
   hour time 
@@ -18,19 +18,19 @@ CREATE table authentification (
 )
 
 
-CREATE table decide_maker(
+CREATE TABLE decide_maker(
   decision_maker_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 )
 
-CREATE table employee(
+CREATE TABLE employee(
   employee_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 )
 
-CREATE table decision(
+CREATE TABLE decision(
   decision_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   date DATE NOT NULL,
   status VARCHAR(100) NOT NULL,
@@ -39,7 +39,7 @@ CREATE table decision(
   FOREIGN KEY (decide_maker_id) REFERENCES decide_maker(decide_maker_id)
 )
 
-CREATE table assignement(
+CREATE TABLE assignement(
   assignement_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   decide_maker_id INT,
   employee_id INT,
@@ -50,13 +50,13 @@ CREATE table assignement(
 )
 
 
-CREATE table admin(
+CREATE TABLE admin(
   admin_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES user(user_id) 
 )
 
-CREATE table comment (
+CREATE TABLE comment (
   comment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   date_time DATETIME NOT NULL,
   message TEXT NOT NULL,
@@ -68,7 +68,7 @@ CREATE table comment (
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 )
 
-CREATE table paragraph(
+CREATE TABLE paragraph(
   paragraph_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   title VARCHAR(100) NOT NULL,
   contains TEXT NOT NULL,
