@@ -1,10 +1,8 @@
 import "./NewUsers.scss";
-import Nav from "../Nav/Nav";
 
 function NewUsers() {
   return (
     <main className="newusers__content">
-      <Nav />
       <span className="newusers__title">Nouvel utilisateur</span>
       <form className="newusers__form">
         <label htmlFor="name" className="newusers__label">
