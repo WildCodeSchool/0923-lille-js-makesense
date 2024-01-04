@@ -34,10 +34,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/decision",
-    element: <Decision />,
-  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

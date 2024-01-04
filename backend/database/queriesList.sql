@@ -5,11 +5,11 @@ SELECT role FROM user
 WHERE user_id = ?;
 
 /*  page: login
-    query for: authentification. Appeler la bdd pour vérifier que le login et le mdp correspondent à un user.
+    query for: authentication. Appeler la bdd pour vérifier que le login et le mdp correspondent à un user.
 */
 SELECT user.user_id FROM user
-JOIN authentification ON user.user_id=authentification.user_id
-WHERE user.email = ? AND authentification.password = ?;
+JOIN authentication ON user.user_id=authentication.user_id
+WHERE user.email = ? AND authentication.password = ?;
 
 /*  page: nav
     query for: appeler les infos (select) de l'utilisateur (user) dans le dropdown (lastname, firstname, email, location, picture, role)
@@ -140,12 +140,12 @@ VALUES (?, ?, ?, ?);
 */
 
 /*  page: create user
-    query for: créer un user, updater la table user (firstname, lastname, mai, location, avatar, role) et authentification (password).
+    query for: créer un user, updater la table user (firstname, lastname, mai, location, avatar, role) et authentication (password).
 */
 
 /*Il faut le faire en deux queries, ou alors avec une transaction mais je comprends pas bien comment ça fonctionne pour le moment*/
 INSERT INTO user (lastname, firstname, email, location, picture, role)
 VALUES (?, ?, ?, ?, ?, ?);
-NSERT INTO authentification (password, datetime, user_id)
+NSERT INTO authentication (password, datetime, user_id)
 VALUES (?, NOW(), LAST_INSERT_ID());
 /*NOW() print un datetime, LAST_INSERT_ID() print le dernier ID auto incrémenté*/
