@@ -57,7 +57,7 @@ const seed = async () => {
             faker.internet.password(),
             faker.date.past(),
             faker.date.recent(),
-            faker.number.int({ min: 1, max: 2 }),
+            faker.number.int({ min: 1, max: 10 }),
           ]
         )
       );
@@ -65,7 +65,7 @@ const seed = async () => {
     for (let i = 0; i < 10; i += 1) {
       queries.push(
         database.query("insert into decide_maker (user_id) values (?)", [
-          faker.number.int({ min: 1, max: 5 }),
+          faker.number.int({ min: 1, max: 10 }),
         ])
       );
     }
@@ -73,7 +73,7 @@ const seed = async () => {
     for (let i = 0; i < 10; i += 1) {
       queries.push(
         database.query("insert into employee (user_id) values (?)", [
-          faker.number.int({ min: 1, max: 5 }),
+          faker.number.int({ min: 1, max: 10 }),
         ])
       );
     }
@@ -86,7 +86,7 @@ const seed = async () => {
             faker.date.past(),
             "pending",
             faker.lorem.paragraph(1),
-            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 1, max: 10 }),
           ]
         )
       );
@@ -97,9 +97,9 @@ const seed = async () => {
         database.query(
           "insert into assignement (decide_maker_id,employee_id,decision_id) values (?,?,?)",
           [
-            faker.number.int({ min: 1, max: 5 }),
-            faker.number.int({ min: 1, max: 5 }),
-            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 10 }),
           ]
         )
       );
@@ -108,7 +108,7 @@ const seed = async () => {
     for (let i = 0; i < 10; i += 1) {
       queries.push(
         database.query("insert into admin (user_id) values (?)", [
-          faker.number.int({ min: 1, max: 5 }),
+          faker.number.int({ min: 1, max: 10 }),
         ])
       );
     }
@@ -121,9 +121,9 @@ const seed = async () => {
           [
             faker.date.recent(),
             faker.lorem.paragraph(1),
-            faker.number.int({ min: 1, max: 5 }),
-            faker.number.int({ min: 1, max: 5 }),
-            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 10 }),
           ]
         )
       );
@@ -137,7 +137,7 @@ const seed = async () => {
           [
             faker.lorem.paragraph(1),
             faker.lorem.paragraph(3),
-            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 1, max: 10 }),
           ]
         )
       );
