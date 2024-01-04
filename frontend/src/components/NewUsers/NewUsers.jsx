@@ -7,25 +7,41 @@ function NewUsers() {
       <Nav />
       <span className="newusers__title">Nouvel utilisateur</span>
       <form className="newusers__form">
-        <label className="newusers__label">
+        <label htmlFor="name" className="newusers__label">
           <span className="newusers__text"> Nom :</span>
-          <input className="newusers__input" type="text" name="nom" />
+          <input id="name" className="newusers__input" type="text" name="nom" />
         </label>
-        <label className="newusers__label">
+        <label htmlFor="firstname" className="newusers__label">
           <span className="newusers__text">Prénom :</span>
-          <input className="newusers__input" type="text" name="prenom" />
+          <input
+            id="firstname"
+            className="newusers__input"
+            type="text"
+            name="prenom"
+          />
         </label>
-        <label className="newusers__label">
+        <label htmlFor="email" className="newusers__label">
           <span className="newusers__text"> Email :</span>
-          <input className="newusers__input" type="email" name="email" />
+          <input
+            id="email"
+            className="newusers__input"
+            type="email"
+            name="email"
+          />
         </label>
-        <label className="newusers__label">
+        <label htmlFor="place" className="newusers__label">
           <span className="newusers__text"> Lieu de travail :</span>
-          <input className="newusers__input" type="text" name="lieuTravail" />
+          <input
+            id="place"
+            className="newusers__input"
+            type="text"
+            name="lieuTravail"
+          />
         </label>
-        <label className="newusers__label ">
+        <label htmlFor="password" className="newusers__label ">
           <span className="newusers__text"> Mot de passe :</span>
           <input
+            id="password"
             className="newusers__input"
             type="password"
             name="motDePasse"
