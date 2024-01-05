@@ -1,6 +1,17 @@
+import { useState } from "react";
 import "./Nav.scss";
 
 function Nav() {
+  const [edit, setEdit] = useState(false);
+  const [help, setHelp] = useState(false);
+
+  const handleMove = () => {
+    setHelp(!help);
+  };
+  const handleclick = () => {
+    setEdit(!edit);
+  };
+
   return (
     <nav className="nav__nav">
       <a href="*" className="nav__logo">
@@ -27,7 +38,41 @@ function Nav() {
           className="nav__avatar"
           alt="user avatar"
           src="https://placehold.co/600x400"
+          onClick={handleclick}
+          role="presentation"
         />
+        {edit ? (
+          <>
+            <aside className="bulle_profil" />
+            <section className="profil_avatar">
+              <ul className="list_profil">
+                <li>Firstname</li>
+                <li>Lastname</li>
+                <li>Mail</li>
+                <li>Location</li>
+                <li>Position</li>
+                <li
+                  onMouseEnter={handleMove}
+                  onMouseLeave={handleMove}
+                  className="help_hover"
+                >
+                  ?
+                </li>
+                {help ? (
+                  <p className="help">
+                    Une erreur ? Contactez l'administrateur.
+                  </p>
+                ) : null}
+                <li id="logout_bordertop">Log out</li>
+              </ul>
+            </section>
+          </>
+        ) : null}
+        {/* <img
+          className="edit_avatar"
+          alt="edit_avatar"
+          src="../../assets/image/user-pen.png"
+        /> */}
       </ul>
     </nav>
   );
