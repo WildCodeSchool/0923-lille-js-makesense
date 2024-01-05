@@ -42,22 +42,31 @@ function Nav() {
           role="presentation"
         />
         {edit ? (
-          <section className="profil_avatar">
-            <ul className="list_profil">
-              <li>Firstname</li>
-              <li>Lastname</li>
-              <li>Mail</li>
-              <li>Location</li>
-              <li>Position</li>
-              <li onMouseEnter={handleMove} onMouseLeave={handleMove}>
-                ?
-              </li>
-              {help ? (
-                <p className="help">Une erreur ? Contactez l'administrateur.</p>
-              ) : null}
-              <li id="logout_bordertop">Log out</li>
-            </ul>
-          </section>
+          <>
+            <aside className="bulle_profil" />
+            <section className="profil_avatar">
+              <ul className="list_profil">
+                <li>Firstname</li>
+                <li>Lastname</li>
+                <li>Mail</li>
+                <li>Location</li>
+                <li>Position</li>
+                <li
+                  onMouseEnter={handleMove}
+                  onMouseLeave={handleMove}
+                  className="help_hover"
+                >
+                  ?
+                </li>
+                {help ? (
+                  <p className="help">
+                    Une erreur ? Contactez l'administrateur.
+                  </p>
+                ) : null}
+                <li id="logout_bordertop">Log out</li>
+              </ul>
+            </section>
+          </>
         ) : null}
         {/* <img
           className="edit_avatar"
