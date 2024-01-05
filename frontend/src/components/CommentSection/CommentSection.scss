@@ -1,23 +1,17 @@
 @import "../../variables";
 
-.commentSection {
-  margin-left: 2vw;
-}
 .commentSection--title {
   margin-left: 3vw;
-  font-size: clamp(25px, 3vw, 2.5rem);
+  font-size: clamp(25px, 2vw, 1.4rem);
 }
 .commentSection__container {
   @include box;
-  display: flex;
-  flex-direction: column;
   margin-top: 2vh;
-  height: 50vh;
+  height: 60vh;
   width: 44vw;
-  margin-bottom: 5vh;
+  padding-block: 2vh;
 }
 .commentSection__input__field {
-  height: 18vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -27,27 +21,42 @@
   padding-inline: 0.5vw;
   border-style: none;
   border-radius: 10px;
-  height: 10vh;
-  width: 42vw;
-  font-size: clamp(18px, 2vw, 1.5rem);
+  height: 15vh;
+  width: 42.5vw;
+  font-size: clamp(18px, 2vw, 1.2rem);
 }
 .comment__button {
+  padding-inline: 1vw;
   height: 5vh;
-  width: 10vw;
-  text-align: center;
+  width: auto;
   border-radius: 15px;
   background-color: $primary-dark;
   color: white;
   margin-block: 1vh;
-  font-size: clamp(18px, 2vw, 1.5rem);
+  font-size: clamp(18px, 2vw, 1.2rem);
   cursor: pointer;
 }
 .commentSection__comment--container {
+  height: 32vh;
   overflow-y: scroll;
-  margin-block: 2vh;
 }
 .commentSection__comment--box {
   @include textBox;
+  padding-block: 0.5vh;
+  display: flex;
   word-break: break-all;
-  margin-block: 2vh;
+  margin-block: 1vh;
+}
+.commentSection__comment--avatar {
+  border-radius: 50%;
+  border: 5px solid white;
+  height: 10vh;
+  margin-block: 0.5vh;
+}
+.commentSection__comment--montage {
+  display: flex;
+  gap: 0.5vw;
+}
+.commentSection__comment--textSection {
+  font-size: clamp(18px, 2vw, 1.2rem);
 }

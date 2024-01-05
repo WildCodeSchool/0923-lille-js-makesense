@@ -47,7 +47,7 @@ function DescriptionBox() {
               isCollapsedDetails ? "collapsed" : "expanded"
             }`}
           >
-            <p>
+            <p className="descriptionBox__body--text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
               aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
               maiores sit tenetur repellat nulla deserunt dolorum eveniet
@@ -71,7 +71,7 @@ function DescriptionBox() {
               isCollapsedImpact ? "expanded" : "collapsed"
             }`}
           >
-            <p>
+            <p className="descriptionBox__body--text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
               aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
               maiores sit tenetur repellat nulla deserunt dolorum eveniet
@@ -95,7 +95,7 @@ function DescriptionBox() {
               isCollapsedBenefits ? "expanded" : "collapsed"
             }`}
           >
-            <p>
+            <p className="descriptionBox__body--text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
               aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
               maiores sit tenetur repellat nulla deserunt dolorum eveniet
@@ -119,7 +119,7 @@ function DescriptionBox() {
               isCollapsedHazards ? "expanded" : "collapsed"
             }`}
           >
-            <p>
+            <p className="descriptionBox__body--text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
               aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
               maiores sit tenetur repellat nulla deserunt dolorum eveniet
@@ -143,7 +143,7 @@ function DescriptionBox() {
               isCollapsedStDecision ? "expanded" : "collapsed"
             }`}
           >
-            <p>
+            <p className="descriptionBox__body--text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
               aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
               maiores sit tenetur repellat nulla deserunt dolorum eveniet
