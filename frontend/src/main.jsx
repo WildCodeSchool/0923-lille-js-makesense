@@ -6,11 +6,16 @@ import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import Login from "./pages/login";
 import Decision from "./pages/Decision/Decision";
+import NewUsers from "./components/NewUsers/NewUsers";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: "/NewUsers",
+    element: <NewUsers />,
   },
   {
     element: <App />,
