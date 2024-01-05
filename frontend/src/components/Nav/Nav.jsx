@@ -3,7 +3,11 @@ import "./Nav.scss";
 
 function Nav() {
   const [edit, setEdit] = useState(false);
+  const [help, setHelp] = useState(false);
 
+  const handleMove = () => {
+    setHelp(!help);
+  };
   const handleclick = () => {
     setEdit(!edit);
   };
@@ -39,14 +43,19 @@ function Nav() {
         />
         {edit ? (
           <section className="profil_avatar">
-            <ul>
+            <ul className="list_profil">
               <li>Firstname</li>
               <li>Lastname</li>
               <li>Mail</li>
               <li>Location</li>
               <li>Position</li>
-              <li>?</li>
-              <li>Log out</li>
+              <li onMouseEnter={handleMove} onMouseLeave={handleMove}>
+                ?
+              </li>
+              {help ? (
+                <p className="help">Une erreur ? Contactez l'administrateur.</p>
+              ) : null}
+              <li id="logout_bordertop">Log out</li>
             </ul>
           </section>
         ) : null}
