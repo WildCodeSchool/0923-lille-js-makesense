@@ -80,8 +80,8 @@ SELECT
 FROM decision
 JOIN decision_maker ON decision.decision_maker_id = decision_maker.decision_maker_id
 JOIN user ON decision_maker.user_id = user.user_id
-LEFT JOIN assignement ON decision.decision_maker_id = assignement.decision_maker_id
-LEFT JOIN employee ON assignement.employee_id = employee.employee_id
+LEFT JOIN assignment ON decision.decision_maker_id = assignment.decision_maker_id
+LEFT JOIN employee ON assignment.employee_id = employee.employee_id
 LEFT JOIN comment ON decision.decision_id = comment.decision_id
 WHERE user.user_id = ?
 GROUP BY

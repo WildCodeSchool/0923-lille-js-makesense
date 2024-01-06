@@ -39,8 +39,8 @@ CREATE TABLE decision(
   FOREIGN KEY (decision_maker_id) REFERENCES decision_maker(decision_maker_id)
 );
 
-CREATE TABLE assignement(
-  assignement_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE assignment(
+  assignment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   decision_maker_id INT,
   employee_id INT,
   decision_id INT,

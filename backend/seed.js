@@ -25,7 +25,7 @@ const seed = async () => {
     await database.query("TRUNCATE decision_maker");
     await database.query("TRUNCATE employee");
     await database.query("TRUNCATE decision");
-    await database.query("TRUNCATE assignement");
+    await database.query("TRUNCATE assignment");
     await database.query("TRUNCATE admin");
     await database.query("TRUNCATE comment");
     await database.query("TRUNCATE paragraph");
@@ -95,7 +95,7 @@ const seed = async () => {
     for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
-          "INSERT INTO assignement (decision_maker_id,employee_id,decision_id) VALUES (?,?,?)",
+          "INSERT INTO assignment (decision_maker_id,employee_id,decision_id) VALUES (?,?,?)",
           [
             faker.number.int({ min: 1, max: 30 }),
             faker.number.int({ min: 1, max: 30 }),
