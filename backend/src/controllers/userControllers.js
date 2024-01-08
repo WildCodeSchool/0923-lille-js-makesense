@@ -20,7 +20,6 @@ const read = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided ID
     const user = await tables.user.read(req.params.id);
-
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
     if (user == null) {
@@ -36,9 +35,8 @@ const read = async (req, res, next) => {
 
 const readByRole = async (req, res, next) => {
   try {
-    // Fetch a specific user from the database based on the provided ID
+    // Fetch a specific user's role from the database based on the provided ID
     const user = await tables.user.readByRole(req.params.id);
-
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
     if (user == null) {

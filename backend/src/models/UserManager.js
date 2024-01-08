@@ -12,10 +12,9 @@ class UserManager extends AbstractManager {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
-      [user.title]
+      `INSERT INTO ${this.table} (lastname, firstname, email, location, picture) VALUES (?,?,?,?,?)`,
+      [user.lastname, user.firstname, user.email, user.location, user.picture]
     );
-
     // Return the ID of the newly inserted user
     return result.insertId;
   }
@@ -34,17 +33,17 @@ class UserManager extends AbstractManager {
   }
 
   async readByRole(id) {
-    // Execute the SQL SELECT query to retrieve a specific user by its ID
+    // Execute the SQL SELECT query to retrieve a specific user's role as admin of not
     const [rows] = await this.database.query(
-      `SELECT role FROM ${this.table} WHERE user_id = ?`,
+      `SELECT admin_id FROM admin WHERE user_id = ?`,
       [id]
     );
-    return rows[0];
+    return rows[0] ? "is_admin" : "is_user";
   }
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`select * from user`);
 
     // Return the array of users
     return rows;
