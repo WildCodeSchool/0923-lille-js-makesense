@@ -6,7 +6,7 @@ function DescriptionBox() {
   const [isCollapsedImpact, setIsCollapsedImpact] = useState();
   const [isCollapsedBenefits, setIsCollapsedBenefits] = useState();
   const [isCollapsedHazards, setIsCollapsedHazards] = useState();
-  const [isCollapsedStDecision, setIsCollapsedStDecision] = useState();
+  const [isCollapsedFirstDecision, setIsCollapsedFirstDecision] = useState();
 
   return (
     <section className="descriptionBox">
@@ -17,7 +17,7 @@ function DescriptionBox() {
             src="src/assets/vincent.png"
             alt="avatar de l'auteur du poste"
           />
-          <section className="descriptionBox__header__right">
+          <section className="descriptionBox__header--right">
             <h1 className="descriptionBox__header__right--title">
               Titre de la décision sur toute la zone très lisible
             </h1>
@@ -41,7 +41,7 @@ function DescriptionBox() {
               {isCollapsedDetails ? "➕" : "➖"} Détails de la décision
             </h2>
           </button>
-          <hr />
+          <hr className="dividing__line" />
           <article
             className={`descriptionBox__body--details ${
               isCollapsedDetails ? "collapsed" : "expanded"
@@ -65,7 +65,7 @@ function DescriptionBox() {
               {isCollapsedImpact ? "➖" : "➕"} Impact sur l'organisation
             </h2>
           </button>
-          <hr />
+          <hr className="dividing__line" />
           <article
             className={`descriptionBox__body--impact ${
               isCollapsedImpact ? "expanded" : "collapsed"
@@ -89,7 +89,7 @@ function DescriptionBox() {
               {isCollapsedBenefits ? "➖" : "➕"} Bénéfices
             </h2>
           </button>
-          <hr />
+          <hr className="dividing__line" />
           <article
             className={`descriptionBox__body--benefits ${
               isCollapsedBenefits ? "expanded" : "collapsed"
@@ -113,7 +113,7 @@ function DescriptionBox() {
               {isCollapsedHazards ? "➖" : "➕"} Risques potentiels
             </h2>
           </button>
-          <hr />
+          <hr className="dividing__line" />
           <article
             className={`descriptionBox__body--hazards ${
               isCollapsedHazards ? "expanded" : "collapsed"
@@ -131,16 +131,18 @@ function DescriptionBox() {
           </article>
           <button
             type="button"
-            onClick={() => setIsCollapsedStDecision(!isCollapsedStDecision)}
+            onClick={() =>
+              setIsCollapsedFirstDecision(!isCollapsedFirstDecision)
+            }
           >
             <h2 className="title__paragraph">
-              {isCollapsedStDecision ? "➖" : "➕"} Première décision prise
+              {isCollapsedFirstDecision ? "➖" : "➕"} Première décision prise
             </h2>
           </button>
-          <hr />
+          <hr className="dividing__line" />
           <article
             className={`descriptionBox__body--firstDecision ${
-              isCollapsedStDecision ? "expanded" : "collapsed"
+              isCollapsedFirstDecision ? "expanded" : "collapsed"
             }`}
           >
             <p className="descriptionBox__body--text">

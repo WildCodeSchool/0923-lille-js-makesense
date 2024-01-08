@@ -5,7 +5,7 @@ function CommentSection() {
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
 
-  const onChangHandler = (event) => {
+  const onChangeHandler = (event) => {
     setComment(event.target.value);
   };
   const onClickHandler = () => {
@@ -20,18 +20,18 @@ function CommentSection() {
   };
   return (
     <section className="commentSection">
-      <h2 className="commentSection--title">Avis</h2>
+      <h2 className="commentSection__title">Avis</h2>
       <section className="commentSection__container">
         <section className="commentSection__comment--container">
           {commentList.map((com) => (
-            <section className="commentSection__comment--montage">
+            <section className="commentSection__comment--assembly">
               <img
                 className="commentSection__comment--avatar"
                 src="src/assets/vincent.png"
-                alt="avatar de l'auteur du comentaire"
+                alt="avatar de l'auteur du commentaire"
               />
               <section className="commentSection__comment--box">
-                <section className="commentSection__comment--textSection">
+                <section className="commentSection__comment__textSection">
                   <h4 className="commentSection__comment--name">
                     Vincent rousseau (expert)
                   </h4>
@@ -41,12 +41,12 @@ function CommentSection() {
             </section>
           ))}
         </section>
-        <hr />
-        <section className="commentSection__input__field">
+        <hr className="dividing__line" />
+        <section className="commentSection__input--field">
           <textarea
             value={comment}
             onKeyDown={handlePress}
-            onChange={onChangHandler}
+            onChange={onChangeHandler}
             className="commentSection__textarea"
           />
           <button

@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.commentSection--title {
+.commentSection__title {
   margin-left: 3vw;
   font-size: clamp(25px, 2vw, 1.4rem);
 }
@@ -11,7 +11,7 @@
   width: 44vw;
   padding-block: 2vh;
 }
-.commentSection__input__field {
+.commentSection__input--field {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -53,10 +53,10 @@
   height: 10vh;
   margin-block: 0.5vh;
 }
-.commentSection__comment--montage {
+.commentSection__comment--assembly {
   display: flex;
   gap: 0.5vw;
 }
-.commentSection__comment--textSection {
+.commentSection__comment__textSection {
   font-size: clamp(18px, 2vw, 1.2rem);
 }
