@@ -65,46 +65,47 @@ const seed = async () => {
       )
     );
 
+    // Insert the hashing passwords middleware in this query
     queries.push(
       database.query(
-        `INSERT INTO authentication (hashed_password, date, hour, user_id) VALUES
-        ('password123', '2023-01-01', '12:00:00', 1),
-        ('password456', '2023-02-02', '12:00:00', 2),
-        ('password123', '2023-01-01', '12:00:00', 3),
-        ('password456', '2023-02-02', '12:00:00', 4),
-        ('password123', '2023-01-01', '12:00:00', 5),
-        ('password456', '2023-02-02', '12:00:00', 6),
-        ('password123', '2023-01-01', '12:00:00', 7),
-        ('password456', '2023-02-02', '12:00:00', 8),
-        ('password123', '2023-01-01', '12:00:00', 9),
-        ('password456', '2023-02-02', '12:00:00', 10),
-        ('password123', '2023-01-01', '12:00:00', 11),
-        ('password456', '2023-02-02', '12:00:00', 12),
-        ('password123', '2023-01-01', '12:00:00', 13),
-        ('password456', '2023-02-02', '12:00:00', 14),
-        ('password123', '2023-01-01', '12:00:00', 15),
-        ('password456', '2023-02-02', '12:00:00', 16),
-        ('password123', '2023-01-01', '12:00:00', 17),
-        ('password456', '2023-02-02', '12:00:00', 18),
-        ('password123', '2023-01-01', '12:00:00', 19),
-        ('password456', '2023-02-02', '12:00:00', 20),
-        ('password123', '2023-01-01', '12:00:00', 21),
-        ('password456', '2023-02-02', '12:00:00', 22),
-        ('password123', '2023-01-01', '12:00:00', 23),
-        ('password456', '2023-02-02', '12:00:00', 24),
-        ('password123', '2023-01-01', '12:00:00', 25),
-        ('password456', '2023-02-02', '12:00:00', 26),
-        ('password123', '2023-01-01', '12:00:00', 27),
-        ('password456', '2023-02-02', '12:00:00', 28),
-        ('password123', '2023-01-01', '12:00:00', 29),
-        ('password123', '2023-01-01', '12:00:00', 30),
-        ('password456', '2023-02-02', '12:00:00', 31);`
+        `INSERT INTO authentication (hashed_password, auth_date_time, user_id) VALUES
+        ('password123', '2023-01-01 12:00:00', 1),
+        ('password456', '2023-02-02 12:00:00', 2),
+        ('password123', '2023-01-01 12:00:00', 3),
+        ('password456', '2023-02-02 12:00:00', 4),
+        ('password123', '2023-01-01 12:00:00', 5),
+        ('password456', '2023-02-02 12:00:00', 6),
+        ('password123', '2023-01-01 12:00:00', 7),
+        ('password456', '2023-02-02 12:00:00', 8),
+        ('password123', '2023-01-01 12:00:00', 9),
+        ('password456', '2023-02-02 12:00:00', 10),
+        ('password123', '2023-01-01 12:00:00', 11),
+        ('password456', '2023-02-02 12:00:00', 12),
+        ('password123', '2023-01-01 12:00:00', 13),
+        ('password456', '2023-02-02 12:00:00', 14),
+        ('password123', '2023-01-01 12:00:00', 15),
+        ('password456', '2023-02-02 12:00:00', 16),
+        ('password123', '2023-01-01 12:00:00', 17),
+        ('password456', '2023-02-02 12:00:00', 18),
+        ('password123', '2023-01-01 12:00:00', 19),
+        ('password456', '2023-02-02 12:00:00', 20),
+        ('password123', '2023-01-01 12:00:00', 21),
+        ('password456', '2023-02-02 12:00:00', 22),
+        ('password123', '2023-01-01 12:00:00', 23),
+        ('password456', '2023-02-02 12:00:00', 24),
+        ('password123', '2023-01-01 12:00:00', 25),
+        ('password456', '2023-02-02 12:00:00', 26),
+        ('password123', '2023-01-01 12:00:00', 27),
+        ('password456', '2023-02-02 12:00:00', 28),
+        ('password123', '2023-01-01 12:00:00', 29),
+        ('password123', '2023-01-01 12:00:00', 30),
+        ('password456', '2023-02-02 12:00:00', 31);`
       )
     );
 
     queries.push(
       database.query(
-        `INSERT INTO decision (decision_date, status, decision_title, decision_maker_id) VALUES
+        `INSERT INTO decision (decision_date, status, decision_title, user_id) VALUES
           ('2023-01-01', 'Prise de décision commencée', 'Decision 1', 1),
           ('2023-02-02', 'Première décision prise', 'Decision 2', 2),
           ('2023-03-03', 'Conflit sur la décision', 'Decision 3', 3),
@@ -122,7 +123,7 @@ const seed = async () => {
 
     queries.push(
       database.query(
-        `INSERT INTO assignment (date, decision_id, assigned_id, role) VALUES
+        `INSERT INTO assignment (date, decision_id, user_id, role) VALUES
           ('2023-01-01', 1, 20, 'Expert'),
           ('2023-02-02', 1, 2, 'Impacté'),
           ('2023-03-03', 1, 3, 'Expert'),
@@ -166,7 +167,7 @@ const seed = async () => {
 
     queries.push(
       database.query(
-        `INSERT INTO comment (comment_date_time, comment_content, comment_maker_id, decision_id) VALUES
+        `INSERT INTO comment (comment_date_time, comment_content, user_id, decision_id) VALUES
           ('2023-01-01 08:00:00', 'Comment 1 content', 3, 1),
           ('2023-02-02 10:30:00', 'Comment 2 content', 20, 1),
           ('2023-03-03 14:45:00', 'Comment 3 content', 2, 1),
@@ -231,37 +232,37 @@ const seed = async () => {
           ("Impact sur l'organisation", 'Paragraph 26 content', 7),
           ('Bénéfices', 'Paragraph 27 content', 7),
           ('Risques', 'Paragraph 28 content', 7),
-          ('Détails de la décision', 'Paragraph 25 content', 8),
-          ("Impact sur l'organisation", 'Paragraph 26 content', 8),
-          ('Bénéfices', 'Paragraph 27 content', 8),
-          ('Risques', 'Paragraph 28 content', 8),
-          ('Détails de la décision', 'Paragraph 25 content', 9),
-          ("Impact sur l'organisation", 'Paragraph 26 content', 9),
-          ('Bénéfices', 'Paragraph 27 content', 9),
-          ('Risques', 'Paragraph 28 content', 9),
-          ('Détails de la décision', 'Paragraph 25 content', 10),
-          ("Impact sur l'organisation", 'Paragraph 26 content', 10),
-          ('Bénéfices', 'Paragraph 27 content', 10),
-          ('Risques', 'Paragraph 28 content', 10),
-          ('Détails de la décision', 'Paragraph 25 content', 11),
-          ("Impact sur l'organisation", 'Paragraph 26 content', 11),
-          ('Bénéfices', 'Paragraph 27 content', 11),
-          ('Risques', 'Paragraph 28 content', 11),
-          ('Détails de la décision', 'Paragraph 25 content', 12),
-          ("Impact sur l'organisation", 'Paragraph 26 content', 12),
-          ('Bénéfices', 'Paragraph 27 content', 12),
-          ('Risques', 'Paragraph 28 content', 12),
-          ('Première décision prise', 'Paragraph 25 content', 1),
-          ('Première décision prise', 'Paragraph 27 content', 3),
-          ('Première décision prise', 'Paragraph 26 content', 6),
-          ('Première décision prise', 'Paragraph 27 content', 7),
-          ('Première décision prise', 'Paragraph 25 content', 8),
-          ('Première décision prise', 'Paragraph 28 content', 9),
-          ('Première décision prise', 'Paragraph 26 content', 10),
-          ('Décision définitive', 'Paragraph 28 content', 1),
-          ('Décision définitive', 'Paragraph 28 content', 7),
-          ('Décision définitive', 'Paragraph 28 content', 8),
-          ('Décision définitive', 'Paragraph 28 content', 10);`
+          ('Détails de la décision', 'Paragraph 29 content', 8),
+          ("Impact sur l'organisation", 'Paragraph 30 content', 8),
+          ('Bénéfices', 'Paragraph 31 content', 8),
+          ('Risques', 'Paragraph 32 content', 8),
+          ('Détails de la décision', 'Paragraph 33 content', 9),
+          ("Impact sur l'organisation", 'Paragraph 34 content', 9),
+          ('Bénéfices', 'Paragraph 35 content', 9),
+          ('Risques', 'Paragraph 36 content', 9),
+          ('Détails de la décision', 'Paragraph 37 content', 10),
+          ("Impact sur l'organisation", 'Paragraph 38 content', 10),
+          ('Bénéfices', 'Paragraph 39 content', 10),
+          ('Risques', 'Paragraph 40 content', 10),
+          ('Détails de la décision', 'Paragraph 41 content', 11),
+          ("Impact sur l'organisation", 'Paragraph 42 content', 11),
+          ('Bénéfices', 'Paragraph 43 content', 11),
+          ('Risques', 'Paragraph 44 content', 11),
+          ('Détails de la décision', 'Paragraph 45 content', 12),
+          ("Impact sur l'organisation", 'Paragraph 46 content', 12),
+          ('Bénéfices', 'Paragraph 47 content', 12),
+          ('Risques', 'Paragraph 48 content', 12),
+          ('Première décision prise', 'Paragraph 49 content', 1),
+          ('Première décision prise', 'Paragraph 50 content', 3),
+          ('Première décision prise', 'Paragraph 51 content', 6),
+          ('Première décision prise', 'Paragraph 52 content', 7),
+          ('Première décision prise', 'Paragraph 53 content', 8),
+          ('Première décision prise', 'Paragraph 54 content', 9),
+          ('Première décision prise', 'Paragraph 55 content', 10),
+          ('Décision définitive', 'Paragraph 56 content', 1),
+          ('Décision définitive', 'Paragraph 57 content', 7),
+          ('Décision définitive', 'Paragraph 58 content', 8),
+          ('Décision définitive', 'Paragraph 59 content', 10);`
       )
     );
 
