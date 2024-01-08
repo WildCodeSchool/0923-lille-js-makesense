@@ -5,22 +5,21 @@ CREATE TABLE user (
   email VARCHAR(255) NOT NULL,
   /* frontend sends "Americas", "France", "Lebanon", "Philippines" or "West Africa" */
   location VARCHAR(255) NOT NULL,
-  picture VARCHAR(255)
+  picture VARCHAR(255) NOT NULL DEFAULT 'https://placehold.co/100x100'
 );
 
 CREATE TABLE authentication (
   authentication_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  hashed_password TEXT, 
-  date DATE,
-  hour TIME,
-  user_id INT,
+  hashed_password TEXT NOT NULL, 
+  auth_date_time DATETIME NOT NULL,
+  user_id INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE admin (
   admin_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  user_id INT,
-  FOREIGN KEY (user_id) REFERENCES user(user_id) 
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE decision (
@@ -35,8 +34,8 @@ CREATE TABLE decision (
   "Décision terminée" */
   status VARCHAR(50) NOT NULL,
   decision_title VARCHAR(150) NOT NULL,
-  decision_maker_id INT,
-  FOREIGN KEY (decision_maker_id) REFERENCES user(user_id)
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE assignment (
@@ -45,19 +44,19 @@ CREATE TABLE assignment (
   /* frontend sends "Expert" or "Impacté" */
   role VARCHAR(10) NOT NULL,
   decision_id INT NOT NULL,
-  assigned_id INT NOT NULL,
+  user_id INT NOT NULL,
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id),
-  FOREIGN KEY (assigned_id) REFERENCES user(user_id)
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
   );
 
 CREATE TABLE comment (
   comment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   comment_date_time DATETIME NOT NULL,
   comment_content TEXT NOT NULL,
-  comment_maker_id INT,
-  decision_id INT,
-  FOREIGN KEY (comment_maker_id) REFERENCES user(user_id),
-  FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
+  decision_id INT NOT NULL,
+  user_id INT NOT NULL,
+  FOREIGN KEY (decision_id) REFERENCES decision(decision_id),
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE paragraph (
@@ -71,6 +70,6 @@ CREATE TABLE paragraph (
   "Décision définitive" */
   paragraph_title VARCHAR(50) NOT NULL,
   paragraph_content TEXT NOT NULL,
-  decision_id INT,
+  decision_id INT NOT NULL,
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 );
