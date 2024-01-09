@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/Login/Chaussette";
 import App from "./App";
 import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
+import Login from "./pages/Login/Chaussette";
 import Decision from "./pages/Decision/Decision";
-import NewUser from "./pages/NewUser/NewUser";
+import NewUsers from "./components/NewUsers/NewUsers";
 
 const router = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         element: <CreateDecision />,
       },
       {
-        path: "/newuser",
-        element: <NewUser />,
+        path: "/newusers",
+        element: <NewUsers />,
       },
     ],
   },
