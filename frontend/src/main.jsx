@@ -5,6 +5,7 @@ import App from "./App";
 import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import Login from "./pages/login";
+import Decision from "./pages/Decision/Decision";
 import NewUsers from "./components/NewUsers/NewUsers";
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/homepage",
         element: <Homepage />,
+      },
+      {
+        path: "/decision",
+        element: <Decision />,
       },
       {
         path: "/createdecision",
