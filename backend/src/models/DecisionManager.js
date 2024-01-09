@@ -32,31 +32,29 @@ class DecisionManager extends AbstractManager {
     // Return the first row of the result, which represents the decision
     return rows[0];
   }
-  /*   async readAll() {
-    // Execute the SQL SELECT query to retrieve all decisions from the "decision" table
+
+  async readAll() {
+    // Execute the SQL SELECT query to retrieve all decisions from the decision table
     const [rows] = await this.database
-      .query(`SELECT decision.decision_id, decision.title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      .query(`SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
     FROM ${this.table}
-    JOIN decision_maker ON decision.decision_maker_id = decision_maker.decision_maker_id
-    JOIN user ON decision_maker.user_id = user.user_id
+    JOIN user ON decision.user_id = user.user_id
     LEFT JOIN comment ON decision.decision_id = comment.decision_id
-    WHERE decision.status = 'pending'
-    GROUP BY decision.decision_id, decision.title, decision.status, user.firstname, user.lastname, user.picture, user.location;`);
+    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`);
 
     // Return the array of decisions
     return rows;
-  } */
+  }
 
   async readAllPending() {
-    // Execute the SQL SELECT query to retrieve all decisions from the "decision" table
+    // Execute the SQL SELECT query to retrieve all pending decisions from the decision table
     const [rows] = await this.database
-      .query(`SELECT decision.decision_id, decision.title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      .query(`SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
     FROM ${this.table}
-    JOIN decision_maker ON decision.decision_maker_id = decision_maker.decision_maker_id
-    JOIN user ON decision_maker.user_id = user.user_id
+    JOIN user ON decision.user_id = user.user_id
     LEFT JOIN comment ON decision.decision_id = comment.decision_id
-    WHERE decision.status = 'pending'
-    GROUP BY decision.decision_id, decision.title, decision.status, user.firstname, user.lastname, user.picture, user.location;`);
+    WHERE decision.status = "Prise de décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision"
+    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`);
 
     // Return the array of decisions
     return rows;

@@ -6,11 +6,9 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Import userControllers module for handling user-related operations
-const userControllers = require("./controllers/userControllers");
-const decisionControllers = require("./controllers/decisionControllers");
-
 // USER ROUTES
+// Import Controller
+const userControllers = require("./controllers/userControllers");
 // Route to get a list of users
 router.get("/user", userControllers.browse);
 // Route to get a specific user by ID
@@ -23,11 +21,13 @@ router.post("/user", userControllers.add);
 router.put("/userPicture/:id", userControllers.updatePicture);
 
 // DECISION ROUTES
+// Import Controller
+const decisionControllers = require("./controllers/decisionControllers");
 // Route to get all decisions
 router.get("/allDecisions", decisionControllers.browse);
 // Route to get all pending decisions
 router.get("/allPendingDecisions", decisionControllers.browsePending);
-// Route to get all decisions waiting for an answer
+// Route to get all decisions waiting for an answer (query ready in queries list)
 router.get("");
 
 /* ************************************************************************* */

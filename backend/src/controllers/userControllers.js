@@ -54,7 +54,7 @@ const readByRole = async (req, res, next) => {
 const updatePicture = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
-    const user = await tables.user.updatePicture(id, req.body.picture);
+    const user = await tables.user.updatePicture(id, req.body);
     if (user == null) {
       res.sendStatus(404);
     } else {
@@ -70,11 +70,9 @@ const updatePicture = async (req, res, next) => {
 const add = async (req, res, next) => {
   // Extract the user data from the request body
   const user = req.body;
-
   try {
     // Insert the user into the database
     const insertId = await tables.user.create(user);
-
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json({ insertId });
   } catch (err) {

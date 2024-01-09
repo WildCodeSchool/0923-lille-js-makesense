@@ -50,15 +50,15 @@ class UserManager extends AbstractManager {
   }
 
   // The U of CRUD - Update operation
-  async updatePicture(id, picture) {
-    // Execute the SQL SELECT query to retrieve a specific user by its ID
+  async updatePicture(id, user) {
+    // Execute the SQL SELECT query to update the picture of a specific user by its ID;
     const [rows] = await this.database.query(
       `UPDATE ${this.table} 
       SET picture = ?
-      WHERE user_id = ?;`,
-      [picture, id]
+      WHERE user_id = ?`,
+      [user.picture, id]
     );
-    return rows[0];
+    return rows.affectedRows;
   }
 
   // async update(user) {
