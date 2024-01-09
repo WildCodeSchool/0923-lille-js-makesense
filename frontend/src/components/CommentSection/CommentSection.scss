@@ -44,7 +44,7 @@
   @include textBox;
   padding-block: 0.5vh;
   display: flex;
-  word-break: break-all;
+  word-break: normal;
   margin-block: 1vh;
 }
 .commentSection__comment--avatar {
@@ -59,4 +59,16 @@
 }
 .commentSection__comment__textSection {
   font-size: clamp(18px, 2vw, 1.2rem);
+}
+
+@media (max-width: 700px) {
+  .commentSection {
+    margin-block: 2vh;
+  }
+  .commentSection__container {
+    width: 90vw;
+  }
+  .commentSection__textarea {
+    width: 86.5vw;
+  }
 }

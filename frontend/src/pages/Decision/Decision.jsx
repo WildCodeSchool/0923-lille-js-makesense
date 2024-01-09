@@ -14,9 +14,12 @@ function Decision() {
         <ProgressBar />
       </header>
       <section className="decision__page--body">
-        <section>
+        <section className="left__section">
           <DescriptionBox />
         </section>
+        <button type="button" className="commentLink__button">
+          commentaires
+        </button>
         <section className="right__section">
           <CommentSection />
         </section>

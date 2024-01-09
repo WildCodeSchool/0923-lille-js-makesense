@@ -31,7 +31,7 @@
   margin: 2vw;
 }
 .descriptionBox__header__right--title {
-  word-break: break-all;
+  word-break: normal;
   font-size: clamp(25px, 3vw, 1.5rem);
   padding-top: 2vh;
 }
@@ -76,6 +76,7 @@
 }
 .expanded {
   @include textBox;
+
   padding-block: 1vh;
 }
 .collapsed {
@@ -91,4 +92,13 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (max-width: 700px) {
+  .descriptionBox {
+    width: 90vw;
+  }
+}
+.descriptionBox__scroll {
+  width: auto;
 }
