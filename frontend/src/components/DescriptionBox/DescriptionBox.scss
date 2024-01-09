@@ -18,27 +18,30 @@
 }
 .descriptionBox__header {
   display: flex;
-  padding-bottom: 3vw;
+  padding-bottom: 3vh;
 }
 .descriptionBox__header--avatar {
   border-radius: 50%;
   border: 5px solid white;
   height: 17vh;
-  margin-top: 5vh;
-  margin-left: 1vw;
+  margin-top: 2vh;
+  margin-inline: 1vw;
 }
 .descriptionBox__header__right {
   margin: 2vw;
 }
 .descriptionBox__header__right--title {
+  word-break: break-all;
   font-size: clamp(25px, 3vw, 1.5rem);
+  padding-top: 2vh;
 }
 .descriptionBox__header__right--writer {
   font-size: clamp(18px, 2vw, 1.5rem);
-  margin-top: 0.5rem;
+  margin-top: 1vh;
   padding-bottom: 2vh;
 }
 .decision__beans {
+  padding-top: 1vh;
   display: flex;
   justify-content: flex-start;
 }

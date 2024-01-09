@@ -33,7 +33,7 @@ function CommentSection() {
               <section className="commentSection__comment--box">
                 <section className="commentSection__comment__textSection">
                   <h4 className="commentSection__comment--name">
-                    Vincent rousseau (expert)
+                    Vincent Rousseaux (expert)
                   </h4>
                   <p>{com}</p>
                 </section>

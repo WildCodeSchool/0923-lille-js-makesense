@@ -3,7 +3,7 @@
   filter: opacity(0.3) drop-shadow(0 0 0 green);
 }
 .progress__bar {
-  font-size: clamp(16px, 17px, 12px);
+  font-size: clamp(0.75rem, 1.25vw, 1rem);
   font-weight: bold;
   display: flex;
   flex-direction: row;
