@@ -71,12 +71,46 @@ VALUES (?, ?, ?, ?);
 
 
 /*  page: create decision
-VINCENT    query for: créer une decision, updater la table decision avec les paragraphes. INSERT INTO paragraph le title de chaque paragraphe et son contenu
+VINCENT    query for: créer une decision, insérer dans la table decision avec les paragraphes. INSERT INTO paragraph le title de chaque paragraphe et son contenu
         (title, contains) associé à un id de decision (decision_id).
-        + INSERT INTO pour les rôles d'expert/impacté
+        + INSERT INTO pour les rôles d'expert/impacté*/
+
+
+INSERT INTO decision (decision_date, status, decision_title, user_id) 
+VALUES (?,"décision crée",?,?);
+
+SET @last_decision_id = LAST_INSERT_ID();
+
+INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+VALUES (?, ?, @last_decision_id);
+
+INSERT INTO assignment (date,role, decision_id, user_id) 
+/* id de la personne choisi en expert ou impacté */
+VALUES (?,?, @last_decision_id,?);
+                                                                
+
+    /*    
 VINCENT    query for: updater une décision. SELECT le contenu de la decision par son id, le insert into précédent devient un update qui utilise les id des
         paragraphes (title, contains).
         + les experts et impactés 
+*/
+
+SELECT * FROM decision
+WHERE decision.id = ?;
+
+UPDATE paragraph
+SET paragraph_title = ?,
+paragraph_content = ?,
+WHERE paragraph.decision_id = ?;
+
+UPDATE assignment
+SET role = ?
+WHERE assignment.user_id = ?;
+
+
+
+/*
+
 FARID    query for: chercher un expert/impacté. Besoin de select tous les firstname et lastname pour ensuite filtrer dessus ?
 */
 

@@ -61,7 +61,7 @@ const seed = async () => {
           ('Petit', 'Chris', 'chris.petit@yopmail.com', 'France', 'http://placekitten.com/200/327'),
           ('Abboud', 'Antoine', 'antoine.abboud@yopmail.com', 'Lebanon', 'http://placekitten.com/200/328'),
           ('Bautista', 'Alice', 'alice.bautista@yopmail.com', 'Philippines', 'http://placekitten.com/200/329'),
-          ('Williams', 'Liam', 'liam.williams@yopmail.com', 'Americas', 'http://placekitten.com/200/330');`
+          ('Williams', 'Liam', 'liam.williams@yopmail.com', 'Americas', 'http://placekitten.com/200/330')`
       )
     );
 
@@ -99,7 +99,7 @@ const seed = async () => {
         ('password456', '2023-02-02 12:00:00', 28),
         ('password123', '2023-01-01 12:00:00', 29),
         ('password123', '2023-01-01 12:00:00', 30),
-        ('password456', '2023-02-02 12:00:00', 31);`
+        ('password456', '2023-02-02 12:00:00', 31)`
       )
     );
 
@@ -117,7 +117,7 @@ const seed = async () => {
           ('2023-09-09', 'Conflit sur la décision', 'Decision 9', 9),
           ('2023-10-10', 'Prise de décision commencée', 'Decision 10', 10),
           ('2023-11-11', 'Décision définitive', 'Decision 11', 11),
-          ('2023-12-12', 'Première décision prise', 'Decision 12', 12);`
+          ('2023-12-12', 'Première décision prise', 'Decision 12', 12)`
       )
     );
 
@@ -150,7 +150,7 @@ const seed = async () => {
           ('2023-11-11', 11, 24, 'Expert'),
           ('2023-10-10', 11, 25, 'Impacté'),
           ('2023-11-11', 12, 26, 'Expert'),
-          ('2023-10-10', 12, 27, 'Impacté');`
+          ('2023-10-10', 12, 27, 'Impacté')`
       )
     );
 
@@ -161,7 +161,7 @@ const seed = async () => {
           (2),
           (3),
           (4),
-          (5);`
+          (5)`
       )
     );
 
@@ -197,7 +197,7 @@ const seed = async () => {
           ('2023-03-03 12:30:00', 'Comment 27 content', 27, 6),
           ('2023-04-04 16:45:00', 'Comment 28 content', 28, 7),
           ('2023-05-05 14:00:00', 'Comment 29 content', 29, 8),
-          ('2023-06-06 11:15:00', 'Comment 30 content', 30, 9);`
+          ('2023-06-06 11:15:00', 'Comment 30 content', 30, 9)`
       )
     );
 
@@ -262,7 +262,7 @@ const seed = async () => {
           ('Décision définitive', 'Paragraph 56 content', 1),
           ('Décision définitive', 'Paragraph 57 content', 7),
           ('Décision définitive', 'Paragraph 58 content', 8),
-          ('Décision définitive', 'Paragraph 59 content', 10);`
+          ('Décision définitive', 'Paragraph 59 content', 10)`
       )
     );
 

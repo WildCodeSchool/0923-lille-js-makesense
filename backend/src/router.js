@@ -28,6 +28,8 @@ router.get("/allDecisions", decisionControllers.browse);
 // Route to get all pending decisions
 router.get("/allPendingDecisions", decisionControllers.browsePending);
 // Route to get all decisions waiting for an answer (query ready in queries list)
+// Route to create a decisions.
+router.get("/createDecisions", decisionControllers.add);
 router.get("");
 
 /* ************************************************************************* */
