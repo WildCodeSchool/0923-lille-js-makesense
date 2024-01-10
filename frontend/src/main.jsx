@@ -27,11 +27,11 @@ const router = createBrowserRouter([
         element: <Decision />,
       },
       {
-        path: "/createdecision",
+        path: "/decision/create",
         element: <CreateDecision />,
       },
       {
-        path: "/createuser",
+        path: "/user/create",
         element: <CreateUser />,
       },
     ],
