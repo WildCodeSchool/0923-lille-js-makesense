@@ -5,6 +5,13 @@ const router = express.Router();
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
+// hashing password middleware
+const { hashPassword } = require("./services/auth");
+
+// LOGIN
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
 
 // USER ROUTES
 // Import Controller
@@ -14,11 +21,11 @@ router.get("/user", userControllers.browse);
 // Route to get a specific user by ID
 router.get("/user/:id", userControllers.read);
 // Route to get a user's role by their ID
-router.get("/userRole/:id", userControllers.readByRole);
+router.get("/user/role/:id", userControllers.readByRole);
 // Route to add a new user
-router.post("/user", userControllers.add);
+router.post("/user/create", hashPassword, userControllers.add);
 // Route to update a user's picture
-router.put("/userPicture/:id", userControllers.updatePicture);
+router.put("/user/picture/:id", userControllers.updatePicture);
 
 // DECISION ROUTES
 // Import Controller
