@@ -106,18 +106,18 @@ const seed = async () => {
     queries.push(
       database.query(
         `INSERT INTO decision (decision_date,decision_delay, status, decision_title, user_id) VALUES
-          ('2023-01-01',"Cour terme (2 semaines)", 'Prise de décision commencée', 'Decision 1', 1),
-          ('2023-02-02', "Cour terme (2 semaines)", 'Première décision prise', 'Decision 2', 2),
-          ('2023-03-03',"Cour terme (2 semaines)", 'Conflit sur la décision', 'Decision 3', 3),
-          ('2023-04-04',"Cour terme (2 semaines)", 'Décision définitive', 'Decision 4', 4),
-          ('2023-05-05',"Cour terme (2 semaines)", 'Décision non aboutie', 'Decision 5', 5),
-          ('2023-06-06',"Cour terme (2 semaines)", 'Décision terminée', 'Decision 6', 6),
-          ('2023-07-07',"Cour terme (2 semaines)", 'Décision non aboutie', 'Decision 7', 7),
-          ('2023-08-08',"Cour terme (2 semaines)", 'Décision terminée', 'Decision 8', 8),
-          ('2023-09-09',"Cour terme (2 semaines)", 'Conflit sur la décision', 'Decision 9', 9),
-          ('2023-10-10',"Cour terme (2 semaines)", 'Prise de décision commencée', 'Decision 10', 10),
-          ('2023-11-11',"Cour terme (2 semaines)", 'Décision définitive', 'Decision 11', 11),
-          ('2023-12-12',"Cour terme (2 semaines)", 'Première décision prise', 'Decision 12', 12);`
+          ('2023-01-01',"Court terme (2 semaines)", 'Prise de décision commencée', 'Decision 1', 1),
+          ('2023-02-02', "Court terme (2 semaines)", 'Première décision prise', 'Decision 2', 2),
+          ('2023-03-03',"Court terme (2 semaines)", 'Conflit sur la décision', 'Decision 3', 3),
+          ('2023-04-04',"Court terme (2 semaines)", 'Décision définitive', 'Decision 4', 4),
+          ('2023-05-05',"Court terme (2 semaines)", 'Décision non aboutie', 'Decision 5', 5),
+          ('2023-06-06',"Court terme (2 semaines)", 'Décision terminée', 'Decision 6', 6),
+          ('2023-07-07',"Court terme (2 semaines)", 'Décision non aboutie', 'Decision 7', 7),
+          ('2023-08-08',"Court terme (2 semaines)", 'Décision terminée', 'Decision 8', 8),
+          ('2023-09-09',"Court terme (2 semaines)", 'Conflit sur la décision', 'Decision 9', 9),
+          ('2023-10-10',"Court terme (2 semaines)", 'Prise de décision commencée', 'Decision 10', 10),
+          ('2023-11-11',"Court terme (2 semaines)", 'Décision définitive', 'Decision 11', 11),
+          ('2023-12-12',"Court terme (2 semaines)", 'Première décision prise', 'Decision 12', 12);`
       )
     );
 
