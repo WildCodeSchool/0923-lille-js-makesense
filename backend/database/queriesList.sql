@@ -57,17 +57,30 @@ GROUP BY decision.decision_id, decision.decision_title, decision.status, user.fi
 
 
 /*  page: decision
-HELENE    query for: afficher (select) toutes les infos d'une décision (titre, auteur, paragraphs, status, date de création) + les commentaires qui lui sont 
+HELENE    query for: afficher (select) toutes les infos d'une décision (titre, auteur, paragraphs, status, date de création)
+SELECT d.decision_title, d.user_id, d.status, p.paragraph_title, p.paragraph_content
+*/
+    SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name, decision.status, paragraph.paragraph_title, paragraph.paragraph_content
+          FROM decision
+          INNER JOIN paragraph ON decision.decision_id = paragraph.decision_id
+          INNER JOIN user ON decision.user_id = user.user_id
+          WHERE decision.decision_id = ?;
+ /*
+ + les commentaires qui lui sont 
         associés avec les auteurs des commentaires et leur rôle (expert/impacté/visiteur)
+ */
+ SELECT comment.comment_date_time, user.picture, CONCAT(user.firstname,' ', user.lastname) AS name, assignment.role, comment.comment_content
+          FROM comment
+          INNER JOIN assignment ON comment.user_id = assignment.user_id
+          INNER JOIN user ON comment.user_id = user.user_id
+          INNER JOIN decision ON comment.decision_id = decision.decision_id
+          WHERE decision.decision_id = ?
+          ORDER BY comment.comment_date_time DESC;
+/*
 HELENE query for: ajouter un commentaire (update, comment) en tant que expert/impacté/visiteur, associer le commentaire à la decision_id
 */
 
-
-
-
-
-INSERT INTO comment (decision_id, employee_id, date_time, message)
-VALUES (?, ?, ?, ?);
+INSERT INTO comment (comment_date_time, comment_content, user_id, decision_id) VALUES (?,?,?,?)
 
 
 /*  page: create decision
@@ -80,3 +93,12 @@ VINCENT    query for: updater une décision. SELECT le contenu de la decision pa
 FARID    query for: chercher un expert/impacté. Besoin de select tous les firstname et lastname pour ensuite filtrer dessus ?
 */
 
+SELECT user.picture, CONCAT(user.firstname,' ', user.lastname) AS name
+FROM user
+INNER JOIN assignment ON user.user_id = assignment.user_id
+WHERE role = "expert";
+
+SELECT user.picture, CONCAT(user.firstname,' ', user.lastname) AS name
+FROM user
+INNER JOIN assignment ON user.user_id = assignment.user_id
+WHERE role = "impacté";
