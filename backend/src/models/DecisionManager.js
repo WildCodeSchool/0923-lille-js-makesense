@@ -12,7 +12,16 @@ class DecisionManager extends AbstractManager {
   async create(decision) {
     // Execute the SQL INSERT query to add a new decision to the "decision" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
+      `
+      BEGIN;
+      INSERT INTO ${this.table} (decision_date, status, decision_title, user_id) 
+      VALUES (?,"décision crée",?,?);
+      SET @last_decision_id = LAST_INSERT_ID();
+      INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+      VALUES (?, ?, @last_decision_id);
+      INSERT INTO assignment (date,role, decision_id, user_id) 
+      VALUES (?,?, @last_decision_id,?);
+      COMMIT;`,
       [decision.title]
     );
 
@@ -25,7 +34,11 @@ class DecisionManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE decision_id = ?`,
+      `SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name, decision.status, paragraph.paragraph_title, paragraph.paragraph_content
+      FROM ${this.table}
+      INNER JOIN paragraph ON decision.decision_id = paragraph.decision_id
+      INNER JOIN user ON decision.user_id = user.user_id
+      WHERE decision.decision_id = ?`,
       [id]
     );
 
@@ -103,7 +116,7 @@ class DecisionManager extends AbstractManager {
     LEFT JOIN comment ON decision.decision_id = comment.decision_id
     WHERE user.user_id = ?
        OR assignment.user_id = ?
-       OR comment.user_id = ?
+       OR comment.user_id = ? 
     GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location`,
       [userId, userId, userId]
     );
@@ -111,9 +124,28 @@ class DecisionManager extends AbstractManager {
     // Retournez le résultat
     return rows;
   }
-  // async update(decision) {
-  //   ...
-  // }
+
+  async update(id, decision) {
+    const [rows] = await this.database.query(
+      `BEGIN;
+
+      SELECT * FROM decision
+      WHERE decision_id = ?;
+
+      UPDATE paragraph
+      SET paragraph_title = ?,
+      paragraph_content = ?
+      WHERE paragraph.decision_id = ? AND paragraph_id = ? ;
+
+      UPDATE assignment
+      SET role = ?
+      WHERE assignment.user_id = ? AND assignment.decision_id = ?;
+    
+      COMMIT;`,
+      [id, decision]
+    );
+    return rows[0];
+  }
 
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an decision by its ID
