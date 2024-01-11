@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/Login/Chaussette";
+import Login from "./pages/Login/Login";
 import App from "./App";
 import Homepage from "./pages/Homepage/Homepage";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";

@@ -14,7 +14,7 @@ const hashPassword = async (req, res, next) => {
       hashingOptions
     );
     req.body.hashedPassword = hashedPassword;
-    delete req.body.password;
+    delete req.body.hashed_password;
     next();
   } catch (err) {
     next(err);
