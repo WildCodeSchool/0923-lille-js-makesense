@@ -30,9 +30,9 @@ router.get("/allPendingDecisions", decisionControllers.browsePending);
 // Route to get all decisions waiting for an answer (query ready in queries list)
 router.get("");
 // Route to create decision
-router.get("/createDecision", decisionControllers.createDecision);
+router.post("/createDecision", decisionControllers.createDecision);
 // Route to update decision
-router.get("/updateDecision/:id", decisionControllers.updateDecision);
+router.post("/updateDecision/:id", decisionControllers.updateDecision);
 
 /* ************************************************************************* */
 

@@ -10,23 +10,46 @@ class DecisionManager extends AbstractManager {
   // The C of CRUD - Create operation
 
   async create(decision) {
-    // Execute the SQL INSERT query to add a new decision to the "decision" table
-    const [result] = await this.database.query(
+    // Execute the SQL INSERT queries to add a new decision, paragraph, and assignment
+    const [resultDecision] = await this.database.query(
       `
-      BEGIN;
-      INSERT INTO ${this.table} (decision_date, status, decision_title, user_id) 
-      VALUES (?,"décision crée",?,?);
-      SET @last_decision_id = LAST_INSERT_ID();
-      INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
-      VALUES (?, ?, @last_decision_id);
-      INSERT INTO assignment (date,role, decision_id, user_id) 
-      VALUES (?,?, @last_decision_id,?);
-      COMMIT;`,
-      [decision.title]
+        INSERT INTO ${this.table} (decision_date, decision_delay, status, decision_title, user_id) 
+        VALUES (?,?,?,?,?);
+        `,
+      [
+        decision.decision_date,
+        decision.decision_delay,
+        decision.status,
+        decision.decision_title,
+        decision.user_id,
+      ]
     );
 
-    // Return the ID of the newly inserted decision
-    return result.insertId;
+    const [resultParagraph] = await this.database.query(
+      `
+        INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+        VALUES (?, ?, ?);
+        `,
+      [
+        decision.paragraph_title,
+        decision.paragraph_content,
+        resultDecision.insertId,
+      ]
+    );
+
+    const [resultAssignment] = await this.database.query(
+      `
+        INSERT INTO assignment (date, role, decision_id, user_id) 
+        VALUES (?,?,?,?);
+        `,
+      [decision.date, decision.role, resultDecision.insertId, decision.user_id]
+    );
+
+    return {
+      resultDecision,
+      resultParagraph,
+      resultAssignment,
+    };
   }
 
   // The Rs of CRUD - Read operations
