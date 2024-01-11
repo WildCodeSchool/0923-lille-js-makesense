@@ -1,25 +1,22 @@
 const argon2 = require("argon2");
 
-// acces database tables
+// Import access to database tables
 const tables = require("../tables");
 
 const login = async (req, res, next) => {
   try {
-    // get a user from the database based on the email provided
+    // Fetch a specific user from the database based on the provided email
     const user = await tables.user.readByEmailWithPassword(req.body.email);
-
     if (user == null) {
-      res.sendStatus(422);
+      res.status(422).send("AUTH CONT DEF");
       return;
     }
-
     const verified = await argon2.verify(
-      user.hashed_password,
+      user[0].hashed_password,
       req.body.password
     );
-
     if (verified) {
-      // user without the hashed password
+      // Respond with the user in JSON format (but without the hashed password)
       delete user.hashed_password;
 
       res.json(user);
@@ -27,6 +24,7 @@ const login = async (req, res, next) => {
       res.sendStatus(422);
     }
   } catch (err) {
+    // Pass any errors to the error-handling middleware
     next(err);
   }
 };

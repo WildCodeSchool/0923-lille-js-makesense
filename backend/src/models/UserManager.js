@@ -62,7 +62,7 @@ class UserManager extends AbstractManager {
     );
 
     // Return the user as first row of the result
-    return rows[0];
+    return rows;
   }
 
   // The U of CRUD - Update operation
