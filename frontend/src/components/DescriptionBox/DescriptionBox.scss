@@ -12,9 +12,9 @@
   width: 50vw;
 }
 .descriptionBox__scroll {
+  overflow-y: scroll;
   height: 72vh;
   width: 48.5vw;
-  overflow-y: scroll;
 }
 .descriptionBox__header {
   display: flex;
@@ -94,11 +94,14 @@
   }
 }
 
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
   .descriptionBox {
     width: 90vw;
+    height: auto;
   }
-}
-.descriptionBox__scroll {
-  width: auto;
+  .descriptionBox__scroll {
+    overflow: hidden;
+    width: auto;
+    height: auto;
+  }
 }

@@ -43,7 +43,7 @@
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
   .progress__bar {
     width: 70vw;
     margin-block: 3vw;

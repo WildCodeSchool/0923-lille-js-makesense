@@ -61,9 +61,12 @@
   font-size: clamp(18px, 2vw, 1.2rem);
 }
 
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
   .commentSection {
     margin-block: 2vh;
+  }
+  .commentSection__title {
+    font-size: clamp(16px, 1rem, 1.4rem);
   }
   .commentSection__container {
     width: 90vw;
