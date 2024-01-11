@@ -12,7 +12,16 @@ class DecisionManager extends AbstractManager {
   async create(decision) {
     // Execute the SQL INSERT query to add a new decision to the "decision" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
+      `
+      BEGIN;
+      INSERT INTO ${this.table} (decision_date, status, decision_title, user_id) 
+      VALUES (?,"décision crée",?,?);
+      SET @last_decision_id = LAST_INSERT_ID();
+      INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+      VALUES (?, ?, @last_decision_id);
+      INSERT INTO assignment (date,role, decision_id, user_id) 
+      VALUES (?,?, @last_decision_id,?);
+      COMMIT;`,
       [decision.title]
     );
 
@@ -76,9 +85,27 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  // async update(decision) {
-  //   ...
-  // }
+  async update(id, decision) {
+    const [rows] = await this.database.query(
+      `BEGIN;
+
+      SELECT * FROM decision
+      WHERE decision_id = ?;
+
+      UPDATE paragraph
+      SET paragraph_title = ?,
+      paragraph_content = ?
+      WHERE paragraph.decision_id = ? AND paragraph_id = ? ;
+
+      UPDATE assignment
+      SET role = ?
+      WHERE assignment.user_id = ? AND assignment.decision_id = ?;
+    
+      COMMIT;`,
+      [id, decision]
+    );
+    return rows[0];
+  }
 
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an decision by its ID

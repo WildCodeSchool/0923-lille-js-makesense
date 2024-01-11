@@ -61,7 +61,7 @@ const seed = async () => {
           ('Petit', 'Chris', 'chris.petit@yopmail.com', 'France', 'http://placekitten.com/200/327'),
           ('Abboud', 'Antoine', 'antoine.abboud@yopmail.com', 'Lebanon', 'http://placekitten.com/200/328'),
           ('Bautista', 'Alice', 'alice.bautista@yopmail.com', 'Philippines', 'http://placekitten.com/200/329'),
-          ('Williams', 'Liam', 'liam.williams@yopmail.com', 'Americas', 'http://placekitten.com/200/330');`
+          ('Williams', 'Liam', 'liam.williams@yopmail.com', 'Americas', 'http://placekitten.com/200/330')`
       )
     );
 
@@ -99,25 +99,25 @@ const seed = async () => {
         ('password456', '2023-02-02 12:00:00', 28),
         ('password123', '2023-01-01 12:00:00', 29),
         ('password123', '2023-01-01 12:00:00', 30),
-        ('password456', '2023-02-02 12:00:00', 31);`
+        ('password456', '2023-02-02 12:00:00', 31)`
       )
     );
 
     queries.push(
       database.query(
-        `INSERT INTO decision (decision_date, status, decision_title, user_id) VALUES
-          ('2023-01-01', 'Prise de décision commencée', 'Decision 1', 1),
-          ('2023-02-02', 'Première décision prise', 'Decision 2', 2),
-          ('2023-03-03', 'Conflit sur la décision', 'Decision 3', 3),
-          ('2023-04-04', 'Décision définitive', 'Decision 4', 4),
-          ('2023-05-05', 'Décision non aboutie', 'Decision 5', 5),
-          ('2023-06-06', 'Décision terminée', 'Decision 6', 6),
-          ('2023-07-07', 'Décision non aboutie', 'Decision 7', 7),
-          ('2023-08-08', 'Décision terminée', 'Decision 8', 8),
-          ('2023-09-09', 'Conflit sur la décision', 'Decision 9', 9),
-          ('2023-10-10', 'Prise de décision commencée', 'Decision 10', 10),
-          ('2023-11-11', 'Décision définitive', 'Decision 11', 11),
-          ('2023-12-12', 'Première décision prise', 'Decision 12', 12);`
+        `INSERT INTO decision (decision_date, decision_delay, status, decision_title, user_id) VALUES
+           ('2023-01-01',"Court terme (2 semaines)", 'Prise de décision commencée', 'Decision 1', 1),
+          ('2023-02-02', "Court terme (2 semaines)", 'Première décision prise', 'Decision 2', 2),
+          ('2023-03-03',"Moyen terme (un mois)", 'Conflit sur la décision', 'Decision 3', 3),
+          ('2023-04-04',"Moyen terme (un mois)", 'Décision définitive', 'Decision 4', 4),
+          ('2023-05-05',"Moyen terme (un mois)", 'Décision non aboutie', 'Decision 5', 5),
+          ('2023-06-06',"Court terme (2 semaines)", 'Décision terminée', 'Decision 6', 6),
+          ('2023-07-07',"Moyen terme (un mois)", 'Décision non aboutie', 'Decision 7', 7),
+          ('2023-08-08',"Moyen terme (un mois)", 'Décision terminée', 'Decision 8', 8),
+          ('2023-09-09',"long terme (deux mois)", 'Conflit sur la décision', 'Decision 9', 9),
+          ('2023-10-10',"long terme (deux mois)", 'Prise de décision commencée', 'Decision 10', 10),
+          ('2023-11-11',"long terme (deux mois)", 'Décision définitive', 'Decision 11', 11),
+          ('2023-12-12',"long terme (deux mois)", 'Première décision prise', 'Decision 12', 12);`
       )
     );
 
@@ -150,7 +150,7 @@ const seed = async () => {
           ('2023-11-11', 11, 24, 'Expert'),
           ('2023-10-10', 11, 25, 'Impacté'),
           ('2023-11-11', 12, 26, 'Expert'),
-          ('2023-10-10', 12, 27, 'Impacté');`
+          ('2023-10-10', 12, 27, 'Impacté')`
       )
     );
 
@@ -161,7 +161,7 @@ const seed = async () => {
           (2),
           (3),
           (4),
-          (5);`
+          (5)`
       )
     );
 
@@ -197,7 +197,7 @@ const seed = async () => {
           ('2023-03-03 12:30:00', 'Comment 27 content', 27, 6),
           ('2023-04-04 16:45:00', 'Comment 28 content', 28, 7),
           ('2023-05-05 14:00:00', 'Comment 29 content', 29, 8),
-          ('2023-06-06 11:15:00', 'Comment 30 content', 30, 9);`
+          ('2023-06-06 11:15:00', 'Comment 30 content', 30, 9)`
       )
     );
 
@@ -262,7 +262,7 @@ const seed = async () => {
           ('Décision définitive', 'Paragraph 56 content', 1),
           ('Décision définitive', 'Paragraph 57 content', 7),
           ('Décision définitive', 'Paragraph 58 content', 8),
-          ('Décision définitive', 'Paragraph 59 content', 10);`
+          ('Décision définitive', 'Paragraph 59 content', 10)`
       )
     );
 
