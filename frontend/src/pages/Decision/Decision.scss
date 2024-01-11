@@ -2,3 +2,18 @@
   margin-inline: 1vw;
   padding-inline: 1vw;
 }
+.decision__page--body {
+  display: flex;
+  align-items: center;
+}
+.openAndClose--date {
+  font-size: clamp(16px, 1.2rem, 1.4rem);
+}
+.right__section {
+  margin-left: 2vw;
+}
+.decision__page--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
