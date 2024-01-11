@@ -2,13 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import NewUsers from "./components/NewUsers/NewUsers";
-/* import Login from "./pages/Login/Login"; */
 import Homepage from "./pages/Homepage/Homepage";
-/* 
-import Decision from "./pages/Decision/Decision"
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
-*/
+import Login from "./pages/login";
+import Decision from "./pages/Decision/Decision";
+import NewUsers from "./components/NewUsers/NewUsers";
 
 const router = createBrowserRouter([
   {
@@ -27,17 +25,10 @@ const router = createBrowserRouter([
         path: "/homepage",
         element: <Homepage />,
       },
-
-      /*  
       {
         path: "/decision",
         element: <Decision />,
-      },    
-      {
-        path: "/createdecision",
-        element: <CreateDecision />,
       },
-      */
     ],
   },
 ]);

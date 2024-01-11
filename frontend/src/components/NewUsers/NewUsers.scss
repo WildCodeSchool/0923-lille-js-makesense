@@ -1,8 +1,4 @@
 @import "../../variables";
-
-* {
-  text-decoration: none;
-}
 .newusers__content {
   font-family: $font-app;
   color: white;
@@ -21,12 +17,14 @@
   color: white;
   font-weight: bold;
   font-size: large;
+  text-align: center;
 }
 
 .newusers__title {
   color: $primary-dark;
   font-weight: bold;
   font-size: 150%;
+  margin: 20px;
 }
 .newusers__form {
   background: $secondary-medium;
@@ -42,10 +40,11 @@
   flex-direction: column;
 }
 .newusers__text {
-  padding: 3px;
+  padding: 6px;
 }
 .newusers__input {
   border-radius: 5px;
+  padding: 5px;
 }
 @media screen and (max-width: 950px) {
   .newusers__form {
