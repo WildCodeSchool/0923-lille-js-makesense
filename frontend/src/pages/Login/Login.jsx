@@ -1,4 +1,4 @@
-import "./login.scss";
+import "./Login.scss";
 
 function Login() {
   return (
