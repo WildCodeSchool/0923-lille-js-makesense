@@ -27,6 +27,16 @@ const decisionControllers = require("./controllers/decisionControllers");
 router.get("/allDecisions", decisionControllers.browse);
 // Route to get all pending decisions
 router.get("/allPendingDecisions", decisionControllers.browsePending);
+// chercher expert / impacter
+router.get(
+  "/decisions/:id/experts-impactes",
+  decisionControllers.getExpertsAndImpactes
+);
+// filter decisions linked to a user
+router.get(
+  "/decisions/:id/related-decisions",
+  decisionControllers.getRelatedDecisions
+);
 // Route to get all decisions waiting for an answer (query ready in queries list)
 router.get("");
 

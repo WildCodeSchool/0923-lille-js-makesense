@@ -98,6 +98,39 @@ const add = async (req, res, next) => {
   }
 };
 
+// Experts and Impactes
+const getExpertsAndImpactes = async (req, res, next) => {
+  try {
+    const decisionId = req.params.id;
+
+    // Call your decision manager's method to retrieve the experts and impacted
+    const expertsAndImpactes = await tables.decision.getExpertsAndImpactes(
+      decisionId
+    );
+
+    // Respond with experts and impacted in JSON format
+    res.json(expertsAndImpactes);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+// filter decisions linked to a user
+const getRelatedDecisions = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+
+    // Call your decision handler method to retrieve user-related decisions
+    const relatedDecisions = await tables.decision.getRelatedDecisions(userId);
+
+    // Respond with decisions in JSON format
+    res.json(relatedDecisions);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
@@ -109,5 +142,7 @@ module.exports = {
   readByRole,
   updatePicture,
   add,
+  getExpertsAndImpactes,
+  getRelatedDecisions,
   // destroy,
 };
