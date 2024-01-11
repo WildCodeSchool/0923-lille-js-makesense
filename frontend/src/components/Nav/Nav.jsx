@@ -43,9 +43,9 @@ function Nav() {
         />
         {edit ? (
           <>
-            <aside className="bulle_profil" />
-            <section className="profil_avatar">
-              <ul className="list_profil">
+            <aside className="buble_profil" />
+            <section className="buble_avatar">
+              <ul className="buble_list">
                 <li>Firstname</li>
                 <li>Lastname</li>
                 <li>Mail</li>
@@ -54,25 +54,20 @@ function Nav() {
                 <li
                   onMouseEnter={handleMove}
                   onMouseLeave={handleMove}
-                  className="help_hover"
+                  className="buble_hover"
                 >
                   ?
                 </li>
                 {help ? (
-                  <p className="help">
+                  <p className="buble_help">
                     Une erreur ? Contactez l'administrateur.
                   </p>
                 ) : null}
-                <li id="logout_bordertop">Log out</li>
+                <li id="buble_logout">Log out</li>
               </ul>
             </section>
           </>
         ) : null}
-        {/* <img
-          className="edit_avatar"
-          alt="edit_avatar"
-          src="../../assets/image/user-pen.png"
-        /> */}
       </ul>
     </nav>
   );

@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 
-.bulle_profil {
+.buble_profil {
   position: absolute;
   right: 12%;
   top: 88%;
@@ -48,7 +48,7 @@
   border-bottom: 10px solid black;
 }
 
-.help_hover {
+.buble_hover {
   border: 2px solid black;
   border-radius: 50px;
   width: 23%;
@@ -56,7 +56,7 @@
   position: absolute;
   right: 37%;
 }
-.profil_avatar {
+.buble_avatar {
   z-index: 10;
   position: absolute;
   top: 98%;
@@ -68,7 +68,7 @@
   background-color: white;
 }
 
-p.help {
+p.buble_help {
   position: absolute;
   color: black;
   width: 10vw;
@@ -79,7 +79,7 @@ p.help {
   border-radius: 15px;
 }
 
-#logout_bordertop {
+#buble_logout {
   border-top: 2px solid red;
   width: 60%;
   margin-top: 29%;
@@ -88,12 +88,12 @@ p.help {
   color: red;
   margin-left: 19%;
 }
-.list_profil {
+.buble_list {
   line-height: 165%;
   margin-top: 5%;
 }
 
-.list_profil li {
+.buble_list li {
   color: black;
 }
 // mobile version
