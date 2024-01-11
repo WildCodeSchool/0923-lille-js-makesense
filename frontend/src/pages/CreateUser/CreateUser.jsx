@@ -2,31 +2,56 @@ import "./CreateUser.scss";
 
 function CreateUser() {
   return (
-    <main className="newuser__content">
-      <h1 className="newuser__title">Nouvel utilisateur</h1>
-      <form className="newuser__form">
-        <label className="newuser__label">
-          <span className="newuser__text"> Nom :</span>
-          <input className="newuser__input" type="text" name="nom" />
+    <main className="createuser__content">
+      <span className="createuser__title">Nouvel utilisateur</span>
+      <form className="createuser__form">
+        <label htmlFor="name" className="createuser__label">
+          <span className="createuser__text"> Nom :</span>
+          <input
+            id="name"
+            className="createuser__input"
+            type="text"
+            name="nom"
+          />
         </label>
-        <label className="newuser__label">
-          <span className="newuser__text">Prénom :</span>
-          <input className="newuser__input" type="text" name="prenom" />
+        <label htmlFor="firstname" className="createuser__label">
+          <span className="createuser__text">Prénom :</span>
+          <input
+            id="firstname"
+            className="createuser__input"
+            type="text"
+            name="prenom"
+          />
         </label>
-        <label className="newuser__label">
-          <span className="newuser__text"> Email :</span>
-          <input className="newuser__input" type="email" name="email" />
+        <label htmlFor="email" className="createuser__label">
+          <span className="createuser__text"> Email :</span>
+          <input
+            id="email"
+            className="createuser__input"
+            type="email"
+            name="email"
+          />
         </label>
-        <label className="newuser__label">
-          <span className="newuser__text"> Lieu de travail :</span>
-          <input className="newuser__input" type="text" name="lieuTravail" />
+        <label htmlFor="place" className="createuser__label">
+          <span className="createuser__text"> Lieu de travail :</span>
+          <input
+            id="place"
+            className="createuser__input"
+            type="text"
+            name="lieuTravail"
+          />
         </label>
-        <label className="newuser__label ">
-          <span className="newuser__text"> Mot de passe :</span>
-          <input className="newuser__input" type="password" name="motDePasse" />
+        <label htmlFor="password" className="createuser__label ">
+          <span className="createuser__text"> Mot de passe :</span>
+          <input
+            id="password"
+            className="createuser__input"
+            type="password"
+            name="motDePasse"
+          />
         </label>
       </form>
-      <button className="newuser__button" type="submit">
+      <button className="createuser__button" type="submit">
         Créer
       </button>
     </main>

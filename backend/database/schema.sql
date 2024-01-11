@@ -33,6 +33,7 @@ CREATE TABLE decision (
 CREATE TABLE decision (
   decision_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   decision_date DATE NOT NULL,
+  decision_delay VARCHAR(50),
   /* frontend sends one of those statuses: 
   "Prise de décision commencée"
   "Première décision prise"

@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.newuser__content {
+.createuser__content {
   font-family: $font-app;
   color: $lightFont;
   display: flex;
@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.newuser__button {
+.createuser__button {
   @include buttons;
   background: $secondary-dark;
   width: 10%;
@@ -18,12 +18,12 @@
   font-size: large;
 }
 
-.newuser__title {
+.createuser__title {
   color: $primary-dark;
   font-weight: bold;
   font-size: 150%;
 }
-.newuser__form {
+.createuser__form {
   background: $secondary-medium;
   border-radius: 15px;
   width: 25%;
@@ -38,23 +38,23 @@
   justify-content: space-around;
 }
 
-.newuser__label {
+.createuser__label {
   display: flex;
   flex-direction: column;
 }
-.newuser__text {
+.createuser__text {
   padding: 3px;
 }
-.newuser__input {
+.createuser__input {
   border-radius: 5px;
   width: 100%;
 }
 
 @media screen and (max-width: 950px) {
-  .newuser__form {
+  .createuser__form {
     width: 50%;
   }
-  .newuser__button {
+  .createuser__button {
     width: 30%;
   }
 }
