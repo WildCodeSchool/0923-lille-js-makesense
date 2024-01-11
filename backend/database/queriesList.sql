@@ -96,18 +96,16 @@ VINCENT    query for: updater une décision. SELECT le contenu de la decision pa
 */
 
 SELECT * FROM decision
-WHERE decision.id = ?;
+WHERE decision_id = ?;
 
 UPDATE paragraph
 SET paragraph_title = ?,
-paragraph_content = ?,
-WHERE paragraph.decision_id = ?;
+paragraph_content = ?
+WHERE paragraph.decision_id = ? AND paragraph_id = ? ;
 
 UPDATE assignment
 SET role = ?
-WHERE assignment.user_id = ?;
-
-
+WHERE assignment.user_id = ? AND assignment.decision_id = ?;
 
 /*
 
