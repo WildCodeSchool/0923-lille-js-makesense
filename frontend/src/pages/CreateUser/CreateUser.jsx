@@ -1,6 +1,6 @@
-import "./NewUser.scss";
+import "./CreateUser.scss";
 
-function newuser() {
+function CreateUser() {
   return (
     <main className="newuser__content">
       <h1 className="newuser__title">Nouvel utilisateur</h1>
@@ -33,4 +33,4 @@ function newuser() {
   );
 }
 
-export default newuser;
+export default CreateUser;

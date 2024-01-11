@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/Login/Login";
+
 import App from "./App";
+import Login from "./pages/Login/Login";
 import Homepage from "./pages/Homepage/Homepage";
-import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import Decision from "./pages/Decision/Decision";
-import NewUser from "./pages/NewUser/NewUser";
+import CreateDecision from "./pages/CreateDecision/CreateDecision";
+import CreateUser from "./pages/CreateUser/CreateUser";
 
 const router = createBrowserRouter([
   {
@@ -25,17 +27,21 @@ const router = createBrowserRouter([
         element: <Decision />,
       },
       {
-        path: "/createdecision",
+        path: "/decision/create",
         element: <CreateDecision />,
       },
       {
-        path: "/newuser",
-        element: <NewUser />,
+        path: "/user/create",
+        element: <CreateUser />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
