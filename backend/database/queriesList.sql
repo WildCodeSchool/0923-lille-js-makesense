@@ -41,9 +41,9 @@ FROM decision
 JOIN user ON decision.user_id = user.user_id
 LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
 LEFT JOIN comment ON decision.decision_id = comment.decision_id
-WHERE user.user_id 
-   OR assignment.user_id
-   OR comment.user_id
+WHERE user.user_id = ?
+   OR assignment.user_id = ?
+   OR comment.user_id = ?
 GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
 
 SELECT
@@ -75,26 +75,71 @@ GROUP BY decision.decision_id, decision.decision_title, decision.status, user.fi
 
 
 /*  page: decision
-HELENE    query for: afficher (select) toutes les infos d'une décision (titre, auteur, paragraphs, status, date de création) + les commentaires qui lui sont 
+HELENE    query for: afficher (select) toutes les infos d'une décision (titre, auteur, paragraphs, status, date de création)
+SELECT d.decision_title, d.user_id, d.status, p.paragraph_title, p.paragraph_content
+*/
+    SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name, decision.status, paragraph.paragraph_title, paragraph.paragraph_content
+          FROM decision
+          INNER JOIN paragraph ON decision.decision_id = paragraph.decision_id
+          INNER JOIN user ON decision.user_id = user.user_id
+          WHERE decision.decision_id = ?;
+ /*
+ + les commentaires qui lui sont 
         associés avec les auteurs des commentaires et leur rôle (expert/impacté/visiteur)
+ */
+ SELECT comment.comment_date_time, user.picture, CONCAT(user.firstname,' ', user.lastname) AS name, assignment.role, comment.comment_content
+          FROM comment
+          INNER JOIN assignment ON comment.user_id = assignment.user_id
+          INNER JOIN user ON comment.user_id = user.user_id
+          INNER JOIN decision ON comment.decision_id = decision.decision_id
+          WHERE decision.decision_id = ?
+          ORDER BY comment.comment_date_time DESC;
+/*
 HELENE query for: ajouter un commentaire (update, comment) en tant que expert/impacté/visiteur, associer le commentaire à la decision_id
 */
 
-
-
-
-
-INSERT INTO comment (decision_id, employee_id, date_time, message)
-VALUES (?, ?, ?, ?);
+INSERT INTO comment (comment_date_time, comment_content, user_id, decision_id) VALUES (?,?,?,?)
 
 
 /*  page: create decision
-VINCENT    query for: créer une decision, updater la table decision avec les paragraphes. INSERT INTO paragraph le title de chaque paragraphe et son contenu
+VINCENT    query for: créer une decision, insérer dans la table decision avec les paragraphes. INSERT INTO paragraph le title de chaque paragraphe et son contenu
         (title, contains) associé à un id de decision (decision_id).
-        + INSERT INTO pour les rôles d'expert/impacté
+        + INSERT INTO pour les rôles d'expert/impacté*/
+
+
+INSERT INTO decision (decision_date, status, decision_title, user_id) 
+VALUES (?,"décision crée",?,?);
+
+SET @last_decision_id = LAST_INSERT_ID();
+
+INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+VALUES (?, ?, @last_decision_id);
+
+INSERT INTO assignment (date,role, decision_id, user_id) 
+/* id de la personne choisi en expert ou impacté */
+VALUES (?,?, @last_decision_id,?);
+                                                                
+
+    /*    
 VINCENT    query for: updater une décision. SELECT le contenu de la decision par son id, le insert into précédent devient un update qui utilise les id des
         paragraphes (title, contains).
         + les experts et impactés 
+*/
+
+SELECT * FROM decision
+WHERE decision_id = ?;
+
+UPDATE paragraph
+SET paragraph_title = ?,
+paragraph_content = ?
+WHERE paragraph.decision_id = ? AND paragraph_id = ? ;
+
+UPDATE assignment
+SET role = ?
+WHERE assignment.user_id = ? AND assignment.decision_id = ?;
+
+/*
+
 FARID    query for: chercher un expert/impacté. Besoin de select tous les firstname et lastname pour ensuite filtrer dessus ?
 */
 SELECT
@@ -107,3 +152,8 @@ SELECT
 FROM assignment
 JOIN user ON assignment.user_id = user.user_id
 WHERE assignment.decision_id;
+
+SELECT user.picture, CONCAT(user.firstname,' ', user.lastname) AS name
+FROM user
+INNER JOIN assignment ON user.user_id = assignment.user_id
+WHERE role = "impacté";
