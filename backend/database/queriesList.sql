@@ -41,9 +41,9 @@ FROM decision
 JOIN user ON decision.user_id = user.user_id
 LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
 LEFT JOIN comment ON decision.decision_id = comment.decision_id
-WHERE user.user_id = ?
-   OR assignment.user_id = ?
-   OR comment.user_id = ?
+WHERE user.user_id 
+   OR assignment.user_id
+   OR comment.user_id
 GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
 
 SELECT
@@ -106,4 +106,4 @@ SELECT
   assignment.role
 FROM assignment
 JOIN user ON assignment.user_id = user.user_id
-WHERE assignment.decision_id = ?;
+WHERE assignment.decision_id;
