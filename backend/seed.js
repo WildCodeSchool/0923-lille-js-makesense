@@ -65,41 +65,71 @@ const seed = async () => {
       )
     );
 
-    // Insert the hashing passwords middleware in this query
     queries.push(
       database.query(
         `INSERT INTO authentication (hashed_password, auth_date_time, user_id) VALUES
-        ('password123', '2023-01-01 12:00:00', 1),
-        ('password456', '2023-02-02 12:00:00', 2),
-        ('password123', '2023-01-01 12:00:00', 3),
-        ('password456', '2023-02-02 12:00:00', 4),
-        ('password123', '2023-01-01 12:00:00', 5),
-        ('password456', '2023-02-02 12:00:00', 6),
-        ('password123', '2023-01-01 12:00:00', 7),
-        ('password456', '2023-02-02 12:00:00', 8),
-        ('password123', '2023-01-01 12:00:00', 9),
-        ('password456', '2023-02-02 12:00:00', 10),
-        ('password123', '2023-01-01 12:00:00', 11),
-        ('password456', '2023-02-02 12:00:00', 12),
-        ('password123', '2023-01-01 12:00:00', 13),
-        ('password456', '2023-02-02 12:00:00', 14),
-        ('password123', '2023-01-01 12:00:00', 15),
-        ('password456', '2023-02-02 12:00:00', 16),
-        ('password123', '2023-01-01 12:00:00', 17),
-        ('password456', '2023-02-02 12:00:00', 18),
-        ('password123', '2023-01-01 12:00:00', 19),
-        ('password456', '2023-02-02 12:00:00', 20),
-        ('password123', '2023-01-01 12:00:00', 21),
-        ('password456', '2023-02-02 12:00:00', 22),
-        ('password123', '2023-01-01 12:00:00', 23),
-        ('password456', '2023-02-02 12:00:00', 24),
-        ('password123', '2023-01-01 12:00:00', 25),
-        ('password456', '2023-02-02 12:00:00', 26),
-        ('password123', '2023-01-01 12:00:00', 27),
-        ('password456', '2023-02-02 12:00:00', 28),
-        ('password123', '2023-01-01 12:00:00', 29),
-        ('password123', '2023-01-01 12:00:00', 30),
-        ('password456', '2023-02-02 12:00:00', 31);`
+        ('$argon2d$v=19$m=19456,t=2,p=4$nU9m4qAA9pdQ7YYbB6aI8Q$Ud6bSwDMbKaHqtmA318jx511nlV0n0jQVOEpwySzoRk
+        ', '2023-01-01 12:00:00', 1),
+        ('$argon2d$v=19$m=19456,t=2,p=4$XwyAKmQlAeAi7PW60gJPOQ$z4ENq/VJDQkwRLxo6HgLCnLLBN9Y1kPcXE2FtYbjylY
+        ', '2023-02-02 12:00:00', 2),
+        ('$argon2d$v=19$m=19456,t=2,p=4$3Bk5mG5CEhT3byeXH8VBFg$4r/RlZOgLsUAdoKrjku0Wcuu1m+OvINX5IHkE2ZQylw
+        ', '2023-01-01 12:00:00', 3),
+        ('$argon2d$v=19$m=19456,t=2,p=4$o9bpHP/M5ErjoFmA/xQ2mw$7LK1bNblhk3yRhJxOZsVsBkb1MWAtyNObgHayTd1jSQ
+        ', '2023-02-02 12:00:00', 4),
+        ('$argon2d$v=19$m=19456,t=2,p=4$kU7HZ3LvpjK5Of5g9yJmWw$IEN3DcMnC4wUcwtOH18934+aXWxKEWa2lFGjAvuTlHs
+        ', '2023-01-01 12:00:00', 5),
+        ('$argon2d$v=19$m=19456,t=2,p=4$5ft8OFyck5VvE/LzoLWuWQ$O0dInbPTSvsEdm/xqQWVct5nP9DW234YrAqsXW7dVgE
+        ', '2023-02-02 12:00:00', 6),
+        ('$argon2d$v=19$m=19456,t=2,p=4$OxkHzGSFoOB6FxBvCguaNw$xzaRO04BC1rjIitP5egUvg4XqwNBMeQzQ6mhKkTbPtg
+        ', '2023-01-01 12:00:00', 7),
+        ('$argon2d$v=19$m=19456,t=2,p=4$Tb8+OwSNK0wBZlAeLZVacA$MfYZTEeyWwzlRfTg8BK1DAkU3SpOg+mosrYbaMuRPeg
+        ', '2023-02-02 12:00:00', 8),
+        ('$argon2d$v=19$m=19456,t=2,p=4$SsnHsf6d3TJSHINpflAliQ$FjV+gq/dasN5tYsVajmRfxNViJeS3zb61ShJ2y2Xkps
+        ', '2023-01-01 12:00:00', 9),
+        ('$argon2d$v=19$m=19456,t=2,p=4$JowPhVTZYY1CXU+kIj1D6g$ilmf5Y8poS84XpCxaZX9VmFPVSBUqI77eW1fD++UDj4
+        ', '2023-02-02 12:00:00', 10),
+        ('$argon2d$v=19$m=19456,t=2,p=4$5c6nKHmcu1ZX+c+ikgOFSQ$Qa+fhYTU1CPSi0nqzZYCruvSTo2xVgip1IewyDuIiUU
+        ', '2023-01-01 12:00:00', 11),
+        ('$argon2d$v=19$m=19456,t=2,p=4$DHQycHGwE+rMDT6f2PNsUg$JdGCfYgr3hOMROOkty6lttGsHG1tbTpUdA1KzBPOSog
+        ', '2023-02-02 12:00:00', 12),
+        ('$argon2d$v=19$m=19456,t=2,p=4$u+7ma/Mq0Ul+t5kjlSKPVQ$YxfyWoueOT870r1m/QCowHBrSjJQSHzdU3J+gTiLpLM
+        ', '2023-01-01 12:00:00', 13),
+        ('$argon2d$v=19$m=19456,t=2,p=4$oJrAqIGD4zd8la4ueW0SHQ$XOu1moqK4wa+5M8M4RucPQssB54MlBEDJuCWtvYrrTw
+        ', '2023-02-02 12:00:00', 14),
+        ('$argon2d$v=19$m=19456,t=2,p=4$uTXsb6HNyQedj/kIqBKh3w$YcHJGxVo0hxAAp8bL1oFVnhjLHpN2T7k/8zv74Y6Y7A
+        ', '2023-01-01 12:00:00', 15),
+        ('$argon2d$v=19$m=19456,t=2,p=4$OlDpRmaVzXu7DOnegox6ng$/NRlTedKid/4Ps48SQyJ/a3X4x0No3f34bVKmevvLn0
+        ', '2023-02-02 12:00:00', 16),
+        ('$argon2d$v=19$m=19456,t=2,p=4$d5+r04CPS8o1fLiCznGb0w$3Rje40oTSjEN4k/jnF6F2wUs8cZ0KsSPClvFKr8NgTY
+        ', '2023-01-01 12:00:00', 17),
+        ('$argon2d$v=19$m=19456,t=2,p=4$QdzHIjnJYx/Jy7xczAik5Q$XNpsla/3X+LBIA/P/mY7nGSE8ky6qfS7PAtrdPE/UDw
+        ', '2023-02-02 12:00:00', 18),
+        ('$argon2d$v=19$m=19456,t=2,p=4$9j+BkmlI5fkXj/PgS8tkmQ$oTtwAx6zPPgHq7jGlIuVCQd9HWqISUOYtYic3nIqoP4
+        ', '2023-01-01 12:00:00', 19),
+        ('$argon2d$v=19$m=19456,t=2,p=4$qLxLIjIVPDA9gSmibCugvg$vj4NUoyrgx7UwH66HrWfqN42S5EMEyzXsA9w4uXlmvE
+        ', '2023-02-02 12:00:00', 20),
+        ('$argon2d$v=19$m=19456,t=2,p=4$3BszN5l+bGAak/17SMF+jw$UQz0R7srA4kBJfndVBuQiqUPiqXrGL1ByL/9Wod7DyE
+        ', '2023-01-01 12:00:00', 21),
+        ('$argon2d$v=19$m=19456,t=2,p=4$brxJkRFVE714pcR0+BwPIg$JLaZComYjEgPxu/uosOADB76NTSh+MQtoXqPD2sb0QM
+        ', '2023-02-02 12:00:00', 22),
+        ('$argon2d$v=19$m=19456,t=2,p=4$oIsEJ+M8uJ+Yz4gsZQNJ6w$oZsbsq60a7Wjh1yYUAAlkP75iBstthl/F1uGcEKVxAA
+        ', '2023-01-01 12:00:00', 23),
+        ('$argon2d$v=19$m=19456,t=2,p=4$VBYBmX9vMk4IlaescIdtiQ$dlckt3EATYPXyQByAg6YLwHynUVecpJycx78DsE4riY
+        ', '2023-02-02 12:00:00', 24),
+        ('$argon2d$v=19$m=19456,t=2,p=4$GIJFAPPanUx4l0IH91IOxA$qQkCl8Uk15VV3H2hdzbBF/6Ui7ivP8qAQBA/3S0aQFc
+        ', '2023-01-01 12:00:00', 25),
+        ('$argon2d$v=19$m=19456,t=2,p=4$+ACJNE7vakxjk8KQUzgJ8w$b9zyWXYDE9r8Ck0G34wZJVQhyEW2rtzIhaiNd9764AU
+        ', '2023-02-02 12:00:00', 26),
+        ('$argon2d$v=19$m=19456,t=2,p=4$CWfsskG4UiQuFqgRA+VDgQ$dBb4PsMBqmFoGBpbesICvt5GnCbTqOdePV7FB3A1Pso
+        ', '2023-01-01 12:00:00', 27),
+        ('$argon2d$v=19$m=19456,t=2,p=4$m14YeV9E9OspEe0sHnd0GQ$4IatEbK0jtUJ+4PnGdaT89+TXR9xmQG67O96ZSi0ios
+        ', '2023-02-02 12:00:00', 28),
+        ('$argon2d$v=19$m=19456,t=2,p=4$77Qb1M5qIONe0Ec0isW6Kw$PnI6Awu05hWK0WFNOP20nq38OyLbmBeoZKcMLNbFXWw
+        ', '2023-01-01 12:00:00', 29),
+        ('$argon2d$v=19$m=19456,t=2,p=4$3qGus/VLTciHMypPJ8R7EQ$0bLM+lHuKDgAU6xFxivyN1eZLvIRSVqYSeS2l3KTolA
+        ', '2023-01-01 12:00:00', 30),
+        ('$argon2d$v=19$m=19456,t=2,p=4$kczl0+wLd7ZPE14BW/iraw$4SOi7zWIkhQemiPbkjZUruYp0JbpPAL+5DbP8oCV3H0
+        ', '2023-02-02 12:00:00', 31);`
       )
     );
 
@@ -114,10 +144,10 @@ const seed = async () => {
           ('2023-06-06',"Court terme (2 semaines)", 'Décision terminée', 'Decision 6', 6),
           ('2023-07-07',"Moyen terme (un mois)", 'Décision non aboutie', 'Decision 7', 7),
           ('2023-08-08',"Moyen terme (un mois)", 'Décision terminée', 'Decision 8', 8),
-          ('2023-09-09',"long terme (deux mois)", 'Conflit sur la décision', 'Decision 9', 9),
-          ('2023-10-10',"long terme (deux mois)", 'Prise de décision commencée', 'Decision 10', 10),
-          ('2023-11-11',"long terme (deux mois)", 'Décision définitive', 'Decision 11', 11),
-          ('2023-12-12',"long terme (deux mois)", 'Première décision prise', 'Decision 12', 12);`
+          ('2023-09-09',"Long terme (deux mois)", 'Conflit sur la décision', 'Decision 9', 9),
+          ('2023-10-10',"Long terme (deux mois)", 'Prise de décision commencée', 'Decision 10', 10),
+          ('2023-11-11',"Long terme (deux mois)", 'Décision définitive', 'Decision 11', 11),
+          ('2023-12-12',"Long terme (deux mois)", 'Première décision prise', 'Decision 12', 12);`
       )
     );
 
