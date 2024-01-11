@@ -1,0 +1,62 @@
+@import "../../variables";
+
+.commentSection__title {
+  margin-left: 3vw;
+  font-size: clamp(25px, 2vw, 1.4rem);
+}
+.commentSection__container {
+  @include box;
+  margin-top: 2vh;
+  height: 60vh;
+  width: 44vw;
+  padding-block: 2vh;
+}
+.commentSection__input--field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.commentSection__textarea {
+  padding-inline: 0.5vw;
+  border-style: none;
+  border-radius: 10px;
+  height: 15vh;
+  width: 42.5vw;
+  font-size: clamp(18px, 2vw, 1.2rem);
+}
+.comment__button {
+  padding-inline: 1vw;
+  height: 5vh;
+  width: auto;
+  border-radius: 15px;
+  background-color: $primary-dark;
+  color: white;
+  margin-block: 1vh;
+  font-size: clamp(18px, 2vw, 1.2rem);
+  cursor: pointer;
+}
+.commentSection__comment--container {
+  height: 32vh;
+  overflow-y: scroll;
+}
+.commentSection__comment--box {
+  @include textBox;
+  padding-block: 0.5vh;
+  display: flex;
+  word-break: break-all;
+  margin-block: 1vh;
+}
+.commentSection__comment--avatar {
+  border-radius: 50%;
+  border: 5px solid white;
+  height: 10vh;
+  margin-block: 0.5vh;
+}
+.commentSection__comment--assembly {
+  display: flex;
+  gap: 0.5vw;
+}
+.commentSection__comment__textSection {
+  font-size: clamp(18px, 2vw, 1.2rem);
+}

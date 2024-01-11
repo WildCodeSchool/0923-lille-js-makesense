@@ -1,0 +1,61 @@
+@import "../../variables";
+
+.decisionCard__container *,
+.decisionCard__container {
+  background-color: $primary-pale;
+}
+
+.decisionCard__container {
+  border-radius: 20px;
+  padding: 20px;
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-block: 1%;
+  box-shadow: 7px 7px 11px 1px rgba($primary-dark, 0.25);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 7px 7px 11px 1px rgba($primary-dark, 0.4);
+  }
+}
+
+.decisionCard__author {
+  display: flex;
+  align-items: center;
+  &--fullname {
+    padding-inline-start: 0.5ch;
+  }
+}
+
+.decisionCard__avatar {
+  @include avatar;
+  margin-inline-end: 2%;
+}
+
+.decisionCard__beans {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.decisionCard__status,
+.decisionCard__location,
+.decisionCard__advices {
+  @include statusButtons;
+}
+
+.decisionCard__status {
+  color: $status-solid;
+  background-color: $status-bg;
+}
+.decisionCard__location {
+  color: $location-solid;
+  background-color: $location-bg;
+}
+.decisionCard__advices {
+  color: $advice-solid;
+  background-color: $advice-bg;
+}
