@@ -13,7 +13,7 @@ import CreateUser from "./pages/CreateUser/CreateUser";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />
+    element: <Login />,
   },
   {
     element: <App />,
