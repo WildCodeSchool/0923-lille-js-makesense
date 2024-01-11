@@ -1,29 +1,32 @@
+import { Link } from "react-router-dom";
 import "./DecisionCard.scss";
 import PropTypes from "prop-types";
 
 function DecisionCard({ mockUser, mockComments, title, status }) {
   return (
-    <button type="button" className="decisionCard__container">
-      <h2>{title}</h2>
-      <p className="decisionCard__author">
-        <img
-          src={mockUser.picture}
-          alt="avatar de l'auteur"
-          className="decisionCard__avatar"
-        />
-        par
-        <strong className="decisionCard__author--fullname">
-          {mockUser.firstname} {mockUser.lastname}
-        </strong>
-      </p>
-      <span className="decisionCard__beans">
-        <span className="decisionCard__status">{status}</span>
-        <span className="decisionCard__location">{mockUser.location}</span>
-        <span className="decisionCard__advices">
-          {mockComments.length} avis
+    <Link to="/decision">
+      <button type="button" className="decisionCard__container">
+        <h2>{title}</h2>
+        <p className="decisionCard__author">
+          <img
+            src={mockUser.picture}
+            alt="avatar de l'auteur"
+            className="decisionCard__avatar"
+          />
+          par
+          <strong className="decisionCard__author--fullname">
+            {mockUser.firstname} {mockUser.lastname}
+          </strong>
+        </p>
+        <span className="decisionCard__beans">
+          <span className="decisionCard__status">{status}</span>
+          <span className="decisionCard__location">{mockUser.location}</span>
+          <span className="decisionCard__advices">
+            {mockComments.length} avis
+          </span>
         </span>
-      </span>
-    </button>
+      </button>
+    </Link>
   );
 }
 
