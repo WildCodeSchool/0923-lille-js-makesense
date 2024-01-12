@@ -32,7 +32,7 @@ router.get("");
 // Route to create decision
 router.post("/createDecision", decisionControllers.createDecision);
 // Route to update decision
-router.post("/updateDecision/:id", decisionControllers.updateDecision);
+router.post("/updateDecision", decisionControllers.updateDecision);
 
 /* ************************************************************************* */
 

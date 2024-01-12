@@ -8,41 +8,38 @@ class DecisionManager extends AbstractManager {
   }
 
   // The C of CRUD - Create operation
-
   async create(decision) {
     // Execute the SQL INSERT queries to add a new decision, paragraph, and assignment
     const [resultDecision] = await this.database.query(
-      `
-        INSERT INTO ${this.table} (decision_date, decision_delay, status, decision_title, user_id) 
-        VALUES (?,?,?,?,?);
-        `,
+      `INSERT INTO ${this.table} (decision_date, decision_delay, status, decision_title, user_id)     
+      VALUES (?,?,?,?,?);`,
       [
-        decision.decision_date,
-        decision.decision_delay,
-        decision.status,
-        decision.decision_title,
-        decision.user_id,
+        decision[0].decision_date,
+        decision[0].decision_delay,
+        decision[0].status,
+        decision[0].decision_title,
+        decision[0].user_id,
       ]
     );
-
     const [resultParagraph] = await this.database.query(
-      `
-        INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
-        VALUES (?, ?, ?);
-        `,
+      `INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+        VALUES (?, ?, ?);`,
       [
-        decision.paragraph_title,
-        decision.paragraph_content,
+        decision[1].paragraph_title,
+        decision[1].paragraph_content,
         resultDecision.insertId,
       ]
     );
 
     const [resultAssignment] = await this.database.query(
-      `
-        INSERT INTO assignment (date, role, decision_id, user_id) 
-        VALUES (?,?,?,?);
-        `,
-      [decision.date, decision.role, resultDecision.insertId, decision.user_id]
+      `INSERT INTO assignment (date, role, decision_id, user_id) 
+        VALUES (?,?,?,?);`,
+      [
+        decision[2].date,
+        decision[2].role,
+        resultDecision.insertId,
+        decision[2].user_id,
+      ]
     );
 
     return {
@@ -104,26 +101,40 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  async update(id, decision) {
-    const [rows] = await this.database.query(
-      `BEGIN;
-
-      SELECT * FROM decision
-      WHERE decision_id = ?;
-
-      UPDATE paragraph
-      SET paragraph_title = ?,
-      paragraph_content = ?
-      WHERE paragraph.decision_id = ? AND paragraph_id = ? ;
-
-      UPDATE assignment
-      SET role = ?
-      WHERE assignment.user_id = ? AND assignment.decision_id = ?;
-    
-      COMMIT;`,
-      [id, decision]
+  async update(paragraph, decision) {
+    const [selectDecision] = await this.database.query(
+      `
+    SELECT * FROM decision
+    WHERE decision_id = ? AND user_id = ?;
+    `,
+      [decision.decision_id, decision.user_id]
     );
-    return rows[0];
+
+    const [updateParagraph] = await this.database.query(
+      `
+    UPDATE paragraph
+    SET paragraph_title = ?,
+    paragraph_content = ?
+    WHERE decision_id = ? AND paragraph_id = ?;
+    `,
+      [
+        paragraph.paragraph_title,
+        paragraph.paragraph_content,
+        paragraph.decision_id,
+        paragraph.paragraph_id,
+      ]
+    );
+
+    const [updateDecision] = await this.database.query(
+      `
+    UPDATE decision
+    SET status = ?
+    WHERE user_id = ? AND decision_id = ?;
+    `,
+      [decision.status, decision.user_id, decision.decision_id]
+    );
+
+    return { selectDecision, updateParagraph, updateDecision };
   }
 
   // The D of CRUD - Delete operation
