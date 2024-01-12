@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Nav.scss";
 
 function Nav() {
@@ -14,24 +15,28 @@ function Nav() {
 
   return (
     <nav className="nav__nav">
-      <a href="*" className="nav__logo">
+      <Link to="/homepage" className="nav__logo">
         <img
           className="nav__logo--img"
           src=".\src\assets\logo-makesense-dark.png"
-          alt="Make Sense logo"
+          alt="Logo Make Sense"
         />
-      </a>
+      </Link>
       <ul className="nav__items">
         <ul className="nav__links">
           <li className="nav__list">
-            <a className="nav__links--user" type="button" href="*">
+            <Link className="nav__links--user" type="button" to="/user/create">
               Nouvel utilisateur
-            </a>
+            </Link>
           </li>
           <li className="nav__list">
-            <a className="nav__links--decision" type="button" href="*">
+            <Link
+              className="nav__links--decision"
+              type="button"
+              to="/decision/create"
+            >
               Nouvelle décision
-            </a>
+            </Link>
           </li>
         </ul>
         <img
