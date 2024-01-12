@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .decision__page {
   margin-inline: 1vw;
   padding-inline: 1vw;
@@ -6,7 +8,7 @@
   display: flex;
   align-items: center;
 }
-.openAndClose--date {
+.openAndClose__date {
   font-size: clamp(16px, 1.2rem, 1.4rem);
 }
 .right__section {
@@ -16,4 +18,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.commentLink__button {
+  display: none;
+}
+@media screen and (max-width: 700px) {
+  .decision__page--header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .decision__page--body {
+    display: flex;
+    flex-direction: column;
+  }
+  .hidden {
+    display: none;
+  }
+  .commentLink__button {
+    display: revert;
+    text-align: center;
+    font-family: bold;
+    padding-inline: 1vw;
+    height: 6vh;
+    width: 85vw;
+    border-radius: 15px;
+    background-color: $primary-dark;
+    color: white;
+    margin-block: 1.5vh;
+    font-size: clamp(22px, 3vw, 1.5rem);
+    cursor: pointer;
+  }
+  .openAndClose__date {
+    margin-top: 2vh;
+    font-size: clamp(16px, 1rem, 1.4rem);
+  }
 }
