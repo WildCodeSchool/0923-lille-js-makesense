@@ -101,40 +101,50 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  async update(paragraph, decision) {
-    const [selectDecision] = await this.database.query(
-      `
-    SELECT * FROM decision
-    WHERE decision_id = ? AND user_id = ?;
-    `,
-      [decision.decision_id, decision.user_id]
-    );
-
+  async update(decision) {
     const [updateParagraph] = await this.database.query(
       `
     UPDATE paragraph
-    SET paragraph_title = ?,
-    paragraph_content = ?
-    WHERE decision_id = ? AND paragraph_id = ?;
+    SET
+    paragraph_details = ?,
+    paragraph_impact= ?,
+    paragraph_benefits = ?,
+    paragraph_risks = ?,
+    paragraph_first_decision = ?,
+    paragraph_decision = ?,
+    paragraph_finale_decision = ?
+    WHERE decision_id = ?
     `,
       [
-        paragraph.paragraph_title,
-        paragraph.paragraph_content,
-        paragraph.decision_id,
-        paragraph.paragraph_id,
+        decision[0].paragraph_details,
+        decision[0].paragraph_impact,
+        decision[0].paragraph_benefits,
+        decision[0].paragraph_risks,
+        decision[0].paragraph_first_decision,
+        decision[0].paragraph_decision,
+        decision[0].paragraph_finale_decision,
+        decision[0].decision_id,
       ]
     );
 
     const [updateDecision] = await this.database.query(
       `
     UPDATE decision
-    SET status = ?
-    WHERE user_id = ? AND decision_id = ?;
+    SET status = ?,
+    decision_delay=?,
+    decision_title = ?
+    WHERE decision_id = ?
+   
     `,
-      [decision.status, decision.user_id, decision.decision_id]
+      [
+        decision[1].status,
+        decision[1].decision_delay,
+        decision[1].decision_title,
+        decision[1].decision_id,
+      ]
     );
 
-    return { selectDecision, updateParagraph, updateDecision };
+    return { updateParagraph, updateDecision };
   }
 
   // The D of CRUD - Delete operation
