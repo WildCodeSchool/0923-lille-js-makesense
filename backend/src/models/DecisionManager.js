@@ -54,7 +54,11 @@ class DecisionManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE decision_id = ?`,
+      `SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name, decision.status, paragraph.paragraph_title, paragraph.paragraph_content
+      FROM ${this.table}
+      INNER JOIN paragraph ON decision.decision_id = paragraph.decision_id
+      INNER JOIN user ON decision.user_id = user.user_id
+      WHERE decision.decision_id = ?`,
       [id]
     );
 
@@ -99,6 +103,46 @@ class DecisionManager extends AbstractManager {
       [picture, id]
     );
     return rows[0];
+  }
+
+  // Implement logic to retrieve experts and impacts for a given decision
+  async getExpertsAndImpactes(decisionId) {
+    const [rows] = await this.database.query(
+      `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
+     FROM assignment
+     JOIN user ON assignment.user_id = user.user_id
+     WHERE assignment.decision_id = ?`,
+      [decisionId]
+    );
+
+    return rows;
+  }
+
+  // Implémentez la logique pour récupérer les décisions liées à un utilisateur
+  async getRelatedDecisions(userId) {
+    const [rows] = await this.database.query(
+      `SELECT
+      decision.decision_id,
+      decision.decision_title,
+      decision.status,
+      user.firstname AS author_firstname,
+      user.lastname AS author_lastname,
+      user.picture AS author_picture,
+      user.location,
+      COUNT(comment.comment_id) AS nb_comments
+    FROM decision
+    JOIN user ON decision.user_id = user.user_id
+    LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
+    LEFT JOIN comment ON decision.decision_id = comment.decision_id
+    WHERE user.user_id = ?
+       OR assignment.user_id = ?
+       OR comment.user_id = ? 
+    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location`,
+      [userId, userId, userId]
+    );
+
+    // Retournez le résultat
+    return rows;
   }
 
   async update(decision) {
