@@ -4,6 +4,8 @@
   display: flex;
   gap: 2%;
   margin-inline: 2%;
+  background-color: $secondary-background;
+  height: 85vh;
 }
 
 @media (max-width: 700px) {
@@ -27,7 +29,7 @@
   flex-grow: 3;
 }
 
-.createDecision__aside {
+.createDecision__sections {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

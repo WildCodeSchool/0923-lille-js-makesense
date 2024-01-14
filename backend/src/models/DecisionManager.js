@@ -25,10 +25,18 @@ class DecisionManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE decision_id = ?`,
+      `SELECT decision.*, 
+      user.firstname, user.lastname, user.location, user.picture,
+      paragraph.*,
+      COUNT(comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.decision_id = ?
+      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;`,
       [id]
     );
-
     // Return the first row of the result, which represents the decision
     return rows[0];
   }
@@ -36,11 +44,13 @@ class DecisionManager extends AbstractManager {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all decisions from the decision table
     const [rows] = await this.database
-      .query(`SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
-    FROM ${this.table}
-    JOIN user ON decision.user_id = user.user_id
-    LEFT JOIN comment ON decision.decision_id = comment.decision_id
-    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`);
+      .query(`SELECT decision.decision_id, decision.decision_title, decision.status, 
+      user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, 
+      user.firstname, user.lastname, user.picture, user.location;`);
 
     // Return the array of decisions
     return rows;
@@ -48,13 +58,14 @@ class DecisionManager extends AbstractManager {
 
   async readAllPending() {
     // Execute the SQL SELECT query to retrieve all pending decisions from the decision table
-    const [rows] = await this.database
-      .query(`SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
-    FROM ${this.table}
-    JOIN user ON decision.user_id = user.user_id
-    LEFT JOIN comment ON decision.decision_id = comment.decision_id
-    WHERE decision.status = "Prise de décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision"
-    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`);
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+    );
 
     // Return the array of decisions
     return rows;

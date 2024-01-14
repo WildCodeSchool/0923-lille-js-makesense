@@ -7,15 +7,23 @@
   justify-content: space-between;
   align-items: center;
   padding-inline: 10vw;
-  padding-block: 1vh;
+  padding-block: 0.5vh;
   background-color: $background;
   font-weight: bold;
+  & * {
+    background-color: $background;
+  }
 }
 
 .nav__items,
 .nav__links {
   display: flex;
   align-items: center;
+  @include h2;
+}
+
+.nav__links--user {
+  color: $secondary-dark;
 }
 
 .nav__links--decision::before {
@@ -32,6 +40,8 @@
 .nav__avatar {
   @include avatar;
   margin-inline-start: 10px;
+  width: 60px;
+  height: 60px;
 }
 
 // mobile version

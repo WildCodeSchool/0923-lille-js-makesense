@@ -2,6 +2,10 @@
 
 .secondaryNav__nav {
   position: sticky;
+  background-color: $secondary-background;
+  & * {
+    background-color: $secondary-background;
+  }
 }
 
 .secondaryNav__links * {
@@ -14,6 +18,7 @@
   display: flex;
   justify-content: space-around;
   & a {
+    @include h2;
     color: $accent-medium;
     font-weight: bold;
     padding-block: 1rem;

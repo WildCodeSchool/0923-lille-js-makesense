@@ -1,60 +1,53 @@
 import "./ProgressBar.scss";
+import PropTypes from "prop-types";
 
-function ProgressBar() {
+function ProgressBar({ status }) {
   return (
-    <section className="progress__bar">
-      <section className="status">
+    <section className="progressBar">
+      <section className="progressBar__icons">
         <section className="status__circle seeding">
           <img
-            className="icon seeding "
+            className="progressBar__icon seeding"
             src="src/assets/image/hand-holding-seeding.png"
             alt="icône décision commencée"
           />
         </section>
-        <p>Prise de décision commencée</p>
-      </section>
-      <section className="status">
         <section className="status__circle tulip">
           <img
-            className="icon tulip"
+            className="progressBar__icon tulip"
             src="src/assets/image/flower-tulip.png"
             alt="icône décision prise"
           />
         </section>
-        <p>Première décision prise</p>
-      </section>
-      <section className="status">
         <section className="status__circle flower">
           <img
-            className="icon flower"
+            className="progressBar__icon flower"
             src="src/assets/image/flower-daffodil.png"
             alt="icône décision définitive"
           />
         </section>
-        <p>Décision définitive</p>
-      </section>
-      <section className="status">
-        <section className="status__circle faucet">
+        <section className="status__circle -faucet">
           <img
-            className="icon faucet"
+            className="progressBar__icon faucet"
             src="src/assets/image/faucet.png"
-            alt="icône non aboutie"
+            alt="icône décision non aboutie"
           />
         </section>
-        <p>Décision non aboutie</p>
-      </section>
-      <section className="status">
         <section className="status__circle bouquet">
           <img
-            className="icon bouquet"
+            className="progressBar__icon bouquet"
             src="src/assets/image/flower-bouquet.png"
-            alt="icône décision terminé"
+            alt="icône décision terminée"
           />
         </section>
-        <p>Décision terminée</p>
       </section>
+      <h3 className="progressBar__status">{status}</h3>
     </section>
   );
 }
 
 export default ProgressBar;
+
+ProgressBar.propTypes = {
+  status: PropTypes.string.isRequired,
+};

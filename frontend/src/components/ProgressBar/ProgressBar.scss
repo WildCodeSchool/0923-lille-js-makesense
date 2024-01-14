@@ -1,8 +1,6 @@
-.icon {
-  width: clamp(4vh, 30px, 4vw);
-  filter: opacity(0.3) drop-shadow(0 0 0 green);
-}
-.progress__bar {
+@import "../../variables";
+
+.progressBar__icons {
   font-size: clamp(0.75rem, 1.25vw, 1rem);
   font-weight: bold;
   display: flex;
@@ -10,36 +8,38 @@
   justify-content: space-around;
   position: relative;
   width: 40vw;
-  height: 12vh;
 }
-.progress__bar::before {
+
+.progressBar__icon {
+  width: clamp(4vh, 40px, 4vw);
+  filter: opacity(0.3);
+  border-radius: 50%;
+}
+.progressBar__icons::before {
   content: "";
-  background-color: lightslategray;
-  top: 30%;
+  background-color: $primary-medium;
+  top: 50%;
   transform: translateY(-50%);
   height: 4px;
-  width: 85%;
-  z-index: -1;
+  width: 80%;
   transition: 0.4s ease;
   position: absolute;
 }
-.status {
-  width: 7vw;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
+
 .status__circle {
   border-radius: 50%;
-  border: 5px solid green;
-  border-color: opacity(0.3) drop-shadow(0 0 0 green);
-  background-color: white;
-  margin-inline: 1vw;
-  width: clamp(6vh, 60px, 6vw);
-  height: clamp(6vh, 60px, 6vw);
+  border: 5px solid $primary-medium;
+  background-color: $background;
+  padding: 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+}
+
+.progressBar__status {
+  text-align: center;
+  color: $primary-medium;
+  padding-block-start: 2%;
 }

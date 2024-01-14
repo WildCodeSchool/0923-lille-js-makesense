@@ -1,12 +1,33 @@
 import "./DescriptionBox.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-function DescriptionBox() {
+function DescriptionBox({
+  title,
+  status,
+  location,
+  comments,
+  picture,
+  firstname,
+  lastname,
+  decisionId,
+}) {
   const [isCollapsedDetails, setIsCollapsedDetails] = useState();
   const [isCollapsedImpact, setIsCollapsedImpact] = useState();
   const [isCollapsedBenefits, setIsCollapsedBenefits] = useState();
   const [isCollapsedHazards, setIsCollapsedHazards] = useState();
   const [isCollapsedFirstDecision, setIsCollapsedFirstDecision] = useState();
+  const [content, setContent] = useState([0]);
+  useEffect(() => {
+    fetch(
+      `${
+        import.meta.env.VITE_BACKEND_URL
+      }/api/decisions/${decisionId}/paragraphs`
+    )
+      .then((response) => response.json())
+      .then((data) => setContent(data))
+      .catch((error) => console.error(error));
+  }, [decisionId]);
 
   return (
     <section className="descriptionBox">
@@ -14,20 +35,18 @@ function DescriptionBox() {
         <header className="descriptionBox__header">
           <img
             className="descriptionBox__header--avatar"
-            src="src/assets/vincent.png"
+            src={picture}
             alt="avatar de l'auteur du poste"
           />
           <section className="descriptionBox__header--right">
-            <h1 className="descriptionBox__header__right--title">
-              Titre de la décision sur toute la zone très lisible
-            </h1>
+            <h1 className="descriptionBox__header__right--title">{title}</h1>
             <p className="descriptionBox__header__right--writer">
-              par Vincent Rousseaux
+              par {lastname} {firstname}
             </p>
             <span className="decision__beans">
-              <span className="decision__status">en cours</span>
-              <span className="decision__location">Lille</span>
-              <span className="decision__advices">4 avis</span>
+              <span className="decision__status">{status}</span>
+              <span className="decision__location">{location}</span>
+              <span className="decision__comments">{comments} avis</span>
             </span>
           </section>
         </header>
@@ -48,13 +67,7 @@ function DescriptionBox() {
             }`}
           >
             <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+              {content[0].paragraph_details}
             </p>
           </article>
           <button
@@ -72,13 +85,7 @@ function DescriptionBox() {
             }`}
           >
             <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+              {content[0].paragraph_impact}
             </p>
           </article>
           <button
@@ -96,13 +103,7 @@ function DescriptionBox() {
             }`}
           >
             <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+              {content[0].paragraph_benefits}
             </p>
           </article>
           <button
@@ -120,13 +121,7 @@ function DescriptionBox() {
             }`}
           >
             <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+              {content[0].paragraph_risks}
             </p>
           </article>
           <button
@@ -146,13 +141,7 @@ function DescriptionBox() {
             }`}
           >
             <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+              {content[0].paragraph_first_decision}
             </p>
           </article>
         </section>
@@ -161,3 +150,14 @@ function DescriptionBox() {
   );
 }
 export default DescriptionBox;
+
+DescriptionBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  comments: PropTypes.number.isRequired,
+  picture: PropTypes.string.isRequired,
+  decisionId: PropTypes.number.isRequired,
+};

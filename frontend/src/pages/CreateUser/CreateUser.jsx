@@ -3,10 +3,10 @@ import "./CreateUser.scss";
 function CreateUser() {
   return (
     <main className="createuser__content">
-      <span className="createuser__title">Nouvel utilisateur</span>
+      <h1 className="createuser__title">Nouvel utilisateur</h1>
       <form className="createuser__form">
         <label htmlFor="name" className="createuser__label">
-          <span className="createuser__text"> Nom :</span>
+          <strong>Nom :</strong>
           <input
             id="name"
             className="createuser__input"
@@ -15,7 +15,7 @@ function CreateUser() {
           />
         </label>
         <label htmlFor="firstname" className="createuser__label">
-          <span className="createuser__text">Prénom :</span>
+          <strong>Prénom :</strong>
           <input
             id="firstname"
             className="createuser__input"
@@ -24,7 +24,7 @@ function CreateUser() {
           />
         </label>
         <label htmlFor="email" className="createuser__label">
-          <span className="createuser__text"> Email :</span>
+          <strong>Email :</strong>
           <input
             id="email"
             className="createuser__input"
@@ -33,16 +33,17 @@ function CreateUser() {
           />
         </label>
         <label htmlFor="place" className="createuser__label">
-          <span className="createuser__text"> Lieu de travail :</span>
-          <input
-            id="place"
-            className="createuser__input"
-            type="text"
-            name="lieuTravail"
-          />
+          <strong>Lieu de travail :</strong>
+          <select name="status" className="createuser__input" id="place">
+            <option value="court">Americas</option>
+            <option value="moyen">France</option>
+            <option value="long">Lebanon</option>
+            <option value="long">Philippines</option>
+            <option value="long">West Africa</option>
+          </select>
         </label>
         <label htmlFor="password" className="createuser__label ">
-          <span className="createuser__text"> Mot de passe :</span>
+          <strong>Mot de passe :</strong>
           <input
             id="password"
             className="createuser__input"

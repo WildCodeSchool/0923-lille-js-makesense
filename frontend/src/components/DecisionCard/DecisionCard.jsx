@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./DecisionCard.scss";
 import PropTypes from "prop-types";
+import { useDecisionContext } from "../../contexts/decisionContext";
 
 function DecisionCard({
   title,
@@ -10,9 +11,14 @@ function DecisionCard({
   location,
   comments,
   picture,
+  id,
 }) {
+  const { setDecisionId } = useDecisionContext();
+  const handleClick = () => {
+    setDecisionId(id);
+  };
   return (
-    <Link to="/decision">
+    <Link onClick={handleClick} to="/decision">
       <button type="button" className="decisionCard__container">
         <h2>{title}</h2>
         <p className="decisionCard__author">
@@ -29,7 +35,7 @@ function DecisionCard({
         <span className="decisionCard__beans">
           <span className="decisionCard__status">{status}</span>
           <span className="decisionCard__location">{location}</span>
-          <span className="decisionCard__advices">{comments} avis</span>
+          <span className="decisionCard__comments">{comments} avis</span>
         </span>
       </button>
     </Link>
@@ -44,6 +50,7 @@ DecisionCard.propTypes = {
   location: PropTypes.string.isRequired,
   comments: PropTypes.number.isRequired,
   picture: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default DecisionCard;

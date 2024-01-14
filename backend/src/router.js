@@ -31,11 +31,30 @@ router.put("/user/picture/:id", userControllers.updatePicture);
 // Import Controller
 const decisionControllers = require("./controllers/decisionControllers");
 // Route to get all decisions
-router.get("/allDecisions", decisionControllers.browse);
+router.get("/decisions/all", decisionControllers.browse);
+// Route to get one decision
+router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
-router.get("/allPendingDecisions", decisionControllers.browsePending);
+router.get("/decisions/pending", decisionControllers.browsePending);
 // Route to get all decisions waiting for an answer (query ready in queries list)
-router.get("");
+
+// COMMENT ROUTES
+// Import Controller
+const commentControllers = require("./controllers/commentControllers");
+// Route to retrieve a complete posted comment by ID
+router.get("/comment", commentControllers.read);
+// Route to retrieve all comments from the "comment" table with its author and role
+router.get("/allComments", commentControllers.browse);
+// Route to access comments belonging to a posted decision
+router.get("/decisions/:id/comments", commentControllers.readByDecision);
+// Route to add a new comment
+router.post("/comment", commentControllers.add);
+
+// PARAGRAPHS ROUTES
+// Import Controller
+const paragraphsControllers = require("./controllers/paragraphsControllers");
+// Route to get all paragraphs for 1 decision
+router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
 
 /* ************************************************************************* */
 

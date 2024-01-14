@@ -1,5 +1,7 @@
 // Load environment variables from .env file
 require("dotenv").config();
+const path = require("path");
+const express = require("express");
 
 // Import the Express application from src/app.js
 const app = require("./src/app");
@@ -15,3 +17,10 @@ app
   .on("error", (err) => {
     console.error("Error:", err.message);
   });
+
+// Server for images handling
+
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "/public/assets/images"))
+);
