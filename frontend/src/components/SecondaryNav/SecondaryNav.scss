@@ -1,10 +1,12 @@
 @import "../../variables";
 
 .secondaryNav__nav {
-  position: sticky;
-  background-color: $secondary-background;
+  position: fixed;
+  top: 9vh;
+  z-index: 20;
+  background-color: transparent;
   & * {
-    background-color: $secondary-background;
+    background-color: transparent;
   }
 }
 

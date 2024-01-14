@@ -80,3 +80,13 @@ VINCENT    query for: updater une décision. SELECT le contenu de la decision pa
 FARID    query for: chercher un expert/impacté. Besoin de select tous les firstname et lastname pour ensuite filtrer dessus ?
 */
 
+/*  page: create user
+    query for: créer un user, updater la table user (firstname, lastname, mai, location, avatar, role) et authentification (password).
+*/
+
+/*Il faut le faire en deux queries, ou alors avec une transaction mais je comprends pas bien comment ça fonctionne pour le moment*/
+INSERT INTO user (lastname, firstname, email, location, picture, role)
+VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO authentification (password, datetime, user_id)
+VALUES (?, NOW(), LAST_INSERT_ID());
+/*NOW() print un datetime, LAST_INSERT_ID() print le dernier ID auto incrémenté*/

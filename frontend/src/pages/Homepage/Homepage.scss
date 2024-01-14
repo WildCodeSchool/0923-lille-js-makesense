@@ -9,9 +9,12 @@
   padding-inline: 1vw;
   padding-block-start: 1%;
   background-color: $secondary-background;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
   &::after {
     @include bean;
-    width: 80%;
+    width: 70vw;
     height: 0.25rem;
   }
 }
@@ -21,6 +24,8 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  position: absolute;
+  top: 25%;
   background-color: $secondary-background;
   & * {
     background-color: $secondary-background;

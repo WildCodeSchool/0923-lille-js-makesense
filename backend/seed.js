@@ -16,7 +16,7 @@ const seed = async () => {
 
     // Generating Seed Data
 
-    await database.query("SET FOREIGN_KEY_CHECKS = 0"); // prevents control of foreign keys due to contracts
+    await database.query("SET FOREIGN_KEY_CHECKS = 0"); //
     await database.query("TRUNCATE user");
     await database.query("TRUNCATE authentication");
     await database.query("TRUNCATE admin");

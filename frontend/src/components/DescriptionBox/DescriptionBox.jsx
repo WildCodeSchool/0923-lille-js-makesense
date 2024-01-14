@@ -41,7 +41,7 @@ function DescriptionBox({
           <section className="descriptionBox__header--right">
             <h1 className="descriptionBox__header__right--title">{title}</h1>
             <p className="descriptionBox__header__right--writer">
-              par {lastname} {firstname}
+              par {firstname} {lastname}
             </p>
             <span className="decision__beans">
               <span className="decision__status">{status}</span>
