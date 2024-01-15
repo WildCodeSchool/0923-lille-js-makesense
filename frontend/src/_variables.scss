@@ -61,7 +61,17 @@ $input-login_bg: rgba(209, 226, 230);
   height: auto;
   width: auto;
   font-size: clamp(18px, 2vw, 1.5rem);
-  animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
+  animation: slideOpen 0.5s ease-out 0s 1 normal forwards;
+  @keyframes slideOpen {
+    0% {
+      opacity: 0;
+      transform: translateY(-150px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 // Style
