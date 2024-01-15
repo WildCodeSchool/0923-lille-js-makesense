@@ -9,13 +9,15 @@ function CommentSection() {
     setComment(event.target.value);
   };
   const onClickHandler = () => {
-    setCommentList((comments) => [...comments, comment]);
-    setComment("");
+    if (comment !== "") {
+      setCommentList((comments) => [...comments, comment]);
+      setComment("");
+    }
   };
   const handlePress = (e) => {
     if (e.key === "Enter") {
-      onClickHandler();
       e.preventDefault();
+      onClickHandler();
       e.target.value = "";
     }
   };
@@ -53,6 +55,7 @@ function CommentSection() {
             onKeyDown={handlePress}
             onChange={onChangeHandler}
             className="commentSection__textarea"
+            required
           />
           <button
             onClick={onClickHandler}

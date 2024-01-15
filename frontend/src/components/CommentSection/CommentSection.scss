@@ -18,6 +18,7 @@
   align-items: flex-end;
 }
 .commentSection__textarea {
+  resize: none;
   padding-inline: 0.5vw;
   border-style: none;
   border-radius: 10px;

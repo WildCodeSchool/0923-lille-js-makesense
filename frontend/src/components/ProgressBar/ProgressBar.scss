@@ -1,12 +1,12 @@
-.icon {
+@import "../../variables";
+.status__icon {
   width: clamp(4vh, 30px, 4vw);
-  filter: opacity(0.3) drop-shadow(0 0 0 green);
+  filter: invert(100%);
 }
 .progress__bar {
   font-size: clamp(0.75rem, 1.25vw, 1rem);
   font-weight: bold;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   position: relative;
   width: 40vw;
@@ -14,7 +14,7 @@
 }
 .progress__bar::before {
   content: "";
-  background-color: lightslategray;
+  background-color: $primary-light;
   top: 30%;
   transform: translateY(-50%);
   height: 4px;
@@ -32,9 +32,8 @@
 }
 .status__circle {
   border-radius: 50%;
-  border: 5px solid green;
-  border-color: opacity(0.3) drop-shadow(0 0 0 green);
-  background-color: white;
+  border: 5px solid $primary-light;
+  background-color: $primary-pale;
   margin-inline: 1vw;
   width: clamp(6vh, 60px, 6vw);
   height: clamp(6vh, 60px, 6vw);
@@ -42,6 +41,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.visible {
+  border: 5px solid $primary-dark;
+  background-color: $primary-medium;
+}
+.status__name--hidden {
+  display: none;
 }
 @media screen and (max-width: 700px) {
   .progress__bar {
