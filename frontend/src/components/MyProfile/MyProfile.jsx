@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "./MyProfil.scss";
+import "./MyProfile.scss";
 
-function MyProfil({ handleMovebubble, edit }) {
+function MyProfile({ handleMovebubble, edit }) {
   return (
     edit && (
       <>
-        <aside className="bubble_profil" />
+        <aside className="bubble_profile" />
         <section className="bubble_avatar" onMouseLeave={handleMovebubble}>
           <ul className="bubble_list">
             <li>Prénom</li>
@@ -36,9 +36,9 @@ function MyProfil({ handleMovebubble, edit }) {
   );
 }
 
-MyProfil.propTypes = {
+MyProfile.propTypes = {
   edit: PropTypes.bool.isRequired,
   handleMovebubble: PropTypes.func.isRequired,
 };
 
-export default MyProfil;
+export default MyProfile;
