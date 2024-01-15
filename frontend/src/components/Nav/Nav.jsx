@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.scss";
+import { useState } from "react";
+import MyProfil from "../MyProfil/MyProfil";
 
 function Nav() {
   const [edit, setEdit] = useState(false);
@@ -43,35 +44,7 @@ function Nav() {
           role="presentation"
         />
       </ul>
-      {edit && (
-        <>
-          <aside className="bubble_profil" />
-          <section className="bubble_avatar">
-            <ul className="bubble_list">
-              <li>Prénom</li>
-              <li>Nom</li>
-              <li>Email</li>
-              <li>Bureau</li>
-              <li>Poste</li>
-              <li className="bubble_hover">
-                <a
-                  title="Une erreur ? Contactez l'administrateur."
-                  href="mailto:vincent.rssx59@gmail.com"
-                  onClick={handleMovebubble}
-                >
-                  ?
-                </a>
-              </li>
-              <hr />
-              <li id="bubble_logout">
-                <Link to="/" className="bubble_link">
-                  Se déconnecter
-                </Link>
-              </li>
-            </ul>
-          </section>
-        </>
-      )}
+      <MyProfil handleMovebubble={handleMovebubble} edit={edit} />
     </nav>
   );
 }
