@@ -12,20 +12,33 @@
     background-color: $secondary-light;
   }
 }
+.createuser__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createuser__form--mandatoryFields {
+  font-size: smaller;
+  text-align: end;
+  background-color: $background;
+  * {
+    background-color: $background;
+  }
+}
 
 .createuser__button {
   @include buttons;
-  width: 10%;
-  padding: 1%;
   font-size: large;
   background-color: $secondary-dark;
+  width: 50%;
+  padding: 5%;
 }
 
-.createuser__form {
+.createuser__form--inputsBox {
   @include box;
-  width: 25%;
+  width: 30vw;
   height: 60vh;
-  padding: 1.5rem;
   margin-block: 2%;
   padding-inline: 5%;
   display: flex;
@@ -37,6 +50,9 @@
   display: flex;
   flex-direction: column;
   background-color: $background;
+  & small {
+    background-color: $background;
+  }
   & strong {
     margin-block: 2%;
     background-color: $background;
@@ -47,6 +63,13 @@
 .createuser__input {
   border-radius: 5px;
   width: 100%;
+  height: 2rem;
+  padding-inline: 1%;
+}
+
+.createuser__message {
+  margin-top: 1%;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 950px) {

@@ -9,12 +9,9 @@ const hashingOptions = {
 
 const hashPassword = async (req, res, next) => {
   try {
-    const hashedPassword = await argon2.hash(
-      req.body.hashed_password,
-      hashingOptions
-    );
+    const hashedPassword = await argon2.hash(req.body.password, hashingOptions);
     req.body.hashedPassword = hashedPassword;
-    delete req.body.hashed_password;
+    delete req.body.password;
     next();
   } catch (err) {
     next(err);

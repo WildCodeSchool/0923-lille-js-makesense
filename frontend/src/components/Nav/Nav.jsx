@@ -61,13 +61,8 @@ function Nav() {
                   onMouseLeave={handleMove}
                   className="buble_hover"
                 >
-                  ?
+                  <p title="Une erreur ? Contactez l'admin.">?</p>
                 </li>
-                {help ? (
-                  <p className="buble_help">
-                    Une erreur ? Contactez l'administrateur.
-                  </p>
-                ) : null}
                 <li id="buble_logout">Log out</li>
               </ul>
             </section>
