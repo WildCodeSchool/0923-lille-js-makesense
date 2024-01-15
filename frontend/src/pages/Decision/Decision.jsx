@@ -6,6 +6,7 @@ import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 
 function Decision() {
+  const [writeComment, setWriteComment] = useState();
   const { decisionId } = useDecisionContext();
   const [decision, setDecision] = useState(1); // should I put a "" instead?
   useEffect(() => {
@@ -17,14 +18,14 @@ function Decision() {
   return (
     <main className="decision__page">
       <header className="decision__page--header">
-        <h2 className="openAndClose--date">
+        <h2 className="openAndClose__date">
           Date d'ouverture: {decision.decision_date} <br />
           Date de clôture: {decision.decision_delay}
         </h2>
         <ProgressBar status={decision.status} />
       </header>
       <section className="decision__page--body">
-        <section>
+        <section className={`left__section ${writeComment ? "hidden" : null}`}>
           <DescriptionBox
             title={decision.decision_title}
             status={decision.status}
@@ -36,9 +37,17 @@ function Decision() {
             decisionId={decisionId}
           />
         </section>
-        <section className="right__section">
+        <section
+          className={`right__section ${!writeComment ? "hidden" : null}`}
+        >
           <CommentSection />
         </section>
+        <input
+          value={writeComment ? "Voir la décision" : "Voir les commentaires"}
+          onClick={() => setWriteComment(!writeComment)}
+          type="button"
+          className="commentLink__button"
+        />
       </section>
     </main>
   );

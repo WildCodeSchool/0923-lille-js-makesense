@@ -26,6 +26,7 @@ function CommentSection() {
   const handlePress = (e) => {
     if (e.key === "Enter") {
       onClickHandler();
+      e.preventDefault();
       e.target.value = "";
     }
   };

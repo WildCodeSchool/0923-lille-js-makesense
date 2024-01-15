@@ -43,3 +43,9 @@
   color: $primary-medium;
   padding-block-start: 2%;
 }
+@media screen and (max-width: 700px) {
+  .progress__bar {
+    width: 70vw;
+    margin-block: 3vw;
+  }
+}

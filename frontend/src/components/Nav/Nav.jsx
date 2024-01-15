@@ -1,15 +1,12 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.scss";
+import { useState } from "react";
+import MyProfile from "../MyProfile/MyProfile";
 
 function Nav() {
   const [edit, setEdit] = useState(false);
-  const [help, setHelp] = useState(false);
 
-  const handleMove = () => {
-    setHelp(!help);
-  };
-  const handleclick = () => {
+  const handleMovebubble = () => {
     setEdit(!edit);
   };
 
@@ -43,32 +40,11 @@ function Nav() {
           className="nav__avatar"
           alt="user avatar"
           src="https://placehold.co/600x400"
-          onClick={handleclick}
+          onMouseEnter={handleMovebubble}
           role="presentation"
         />
-        {edit ? (
-          <>
-            <aside className="buble_profil" />
-            <section className="buble_avatar">
-              <ul className="buble_list">
-                <li>Firstname</li>
-                <li>Lastname</li>
-                <li>Mail</li>
-                <li>Location</li>
-                <li>Position</li>
-                <li
-                  onMouseEnter={handleMove}
-                  onMouseLeave={handleMove}
-                  className="buble_hover"
-                >
-                  <p title="Une erreur ? Contactez l'admin.">?</p>
-                </li>
-                <li id="buble_logout">Log out</li>
-              </ul>
-            </section>
-          </>
-        ) : null}
       </ul>
+      <MyProfile handleMovebubble={handleMovebubble} edit={edit} />
     </nav>
   );
 }
