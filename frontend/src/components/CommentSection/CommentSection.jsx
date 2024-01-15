@@ -36,6 +36,9 @@ function CommentSection() {
                   <h4 className="commentSection__comment--name">
                     Vincent Rousseaux (expert)
                   </h4>
+                  <p className="commenSection__comment--dateTime">
+                    le 15 janvier à 10h
+                  </p>
                   <p>{com}</p>
                 </section>
               </section>
@@ -46,6 +49,7 @@ function CommentSection() {
         <section className="commentSection__input--field">
           <textarea
             value={comment}
+            placeholder="Rédigez un commentaire..."
             onKeyDown={handlePress}
             onChange={onChangeHandler}
             className="commentSection__textarea"
