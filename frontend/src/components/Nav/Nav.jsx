@@ -46,12 +46,12 @@ function Nav() {
       {edit && (
         <>
           <aside className="bubble_profil" />
-          <section className="bubble_avatar" onMouseLeave={handleMovebubble}>
+          <section className="bubble_avatar">
             <ul className="bubble_list">
               <li>Prénom</li>
               <li>Nom</li>
               <li>Email</li>
-              <li>Lieu de travail</li>
+              <li>Bureau</li>
               <li>Poste</li>
               <li className="bubble_hover">
                 <a
