@@ -2,7 +2,7 @@
 
 .decisionCard__container *,
 .decisionCard__container {
-  background-color: $primary-pale;
+  background-color: $background;
 }
 
 .decisionCard__container {
@@ -38,12 +38,11 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .decisionCard__status,
 .decisionCard__location,
-.decisionCard__advices {
+.decisionCard__comments {
   @include statusButtons;
 }
 
@@ -55,7 +54,7 @@
   color: $location-solid;
   background-color: $location-bg;
 }
-.decisionCard__advices {
-  color: $advice-solid;
-  background-color: $advice-bg;
+.decisionCard__comments {
+  color: $comment-solid;
+  background-color: $comment-bg;
 }

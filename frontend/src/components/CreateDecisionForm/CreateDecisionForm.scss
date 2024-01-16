@@ -7,6 +7,10 @@
   flex-direction: column;
   @include scroll;
   overflow-x: hidden;
+  background-color: $background;
+  & * {
+    background-color: $background;
+  }
 }
 
 .createDecisionForm__content--choiceBoxes {
@@ -25,13 +29,16 @@
   font-weight: 700;
   margin-block: 1%;
   border-radius: 20px;
-  background-color: $background;
+  background-color: $secondary-background;
   padding: 1%;
   &--avatar {
     @include avatar;
     margin-inline-end: 3%;
     width: 40px;
     height: 40px;
+  }
+  & * {
+    background-color: $secondary-background;
   }
 }
 
@@ -55,8 +62,12 @@
 
 .createDecisionForm__content--decision {
   padding: 1%;
-  height: 80vh;
+  height: 85vh;
   width: 40vw;
+  & textarea {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
   & textarea:focus,
   input:focus {
     outline: none !important;
@@ -71,7 +82,18 @@
       font-size: 30px;
       & input {
         font-size: 20px;
+        background-color: $secondary-background;
+        border-radius: 5px;
       }
     }
+  }
+}
+
+.createDecisionForm__status select {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
   }
 }
