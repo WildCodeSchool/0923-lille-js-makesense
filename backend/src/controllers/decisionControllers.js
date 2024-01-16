@@ -82,16 +82,59 @@ const updatePicture = async (req, res, next) => {
 };
 
 // The A of BREAD - Add (Create) operation
-const add = async (req, res, next) => {
+const createDecision = async (req, res, next) => {
+  const decision = req.body;
+  try {
+    const insertId = await tables.decision.create(decision);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateDecision = async (req, res, next) => {
   // Extract the decision data from the request body
   const decision = req.body;
 
   try {
     // Insert the decision into the database
-    const insertId = await tables.decision.create(decision);
+    const insertId = await tables.decision.update(decision);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted decision
     res.status(201).json({ insertId });
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+// Experts and Impactes
+const getExpertsAndImpactes = async (req, res, next) => {
+  try {
+    const decisionId = req.params.id;
+
+    // Call your decision manager's method to retrieve the experts and impacted
+    const expertsAndImpactes = await tables.decision.getExpertsAndImpactes(
+      decisionId
+    );
+
+    // Respond with experts and impacted in JSON format
+    res.json(expertsAndImpactes);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+// filter decisions linked to a user
+const getRelatedDecisions = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+
+    // Call your decision handler method to retrieve user-related decisions
+    const relatedDecisions = await tables.decision.getRelatedDecisions(userId);
+
+    // Respond with decisions in JSON format
+    res.json(relatedDecisions);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -108,6 +151,9 @@ module.exports = {
   read,
   readByRole,
   updatePicture,
-  add,
+  createDecision,
+  updateDecision,
+  getExpertsAndImpactes,
+  getRelatedDecisions,
   // destroy,
 };

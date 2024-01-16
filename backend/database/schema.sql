@@ -68,7 +68,7 @@ CREATE TABLE paragraph (
   paragraph_risks TEXT,
   paragraph_first_decision TEXT,
   paragraph_decision TEXT,
-  paragraph_finale_decision TEXT, 
+  paragraph_finale_decision TEXT,
   decision_id INT NOT NULL,
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 );
