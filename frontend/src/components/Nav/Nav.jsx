@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Nav.scss";
 import { useState } from "react";
-import MyProfile from "../MyProfile/MyProfile";
+import Profile from "../Profile/Profile";
 
 function Nav() {
   const [edit, setEdit] = useState(false);
 
-  const handleMovebubble = () => {
+  const handleMoveBubble = () => {
     setEdit(!edit);
   };
 
@@ -40,11 +40,11 @@ function Nav() {
           className="nav__avatar"
           alt="user avatar"
           src="https://placehold.co/600x400"
-          onMouseEnter={handleMovebubble}
+          onMouseEnter={handleMoveBubble}
           role="presentation"
         />
       </ul>
-      <MyProfile handleMovebubble={handleMovebubble} edit={edit} />
+      <Profile handleMoveBubble={handleMoveBubble} edit={edit} />
     </nav>
   );
 }
