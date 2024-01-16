@@ -11,7 +11,7 @@ CREATE TABLE user (
 CREATE TABLE authentication (
   authentication_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   hashed_password TEXT NOT NULL, 
-  auth_date_time TIMESTAMP NOT NULL,
+  auth_date_time DATETIME NOT NULL,
   user_id INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
@@ -52,7 +52,7 @@ CREATE TABLE assignment (
 
 CREATE TABLE comment (
   comment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  comment_date_time TIMESTAMP NOT NULL,
+  comment_date_time DATETIME NOT NULL,
   comment_content TEXT NOT NULL,
   decision_id INT NOT NULL,
   user_id INT NOT NULL,
