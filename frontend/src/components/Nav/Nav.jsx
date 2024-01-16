@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Nav.scss";
 import { useState } from "react";
-import Profile from "../Profile/Profile";
+import Profile from "../MyProfile/MyProfile";
 
 function Nav() {
   const [edit, setEdit] = useState(false);
@@ -44,7 +44,7 @@ function Nav() {
           role="presentation"
         />
       </ul>
-      <Profile handleMoveBubble={handleMoveBubble} edit={edit} />
+      <MyProfile handleMoveBubble={handleMoveBubble} edit={edit} />
     </nav>
   );
 }
