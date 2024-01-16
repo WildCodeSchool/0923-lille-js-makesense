@@ -32,6 +32,19 @@ class UserManager extends AbstractManager {
     return rows[0];
   }
 
+  async readByEmailWithPassword(email) {
+    // Execute the SQL SELECT query to retrieve the user by their email
+    const [rows] = await this.database.query(
+      `SELECT user.*, authentication.hashed_password from ${this.table} 
+      JOIN authentication ON user.user_id = authentication.user_id
+      WHERE email = ?`,
+      [email]
+    );
+
+    // Return the user as first row of the result
+    return rows;
+  }
+
   async readByRole(id) {
     // Execute the SQL SELECT query to retrieve a specific user's role as admin of not
     const [rows] = await this.database.query(
