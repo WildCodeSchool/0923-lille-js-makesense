@@ -80,7 +80,6 @@ $input-login_bg: rgba(209, 226, 230);
 
 @mixin box {
   background-color: $background;
-  /*   outline: 4px dashed $primary-dark; */
   border-radius: 20px;
   padding: 2%;
 }

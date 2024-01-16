@@ -87,6 +87,6 @@ FARID    query for: chercher un expert/impacté. Besoin de select tous les first
 /*Il faut le faire en deux queries, ou alors avec une transaction mais je comprends pas bien comment ça fonctionne pour le moment*/
 INSERT INTO user (lastname, firstname, email, location, picture, role)
 VALUES (?, ?, ?, ?, ?, ?);
-INSERT INTO authentification (password, datetime, user_id)
+NSERT INTO authentification (password, datetime, user_id)
 VALUES (?, NOW(), LAST_INSERT_ID());
 /*NOW() print un datetime, LAST_INSERT_ID() print le dernier ID auto incrémenté*/
