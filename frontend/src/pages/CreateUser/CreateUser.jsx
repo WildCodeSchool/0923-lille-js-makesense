@@ -46,7 +46,7 @@ function CreateUser() {
       }
     } catch (err) {
       // Log des erreurs possibles
-      console.error("error in create user", err);
+      console.error("Error in user creation", err);
     }
   };
   return (

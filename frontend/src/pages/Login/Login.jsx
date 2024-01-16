@@ -64,7 +64,6 @@ function Login() {
             ref={emailRef}
           />
         </label>
-
         <label htmlFor="password" className="login__password">
           Mot de passe :
           <input
