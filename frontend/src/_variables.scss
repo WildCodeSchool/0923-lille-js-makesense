@@ -1,8 +1,11 @@
 //MAKESENSE FONT
 $font-app: "Raleway", sans-serif;
+$lightFont: white;
+$darkFont: rgb(12, 57, 68);
 
 //MAKESENSE COLORS
-$background: #ffff;
+$background: rgb(246, 245, 255);
+$secondary-background: rgba(209, 226, 230);
 //BLUE
 $primary-pale: rgba(232, 240, 243);
 $primary-light: rgba(209, 226, 230);
@@ -28,7 +31,7 @@ $status-solid: rgb(71, 65, 54);
 //LOCATION
 $location-bg: rgba(242, 181, 183, 1);
 $location-solid: rgb(71, 65, 54);
-//ADVICE
+//comment
 $advice-bg: rgb(252, 246, 160);
 $advice-solid: rgb(71, 65, 54);
 //USERS
@@ -44,22 +47,15 @@ $progress-bar: rgb(243, 151, 107);
 //INPUT LOGIN
 $input-login_bg: rgba(209, 226, 230);
 
-//MIXIN BOX
-@mixin box {
-  background-color: $primary-light;
-  outline: 4px dashed $primary-dark;
-  border-radius: 20px;
-  padding: 1vw;
-}
 //MIXIN TEXT BOX
 @mixin textBox {
   padding-inline: 1vw;
   border-radius: 10px;
-  background-color: white;
+  background-color: $background;
   height: auto;
   width: auto;
   font-size: clamp(18px, 2vw, 1.5rem);
-  animation: slideOpen 0.5s cubic-bezier(0.5, 0, 0.75, 0) 0s 1 normal forwards;
+  animation: slideOpen 0.5s linear 0s 1 normal forwards;
 }
 
 // Style
@@ -79,23 +75,26 @@ $input-login_bg: rgba(209, 226, 230);
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid $background;
+  border: 4px solid $primary-medium;
 }
 
 @mixin box {
-  background-color: $primary-light;
-  outline: 4px dashed $primary-dark;
+  background-color: $background;
+  /*   outline: 4px dashed $primary-dark; */
   border-radius: 20px;
   padding: 2%;
 }
 
 @mixin statusButtons {
   border: 1px solid currentColor;
-  border-radius: 20px;
+  border-radius: 50px;
   padding: 1%;
   padding-inline: 5%;
   margin-inline: 2px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin scroll {
@@ -122,16 +121,12 @@ $input-login_bg: rgba(209, 226, 230);
   background-color: $primary-medium;
   color: white;
   text-align: center;
-  padding: 4%;
+  padding: 3%;
   border-radius: 50px;
   font-weight: bold;
 }
 
-@mixin statusButtons {
-  border: 1px solid $status-solid;
-  border-radius: 20px;
-  padding: 1%;
-  padding-inline: 5%;
-  margin-inline: 2px;
-  text-align: center;
+@mixin h2 {
+  font-size: clamp(12px, 2.5vh, 20px);
+  color: $darkFont;
 }
