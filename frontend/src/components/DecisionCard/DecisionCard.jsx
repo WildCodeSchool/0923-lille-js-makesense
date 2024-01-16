@@ -21,7 +21,7 @@ function DecisionCard({ mockUser, mockComments, title, status }) {
         <span className="decisionCard__beans">
           <span className="decisionCard__status">{status}</span>
           <span className="decisionCard__location">{mockUser.location}</span>
-          <span className="decisionCard__advices">
+          <span className="decisionCard__comments">
             {mockComments.length} avis
           </span>
         </span>

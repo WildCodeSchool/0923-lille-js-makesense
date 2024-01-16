@@ -32,8 +32,8 @@ $status-solid: rgb(71, 65, 54);
 $location-bg: rgba(242, 181, 183, 1);
 $location-solid: rgb(71, 65, 54);
 //comment
-$advice-bg: rgb(252, 246, 160);
-$advice-solid: rgb(71, 65, 54);
+$comment-bg: rgb(252, 246, 160);
+$comment-solid: rgb(71, 65, 54);
 //USERS
 $user-button_bg: rgba(25, 108, 132);
 $user-button_solid: rgb(12, 57, 68);
@@ -80,7 +80,6 @@ $input-login_bg: rgba(209, 226, 230);
 
 @mixin box {
   background-color: $background;
-  /*   outline: 4px dashed $primary-dark; */
   border-radius: 20px;
   padding: 2%;
 }
