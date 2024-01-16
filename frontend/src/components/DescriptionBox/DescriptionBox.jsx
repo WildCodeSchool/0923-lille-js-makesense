@@ -1,4 +1,5 @@
 import "./DescriptionBox.scss";
+import "../../assets/image/user-pen.png";
 import { useState } from "react";
 
 function DescriptionBox() {
@@ -12,6 +13,7 @@ function DescriptionBox() {
     <section className="descriptionBox">
       <section className="descriptionBox__scroll">
         <header className="descriptionBox__header">
+          <img src="../../assets/image/user-pen.png" alt="edit_post" />
           <img
             className="descriptionBox__header--avatar"
             src="src/assets/vincent.png"

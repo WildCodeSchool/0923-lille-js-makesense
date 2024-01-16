@@ -3,6 +3,7 @@ import { useState } from "react";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
   const [writeComment, setWriteComment] = useState();
@@ -14,6 +15,7 @@ function Decision() {
           Date de cloture: 00/00/2024
         </h2>
         <ProgressBar />
+        <EditButton />
       </header>
       <section className="decision__page--body">
         <section className={`left__section ${writeComment ? "hidden" : null}`}>
