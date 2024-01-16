@@ -7,7 +7,7 @@ function ProgressBar() {
         <section className="status__circle seeding">
           <img
             className="icon seeding "
-            src="src/assets/image/hand-holding-seeding.png"
+            src="../../src/assets/image/hand-holding-seeding.png"
             alt="icône décision commencée"
           />
         </section>
@@ -17,7 +17,7 @@ function ProgressBar() {
         <section className="status__circle tulip">
           <img
             className="icon tulip"
-            src="src/assets/image/flower-tulip.png"
+            src="../../src/assets/image/flower-tulip.png"
             alt="icône décision prise"
           />
         </section>
@@ -27,7 +27,7 @@ function ProgressBar() {
         <section className="status__circle flower">
           <img
             className="icon flower"
-            src="src/assets/image/flower-daffodil.png"
+            src="../../src/assets/image/flower-daffodil.png"
             alt="icône décision définitive"
           />
         </section>
@@ -37,7 +37,7 @@ function ProgressBar() {
         <section className="status__circle faucet">
           <img
             className="icon faucet"
-            src="src/assets/image/faucet.png"
+            src="../../src/assets/image/faucet.png"
             alt="icône non aboutie"
           />
         </section>
@@ -47,7 +47,7 @@ function ProgressBar() {
         <section className="status__circle bouquet">
           <img
             className="icon bouquet"
-            src="src/assets/image/flower-bouquet.png"
+            src="../../src/assets/image/flower-bouquet.png"
             alt="icône décision terminé"
           />
         </section>

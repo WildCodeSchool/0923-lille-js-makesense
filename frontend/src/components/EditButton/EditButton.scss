@@ -2,13 +2,14 @@
   position: absolute;
   right: 2.2vw;
   top: 25vh;
+  padding-top: 1vh;
   padding-inline: 1vw;
   height: 5vh;
+  text-align: center;
   width: auto;
   border-radius: 15px;
   background-color: rgb(12, 57, 68);
   color: white;
-  text-align: center;
   font-size: clamp(18px, 2vw, 1.2rem);
   cursor: pointer;
 }

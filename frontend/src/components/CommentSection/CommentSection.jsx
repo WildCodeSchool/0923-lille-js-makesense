@@ -28,7 +28,7 @@ function CommentSection() {
             <section className="commentSection__comment--assembly">
               <img
                 className="commentSection__comment--avatar"
-                src="src/assets/vincent.png"
+                src="../../src/assets/vincent.png"
                 alt="avatar de l'auteur du commentaire"
               />
               <section className="commentSection__comment--box">

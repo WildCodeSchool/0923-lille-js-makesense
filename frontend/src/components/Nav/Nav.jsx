@@ -15,7 +15,7 @@ function Nav() {
       <Link to="/homepage" className="nav__logo">
         <img
           className="nav__logo--img"
-          src="./src/assets/logo-makesense-dark.png"
+          src="../../src/assets/logo-makesense-dark.png"
           alt="Logo Make Sense"
         />
       </Link>

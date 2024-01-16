@@ -15,7 +15,7 @@ function DescriptionBox() {
         <header className="descriptionBox__header">
           <img
             className="descriptionBox__header--avatar"
-            src="src/assets/vincent.png"
+            src="../../src/assets/vincent.png"
             alt="avatar de l'auteur du poste"
           />
           <section className="descriptionBox__header--right">

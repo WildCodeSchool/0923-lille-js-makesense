@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import "./EditButton.scss";
 
 function EditButton() {
   return (
-    <button className="edit_button" type="button">
+    <Link to="/decision/updatedecision" className="edit_button">
       Editer la décision
-    </button>
+    </Link>
   );
 }
 

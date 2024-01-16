@@ -11,8 +11,8 @@ function Decision() {
     <main className="decision__page">
       <header className="decision__page--header">
         <h2 className="openAndClose__date">
-          Date d'ouverture: 00/00/2023 <br />
-          Date de cloture: 00/00/2024
+          Date d'ouverture: <br />
+          Date de cloture:
         </h2>
         <ProgressBar />
         <EditButton />
