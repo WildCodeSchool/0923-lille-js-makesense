@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Nav.scss";
 import { useState } from "react";
-import Profile from "../MyProfile/MyProfile";
+import MyProfile from "../MyProfile/MyProfile";
 
 function Nav() {
   const [edit, setEdit] = useState(false);
