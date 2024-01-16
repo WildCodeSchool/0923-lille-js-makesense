@@ -1,57 +1,82 @@
 @import "../../variables";
-.newusers__content {
-  margin-top: 19vh;
-  font-family: $font-app;
-  color: white;
+
+.createuser__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 1%;
+  height: 91vh;
+  margin-top: 9vh;
+  background-color: $secondary-light;
+  & * {
+    background-color: $secondary-light;
+  }
 }
-
-.newusers__button {
-  background: $secondary-dark;
-  border-radius: 15px;
-  width: 10%;
-  padding: 0.7rem;
-  margin-top: 1rem;
-  color: white;
-  font-weight: bold;
-  font-size: large;
-  text-align: center;
-}
-
-.newusers__title {
-  color: $primary-dark;
-  font-weight: bold;
-  font-size: 150%;
-  margin: 20px;
-}
-.newusers__form {
-  background: $secondary-medium;
-  border-radius: 15px;
-  width: 25%;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  outline: 4px dashed $secondary-dark;
-}
-
-.newusers__label {
+.createuser__form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
-.newusers__text {
-  padding: 6px;
+
+.createuser__form--mandatoryFields {
+  font-size: smaller;
+  text-align: end;
+  background-color: $background;
+  * {
+    background-color: $background;
+  }
 }
-.newusers__input {
+
+.createuser__button {
+  @include buttons;
+  font-size: large;
+  background-color: $secondary-dark;
+  width: 50%;
+  padding: 5%;
+}
+
+.createuser__form--inputsBox {
+  @include box;
+  width: 30vw;
+  height: 60vh;
+  margin-block: 2%;
+  padding-inline: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.createuser__label {
+  display: flex;
+  flex-direction: column;
+  background-color: $background;
+  & small {
+    background-color: $background;
+  }
+  & strong {
+    margin-block: 2%;
+    background-color: $background;
+    font-size: 1.2rem;
+  }
+}
+
+.createuser__input {
   border-radius: 5px;
-  padding: 5px;
+  width: 100%;
+  height: 2rem;
+  padding-inline: 1%;
 }
+
+.createuser__message {
+  margin-top: 1%;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 950px) {
-  .newusers__form {
+  .createuser__form {
     width: 50%;
   }
-  .newusers__button {
+  .createuser__button {
     width: 30%;
   }
 }

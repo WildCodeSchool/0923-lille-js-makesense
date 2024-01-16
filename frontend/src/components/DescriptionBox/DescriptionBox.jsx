@@ -28,7 +28,7 @@ function DescriptionBox() {
             <span className="decision__beans">
               <span className="decision__status">en cours</span>
               <span className="decision__location">Lille</span>
-              <span className="decision__advices">4 avis</span>
+              <span className="decision__comments">4 avis</span>
             </span>
           </section>
         </header>

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "./MyProfile.scss";
+import "./Profile.scss";
 
-function MyProfile({ handleMoveBubble, edit }) {
+function Profile({ handleMoveBubble, edit }) {
   return (
     edit && (
       <nav className="bubble__menu" onMouseLeave={handleMoveBubble}>
@@ -16,7 +16,7 @@ function MyProfile({ handleMoveBubble, edit }) {
             <a
               className="bubble__help"
               title="Une erreur ? Contactez l'administrateur."
-              href="mailto:make_sense.admins@gmail.com"
+              href="mailto:vincent.rssx59@gmail.com"
               onClick={handleMoveBubble}
             >
               ?
@@ -34,9 +34,9 @@ function MyProfile({ handleMoveBubble, edit }) {
   );
 }
 
-MyProfile.propTypes = {
+Profile.propTypes = {
   edit: PropTypes.bool.isRequired,
   handleMoveBubble: PropTypes.func.isRequired,
 };
 
-export default MyProfile;
+export default Profile;
