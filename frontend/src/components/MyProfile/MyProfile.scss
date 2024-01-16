@@ -1,109 +1,46 @@
-.bubble_profile {
-  position: absolute;
-  right: 12vw;
-  top: 10.5vh;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid rgb(25, 108, 132);
-}
+@import "../../variables";
 
-.bubble_hover {
-  border: 2px solid black;
-  border-radius: 50px;
-  width: 2vw;
-  height: 4vh;
+.bubble__menu {
+  z-index: 1;
   position: absolute;
-  right: 4.7vw;
-}
-
-.bubble_avatar {
-  z-index: 10;
-  position: absolute;
-  top: 11.5vh;
-  right: 6.5vw;
-  color: rgb(12, 57, 68);
+  top: 9vh;
+  right: 7.35%;
   border-radius: 15px;
-  width: 12vw;
-  text-align: center;
-  border: 2px solid rgb(25, 108, 132);
-  background-color: white;
+  border: 4px solid $primary-medium;
+  background-color: $background;
+  padding: 1%;
 }
 
-#bubble_logout {
-  width: 11.5vw;
-  padding-top: 8.5vh;
-  padding-bottom: 1vh;
-  margin: 0 auto;
-  color: red;
+.bubble__help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $darkFont;
+  border-radius: 50px;
+  width: 2rem;
+  height: 2rem;
 }
 
-.bubble_list {
-  line-height: 3.5vh;
-  margin-top: 1vh;
+.bubble__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  gap: 0.5vh;
 }
 
-hr {
-  border: 1px solid red;
-  width: 8vw;
-  position: absolute;
-  top: 25vh;
-  right: 1.8vw;
+.bubble__line {
+  border: 1px solid $tertiary-medium;
+  width: 100%;
+  margin-block: 10%;
 }
 
-.bubble_link {
-  color: red;
+.bubble__link {
+  color: $tertiary-medium;
 }
 
 @media (max-width: 660px) {
-  .bubble_avatar {
-    z-index: 10;
-    position: absolute;
-    top: 1.5vh;
-    right: 17vw;
-    font-size: 3.5vw;
-    border-radius: 15px;
-    width: 30vw;
-    text-align: center;
-    border: 2px solid rgb(25, 108, 132);
-    background-color: white;
-  }
-
-  .bubble_profile {
-    rotate: 90deg;
-    position: absolute;
-    right: 14vw;
-    top: 3.5vh;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid rgb(25, 108, 132);
-  }
-
-  .bubble_hover {
-    border: 2px solid black;
-    border-radius: 50px;
-    width: 2vw;
-    height: 4vh;
-    position: absolute;
-    right: 4.6vw;
-  }
-  #bubble_logout {
-    width: 28.5vw;
-    padding-top: 6vh;
-  }
-  .bubble_list {
-    line-height: 3vh;
-    margin-top: 1vh;
-  }
-
-  hr {
-    border: 1px solid red;
-    width: 18vw;
-    position: absolute;
-    top: 21vh;
-    right: 5.5vw;
+  .bubble__menu {
+    right: 2%;
   }
 }
