@@ -8,16 +8,25 @@
   justify-content: space-between;
   align-items: center;
   padding-inline: 10vw;
-  padding-block: 1vh;
-  background-color: white;
+  padding-block: 0.5vh;
+  background-color: $background;
   font-weight: bold;
   top: 0%;
+  height: 9vh;
+  & * {
+    background-color: $background;
+  }
 }
 
 .nav__items,
 .nav__links {
   display: flex;
   align-items: center;
+  @include h2;
+}
+
+.nav__links--user {
+  color: $secondary-dark;
 }
 
 .nav__links--decision::before {
@@ -34,6 +43,8 @@
 .nav__avatar {
   @include avatar;
   margin-inline-start: 10px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
 }
 
@@ -49,8 +60,8 @@
     }
   }
   .nav__avatar {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     margin-inline-start: 8px;
   }
   .nav__nav {
