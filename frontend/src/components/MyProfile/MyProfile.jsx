@@ -2,43 +2,41 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./MyProfile.scss";
 
-function MyProfile({ handleMovebubble, edit }) {
+function MyProfile({ handleMoveBubble, edit }) {
   return (
     edit && (
-      <>
-        <aside className="bubble_profile" />
-        <section className="bubble_avatar" onMouseLeave={handleMovebubble}>
-          <ul className="bubble_list">
-            <li>Prénom</li>
-            <li>Nom</li>
-            <li>Email</li>
-            <li>Bureau</li>
-            <li>Poste</li>
-            <li className="bubble_hover">
-              <a
-                title="Une erreur ? Contactez l'administrateur."
-                href="mailto:vincent.rssx59@gmail.com"
-                onClick={handleMovebubble}
-              >
-                ?
-              </a>
-            </li>
-            <hr />
-            <li id="bubble_logout">
-              <Link to="/" className="bubble_link">
-                Se déconnecter
-              </Link>
-            </li>
-          </ul>
-        </section>
-      </>
+      <nav className="bubble__menu" onMouseLeave={handleMoveBubble}>
+        <ul className="bubble__list">
+          <li>Prénom</li>
+          <li>Nom</li>
+          <li>Email</li>
+          <li>Bureau</li>
+          <li>Poste</li>
+          <li>
+            <a
+              className="bubble__help"
+              title="Une erreur ? Contactez l'administrateur."
+              href="mailto:make_sense.admins@gmail.com"
+              onClick={handleMoveBubble}
+            >
+              ?
+            </a>
+          </li>
+          <li className="bubble__logout">
+            <hr className="bubble__line" />
+            <Link to="/" className="bubble__link">
+              Déconnexion
+            </Link>
+          </li>
+        </ul>
+      </nav>
     )
   );
 }
 
-MyProfile.propTypes = {
+Profile.propTypes = {
   edit: PropTypes.bool.isRequired,
-  handleMovebubble: PropTypes.func.isRequired,
+  handleMoveBubble: PropTypes.func.isRequired,
 };
 
 export default MyProfile;
