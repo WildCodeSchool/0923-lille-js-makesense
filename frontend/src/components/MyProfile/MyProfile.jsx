@@ -34,7 +34,7 @@ function MyProfile({ handleMoveBubble, edit }) {
   );
 }
 
-Profile.propTypes = {
+MyProfile.propTypes = {
   edit: PropTypes.bool.isRequired,
   handleMoveBubble: PropTypes.func.isRequired,
 };
