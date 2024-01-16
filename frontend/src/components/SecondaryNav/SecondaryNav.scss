@@ -1,7 +1,9 @@
 @import "../../variables";
 
 .secondaryNav__nav {
-  position: sticky;
+  position: fixed;
+  top: 9vh;
+  z-index: 20;
 }
 
 .secondaryNav__links * {

@@ -1,0 +1,46 @@
+@import "../../variables";
+
+.bubble__menu {
+  z-index: 1;
+  position: absolute;
+  top: 9vh;
+  right: 7.35%;
+  border-radius: 15px;
+  border: 4px solid $primary-medium;
+  background-color: $background;
+  padding: 1%;
+}
+
+.bubble__help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $darkFont;
+  border-radius: 50px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.bubble__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  gap: 0.5vh;
+}
+
+.bubble__line {
+  border: 1px solid $tertiary-medium;
+  width: 100%;
+  margin-block: 10%;
+}
+
+.bubble__link {
+  color: $tertiary-medium;
+}
+
+@media (max-width: 660px) {
+  .bubble__menu {
+    right: 2%;
+  }
+}

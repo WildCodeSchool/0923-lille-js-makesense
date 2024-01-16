@@ -15,12 +15,13 @@ function CommentSection() {
   const handlePress = (e) => {
     if (e.key === "Enter") {
       onClickHandler();
+      e.preventDefault();
       e.target.value = "";
     }
   };
   return (
     <section className="commentSection">
-      <h2 className="commentSection__title">Avis</h2>
+      <h2 className="commentSection__title">Commentaires</h2>
       <section className="commentSection__container">
         <section className="commentSection__comment--container">
           {commentList.map((com) => (

@@ -3,19 +3,30 @@
 .nav__nav {
   width: 100%;
   display: flex;
-  position: sticky;
+  position: fixed;
+  z-index: 25;
   justify-content: space-between;
   align-items: center;
   padding-inline: 10vw;
-  padding-block: 1vh;
+  padding-block: 0.5vh;
   background-color: $background;
   font-weight: bold;
+  top: 0%;
+  height: 9vh;
+  & * {
+    background-color: $background;
+  }
 }
 
 .nav__items,
 .nav__links {
   display: flex;
   align-items: center;
+  @include h2;
+}
+
+.nav__links--user {
+  color: $secondary-dark;
 }
 
 .nav__links--decision::before {
@@ -32,9 +43,13 @@
 .nav__avatar {
   @include avatar;
   margin-inline-start: 10px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 }
 
 // mobile version
+
 @media (max-width: 660px) {
   .nav__links {
     flex-direction: column;
@@ -45,8 +60,8 @@
     }
   }
   .nav__avatar {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     margin-inline-start: 8px;
   }
   .nav__nav {
