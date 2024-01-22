@@ -1,53 +1,99 @@
+import { useState } from "react";
 import "./ProgressBar.scss";
-import PropTypes from "prop-types";
 
-function ProgressBar({ status }) {
+function ProgressBar() {
+  const firstStatus = "Décision commencée";
+  const secondStatus = "Première décision prise";
+  const thirdStatus = "Décision définitive";
+  const fourthStatus = "Décision non aboutie";
+  const fifthStatus = "Décision terminée";
+
+  const [activeStatus] = useState(thirdStatus);
+
   return (
-    <section className="progressBar">
-      <section className="progressBar__icons">
-        <section className="status__circle seeding">
+    <section className="progress__bar">
+      <section className="status">
+        <section
+          className={`status__circle ${
+            activeStatus === firstStatus && "visible"
+          }`}
+        >
           <img
-            className="progressBar__icon seeding"
+            className="status__icon seeding "
             src="src/assets/image/hand-holding-seeding.png"
             alt="icône décision commencée"
           />
         </section>
-        <section className="status__circle tulip">
+        <p className={activeStatus !== firstStatus && "status__name--hidden"}>
+          Décision commencée
+        </p>
+      </section>
+      <section className="status">
+        <section
+          className={`status__circle ${
+            activeStatus === secondStatus && "visible"
+          }`}
+        >
           <img
-            className="progressBar__icon tulip"
+            className="status__icon tulip"
             src="src/assets/image/flower-tulip.png"
             alt="icône décision prise"
           />
         </section>
-        <section className="status__circle flower">
+        <p className={activeStatus !== secondStatus && "status__name--hidden"}>
+          Première décision prise
+        </p>
+      </section>
+      <section className="status">
+        <section
+          className={`status__circle ${
+            activeStatus === thirdStatus && "visible"
+          }`}
+        >
           <img
-            className="progressBar__icon flower"
+            className="status__icon flower"
             src="src/assets/image/flower-daffodil.png"
             alt="icône décision définitive"
           />
         </section>
-        <section className="status__circle -faucet">
-          <img
-            className="progressBar__icon faucet"
-            src="src/assets/image/faucet.png"
-            alt="icône décision non aboutie"
-          />
-        </section>
-        <section className="status__circle bouquet">
-          <img
-            className="progressBar__icon bouquet"
-            src="src/assets/image/flower-bouquet.png"
-            alt="icône décision terminée"
-          />
-        </section>
+        <p className={activeStatus !== thirdStatus && "status__name--hidden"}>
+          Décision définitive
+        </p>
       </section>
-      <h3 className="progressBar__status">{status}</h3>
+      <section className="status">
+        <section
+          className={`status__circle ${
+            activeStatus === fourthStatus && "visible"
+          }`}
+        >
+          <img
+            className="status__icon faucet"
+            src="src/assets/image/faucet.png"
+            alt="icône non aboutie"
+          />
+        </section>
+        <p className={activeStatus !== fourthStatus && "status__name--hidden"}>
+          Décision non aboutie
+        </p>
+      </section>
+      <section className="status">
+        <section
+          className={`status__circle ${
+            activeStatus === fifthStatus && "visible"
+          }`}
+        >
+          <img
+            className="status__icon bouquet"
+            src="src/assets/image/flower-bouquet.png"
+            alt="icône décision terminé"
+          />
+        </section>
+        <p className={activeStatus !== fifthStatus && "status__name--hidden"}>
+          Décision terminée
+        </p>
+      </section>
     </section>
   );
 }
 
 export default ProgressBar;
-
-ProgressBar.propTypes = {
-  status: PropTypes.string.isRequired,
-};

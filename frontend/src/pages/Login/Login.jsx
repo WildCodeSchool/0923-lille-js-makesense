@@ -4,21 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 
 function Login() {
-  // Références pour les champs email et mot de passe
+  // References for email and password inputs
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const { setUser } = useContext(AuthContext);
 
-  // Hook pour la navigation
+  // Hook for navigation
   const navigate = useNavigate();
 
-  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
+      // Ask for a connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
@@ -30,7 +29,7 @@ function Login() {
           }),
         }
       );
-      // Redirection vers la page de connexion si la création réussit
+      // If the connexion is successful
       if (response.status === 200) {
         const user = await response.json();
 
@@ -38,11 +37,10 @@ function Login() {
 
         navigate("/homepage");
       } else {
-        // Log des détails de la réponse en cas d'échec
+        // If the connexion fails
         console.info(response);
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
     }
   };

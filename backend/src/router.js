@@ -36,10 +36,11 @@ router.get("/decisions/all", decisionControllers.browse);
 router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
 router.get("/decisions/pending", decisionControllers.browsePending);
-// chercher expert
-router.get("/decisions/:id/experts", decisionControllers.getExperts);
-// cherche impacter
-router.get("/decisions/:id/impacte", decisionControllers.getImpacte);
+// chercher impacter
+router.get("decisions/:id/impacte", decisionControllers.getImpacte);
+// chercher experts
+router.get("decisions/:id/experts", decisionControllers.getExperts);
+
 // filter decisions linked to a user
 router.get(
   "/decisions/:id/related-decisions",
@@ -58,7 +59,6 @@ router.get("/allComments", commentControllers.browse);
 router.get("/decisions/:id/comments", commentControllers.readByDecision);
 // Route to add a new comment
 router.post("/comment", commentControllers.add);
-
 // PARAGRAPHS ROUTES
 // Import Controller
 const paragraphsControllers = require("./controllers/paragraphsControllers");
