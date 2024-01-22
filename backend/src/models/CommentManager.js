@@ -58,7 +58,7 @@ class CommentManager extends AbstractManager {
       `SELECT role FROM assignment WHERE user_id = ?`,
       [id]
     );
-    return rows[0] ? "" : ""; /* ??? */
+    return rows[0];
   }
 
   async readAll() {
