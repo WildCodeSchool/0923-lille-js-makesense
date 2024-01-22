@@ -1,13 +1,58 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./CreateUser.scss";
 
 function CreateUser() {
-  const [message] = useState("");
+  const firstnameRef = useRef();
+  const lastnameRef = useRef();
+  const emailRef = useRef();
+  const locationRef = useRef();
+  const passwordRef = useRef();
+  const [message, setMessage] = useState("");
 
+  // Gestionnaire de soumission du formulaire
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Appel à l'API pour demander une connexion
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/create`,
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstname: firstnameRef.current.value,
+            lastname: lastnameRef.current.value,
+            email: emailRef.current.value,
+            location: locationRef.current.value,
+            password: passwordRef.current.value,
+          }),
+        }
+      );
+
+      // Redirection vers la page de connexion si la création réussit
+      if (response.status === 201) {
+        setMessage(
+          `🚀 Utilisateur créé : ${lastnameRef.current.value} ${firstnameRef.current.value}. 🚀`
+        );
+        firstnameRef.current.value = "";
+        lastnameRef.current.value = "";
+        emailRef.current.value = "";
+        locationRef.current.value = "Americas";
+        passwordRef.current.value = "";
+      } else {
+        // Log des détails de la réponse en cas d'échec
+        console.info(response);
+      }
+    } catch (err) {
+      // Log des erreurs possibles
+      console.error("Error in user creation", err);
+    }
+  };
   return (
     <main className="createuser__content">
       <h1 className="createuser__title">Nouvel utilisateur</h1>
-      <form className="createuser__form">
+      <form className="createuser__form" onSubmit={handleSubmit}>
         <div className="createuser__form--inputsBox">
           <p className="createuser__form--mandatoryFields">
             Tous les champs sont obligatoires.
@@ -19,6 +64,7 @@ function CreateUser() {
               className="createuser__input"
               type="text"
               name="lastname"
+              ref={lastnameRef}
               required
             />
           </label>
@@ -29,6 +75,7 @@ function CreateUser() {
               className="createuser__input"
               type="text"
               name="firstname"
+              ref={firstnameRef}
               required
             />
           </label>
@@ -39,6 +86,7 @@ function CreateUser() {
               className="createuser__input"
               type="email"
               name="email"
+              ref={emailRef}
               required
             />
           </label>
@@ -48,6 +96,7 @@ function CreateUser() {
               name="workplace"
               className="createuser__input"
               id="workplace"
+              ref={locationRef}
               required
             >
               <option value="Americas">Americas</option>
@@ -64,6 +113,7 @@ function CreateUser() {
               className="createuser__input"
               type="password"
               name="motDePasse"
+              ref={passwordRef}
               required
             />
             <small>

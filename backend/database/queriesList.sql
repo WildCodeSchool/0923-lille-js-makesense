@@ -78,9 +78,7 @@ GROUP BY decision.decision_id, decision.decision_title, decision.status, user.fi
 HELENE    query for: afficher (select) toutes les infos d'une décision (titre, auteur, paragraphs, status, date de création)
 SELECT d.decision_title, d.user_id, d.status, p.paragraph_title, p.paragraph_content
 */
-    SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name,
-           decision.status, paragraph.paragraph_details, paragraph.paragraph_impact, paragraph.paragraph_benefits,
-           paragraph.paragraph_risks, paragraph.paragraph_first_decision, paragraph.paragraph_decision, paragraph.paragraph_finale_decision
+    SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name, decision.status, paragraph.paragraph_title, paragraph.paragraph_content
           FROM decision
           INNER JOIN paragraph ON decision.decision_id = paragraph.decision_id
           INNER JOIN user ON decision.user_id = user.user_id
