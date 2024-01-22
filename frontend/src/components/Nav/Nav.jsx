@@ -11,37 +11,6 @@ function Nav() {
   const [isAdmin, setIsAdmin] = useState(null);
   const [previewImage, setPreviewImage] = useState(user[0].picture);
 
-  useEffect(() => {
-    if (user.admin_id !== null) {
-      setIsAdmin("nav__links--notAdmin");
-    }
-  }, []);
-
-  /* storer l'image pour l'envoyer en back (pas de preview)
-  useEffect pour fetch l'image ? avec l'input en dépendance ? */
-
-  // 2. The picture is uploaded in the backend
-  const handleAvatarUpdate = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("userId", user[0].user_id);
-      formData.append("avatar", previewImage);
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/user/picture/${user[0].user_id}`,
-        {
-          method: "PUT",
-          body: formData,
-        }
-      );
-
-      if (!response.ok) {
-        console.info(response);
-      }
-    } catch (err) {
-      console.error("Error during upload.", err);
-    }
-  };
-
   // 1. upload the image in front and read it as data to preview it
   const handleAvatarUpload = (event) => {
     const img = event.target.files[0];
@@ -55,12 +24,17 @@ function Nav() {
         const imageDataUrl = e.target.result;
         // Set the preview image
         setPreviewImage(imageDataUrl);
-        handleAvatarUpdate();
       };
       // Read the content of the file as Data URL through the readAsDataURL FileReader method
       reader.readAsDataURL(img);
     }
   };
+
+  useEffect(() => {
+    if (user.admin_id !== null) {
+      setIsAdmin("nav__links--notAdmin");
+    }
+  }, []);
 
   const handleMoveBubble = () => {
     setShowProfile(!showProfile);

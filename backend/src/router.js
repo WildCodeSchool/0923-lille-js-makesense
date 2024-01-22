@@ -7,8 +7,6 @@ const router = express.Router();
 /* ************************************************************************* */
 // hashing password middleware
 const { hashPassword } = require("./services/auth");
-// upload images middleware
-/* const multer = require("./services/multer-config"); */
 
 // LOGIN
 const authControllers = require("./controllers/authControllers");
@@ -27,7 +25,7 @@ router.get("/user/role/:id", userControllers.readByRole);
 // Route to add a new user
 router.post("/user/create", hashPassword, userControllers.add);
 // Route to update a user's picture
-router.put("/user/picture/:id", /* multer, */ userControllers.updatePicture);
+router.put("/user/picture", userControllers.updatePicture);
 
 // DECISION ROUTES
 // Import Controller
