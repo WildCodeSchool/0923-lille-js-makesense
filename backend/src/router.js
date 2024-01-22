@@ -5,9 +5,14 @@ const router = express.Router();
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
-
 // hashing password middleware
 const { hashPassword } = require("./services/auth");
+
+// LOGIN
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
+
 
 // USER ROUTES
 // Import Controller
