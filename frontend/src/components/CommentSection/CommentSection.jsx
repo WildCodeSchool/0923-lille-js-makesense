@@ -9,7 +9,7 @@ function CommentSection() {
     setComment(event.target.value);
   };
   const onClickHandler = () => {
-    if (comment !== "") {
+    if (comment.trim() !== "") {
       setCommentList((comments) => [...comments, comment]);
       setComment("");
     }
