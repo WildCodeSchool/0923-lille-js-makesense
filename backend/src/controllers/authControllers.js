@@ -1,4 +1,3 @@
-// uncomment to test argon2
 const argon2 = require("argon2");
 
 // Import access to database tables
@@ -12,14 +11,13 @@ const login = async (req, res, next) => {
       res.sendStatus(422);
       return;
     }
-    // argon2 doesn't recognize the pre-hashed passwords, we need users created through the form to check if the error comes from
-    // the pre-hashed password or from the code in here
+    // verify with argon2
     const verified = await argon2.verify(
       user[0].hashed_password,
       req.body.password
     );
     if (verified) {
-      // Respond with the user in JSON format (but without the hashed password)
+      // Respond with the user in JSON format without the hashed password
       delete user.hashed_password;
 
       res.json(user);
@@ -27,7 +25,6 @@ const login = async (req, res, next) => {
       res.sendStatus(422);
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };

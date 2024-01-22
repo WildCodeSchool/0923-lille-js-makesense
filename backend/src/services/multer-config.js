@@ -1,4 +1,4 @@
-const multer = require("multer");
+/* const multer = require("multer");
 const path = require("path");
 
 const MIME_TYPES = {
@@ -25,3 +25,4 @@ const fileFilter = (req, file, callback) => {
 };
 
 module.exports = multer({ storage, fileFilter });
+ */
