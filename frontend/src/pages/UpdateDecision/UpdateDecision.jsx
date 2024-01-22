@@ -3,7 +3,7 @@ import UpdateCreateDecisionFormExperts from "../../components/UpdateCreateDecisi
 import UpdateCreateDecisionFormContent from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormContent";
 import "./UpdateDecision.scss";
 
-function CreateDecision() {
+function UpdateDecision() {
   return (
     <main className="createDecision__main">
       <UpdateCreateDecisionFormContent />
@@ -11,11 +11,11 @@ function CreateDecision() {
         <UpdateCreateDecisionFormExperts />
         <UpdateCreateDecisionFormImpacted />
         <button type="button" className="createDecisionForm__button">
-          Publier
+          Mettre à jour la décision
         </button>
       </aside>
     </main>
   );
 }
 
-export default CreateDecision;
+export default UpdateDecision;
