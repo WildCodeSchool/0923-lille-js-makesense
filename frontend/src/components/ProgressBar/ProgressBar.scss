@@ -2,6 +2,7 @@
 .status__icon {
   width: clamp(4vh, 30px, 4vw);
   filter: invert(100%);
+  background-color: transparent;
 }
 .progress__bar {
   font-size: clamp(0.75rem, 1.25vw, 1rem);
@@ -14,12 +15,12 @@
 }
 .progress__bar::before {
   content: "";
-  background-color: $primary-light;
+  background-color: $primary-pale;
   top: 30%;
   transform: translateY(-50%);
   height: 4px;
   width: 85%;
-  z-index: -1;
+  z-index: 0;
   transition: 0.4s ease;
   position: absolute;
 }
@@ -32,17 +33,18 @@
 }
 .status__circle {
   border-radius: 50%;
-  border: 5px solid $primary-light;
-  background-color: $primary-pale;
-  margin-inline: 1vw;
+  border: 5px solid $primary-pale;
+  background-color: $primary-light;
   width: clamp(6vh, 60px, 6vw);
   height: clamp(6vh, 60px, 6vw);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 .visible {
+  margin-bottom: 1vh;
   border: 5px solid $primary-dark;
   background-color: $primary-medium;
 }

@@ -1,45 +1,50 @@
 @import "../../variables";
 
-.commentSection__title {
-  margin-left: 3vw;
-  font-size: clamp(25px, 2vw, 1.4rem);
-}
 .commentSection__container {
   @include box;
-  margin-top: 2vh;
-  height: 60vh;
-  width: 44vw;
+  height: 65vh;
+  width: 43vw;
   padding-block: 2vh;
+  padding-inline: 1%;
+  & * {
+    background-color: $background;
+  }
+}
+
+.commentSection__title {
+  @include h2;
+  margin-bottom: 1vh;
+  margin-left: 3vw;
 }
 .commentSection__input--field {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+  width: 100%;
+  height: 36%;
 }
 .commentSection__textarea {
   resize: none;
-  padding-inline: 0.5vw;
+  padding: 1%;
+  margin-inline: 1vw;
   border-style: none;
   border-radius: 10px;
-  height: 15vh;
-  width: 42.5vw;
+  height: 85%;
+  width: 95%;
   font-size: clamp(18px, 2vw, 1.2rem);
+  background-color: $secondary-background;
+  overflow: hidden;
 }
 .comment__button {
-  padding-inline: 1vw;
-  height: 5vh;
-  width: auto;
-  border-radius: 15px;
-  background-color: $primary-dark;
-  color: white;
-  margin-block: 1vh;
-  font-size: clamp(18px, 2vw, 1.2rem);
+  @include buttons;
   cursor: pointer;
+  margin-block: 1%;
 }
 .commentSection__comment--container {
-  height: 32vh;
-  overflow-y: scroll;
+  @include scroll;
+  height: 60%;
+  padding-inline: 1%;
 }
 .commentSection__comment--box {
   @include textBox;
@@ -47,12 +52,17 @@
   display: flex;
   word-break: normal;
   margin-block: 1vh;
+  background-color: $secondary-background;
+  & * {
+    background-color: $secondary-background;
+  }
 }
 .commentSection__comment--avatar {
-  border-radius: 50%;
-  border: 5px solid white;
-  height: 10vh;
-  margin-block: 0.5vh;
+  @include avatar;
+  height: 6vh;
+  width: auto;
+  border-width: 3px;
+  margin-block: 1vh;
 }
 .commentSection__comment--assembly {
   display: flex;
@@ -64,6 +74,10 @@
 .commenSection__comment--dateTime {
   color: #939292;
   margin-bottom: 1vh;
+}
+
+.dividing__line {
+  background-color: $secondary-background;
 }
 
 @media screen and (max-width: 700px) {

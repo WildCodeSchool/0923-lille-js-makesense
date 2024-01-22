@@ -8,25 +8,45 @@ class DecisionManager extends AbstractManager {
   }
 
   // The C of CRUD - Create operation
-
   async create(decision) {
-    // Execute the SQL INSERT query to add a new decision to the "decision" table
-    const [result] = await this.database.query(
-      `
-      BEGIN;
-      INSERT INTO ${this.table} (decision_date, status, decision_title, user_id) 
-      VALUES (?,"décision crée",?,?);
-      SET @last_decision_id = LAST_INSERT_ID();
-      INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
-      VALUES (?, ?, @last_decision_id);
-      INSERT INTO assignment (date,role, decision_id, user_id) 
-      VALUES (?,?, @last_decision_id,?);
-      COMMIT;`,
-      [decision.title]
+    // Execute the SQL INSERT queries to add a new decision, paragraph, and assignment
+    const [resultDecision] = await this.database.query(
+      `INSERT INTO ${this.table} (decision_date, decision_delay, status, decision_title, user_id)     
+      VALUES (?,?,?,?,?);`,
+      [
+        decision[0].decision_date,
+        decision[0].decision_delay,
+        decision[0].status,
+        decision[0].decision_title,
+        decision[0].user_id,
+      ]
+    );
+    const [resultParagraph] = await this.database.query(
+      `INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
+        VALUES (?, ?, ?);`,
+      [
+        decision[1].paragraph_title,
+        decision[1].paragraph_content,
+        resultDecision.insertId,
+      ]
     );
 
-    // Return the ID of the newly inserted decision
-    return result.insertId;
+    const [resultAssignment] = await this.database.query(
+      `INSERT INTO assignment (date, role, decision_id, user_id) 
+        VALUES (?,?,?,?);`,
+      [
+        decision[2].date,
+        decision[2].role,
+        resultDecision.insertId,
+        decision[2].user_id,
+      ]
+    );
+
+    return {
+      resultDecision,
+      resultParagraph,
+      resultAssignment,
+    };
   }
 
   // The Rs of CRUD - Read operations
@@ -126,26 +146,50 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  async update(id, decision) {
-    const [rows] = await this.database.query(
-      `BEGIN;
-
-      SELECT * FROM decision
-      WHERE decision_id = ?;
-
-      UPDATE paragraph
-      SET paragraph_title = ?,
-      paragraph_content = ?
-      WHERE paragraph.decision_id = ? AND paragraph_id = ? ;
-
-      UPDATE assignment
-      SET role = ?
-      WHERE assignment.user_id = ? AND assignment.decision_id = ?;
-    
-      COMMIT;`,
-      [id, decision]
+  async update(decision) {
+    const [updateParagraph] = await this.database.query(
+      `
+    UPDATE paragraph
+    SET
+    paragraph_details = ?,
+    paragraph_impact= ?,
+    paragraph_benefits = ?,
+    paragraph_risks = ?,
+    paragraph_first_decision = ?,
+    paragraph_decision = ?,
+    paragraph_finale_decision = ?
+    WHERE decision_id = ?
+    `,
+      [
+        decision[0].paragraph_details,
+        decision[0].paragraph_impact,
+        decision[0].paragraph_benefits,
+        decision[0].paragraph_risks,
+        decision[0].paragraph_first_decision,
+        decision[0].paragraph_decision,
+        decision[0].paragraph_finale_decision,
+        decision[0].decision_id,
+      ]
     );
-    return rows[0];
+
+    const [updateDecision] = await this.database.query(
+      `
+    UPDATE decision
+    SET status = ?,
+    decision_delay=?,
+    decision_title = ?
+    WHERE decision_id = ?
+   
+    `,
+      [
+        decision[1].status,
+        decision[1].decision_delay,
+        decision[1].decision_title,
+        decision[1].decision_id,
+      ]
+    );
+
+    return { updateParagraph, updateDecision };
   }
 
   // The D of CRUD - Delete operation
