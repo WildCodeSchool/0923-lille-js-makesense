@@ -6,6 +6,11 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
+// LOGIN
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
+
 // USER ROUTES
 // Import Controller
 const userControllers = require("./controllers/userControllers");
