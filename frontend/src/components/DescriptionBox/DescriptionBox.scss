@@ -88,21 +88,6 @@
   background-color: $secondary-background;
 }
 
-@keyframes slideOpen {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateY(-25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media screen and (max-width: 700px) {
   .descriptionBox {
     width: 90vw;

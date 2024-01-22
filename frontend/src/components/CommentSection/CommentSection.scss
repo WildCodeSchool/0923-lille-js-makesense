@@ -25,6 +25,7 @@
   height: 36%;
 }
 .commentSection__textarea {
+  resize: none;
   padding: 1%;
   margin-inline: 1vw;
   border-style: none;
@@ -69,6 +70,10 @@
 }
 .commentSection__comment__textSection {
   font-size: clamp(18px, 2vw, 1.2rem);
+}
+.commenSection__comment--dateTime {
+  color: #939292;
+  margin-bottom: 1vh;
 }
 
 .dividing__line {
