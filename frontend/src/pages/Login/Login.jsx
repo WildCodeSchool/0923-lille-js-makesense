@@ -5,7 +5,9 @@ function Login() {
     <main className="login__content">
       <img
         className="login__logo"
-        src="../src/assets/image/logo-Make_sense.png"
+        src={`${
+          import.meta.env.VITE_BACKEND_URL
+        }/assets/images/logo-Make_sense.png`}
         alt="logo"
       />
       <form className="login__form">

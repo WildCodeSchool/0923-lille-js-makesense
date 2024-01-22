@@ -15,7 +15,9 @@ function Nav() {
       <Link to="/homepage" className="nav__logo">
         <img
           className="nav__logo--img"
-          src="./src/assets/logo-makesense-dark.png"
+          src={`${
+            import.meta.env.VITE_BACKEND_URL
+          }/assets/images/logo-makesense-dark.png`}
           alt="Logo Make Sense"
         />
       </Link>
