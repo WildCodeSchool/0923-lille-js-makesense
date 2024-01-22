@@ -20,7 +20,4 @@ app
 
 // Server for images handling
 
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "/public/assets/images"))
-);
+app.use("/public", express.static(path.join(__dirname, "/public")));

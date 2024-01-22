@@ -22,7 +22,7 @@ function Login() {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
-          method: "post",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: emailRef.current.value,
@@ -51,7 +51,9 @@ function Login() {
     <main className="login__content">
       <img
         className="login__logo"
-        src={`${import.meta.env.VITE_BACKEND_URL}/images/logoMakeSense.png`}
+        src={`${
+          import.meta.env.VITE_BACKEND_URL
+        }/public/images/logoMakeSense.png`}
         alt="logo"
       />
       <form className="login__form" onSubmit={handleSubmit}>

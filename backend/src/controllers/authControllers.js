@@ -9,7 +9,7 @@ const login = async (req, res, next) => {
     // Fetch a specific user from the database based on the provided email
     const user = await tables.user.readByEmailWithPassword(req.body.email);
     if (user == null) {
-      res.status(422).send("AUTH CONT DEF");
+      res.sendStatus(422);
       return;
     }
     // argon2 doesn't recognize the pre-hashed passwords, we need users created through the form to check if the error comes from
