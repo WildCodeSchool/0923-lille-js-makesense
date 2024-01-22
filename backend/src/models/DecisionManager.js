@@ -113,12 +113,24 @@ class DecisionManager extends AbstractManager {
   }
 
   // Implement logic to retrieve experts and impacts for a given decision
-  async getExpertsAndImpactes(decisionId) {
+  async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
      FROM assignment
      JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ?`,
+     WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
+      [decisionId]
+    );
+
+    return rows;
+  }
+
+  async getImpacte(decisionId) {
+    const [rows] = await this.database.query(
+      `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
+     FROM assignment
+     JOIN user ON assignment.user_id = user.user_id
+     WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
       [decisionId]
     );
 

@@ -48,20 +48,7 @@ const seed = async () => {
           ('Musa', 'Chris', 'chris.musa@yopmail.com', 'West Africa', 'http://placekitten.com/200/314'),
           ('Smith', 'Juliana', 'juliana.smith@yopmail.com', 'Americas', 'http://placekitten.com/200/315'),
           ('Smith', 'John', 'john.smith@yopmail.com', 'Americas', 'http://placekitten.com/200/316'),
-          ('Durand', 'Jane', 'jane.durand@yopmail.com', 'France', 'http://placekitten.com/200/317'),
-          ('Khoury', 'Rami', 'rami.khoury@yopmail.com', 'Lebanon', 'http://placekitten.com/200/318'),
-          ('Garcia', 'Alice', 'alice.garcia@yopmail.com', 'Philippines', 'http://placekitten.com/200/319'),
-          ('Nkozi', 'Chris', 'chris.nkozi@yopmail.com', 'West Africa', 'http://placekitten.com/200/320'),
-          ('Jones', 'Martin', 'martin.jones@yopmail.com', 'Americas', 'http://placekitten.com/200/321'),
-          ('Durand', 'Jane', 'jane.durand2@yopmail.com', 'France', 'http://placekitten.com/200/322'),
-          ('Azar', 'Rami', 'rami.azar2@yopmail.com', 'Lebanon', 'http://placekitten.com/200/323'),
-          ('Mendoza', 'Alice', 'alice.mendoza@yopmail.com', 'Philippines', 'http://placekitten.com/200/324'),
-          ('Moyo', 'Chris', 'chris.moyo@yopmail.com', 'West Africa', 'http://placekitten.com/200/325'),
-          ('Miller', 'Julia', 'julia.miller@yopmail.com', 'Americas', 'http://placekitten.com/200/326'),
-          ('Petit', 'Chris', 'chris.petit@yopmail.com', 'France', 'http://placekitten.com/200/327'),
-          ('Abboud', 'Antoine', 'antoine.abboud@yopmail.com', 'Lebanon', 'http://placekitten.com/200/328'),
-          ('Bautista', 'Alice', 'alice.bautista@yopmail.com', 'Philippines', 'http://placekitten.com/200/329'),
-          ('Williams', 'Liam', 'liam.williams@yopmail.com', 'Americas', 'http://placekitten.com/200/330');`
+          ('Khoury', 'Rami', 'rami.khoury@yopmail.com', 'Lebanon', 'http://placekitten.com/200/318');`
       )
     );
 
@@ -103,33 +90,7 @@ const seed = async () => {
         ('$argon2d$v=19$m=19456,t=2,p=4$d5+r04CPS8o1fLiCznGb0w$3Rje40oTSjEN4k/jnF6F2wUs8cZ0KsSPClvFKr8NgTY
         ', '2023-01-01 12:00:00', 17),
         ('$argon2d$v=19$m=19456,t=2,p=4$QdzHIjnJYx/Jy7xczAik5Q$XNpsla/3X+LBIA/P/mY7nGSE8ky6qfS7PAtrdPE/UDw
-        ', '2023-02-02 12:00:00', 18),
-        ('$argon2d$v=19$m=19456,t=2,p=4$9j+BkmlI5fkXj/PgS8tkmQ$oTtwAx6zPPgHq7jGlIuVCQd9HWqISUOYtYic3nIqoP4
-        ', '2023-01-01 12:00:00', 19),
-        ('$argon2d$v=19$m=19456,t=2,p=4$qLxLIjIVPDA9gSmibCugvg$vj4NUoyrgx7UwH66HrWfqN42S5EMEyzXsA9w4uXlmvE
-        ', '2023-02-02 12:00:00', 20),
-        ('$argon2d$v=19$m=19456,t=2,p=4$3BszN5l+bGAak/17SMF+jw$UQz0R7srA4kBJfndVBuQiqUPiqXrGL1ByL/9Wod7DyE
-        ', '2023-01-01 12:00:00', 21),
-        ('$argon2d$v=19$m=19456,t=2,p=4$brxJkRFVE714pcR0+BwPIg$JLaZComYjEgPxu/uosOADB76NTSh+MQtoXqPD2sb0QM
-        ', '2023-02-02 12:00:00', 22),
-        ('$argon2d$v=19$m=19456,t=2,p=4$oIsEJ+M8uJ+Yz4gsZQNJ6w$oZsbsq60a7Wjh1yYUAAlkP75iBstthl/F1uGcEKVxAA
-        ', '2023-01-01 12:00:00', 23),
-        ('$argon2d$v=19$m=19456,t=2,p=4$VBYBmX9vMk4IlaescIdtiQ$dlckt3EATYPXyQByAg6YLwHynUVecpJycx78DsE4riY
-        ', '2023-02-02 12:00:00', 24),
-        ('$argon2d$v=19$m=19456,t=2,p=4$GIJFAPPanUx4l0IH91IOxA$qQkCl8Uk15VV3H2hdzbBF/6Ui7ivP8qAQBA/3S0aQFc
-        ', '2023-01-01 12:00:00', 25),
-        ('$argon2d$v=19$m=19456,t=2,p=4$+ACJNE7vakxjk8KQUzgJ8w$b9zyWXYDE9r8Ck0G34wZJVQhyEW2rtzIhaiNd9764AU
-        ', '2023-02-02 12:00:00', 26),
-        ('$argon2d$v=19$m=19456,t=2,p=4$CWfsskG4UiQuFqgRA+VDgQ$dBb4PsMBqmFoGBpbesICvt5GnCbTqOdePV7FB3A1Pso
-        ', '2023-01-01 12:00:00', 27),
-        ('$argon2d$v=19$m=19456,t=2,p=4$m14YeV9E9OspEe0sHnd0GQ$4IatEbK0jtUJ+4PnGdaT89+TXR9xmQG67O96ZSi0ios
-        ', '2023-02-02 12:00:00', 28),
-        ('$argon2d$v=19$m=19456,t=2,p=4$77Qb1M5qIONe0Ec0isW6Kw$PnI6Awu05hWK0WFNOP20nq38OyLbmBeoZKcMLNbFXWw
-        ', '2023-01-01 12:00:00', 29),
-        ('$argon2d$v=19$m=19456,t=2,p=4$3qGus/VLTciHMypPJ8R7EQ$0bLM+lHuKDgAU6xFxivyN1eZLvIRSVqYSeS2l3KTolA
-        ', '2023-01-01 12:00:00', 30),
-        ('$argon2d$v=19$m=19456,t=2,p=4$kczl0+wLd7ZPE14BW/iraw$4SOi7zWIkhQemiPbkjZUruYp0JbpPAL+5DbP8oCV3H0
-        ', '2023-02-02 12:00:00', 31);`
+        ', '2023-02-02 12:00:00', 18);`
       )
     );
 
@@ -172,15 +133,24 @@ const seed = async () => {
           ('2023-11-11', 7, 16, 'Expert'),
           ('2023-10-10', 7, 17, 'Impacté'),
           ('2023-11-11', 8, 18, 'Expert'),
-          ('2023-10-10', 8, 19, 'Impacté'),
-          ('2023-11-11', 9, 20, 'Expert'),
-          ('2023-10-10', 9, 21, 'Impacté'),
-          ('2023-11-11', 10, 22, 'Expert'),
-          ('2023-10-10', 10, 23, 'Impacté'),
-          ('2023-11-11', 11, 24, 'Expert'),
-          ('2023-10-10', 11, 25, 'Impacté'),
-          ('2023-11-11', 12, 26, 'Expert'),
-          ('2023-10-10', 12, 27, 'Impacté');`
+          ('2023-01-01', 1, 20, 'Expert'),
+          ('2023-02-02', 1, 2, 'Impacté'),
+          ('2023-03-03', 1, 3, 'Expert'),
+          ('2023-04-04', 1, 4, 'Impacté'),
+          ('2023-05-05', 2, 5, 'Expert'),
+          ('2023-06-06', 2, 6, 'Impacté'),
+          ('2023-07-07', 3, 7, 'Expert'),
+          ('2023-08-08', 3, 8, 'Impacté'),
+          ('2023-09-09', 3, 9, 'Expert'),
+          ('2023-10-10', 4, 10, 'Impacté'),
+          ('2023-11-11', 4, 11, 'Expert'),
+          ('2023-12-12', 5, 12, 'Impacté'),
+          ('2023-10-10', 5, 13, 'Impacté'),
+          ('2023-11-11', 6, 14, 'Expert'),
+          ('2023-10-10', 6, 15, 'Impacté'),
+          ('2023-11-11', 7, 16, 'Expert'),
+          ('2023-10-10', 7, 17, 'Impacté'),
+          ('2023-11-11', 8, 18, 'Expert');`
       )
     );
 

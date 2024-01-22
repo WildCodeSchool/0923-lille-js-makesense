@@ -1,32 +1,38 @@
 import "./UpdateCreateDecisionForm.scss";
+import { useEffect, useState } from "react";
 import { mockUser } from "../../mockData";
+import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateCreateDecisionFormImpacted() {
+  const { decisionId } = useDecisionContext();
+
+  const [updateImpacted, setupdateImpacted] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/impacte`
+    )
+      .then((response) => response.json())
+      .then((data) => setupdateImpacted(data))
+      .catch((error) => console.error(error));
+  }, [decisionId]);
   return (
     <article className="createDecisionForm__impacted">
       <h2 className="createDecisionForm__titles">Impacté·e·s</h2>
       <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
         <ul className="createDecisionForm__list">
-          <li className="createDecisionForm__chosen">
-            <img
-              src={mockUser[2].picture}
-              alt="avatar de la personne impactée choisie"
-              className="createDecisionForm__chosen--avatar"
-            />
-            <p className="createDeicisionForm__chosen--fullname">
-              {mockUser[2].firstname} {mockUser[2].lastname}
-            </p>
-          </li>
-          <li className="createDecisionForm__chosen">
-            <img
-              src={mockUser[2].picture}
-              alt="avatar de la personne impactée choisie"
-              className="createDecisionForm__chosen--avatar"
-            />
-            <p className="createDeicisionForm__chosen--fullname">
-              {mockUser[2].firstname} {mockUser[2].lastname}
-            </p>
-          </li>
+          {updateImpacted.map((updateImpacteds) => (
+            <li className="createDecisionForm__chosen">
+              <img
+                src={mockUser[2].picture}
+                alt="avatar de la personne impactée choisie"
+                className="createDecisionForm__chosen--avatar"
+              />
+              <p className="createDeicisionForm__chosen--fullname">
+                {updateImpacteds.firstname} {updateImpacteds.lastname}
+              </p>
+            </li>
+          ))}
         </ul>
         <form className="createDecisionForm__search">
           <input

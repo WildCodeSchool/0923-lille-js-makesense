@@ -1,5 +1,4 @@
 import "./DescriptionBox.scss";
-import "../../assets/image/user-pen.png";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -23,7 +22,7 @@ function DescriptionBox({
     fetch(
       `${
         import.meta.env.VITE_BACKEND_URL
-      }/api/decisions/${parseInt(decisionId, 10)}/paragraphs`
+      }/api/decisions/${decisionId}/paragraphs`
     )
       .then((response) => response.json())
       .then((data) => setContent(data))
