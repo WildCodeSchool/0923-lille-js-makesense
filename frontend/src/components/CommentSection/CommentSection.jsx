@@ -6,7 +6,6 @@ function CommentSection() {
   const { decisionId } = useDecisionContext();
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
-
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/comments`
