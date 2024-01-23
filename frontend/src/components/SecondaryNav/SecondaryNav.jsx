@@ -18,7 +18,7 @@ function SecondaryNav() {
         </a>
       </ul>
       <img
-        src="../src/assets/ban-bottom.png"
+        src={`${import.meta.env.VITE_BACKEND_URL}/images/ban-bottom.png`}
         alt="decoration navigation"
         className="secondaryNav__bottom"
       />

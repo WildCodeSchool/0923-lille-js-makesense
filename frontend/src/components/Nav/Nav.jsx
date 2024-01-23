@@ -48,7 +48,9 @@ function Nav() {
       <Link to="/homepage" className="nav__logo">
         <img
           className="nav__logo--img"
-          src="./src/assets/logo-makesense-dark.png"
+          src={`${
+            import.meta.env.VITE_BACKEND_URL
+          }/images/logo-makesense-dark.png`}
           alt="Logo Make Sense"
         />
       </Link>
@@ -76,7 +78,7 @@ function Nav() {
           role="presentation"
         />
         <img
-          src="/src/assets/image/user-pen.png"
+          src={`${import.meta.env.VITE_BACKEND_URL}/images/user-pen.png`}
           alt="logo éditer"
           className="nav__avatar--edit"
         />
