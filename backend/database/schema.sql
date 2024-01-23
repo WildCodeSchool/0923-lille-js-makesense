@@ -27,7 +27,7 @@ CREATE TABLE decision (
   decision_date DATE NOT NULL,
   decision_delay VARCHAR(50),
   /* frontend sends one of those statuses: 
-  "Prise de décision commencée"
+  "Décision commencée"
   "Première décision prise"
   "Conflit sur la décision"
   "Décision définitive"

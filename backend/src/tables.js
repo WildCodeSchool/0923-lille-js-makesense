@@ -6,11 +6,13 @@
 const UserManager = require("./models/UserManager");
 const DecisionManager = require("./models/DecisionManager");
 const CommentManager = require("./models/CommentManager");
+const ParagraphManager = require("./models/ParagraphManager");
 
 const managers = [
   UserManager,
   DecisionManager,
   CommentManager,
+  ParagraphManager,
 
   // Add other managers here
 ];

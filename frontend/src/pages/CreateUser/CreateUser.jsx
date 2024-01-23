@@ -127,6 +127,7 @@ function CreateUser() {
         </button>
       </form>
       <p className="createuser__message">{message}</p>
+      <p className="createuser__message">{message}</p>
     </main>
   );
 }

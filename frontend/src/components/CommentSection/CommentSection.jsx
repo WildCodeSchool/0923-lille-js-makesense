@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDecisionContext } from "../../contexts/decisionContext";
 import "./CommentSection.scss";
 
 function CommentSection() {
+  const { decisionId } = useDecisionContext();
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
+  useEffect(() => {
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/comments`
+    )
+      .then((response) => response.json())
+      .then((data) => setComment(data))
+      .catch((error) => console.error(error));
+  }, [decisionId]);
 
   const onChangeHandler = (event) => {
     setComment(event.target.value);
@@ -62,7 +72,7 @@ function CommentSection() {
             type="button"
             className="comment__button"
           >
-            Envoyer
+            Commenter
           </button>
         </section>
       </section>

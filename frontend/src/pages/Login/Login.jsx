@@ -4,24 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 
 function Login() {
-  // References for email and password inputs
+  // Références pour les champs email et mot de passe
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const { setUser } = useContext(AuthContext);
 
-  // Hook for navigation
+  // Hook pour la navigation
   const navigate = useNavigate();
 
+  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Ask for a connexion
+      // Appel à l'API pour demander une connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
-          method: "post",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: emailRef.current.value,
@@ -29,7 +30,7 @@ function Login() {
           }),
         }
       );
-      // If the connexion is successful
+      // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         const user = await response.json();
 
@@ -37,10 +38,11 @@ function Login() {
 
         navigate("/homepage");
       } else {
-        // If the connexion fails
+        // Log des détails de la réponse en cas d'échec
         console.info(response);
       }
     } catch (err) {
+      // Log des erreurs possibles
       console.error(err);
     }
   };
@@ -49,7 +51,9 @@ function Login() {
     <main className="login__content">
       <img
         className="login__logo"
-        src="../src/assets/image/logo-Make_sense.png"
+        src={`${
+          import.meta.env.VITE_BACKEND_URL
+        }/public/images/logoMakeSense.png`}
         alt="logo"
       />
       <form className="login__form" onSubmit={handleSubmit}>

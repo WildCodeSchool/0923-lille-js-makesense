@@ -1,23 +1,41 @@
 import "./Decision.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDecisionContext } from "../../contexts/decisionContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 
 function Decision() {
   const [writeComment, setWriteComment] = useState();
+  const { decisionId } = useDecisionContext();
+  const [decision, setDecision] = useState(1); // should I put a "" instead?
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
+      .then((response) => response.json())
+      .then((data) => setDecision(data))
+      .catch((error) => console.error(error));
+  }, []);
   return (
     <main className="decision__page">
       <header className="decision__page--header">
         <h2 className="openAndClose__date">
-          Date d'ouverture: 00/00/2023 <br />
-          Date de cloture: 00/00/2024
+          Date d'ouverture: {decision.decision_date} <br />
+          Date de clôture: {decision.decision_delay}
         </h2>
-        <ProgressBar />
+        <ProgressBar status={decision.status} />
       </header>
       <section className="decision__page--body">
         <section className={`left__section ${writeComment ? "hidden" : null}`}>
-          <DescriptionBox />
+          <DescriptionBox
+            title={decision.decision_title}
+            status={decision.status}
+            location={decision.location}
+            comments={decision.nb_comments}
+            picture={decision.picture}
+            firstname={decision.firstname}
+            lastname={decision.lastname}
+            decisionId={decisionId}
+          />
         </section>
         <section
           className={`right__section ${!writeComment ? "hidden" : null}`}

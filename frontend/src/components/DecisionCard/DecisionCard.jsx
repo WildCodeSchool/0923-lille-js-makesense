@@ -1,29 +1,41 @@
 import { Link } from "react-router-dom";
 import "./DecisionCard.scss";
 import PropTypes from "prop-types";
+import { useDecisionContext } from "../../contexts/decisionContext";
 
-function DecisionCard({ mockUser, mockComments, title, status }) {
+function DecisionCard({
+  title,
+  status,
+  authorFirstname,
+  authorLastname,
+  location,
+  comments,
+  picture,
+  id,
+}) {
+  const { setDecisionId } = useDecisionContext();
+  const handleClick = () => {
+    setDecisionId(id);
+  };
   return (
-    <Link to="/decision">
+    <Link onClick={handleClick} to="/decision">
       <button type="button" className="decisionCard__container">
         <h2>{title}</h2>
         <p className="decisionCard__author">
           <img
-            src={mockUser.picture}
+            src={picture}
             alt="avatar de l'auteur"
             className="decisionCard__avatar"
           />
           par
           <strong className="decisionCard__author--fullname">
-            {mockUser.firstname} {mockUser.lastname}
+            {authorFirstname} {authorLastname}
           </strong>
         </p>
         <span className="decisionCard__beans">
           <span className="decisionCard__status">{status}</span>
-          <span className="decisionCard__location">{mockUser.location}</span>
-          <span className="decisionCard__comments">
-            {mockComments.length} avis
-          </span>
+          <span className="decisionCard__location">{location}</span>
+          <span className="decisionCard__comments">{comments} avis</span>
         </span>
       </button>
     </Link>
@@ -31,15 +43,14 @@ function DecisionCard({ mockUser, mockComments, title, status }) {
 }
 
 DecisionCard.propTypes = {
-  mockUser: PropTypes.shape({
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-  }).isRequired,
-  mockComments: PropTypes.arrayOf.isRequired,
   title: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
+  authorFirstname: PropTypes.string.isRequired,
+  authorLastname: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  comments: PropTypes.number.isRequired,
+  picture: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default DecisionCard;

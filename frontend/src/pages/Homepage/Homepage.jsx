@@ -1,23 +1,38 @@
 import "./Homepage.scss";
-import { mockDecision, mockUser, mockComments } from "../../mockData";
+import { useState, useEffect } from "react";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 
 function Homepage() {
+  const [decisions, setDecisions] = useState();
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
+      .then((response) => response.json())
+      .then((data) => setDecisions(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <>
       <SecondaryNav />
       <h1 className="homepage__title">Décisions en cours</h1>
       <main className="homepage__main">
-        {mockDecision
-          ? mockDecision.map((card) => (
-              <DecisionCard
-                title={card.title}
-                status={card.status}
-                mockUser={mockUser[0]}
-                mockComments={mockComments}
-              />
-            ))
+        {decisions
+          ? decisions
+              .toReversed()
+              .map((card) => (
+                <DecisionCard
+                  key={card.decision_id}
+                  title={card.decision_title}
+                  status={card.status}
+                  authorFirstname={card.firstname}
+                  authorLastname={card.lastname}
+                  location={card.location}
+                  comments={card.nb_comments}
+                  picture={card.picture}
+                  id={card.decision_id}
+                />
+              ))
           : "Loading"}
       </main>
     </>
