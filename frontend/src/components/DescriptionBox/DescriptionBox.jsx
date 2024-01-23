@@ -1,5 +1,5 @@
 import "./DescriptionBox.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 function DescriptionBox({
@@ -10,24 +10,21 @@ function DescriptionBox({
   picture,
   firstname,
   lastname,
-  decisionId,
+  paragraphDetails,
+  paragraphImpact,
+  paragraphBenefits,
+  paragraphRisks,
+  paragraphFirstDecision,
+  paragraphDecision,
+  paragraphFinaleDecision,
 }) {
   const [isCollapsedDetails, setIsCollapsedDetails] = useState();
   const [isCollapsedImpact, setIsCollapsedImpact] = useState();
   const [isCollapsedBenefits, setIsCollapsedBenefits] = useState();
   const [isCollapsedHazards, setIsCollapsedHazards] = useState();
   const [isCollapsedFirstDecision, setIsCollapsedFirstDecision] = useState();
-  const [content, setContent] = useState([0]);
-  useEffect(() => {
-    fetch(
-      `${
-        import.meta.env.VITE_BACKEND_URL
-      }/api/decisions/${decisionId}/paragraphs`
-    )
-      .then((response) => response.json())
-      .then((data) => setContent(data))
-      .catch((error) => console.error(error));
-  }, [decisionId]);
+  const [isCollapsedDecision, setIsCollapsedDecision] = useState();
+  const [isCollapsedFinaleDecision, setIsCollapsedFinaleDecision] = useState();
 
   return (
     <section className="descriptionBox">
@@ -66,9 +63,7 @@ function DescriptionBox({
               isCollapsedDetails ? "collapsed" : "expanded"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              {content[0].paragraph_details}
-            </p>
+            <p className="descriptionBox__body--text">{paragraphDetails}</p>
           </article>
           <button
             type="button"
@@ -84,9 +79,7 @@ function DescriptionBox({
               isCollapsedImpact ? "expanded" : "collapsed"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              {content[0].paragraph_impact}
-            </p>
+            <p className="descriptionBox__body--text">{paragraphImpact}</p>
           </article>
           <button
             type="button"
@@ -102,9 +95,7 @@ function DescriptionBox({
               isCollapsedBenefits ? "expanded" : "collapsed"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              {content[0].paragraph_benefits}
-            </p>
+            <p className="descriptionBox__body--text">{paragraphBenefits}</p>
           </article>
           <button
             type="button"
@@ -120,9 +111,7 @@ function DescriptionBox({
               isCollapsedHazards ? "expanded" : "collapsed"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              {content[0].paragraph_risks}
-            </p>
+            <p className="descriptionBox__body--text">{paragraphRisks}</p>
           </article>
           <button
             type="button"
@@ -141,7 +130,43 @@ function DescriptionBox({
             }`}
           >
             <p className="descriptionBox__body--text">
-              {content[0].paragraph_first_decision}
+              {paragraphFirstDecision}
+            </p>
+          </article>
+          <button
+            type="button"
+            onClick={() => setIsCollapsedDecision(!isCollapsedDecision)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedDecision ? "➖" : "➕"} Décision
+            </h2>
+          </button>
+          <hr className="dividing__line" />
+          <article
+            className={`descriptionBox__body--decision ${
+              isCollapsedDecision ? "expanded" : "collapsed"
+            }`}
+          >
+            <p className="descriptionBox__body--text">{paragraphDecision}</p>
+          </article>
+          <button
+            type="button"
+            onClick={() =>
+              setIsCollapsedFinaleDecision(!isCollapsedFinaleDecision)
+            }
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedFinaleDecision ? "➖" : "➕"} Décision finale
+            </h2>
+          </button>
+          <hr className="dividing__line" />
+          <article
+            className={`descriptionBox__body--finaleDecision ${
+              isCollapsedFinaleDecision ? "expanded" : "collapsed"
+            }`}
+          >
+            <p className="descriptionBox__body--text">
+              {paragraphFinaleDecision}
             </p>
           </article>
         </section>
@@ -159,5 +184,20 @@ DescriptionBox.propTypes = {
   location: PropTypes.string.isRequired,
   comments: PropTypes.number.isRequired,
   picture: PropTypes.string.isRequired,
-  decisionId: PropTypes.number.isRequired,
+  paragraphBenefits: PropTypes.string,
+  paragraphDecision: PropTypes.string,
+  paragraphDetails: PropTypes.string.isRequired,
+  paragraphFinaleDecision: PropTypes.string,
+  paragraphFirstDecision: PropTypes.string,
+  paragraphImpact: PropTypes.string,
+  paragraphRisks: PropTypes.string,
+};
+
+DescriptionBox.defaultProps = {
+  paragraphBenefits: "default",
+  paragraphDecision: "default",
+  paragraphFinaleDecision: "default",
+  paragraphFirstDecision: "default",
+  paragraphImpact: "default",
+  paragraphRisks: "default",
 };

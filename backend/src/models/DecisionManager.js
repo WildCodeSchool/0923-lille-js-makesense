@@ -54,7 +54,7 @@ class DecisionManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT decision.*,
+      `SELECT decision.*, 
       user.firstname, user.lastname, user.location, user.picture,
       paragraph.*,
       COUNT(comment.comment_id) AS nb_comments

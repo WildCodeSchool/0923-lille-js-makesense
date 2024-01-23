@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import UpdateCreateDecisionFormImpacted from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormImpacted";
 import UpdateCreateDecisionFormExperts from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormExperts";
 import UpdateCreateDecisionFormContent from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormContent";
+import ProgressBar from "../../components/UpdateProgressBar/UpdateProgressBar";
 import "./UpdateDecision.scss";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
@@ -42,6 +43,7 @@ function UpdateDecision() {
 
   return (
     <main className="createDecision__main">
+      <ProgressBar />
       {updatedecision && (
         <>
           <UpdateCreateDecisionFormContent

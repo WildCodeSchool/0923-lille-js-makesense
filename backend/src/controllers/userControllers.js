@@ -54,7 +54,10 @@ const readByRole = async (req, res, next) => {
 const updatePicture = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
-    const user = await tables.user.updatePicture(id, req.body);
+    const avatar = `${req.protocol}://${req.get("host")}/public/upload/${
+      req.body.avatar
+    }`;
+    const user = await tables.user.updatePicture(id, avatar);
     if (user == null) {
       res.sendStatus(404);
     } else {
