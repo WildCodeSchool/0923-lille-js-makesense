@@ -54,7 +54,7 @@ const commentControllers = require("./controllers/commentControllers");
 // Route to retrieve a complete posted comment by ID
 router.get("/comment", commentControllers.read);
 // Route to retrieve all comments from the "comment" table with its author and role
-router.get("/allComments", commentControllers.browse);
+router.get("/comment/all", commentControllers.browse);
 // Route to access comments belonging to a posted decision
 router.get("/decisions/:id/comments", commentControllers.readByDecision);
 // Route to add a new comment
@@ -66,9 +66,9 @@ const paragraphsControllers = require("./controllers/paragraphsControllers");
 // Route to get all paragraphs for 1 decision
 router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
 // Route to create decision
-router.post("/createDecision", decisionControllers.createDecision);
+router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
-router.post("/updateDecision", decisionControllers.updateDecision);
+router.post("/decision/update", decisionControllers.updateDecision);
 // Route to retrieve a complete posted decision by ID
 router.get("/decision/:id", decisionControllers.read);
 
