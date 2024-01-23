@@ -54,8 +54,10 @@ class DecisionManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT decision.decision_date, decision.decision_title, CONCAT(user.firstname,' ', user.lastname) AS name, decision.status, paragraph.paragraph_details, paragraph.paragraph_impact, paragraph.paragraph_benefits,
-      paragraph.paragraph_risks, paragraph.paragraph_first_decision, paragraph.paragraph_decision, paragraph.paragraph_finale_decision
+      `SELECT decision.*,
+      user.firstname, user.lastname, user.location, user.picture,
+      paragraph.*,
+      COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id

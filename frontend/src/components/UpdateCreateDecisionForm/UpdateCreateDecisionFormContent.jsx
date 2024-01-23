@@ -1,8 +1,8 @@
-import { useState } from "react";
 import "./UpdateCreateDecisionForm.scss";
 import PropTypes from "prop-types";
 
 function UpdateCreateDecisionFormContent({
+  SelectedValue,
   title,
   details,
   impact,
@@ -10,13 +10,15 @@ function UpdateCreateDecisionFormContent({
   risks,
   firstDecision,
   finalDecision,
+  setSelectedValue,
+  setTitle,
+  setDetails,
+  setImpact,
+  setBenefits,
+  setRisks,
+  setFirstDecision,
+  setFinalDecision,
 }) {
-  const [selectedValue, setSelectedValue] = useState("");
-
-  const handleSelectChange = (event) => {
-    // Mettre à jour la variable d'état avec la valeur sélectionnée
-    setSelectedValue(event.target.value);
-  };
   return (
     <form className="createDecisionForm__content createDecisionForm__content--decision">
       <label className="createDecisionForm__label" htmlFor="titre">
@@ -28,6 +30,7 @@ function UpdateCreateDecisionFormContent({
           className="createDecisionForm__input"
           required
           value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </label>
       <label className="createDecisionForm__status" htmlFor="status">
@@ -35,12 +38,14 @@ function UpdateCreateDecisionFormContent({
         <select
           name="status"
           id="status"
-          value={selectedValue}
-          onChange={handleSelectChange}
+          value={SelectedValue}
+          onChange={(e) => setSelectedValue(e.target.value)}
         >
-          <option value="court">Court terme (deux semaines)</option>
-          <option value="moyen">Moyen terme (Un mois)</option>
-          <option value="long">Long terme (deux mois)</option>
+          <option value="Court terme (deux semaines)">
+            Court terme (deux semaines)
+          </option>
+          <option value="Moyen terme (un mois)">Moyen terme (un mois)</option>
+          <option value="Long terme (deux mois)">Long terme (deux mois)</option>
         </select>
       </label>
       <label className="createDecisionForm__label" htmlFor="section1">
@@ -53,7 +58,9 @@ function UpdateCreateDecisionFormContent({
         className="createDecisionForm__input"
         required
         value={details}
+        onChange={(e) => setDetails(e.target.value)}
       />
+
       <label className="createDecisionForm__label" htmlFor="section2">
         Impact sur l'organisation :
       </label>
@@ -64,6 +71,7 @@ function UpdateCreateDecisionFormContent({
         className="createDecisionForm__input"
         required
         value={impact}
+        onChange={(e) => setImpact(e.target.value)}
       />
       <label className="createDecisionForm__label" htmlFor="section3">
         Bénéfices :
@@ -74,6 +82,7 @@ function UpdateCreateDecisionFormContent({
         placeholder="Quels sont les bénéfices pour Make Sense ?"
         className="createDecisionForm__input"
         value={benefits}
+        onChange={(e) => setBenefits(e.target.value)}
       />
       <label className="createDecisionForm__label" htmlFor="section4">
         Risques potentiels :
@@ -84,6 +93,7 @@ function UpdateCreateDecisionFormContent({
         placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
         className="createDecisionForm__input"
         value={risks}
+        onChange={(e) => setRisks(e.target.value)}
       />
       <label className="createDecisionForm__label" htmlFor="section5">
         Première décision :
@@ -94,6 +104,7 @@ function UpdateCreateDecisionFormContent({
         placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
         className="createDecisionForm__input"
         value={firstDecision}
+        onChange={(e) => setFirstDecision(e.target.value)}
       />
       <label className="createDecisionForm__label" htmlFor="section6">
         Décision définitive :
@@ -104,12 +115,14 @@ function UpdateCreateDecisionFormContent({
         placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
         className="createDecisionForm__input"
         value={finalDecision}
+        onChange={(e) => setFinalDecision(e.target.value)}
       />
     </form>
   );
 }
 
 UpdateCreateDecisionFormContent.propTypes = {
+  SelectedValue: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
   impact: PropTypes.string.isRequired,
@@ -117,5 +130,13 @@ UpdateCreateDecisionFormContent.propTypes = {
   risks: PropTypes.string.isRequired,
   firstDecision: PropTypes.string.isRequired,
   finalDecision: PropTypes.string.isRequired,
+  setSelectedValue: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setDetails: PropTypes.func.isRequired,
+  setImpact: PropTypes.func.isRequired,
+  setBenefits: PropTypes.func.isRequired,
+  setRisks: PropTypes.func.isRequired,
+  setFirstDecision: PropTypes.func.isRequired,
+  setFinalDecision: PropTypes.func.isRequired,
 };
 export default UpdateCreateDecisionFormContent;
