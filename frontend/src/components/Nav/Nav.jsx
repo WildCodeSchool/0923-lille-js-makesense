@@ -31,8 +31,11 @@ function Nav() {
   };
 
   useEffect(() => {
-    if (user.admin_id !== null) {
+    if (!user[0].admin_id) {
       setIsAdmin("nav__links--notAdmin");
+    }
+    if (user[0].admin_id) {
+      setIsAdmin(false);
     }
   }, []);
 

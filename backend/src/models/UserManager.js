@@ -19,6 +19,11 @@ class UserManager extends AbstractManager {
       `INSERT INTO authentication (hashed_password, auth_date_time, user_id) VALUES (?, NOW(), LAST_INSERT_ID());`,
       [user.hashedPassword]
     );
+    if (user.admin) {
+      await this.database.query(
+        `INSERT INTO admin (user_id) VALUES (LAST_INSERT_ID());`
+      );
+    }
     // Return the ID of the newly inserted user
     return result.insertId;
   }
