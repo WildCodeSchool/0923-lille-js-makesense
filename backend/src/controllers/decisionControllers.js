@@ -85,6 +85,7 @@ const updatePicture = async (req, res, next) => {
 const createDecision = async (req, res, next) => {
   const decision = req.body;
   try {
+    // Insert the decision into the database
     const insertId = await tables.decision.create(decision);
     res.status(201).json({ insertId });
   } catch (err) {
