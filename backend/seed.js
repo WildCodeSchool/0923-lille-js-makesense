@@ -136,7 +136,7 @@ const seed = async () => {
     queries.push(
       database.query(
         `INSERT INTO decision (decision_date,decision_delay, status, decision_title, user_id) VALUES
-          ('2023-01-01',"Court terme (deux semaines)", 'Prise de décision commencée', 'Decision 1', 1),
+          ('2023-01-01',"Court terme (deux semaines)", 'Décision commencée', 'Decision 1', 1),
           ('2023-02-02', "Court terme (deux semaines)", 'Première décision prise', 'Decision 2', 2),
           ('2023-03-03',"Moyen terme (un mois)", 'Conflit sur la décision', 'Decision 3', 3),
           ('2023-04-04',"Moyen terme (un mois)", 'Décision définitive', 'Decision 4', 4),
@@ -145,7 +145,7 @@ const seed = async () => {
           ('2023-07-07',"Moyen terme (un mois)", 'Décision non aboutie', 'Decision 7', 7),
           ('2023-08-08',"Moyen terme (un mois)", 'Décision terminée', 'Decision 8', 8),
           ('2023-09-09',"Long terme (deux mois)", 'Conflit sur la décision', 'Decision 9', 9),
-          ('2023-10-10',"Long terme (deux mois)", 'Prise de décision commencée', 'Decision 10', 10),
+          ('2023-10-10',"Long terme (deux mois)", 'Décision commencée', 'Decision 10', 10),
           ('2023-11-11',"Long terme (deux mois)", 'Décision définitive', 'Decision 11', 11),
           ('2023-12-12',"Long terme (deux mois)", 'Première décision prise', 'Decision 12', 12);`
       )
@@ -234,18 +234,18 @@ const seed = async () => {
     queries.push(
       database.query(
         `INSERT INTO paragraph (paragraph_details, paragraph_impact, paragraph_benefits, paragraph_risks, paragraph_first_decision, paragraph_decision, paragraph_finale_decision, decision_id) VALUES
-          ('Paragraph 1 content', 'Paragraph 2 content', 'Paragraph 3 content', 'Paragraph 4 content', 'Paragraph 49 content', 'Paragraph 50 content', 'Paragraph 56 content', 1),
-          ('Paragraph 5 content', 'Paragraph 6 content', 'Paragraph 7 content', 'Paragraph 8 content', NULL, NULL, NULL, 2),
-          ('Paragraph 9 content', 'Paragraph 10 content', 'Paragraph 11 content', 'Paragraph 12 content', NULL, NULL, NULL, 3),
-          ('Paragraph 13 content', 'Paragraph 14 content', 'Paragraph 15 content', 'Paragraph 16 content', NULL, NULL, NULL, 4),
-          ('Paragraph 17 content', 'Paragraph 18 content', 'Paragraph 19 content', 'Paragraph 20 content', 'Paragraph 52 content', 'Paragraph 51 content', NULL, 5),
-          ('Paragraph 21 content', 'Paragraph 22 content', 'Paragraph 23 content', 'Paragraph 24 content', NULL, NULL, NULL, 6),
-          ('Paragraph 25 content', 'Paragraph 26 content', 'Paragraph 27 content', 'Paragraph 28 content', 'Paragraph 49 content', NULL, 'Paragraph 57 content', 7),
-          ('Paragraph 29 content', 'Paragraph 30 content', 'Paragraph 31 content', 'Paragraph 32 content', 'Paragraph 53 content', 'Paragraph 54 content', 'Paragraph 58 content', 8),
-          ('Paragraph 33 content', 'Paragraph 34 content', 'Paragraph 35 content', 'Paragraph 36 content', NULL, NULL, NULL, 9),
-          ('Paragraph 37 content', 'Paragraph 38 content', 'Paragraph 39 content', 'Paragraph 40 content', 'Paragraph 55 content', 'Paragraph 56 content', 'Paragraph 59 content', 10),
-          ('Paragraph 41 content', 'Paragraph 42 content', 'Paragraph 43 content', 'Paragraph 44 content', NULL, NULL, NULL, 11),
-          ('Paragraph 45 content', 'Paragraph 46 content', 'Paragraph 47 content', 'Paragraph 48 content', NULL, NULL, NULL, 12);`
+        ('Paragraph 1 content', 'Paragraph 2 content', 'Paragraph 3 content', 'Paragraph 4 content', 'Paragraph 49 content', 'Paragraph 50 content', 'Paragraph 56 content', 1),
+        ('Paragraph 5 content', 'Paragraph 6 content', 'Paragraph 7 content', 'Paragraph 8 content', NULL, NULL, NULL, 2),
+        ('Paragraph 9 content', 'Paragraph 10 content', 'Paragraph 11 content', 'Paragraph 12 content', NULL, NULL, NULL, 3),
+        ('Paragraph 13 content', 'Paragraph 14 content', 'Paragraph 15 content', 'Paragraph 16 content', NULL, NULL, NULL, 4),
+        ('Paragraph 17 content', 'Paragraph 18 content', 'Paragraph 19 content', 'Paragraph 20 content', 'Paragraph 52 content', 'Paragraph 51 content', NULL, 5),
+        ('Paragraph 21 content', 'Paragraph 22 content', 'Paragraph 23 content', 'Paragraph 24 content', NULL, NULL, NULL, 6),
+        ('Paragraph 25 content', 'Paragraph 26 content', 'Paragraph 27 content', 'Paragraph 28 content', 'Paragraph 49 content', NULL, 'Paragraph 57 content', 7),
+        ('Paragraph 29 content', 'Paragraph 30 content', 'Paragraph 31 content', 'Paragraph 32 content', 'Paragraph 53 content', 'Paragraph 54 content', 'Paragraph 58 content', 8),
+        ('Paragraph 33 content', 'Paragraph 34 content', 'Paragraph 35 content', 'Paragraph 36 content', NULL, NULL, NULL, 9),
+        ('Paragraph 37 content', 'Paragraph 38 content', 'Paragraph 39 content', 'Paragraph 40 content', 'Paragraph 55 content', 'Paragraph 56 content', 'Paragraph 59 content', 10),
+        ('Paragraph 41 content', 'Paragraph 42 content', 'Paragraph 43 content', 'Paragraph 44 content', NULL, NULL, NULL, 11),
+        ('Paragraph 45 content', 'Paragraph 46 content', 'Paragraph 47 content', 'Paragraph 48 content', NULL, NULL, NULL, 12);`
       )
     );
 

@@ -7,6 +7,7 @@ function CreateUser() {
   const emailRef = useRef();
   const locationRef = useRef();
   const passwordRef = useRef();
+  const [isAdmin, setIsAdmin] = useState(false);
   const [message, setMessage] = useState("");
 
   // Gestionnaire de soumission du formulaire
@@ -26,6 +27,7 @@ function CreateUser() {
             email: emailRef.current.value,
             location: locationRef.current.value,
             password: passwordRef.current.value,
+            admin: isAdmin,
           }),
         }
       );
@@ -106,7 +108,7 @@ function CreateUser() {
               <option value="West Africa">West Africa</option>
             </select>
           </label>
-          <label htmlFor="password" className="createuser__label ">
+          <label htmlFor="password" className="createuser__label">
             <strong>Mot de passe</strong>
             <input
               id="password"
@@ -120,6 +122,32 @@ function CreateUser() {
               Vous devez fournir un mot de passe clair et facile à retenir pour
               l'utilisateur.
             </small>
+          </label>
+          <label htmlFor="admin" className="createuser__label">
+            <strong>Cet utilisateur est-il un administrateur ?</strong>
+            <span className="createuser__input--radios">
+              <label htmlFor="adminNo" className="createuser__input--radioNo">
+                <input
+                  id="adminNo"
+                  type="radio"
+                  name="admin"
+                  value="notAdmin"
+                  onClick={() => setIsAdmin(false)}
+                  checked
+                />
+                Non
+              </label>
+              <label htmlFor="adminYes" className="createuser__input--radioYes">
+                <input
+                  id="adminYes"
+                  type="radio"
+                  name="admin"
+                  value="isAdmin"
+                  onClick={() => setIsAdmin(true)}
+                />
+                Oui
+              </label>
+            </span>
           </label>
         </div>
         <button className="createuser__button" type="submit">

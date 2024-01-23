@@ -1,12 +1,30 @@
 import "./DescriptionBox.scss";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function DescriptionBox() {
+function DescriptionBox({
+  title,
+  status,
+  location,
+  comments,
+  picture,
+  firstname,
+  lastname,
+  paragraphDetails,
+  paragraphImpact,
+  paragraphBenefits,
+  paragraphRisks,
+  paragraphFirstDecision,
+  paragraphDecision,
+  paragraphFinaleDecision,
+}) {
   const [isCollapsedDetails, setIsCollapsedDetails] = useState();
   const [isCollapsedImpact, setIsCollapsedImpact] = useState();
   const [isCollapsedBenefits, setIsCollapsedBenefits] = useState();
   const [isCollapsedHazards, setIsCollapsedHazards] = useState();
   const [isCollapsedFirstDecision, setIsCollapsedFirstDecision] = useState();
+  const [isCollapsedDecision, setIsCollapsedDecision] = useState();
+  const [isCollapsedFinaleDecision, setIsCollapsedFinaleDecision] = useState();
 
   return (
     <section className="descriptionBox">
@@ -14,22 +32,18 @@ function DescriptionBox() {
         <header className="descriptionBox__header">
           <img
             className="descriptionBox__header--avatar"
-            src={`${
-              import.meta.env.VITE_BACKEND_URL
-            }/assets/images/vincent.png`}
+            src={picture}
             alt="avatar de l'auteur du poste"
           />
           <section className="descriptionBox__header--right">
-            <h1 className="descriptionBox__header__right--title">
-              Titre de la décision sur toute la zone très lisible
-            </h1>
+            <h1 className="descriptionBox__header__right--title">{title}</h1>
             <p className="descriptionBox__header__right--writer">
-              par Vincent Rousseaux
+              par {firstname} {lastname}
             </p>
             <span className="decision__beans">
-              <span className="decision__status">en cours</span>
-              <span className="decision__location">Lille</span>
-              <span className="decision__comments">4 avis</span>
+              <span className="decision__status">{status}</span>
+              <span className="decision__location">{location}</span>
+              <span className="decision__comments">{comments} avis</span>
             </span>
           </section>
         </header>
@@ -49,15 +63,7 @@ function DescriptionBox() {
               isCollapsedDetails ? "collapsed" : "expanded"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
-            </p>
+            <p className="descriptionBox__body--text">{paragraphDetails}</p>
           </article>
           <button
             type="button"
@@ -73,15 +79,7 @@ function DescriptionBox() {
               isCollapsedImpact ? "expanded" : "collapsed"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
-            </p>
+            <p className="descriptionBox__body--text">{paragraphImpact}</p>
           </article>
           <button
             type="button"
@@ -97,15 +95,7 @@ function DescriptionBox() {
               isCollapsedBenefits ? "expanded" : "collapsed"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
-            </p>
+            <p className="descriptionBox__body--text">{paragraphBenefits}</p>
           </article>
           <button
             type="button"
@@ -121,15 +111,7 @@ function DescriptionBox() {
               isCollapsedHazards ? "expanded" : "collapsed"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
-            </p>
+            <p className="descriptionBox__body--text">{paragraphRisks}</p>
           </article>
           <button
             type="button"
@@ -148,13 +130,43 @@ function DescriptionBox() {
             }`}
           >
             <p className="descriptionBox__body--text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              aperiam, ipsa enim beatae velit doloremque molestiae aspernatur
-              maiores sit tenetur repellat nulla deserunt dolorum eveniet
-              exercitationem ex aliquam earum excepturi! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Quaerat, natus doloremque
-              numquam aspernatur eveniet suscipit fuga atque. Corrupti, vitae
-              nulla dicta id alias a repellat labore enim veniam, aperiam magni!
+              {paragraphFirstDecision}
+            </p>
+          </article>
+          <button
+            type="button"
+            onClick={() => setIsCollapsedDecision(!isCollapsedDecision)}
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedDecision ? "➖" : "➕"} Décision
+            </h2>
+          </button>
+          <hr className="dividing__line" />
+          <article
+            className={`descriptionBox__body--decision ${
+              isCollapsedDecision ? "expanded" : "collapsed"
+            }`}
+          >
+            <p className="descriptionBox__body--text">{paragraphDecision}</p>
+          </article>
+          <button
+            type="button"
+            onClick={() =>
+              setIsCollapsedFinaleDecision(!isCollapsedFinaleDecision)
+            }
+          >
+            <h2 className="title__paragraph">
+              {isCollapsedFinaleDecision ? "➖" : "➕"} Décision finale
+            </h2>
+          </button>
+          <hr className="dividing__line" />
+          <article
+            className={`descriptionBox__body--finaleDecision ${
+              isCollapsedFinaleDecision ? "expanded" : "collapsed"
+            }`}
+          >
+            <p className="descriptionBox__body--text">
+              {paragraphFinaleDecision}
             </p>
           </article>
         </section>
@@ -163,3 +175,29 @@ function DescriptionBox() {
   );
 }
 export default DescriptionBox;
+
+DescriptionBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  comments: PropTypes.number.isRequired,
+  picture: PropTypes.string.isRequired,
+  paragraphBenefits: PropTypes.string,
+  paragraphDecision: PropTypes.string,
+  paragraphDetails: PropTypes.string.isRequired,
+  paragraphFinaleDecision: PropTypes.string,
+  paragraphFirstDecision: PropTypes.string,
+  paragraphImpact: PropTypes.string,
+  paragraphRisks: PropTypes.string,
+};
+
+DescriptionBox.defaultProps = {
+  paragraphBenefits: "default",
+  paragraphDecision: "default",
+  paragraphFinaleDecision: "default",
+  paragraphFirstDecision: "default",
+  paragraphImpact: "default",
+  paragraphRisks: "default",
+};

@@ -4,11 +4,11 @@ const tables = require("../tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
-    // Fetch all users from the database
-    const users = await tables.user.readAll();
+    // Fetch all paragraphs from the database
+    const paragraphs = await tables.paragraph.readAll();
 
-    // Respond with the users in JSON format
-    res.json(users);
+    // Respond with the paragraphs in JSON format
+    res.json(paragraphs);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -18,14 +18,14 @@ const browse = async (req, res, next) => {
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
-    // Fetch a specific user from the database based on the provided ID
-    const user = await tables.user.read(req.params.id);
-    // If the user is not found, respond with HTTP 404 (Not Found)
-    // Otherwise, respond with the user in JSON format
-    if (user == null) {
+    // Fetch a specific paragraph from the database based on the provided decision ID
+    const content = await tables.paragraph.read(req.params.id);
+    // If the paragraphs are not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the paragraphs in JSON format
+    if (content == null) {
       res.sendStatus(404);
     } else {
-      res.json(user);
+      res.json(content);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -35,14 +35,14 @@ const read = async (req, res, next) => {
 
 const readByRole = async (req, res, next) => {
   try {
-    // Fetch a specific user's role from the database based on the provided ID
-    const user = await tables.user.readByRole(req.params.id);
-    // If the user is not found, respond with HTTP 404 (Not Found)
-    // Otherwise, respond with the user in JSON format
-    if (user == null) {
+    // Fetch a specific paragraph's role from the database based on the provided ID
+    const paragraph = await tables.paragraph.readByRole(req.params.id);
+    // If the paragraph is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the paragraph in JSON format
+    if (paragraph == null) {
       res.sendStatus(404);
     } else {
-      res.json(user);
+      res.json(paragraph);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -54,14 +54,11 @@ const readByRole = async (req, res, next) => {
 const updatePicture = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
-    const avatar = `${req.protocol}://${req.get("host")}/public/upload/${
-      req.body.avatar
-    }`;
-    const user = await tables.user.updatePicture(id, avatar);
-    if (user == null) {
+    const paragraph = await tables.paragraph.updatePicture(id, req.body);
+    if (paragraph == null) {
       res.sendStatus(404);
     } else {
-      res.json(user);
+      res.json(paragraph);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -71,13 +68,13 @@ const updatePicture = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-  // Extract the user data from the request body
-  const user = req.body;
+  // Extract the paragraph data from the request body
+  const paragraph = req.body;
   try {
-    // Insert the user into the database
-    const insertId = await tables.user.create(user);
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json(insertId);
+    // Insert the paragraph into the database
+    const insertId = await tables.paragraph.create(paragraph);
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted paragraph
+    res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

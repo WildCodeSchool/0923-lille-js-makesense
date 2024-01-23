@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1%;
   height: 91vh;
   margin-top: 9vh;
   background-color: $secondary-light;
@@ -32,13 +31,12 @@
   font-size: large;
   background-color: $secondary-dark;
   width: 50%;
-  padding: 5%;
+  padding: 4%;
 }
 
 .createuser__form--inputsBox {
   @include box;
   width: 30vw;
-  height: 60vh;
   margin-block: 2%;
   padding-inline: 5%;
   display: flex;
@@ -65,6 +63,29 @@
   width: 100%;
   height: 2rem;
   padding-inline: 1%;
+}
+
+.createuser__input--radios {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  background-color: transparent;
+  & input {
+    transform: scale(1.5);
+  }
+  & * {
+    background-color: transparent;
+  }
+}
+
+.createuser__input--radioNo {
+  margin-inline-end: 10%;
+}
+
+.createuser__input--radioNo,
+.createuser__input--radioYes {
+  display: flex;
+  gap: 20%;
 }
 
 .createuser__message {

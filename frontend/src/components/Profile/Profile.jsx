@@ -2,16 +2,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Profile.scss";
 
-function Profile({ handleMoveBubble, edit }) {
+function Profile({ handleMoveBubble, showProfile, user }) {
   return (
-    edit && (
+    showProfile && (
       <nav className="bubble__menu" onMouseLeave={handleMoveBubble}>
         <ul className="bubble__list">
-          <li>Prénom</li>
-          <li>Nom</li>
-          <li>Email</li>
-          <li>Bureau</li>
-          <li>Poste</li>
+          <li>
+            {user.firstname} {user.lastname}
+          </li>
+          <li>{user.email}</li>
+          <li>{user.location}</li>
           <li>
             <a
               className="bubble__help"
@@ -35,8 +35,9 @@ function Profile({ handleMoveBubble, edit }) {
 }
 
 Profile.propTypes = {
-  edit: PropTypes.bool.isRequired,
+  showProfile: PropTypes.bool.isRequired,
   handleMoveBubble: PropTypes.func.isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 export default Profile;

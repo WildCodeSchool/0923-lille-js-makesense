@@ -22,7 +22,7 @@ function ProgressBar() {
             className="status__icon seeding "
             src={`${
               import.meta.env.VITE_BACKEND_URL
-            }/assets/images/hand-holding-seeding.png`}
+            }/images/hand-holding-seeding.png`}
             alt="icône décision commencée"
           />
         </section>
@@ -38,9 +38,7 @@ function ProgressBar() {
         >
           <img
             className="status__icon tulip"
-            src={`${
-              import.meta.env.VITE_BACKEND_URL
-            }/assets/images/flower-tulip.png`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/flower-tulip.png`}
             alt="icône décision prise"
           />
         </section>
@@ -58,7 +56,7 @@ function ProgressBar() {
             className="status__icon flower"
             src={`${
               import.meta.env.VITE_BACKEND_URL
-            }/assets/images/flower-daffodil.png`}
+            }/images/flower-daffodil.png`}
             alt="icône décision définitive"
           />
         </section>
@@ -74,7 +72,7 @@ function ProgressBar() {
         >
           <img
             className="status__icon faucet"
-            src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/faucet.png`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/faucet.png`}
             alt="icône non aboutie"
           />
         </section>
@@ -92,7 +90,7 @@ function ProgressBar() {
             className="status__icon bouquet"
             src={`${
               import.meta.env.VITE_BACKEND_URL
-            }/assets/images/flower-bouquet.png`}
+            }/images/flower-bouquet.png`}
             alt="icône décision terminé"
           />
         </section>
