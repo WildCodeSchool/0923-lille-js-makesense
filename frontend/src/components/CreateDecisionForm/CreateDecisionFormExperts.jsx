@@ -75,7 +75,7 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
                   className="createDecisionForm__chosen--remove"
                   onClick={() => handleRemoveUser(user.user_id)}
                 >
-                  x
+                  -
                 </button>
               </p>
             </li>
@@ -88,10 +88,10 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
             placeholder="Rechercher expert·e·s"
             value={searchUser}
             onChange={handleInputChange}
-            list="users-list"
+            list="usersList"
             ref={expertRef}
           />
-          <datalist id="users-list">
+          <datalist id="usersList">
             {users.map((user) => (
               <option
                 key={user.user_id}
