@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateDecisionFormContent from "../../components/CreateDecisionForm/CreateDecisionFormContent";
 import CreateDecisionFormExperts from "../../components/CreateDecisionForm/CreateDecisionFormExperts";
@@ -21,6 +21,13 @@ function CreateDecision() {
 
   // Hook pour la navigation
   const navigate = useNavigate();
+
+  // Le site n'est accessible qu'en étant connecté
+  useEffect(() => {
+    if (user[0].user_id === 0) {
+      navigate("/");
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
