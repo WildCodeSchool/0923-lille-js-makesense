@@ -1,15 +1,35 @@
 .edit_button {
-  position: absolute;
-  right: 2.2vw;
-  top: 25vh;
+  position: relative;
+  left: 32.2vw;
+  top: 5vh;
   padding-top: 1vh;
+  padding-bottom: 1vh;
   padding-inline: 1vw;
-  height: 5vh;
+  /* height: 5vh; */
   text-align: center;
-  width: auto;
+  /* width: auto; */
   border-radius: 15px;
   background-color: rgb(12, 57, 68);
   color: white;
   font-size: clamp(18px, 2vw, 1.2rem);
   cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .edit_button {
+    position: relative;
+    left: 52.2vw;
+    top: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-inline: 1vw;
+    /* height: 5vh; */
+    text-align: center;
+    /* width: auto; */
+    border-radius: 15px;
+    background-color: rgb(12, 57, 68);
+    color: white;
+    font-size: clamp(18px, 2vw, 1.2rem);
+    cursor: pointer;
+  }
 }
