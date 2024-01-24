@@ -7,6 +7,10 @@
   flex-direction: column;
   @include scroll;
   overflow-x: hidden;
+  background-color: $background;
+  & * {
+    background-color: $background;
+  }
 }
 
 .createDecisionForm__content--choiceBoxes {
@@ -25,7 +29,7 @@
   font-weight: 700;
   margin-block: 1%;
   border-radius: 20px;
-  background-color: $background;
+  background-color: $secondary-background;
   padding: 1%;
   &--avatar {
     @include avatar;
@@ -33,6 +37,26 @@
     width: 40px;
     height: 40px;
   }
+  &--fullname {
+    display: flex;
+    justify-content: space-between;
+    width: 83%;
+    margin-inline-end: 1%;
+  }
+  & * {
+    background-color: $secondary-background;
+  }
+}
+.createDecisionForm__chosen--remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $tertiary-medium;
+  border: 2px solid $tertiary-medium;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .createDecisionForm__search {
@@ -55,8 +79,12 @@
 
 .createDecisionForm__content--decision {
   padding: 1%;
-  height: 80vh;
+  height: 85vh;
   width: 40vw;
+  & textarea {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
   & textarea:focus,
   input:focus {
     outline: none !important;
@@ -71,7 +99,18 @@
       font-size: 30px;
       & input {
         font-size: 20px;
+        background-color: $secondary-background;
+        border-radius: 5px;
       }
     }
+  }
+}
+
+.createDecisionForm__status select {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
   }
 }

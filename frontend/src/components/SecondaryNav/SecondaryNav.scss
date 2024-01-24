@@ -1,7 +1,13 @@
 @import "../../variables";
 
 .secondaryNav__nav {
-  position: sticky;
+  position: fixed;
+  top: 9vh;
+  z-index: 20;
+  background-color: transparent;
+  & * {
+    background-color: transparent;
+  }
 }
 
 .secondaryNav__links * {
@@ -14,6 +20,7 @@
   display: flex;
   justify-content: space-around;
   & a {
+    @include h2;
     color: $accent-medium;
     font-weight: bold;
     padding-block: 1rem;

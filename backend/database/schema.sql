@@ -3,7 +3,6 @@ CREATE TABLE user (
   lastname VARCHAR(100) NOT NULL,
   firstname VARCHAR(100) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  /* frontend sends "Americas", "France", "Lebanon", "Philippines" or "West Africa" */
   location VARCHAR(255) NOT NULL,
   picture VARCHAR(255) NOT NULL DEFAULT 'https://placehold.co/100x100'
 );
@@ -27,7 +26,7 @@ CREATE TABLE decision (
   decision_date DATE NOT NULL,
   decision_delay VARCHAR(50),
   /* frontend sends one of those statuses: 
-  "Prise de décision commencée"
+  "Décision commencée"
   "Première décision prise"
   "Conflit sur la décision"
   "Décision définitive"
@@ -40,7 +39,7 @@ CREATE TABLE decision (
 );
 
 CREATE TABLE assignment (
-	assignment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  assignment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   date DATE NOT NULL,
   /* frontend sends "Expert" or "Impacté" */
   role VARCHAR(10) NOT NULL,
@@ -62,15 +61,12 @@ CREATE TABLE comment (
 
 CREATE TABLE paragraph (
   paragraph_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  /* frontend sends one of those titles:
-  "Détails de la décision"
-  "Impact sur l'organisation"
-  "Bénéfices"
-  "Risques" 
-  "Première décision prise"
-  "Décision définitive" */
-  paragraph_title VARCHAR(50) NOT NULL,
-  paragraph_content TEXT NOT NULL,
+  paragraph_details TEXT NOT NULL,
+  paragraph_impact TEXT,
+  paragraph_benefits TEXT,
+  paragraph_risks TEXT,
+  paragraph_first_decision TEXT,
+  paragraph_finale_decision TEXT,
   decision_id INT NOT NULL,
   FOREIGN KEY (decision_id) REFERENCES decision(decision_id)
 );

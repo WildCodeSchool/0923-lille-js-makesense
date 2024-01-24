@@ -1,42 +1,45 @@
 @import "../../variables";
-.title__paragraph {
-  margin-block: 0.5vh;
-  font-size: clamp(22px, 3vw, 1.5rem);
-  padding-block: 2vh;
-  cursor: pointer;
-}
 
 .descriptionBox {
   @include box;
   height: 75vh;
   width: 50vw;
+  & * {
+    background-color: $background;
+  }
 }
+
+.title__paragraph {
+  @include h2;
+  padding-block: 1%;
+  cursor: pointer;
+}
+
 .descriptionBox__scroll {
+  @include scroll;
   height: 72vh;
   width: 48.5vw;
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .descriptionBox__header {
   display: flex;
   padding-bottom: 3vh;
 }
 .descriptionBox__header--avatar {
-  border-radius: 50%;
-  border: 5px solid white;
-  height: 17vh;
+  @include avatar;
   margin-top: 2vh;
   margin-inline: 1vw;
 }
-.descriptionBox__header__right {
-  margin: 2vw;
+.descriptionBox__header--right {
+  flex-grow: 2;
 }
 .descriptionBox__header__right--title {
-  word-break: break-all;
+  word-break: normal;
   font-size: clamp(25px, 3vw, 1.5rem);
   padding-top: 2vh;
 }
 .descriptionBox__header__right--writer {
-  font-size: clamp(18px, 2vw, 1.5rem);
+  @include h2;
   margin-top: 1vh;
   padding-bottom: 2vh;
 }
@@ -50,45 +53,49 @@
   background-color: $status-bg;
 }
 .decision__location {
-  display: flex;
   @include statusButtons;
   background-color: $location-bg;
-  align-items: center;
 }
-.decision__advices {
+.decision__comments {
   @include statusButtons;
-  background-color: $advice-bg;
+  background-color: $comment-bg;
 }
 .descriptionBox__body--paragraphs {
   display: flex;
   flex-direction: column;
 }
 .descriptionBox__body--text {
-  font-size: clamp(18px, 2vw, 1.2rem);
+  font-size: clamp(12px, 2vw, 1.2rem);
+  background-color: $secondary-background;
 }
 .dividing__line {
-  margin-block: 1.5vh;
+  margin-block: 1vh;
   margin-inline: 1.5vw;
   width: auto;
   height: 3px;
-  background-color: white;
+  background-color: $secondary-background;
   border: none;
 }
 .expanded {
   @include textBox;
+
   padding-block: 1vh;
+  margin-inline-end: 1%;
+  background-color: $secondary-background;
 }
 .collapsed {
   display: none;
+  background-color: $secondary-background;
 }
 
-@keyframes slideOpen {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
+@media screen and (max-width: 700px) {
+  .descriptionBox {
+    width: 90vw;
+    height: auto;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  .descriptionBox__scroll {
+    overflow: hidden;
+    width: auto;
+    height: auto;
   }
 }

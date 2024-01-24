@@ -3,10 +3,17 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
-const ItemManager = require("./models/ItemManager");
+const UserManager = require("./models/UserManager");
+const DecisionManager = require("./models/DecisionManager");
+const CommentManager = require("./models/CommentManager");
+const ParagraphManager = require("./models/ParagraphManager");
 
 const managers = [
-  ItemManager,
+  UserManager,
+  DecisionManager,
+  CommentManager,
+  ParagraphManager,
+
   // Add other managers here
 ];
 

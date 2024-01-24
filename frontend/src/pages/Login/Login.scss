@@ -4,7 +4,7 @@
   font-weight: bold;
   color: $primary-dark;
   font-family: $font-app;
-  background-image: url("../../assets/image/background-image.png");
+  background-image: url("../../assets/background-image.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -13,6 +13,10 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: $background;
+  * {
+    background-color: transparent;
+  }
 }
 .login__form {
   width: 14rem;
@@ -23,13 +27,8 @@
 }
 
 .login__button {
-  width: 10%;
-  padding: 0.4rem;
-  border-radius: 15px;
-  background-color: $primary-medium;
-  color: $background;
-  text-align: center;
-  font-weight: bold;
+  @include buttons;
+  margin-inline: 20%;
 }
 
 .login__input {

@@ -1,8 +1,35 @@
+import { useRef } from "react";
 import "./CreateDecisionForm.scss";
+import PropTypes from "prop-types";
 
-function CreateDecisionFormContent() {
+function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
+  const decisionDelayRef = useRef();
+  const decisionTitleRef = useRef();
+  const paragraphDetailsRef = useRef();
+  const paragraphImpactRef = useRef();
+  const paragraphBenefitsRef = useRef();
+  const paragraphRisksRef = useRef();
+  const paragraphFirstDecisionRef = useRef();
+  const paragraphFinaleDecisionRef = useRef();
+
+  const handleChange = () => {
+    setCreateDecisionFormContent({
+      decisionDelayRef: decisionDelayRef.current.value,
+      decisionTitleRef: decisionTitleRef.current.value,
+      paragraphDetailsRef: paragraphDetailsRef.current.value,
+      paragraphImpactRef: paragraphImpactRef.current.value,
+      paragraphBenefitsRef: paragraphBenefitsRef.current.value,
+      paragraphRisksRef: paragraphRisksRef.current.value,
+      paragraphFirstDecisionRef: paragraphFirstDecisionRef.current.value,
+      paragraphFinaleDecisionRef: paragraphFinaleDecisionRef.current.value,
+    });
+  };
+
   return (
-    <form className="createDecisionForm__content createDecisionForm__content--decision">
+    <article
+      onChange={handleChange}
+      className="createDecisionForm__content createDecisionForm__content--decision"
+    >
       <label className="createDecisionForm__label" htmlFor="titre">
         Titre :&nbsp;&nbsp;
         <input
@@ -11,14 +38,17 @@ function CreateDecisionFormContent() {
           placeholder="Titre..."
           className="createDecisionForm__input"
           required
+          ref={decisionTitleRef}
         />
       </label>
       <label className="createDecisionForm__status" htmlFor="status">
         Délai :&nbsp;&nbsp;
-        <select name="status" id="status">
-          <option value="court">Court terme (deux semaines)</option>
-          <option value="moyen">Moyen terme (Un mois)</option>
-          <option value="long">Long terme (deux mois)</option>
+        <select name="status" id="status" ref={decisionDelayRef}>
+          <option value="Court terme (deux semaines)">
+            Court terme (deux semaines)
+          </option>
+          <option value="Moyen terme (Un mois)">Moyen terme (Un mois)</option>
+          <option value="Long terme (deux mois)">Long terme (deux mois)</option>
         </select>
       </label>
       <label className="createDecisionForm__label" htmlFor="section1">
@@ -29,7 +59,9 @@ function CreateDecisionFormContent() {
         name="section1"
         placeholder="Expliquez l'idée derrière votre proposition."
         className="createDecisionForm__input"
+        rows="10"
         required
+        ref={paragraphDetailsRef}
       />
       <label className="createDecisionForm__label" htmlFor="section2">
         Impact sur l'organisation :
@@ -39,7 +71,9 @@ function CreateDecisionFormContent() {
         name="section2"
         placeholder="En quoi Make Sense sera impacté par cette décision ?"
         className="createDecisionForm__input"
+        rows="10"
         required
+        ref={paragraphImpactRef}
       />
       <label className="createDecisionForm__label" htmlFor="section3">
         Bénéfices :
@@ -48,7 +82,9 @@ function CreateDecisionFormContent() {
         id="section3"
         name="section3"
         placeholder="Quels sont les bénéfices pour Make Sense ?"
+        rows="10"
         className="createDecisionForm__input"
+        ref={paragraphBenefitsRef}
       />
       <label className="createDecisionForm__label" htmlFor="section4">
         Risques potentiels :
@@ -57,7 +93,9 @@ function CreateDecisionFormContent() {
         id="section4"
         name="section4"
         placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
+        rows="10"
         className="createDecisionForm__input"
+        ref={paragraphRisksRef}
       />
       <label className="createDecisionForm__label" htmlFor="section5">
         Première décision :
@@ -66,7 +104,9 @@ function CreateDecisionFormContent() {
         id="section5"
         name="section5"
         placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
+        rows="10"
         className="createDecisionForm__input"
+        ref={paragraphFirstDecisionRef}
       />
       <label className="createDecisionForm__label" htmlFor="section6">
         Décision définitive :
@@ -75,10 +115,16 @@ function CreateDecisionFormContent() {
         id="section6"
         name="section6"
         placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
+        rows="10"
         className="createDecisionForm__input"
+        ref={paragraphFinaleDecisionRef}
       />
-    </form>
+    </article>
   );
 }
+
+CreateDecisionFormContent.propTypes = {
+  setCreateDecisionFormContent: PropTypes.func.isRequired,
+};
 
 export default CreateDecisionFormContent;
