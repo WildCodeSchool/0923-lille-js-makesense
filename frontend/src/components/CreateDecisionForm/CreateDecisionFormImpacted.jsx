@@ -75,7 +75,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
                   className="createDecisionForm__chosen--remove"
                   onClick={() => handleRemoveUser(user.user_id)}
                 >
-                  x
+                  -
                 </button>
               </p>
             </li>
