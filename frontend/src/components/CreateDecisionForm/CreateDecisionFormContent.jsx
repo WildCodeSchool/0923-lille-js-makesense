@@ -9,8 +9,8 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
   const paragraphImpactRef = useRef();
   const paragraphBenefitsRef = useRef();
   const paragraphRisksRef = useRef();
-  const paragraphFirstDecisionRef = useRef();
-  const paragraphFinaleDecisionRef = useRef();
+  const paragraphFirstDecisionRef = useRef(null);
+  const paragraphFinaleDecisionRef = useRef(null);
 
   const handleChange = () => {
     setCreateDecisionFormContent({
@@ -103,7 +103,7 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
       <textarea
         id="section5"
         name="section5"
-        placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
+        placeholder="/!\ Nécessite un premier cycle de réflexion avec vos experts et impactés."
         rows="10"
         className="createDecisionForm__input"
         ref={paragraphFirstDecisionRef}
@@ -114,7 +114,7 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
       <textarea
         id="section6"
         name="section6"
-        placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
+        placeholder="/!\ Nécessite deux cycles de réflexion avec vos experts et impactés."
         rows="10"
         className="createDecisionForm__input"
         ref={paragraphFinaleDecisionRef}
