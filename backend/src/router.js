@@ -45,7 +45,10 @@ router.get(
   "/decisions/:id/related-decisions",
   decisionControllers.getRelatedDecisions
 );
-// Route to get all decisions waiting for an answer (query ready in queries list)
+// Route to create decision
+router.post("/decision/create", decisionControllers.createDecision);
+// Route to update decision
+router.post("/decision/update", decisionControllers.updateDecision);
 
 // COMMENT ROUTES
 // Import Controller
