@@ -10,7 +10,7 @@ function Homepage() {
       .then((response) => response.json())
       .then((data) => setDecisions(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisions]);
   return (
     <>
       <SecondaryNav />

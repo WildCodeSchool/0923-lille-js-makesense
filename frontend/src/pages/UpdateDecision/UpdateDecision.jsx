@@ -112,7 +112,7 @@ function UpdateDecision() {
             <UpdateCreateDecisionFormExperts />
             <UpdateCreateDecisionFormImpacted />
             <Link
-              to={`/decision/${decisionId}`}
+              to="/decision"
               onClick={handleUpdateDecision}
               type="button"
               className="createDecisionForm__button"

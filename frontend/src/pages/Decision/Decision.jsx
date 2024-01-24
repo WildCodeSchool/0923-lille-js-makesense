@@ -44,55 +44,48 @@ function Decision() {
     month: "2-digit",
     year: "numeric",
   });
+
   return (
     <main className="decision__page">
-      {decision && (
-        <>
-          <header className="decision__page--header">
-            <h2 className="openAndClose__date">
-              Date d'ouverture: {formattedDate} <br />
-              Date de clôture: {decision.decision_delay}
-            </h2>
-            <ProgressBar status={decision.status} />
-            <EditButton />
-          </header>
-          <section className="decision__page--body">
-            <section
-              className={`left__section ${writeComment ? "hidden" : null}`}
-            >
-              <DescriptionBox
-                title={decision.decision_title}
-                status={decision.status}
-                location={decision.location}
-                comments={decision.nb_comments}
-                picture={decision.picture}
-                firstname={decision.firstname}
-                lastname={decision.lastname}
-                paragraphBenefits={decision.paragraph_benefits}
-                paragraphDecision={decision.paragraph_decision}
-                paragraphDetails={decision.paragraph_details}
-                paragraphFinaleDecision={decision.paragraph_finale_decision}
-                paragraphFirstDecision={decision.paragraph_first_decision}
-                paragraphImpact={decision.paragraph_impact}
-                paragraphRisks={decision.paragraph_risks}
-              />
-            </section>
-            <section
-              className={`right__section ${!writeComment ? "hidden" : null}`}
-            >
-              <CommentSection />
-            </section>
-            <input
-              value={
-                writeComment ? "Voir la décision" : "Voir les commentaires"
-              }
-              onClick={() => setWriteComment(!writeComment)}
-              type="button"
-              className="commentLink__button"
-            />
-          </section>
-        </>
-      )}
+      <header className="decision__page--header">
+        <h2 className="openAndClose__date">
+          Date d'ouverture: {formattedDate} <br />
+          Date de clôture: {decision.decision_delay}
+        </h2>
+        <ProgressBar status={decision.status} />
+        <EditButton />
+      </header>
+      <section className="decision__page--body">
+        <section className={`left__section ${writeComment ? "hidden" : null}`}>
+          <DescriptionBox
+            title={decision.decision_title}
+            status={decision.status}
+            location={decision.location}
+            comments={decision.nb_comments}
+            picture={decision.picture}
+            firstname={decision.firstname}
+            lastname={decision.lastname}
+            paragraphBenefits={decision.paragraph_benefits}
+            paragraphDecision={decision.paragraph_decision}
+            paragraphDetails={decision.paragraph_details}
+            paragraphFinaleDecision={decision.paragraph_finale_decision}
+            paragraphFirstDecision={decision.paragraph_first_decision}
+            paragraphImpact={decision.paragraph_impact}
+            paragraphRisks={decision.paragraph_risks}
+          />
+        </section>
+        <section
+          className={`right__section ${!writeComment ? "hidden" : null}`}
+        >
+          <CommentSection />
+        </section>
+        <input
+          value={writeComment ? "Voir la décision" : "Voir les commentaires"}
+          onClick={() => setWriteComment(!writeComment)}
+          type="button"
+          className="commentLink__button"
+        />
+      </section>
     </main>
   );
 }
