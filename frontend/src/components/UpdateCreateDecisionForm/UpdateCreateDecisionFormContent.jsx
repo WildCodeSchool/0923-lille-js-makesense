@@ -2,7 +2,8 @@ import "./UpdateCreateDecisionForm.scss";
 import PropTypes from "prop-types";
 
 function UpdateCreateDecisionFormContent({
-  SelectedValue,
+  selectedValue,
+  progress,
   title,
   details,
   impact,
@@ -11,6 +12,7 @@ function UpdateCreateDecisionFormContent({
   firstDecision,
   finalDecision,
   setSelectedValue,
+  setProgress,
   setTitle,
   setDetails,
   setImpact,
@@ -38,7 +40,7 @@ function UpdateCreateDecisionFormContent({
         <select
           name="status"
           id="status"
-          value={SelectedValue}
+          value={selectedValue}
           onChange={(e) => setSelectedValue(e.target.value)}
         >
           <option value="Court terme (deux semaines)">
@@ -46,6 +48,27 @@ function UpdateCreateDecisionFormContent({
           </option>
           <option value="Moyen terme (un mois)">Moyen terme (un mois)</option>
           <option value="Long terme (deux mois)">Long terme (deux mois)</option>
+        </select>
+      </label>
+
+      <label className="createDecisionForm__status" htmlFor="progress">
+        Progression :&nbsp;&nbsp;
+        <select
+          name="progress"
+          id="status"
+          value={progress}
+          onChange={(e) => setProgress(e.target.value)}
+        >
+          <option value="Décision commencée">Décision commencée</option>
+          <option value="Première décision prise">
+            Première décision prise
+          </option>
+          <option value="Décision définitive">Décision définitive</option>
+          <option value="Décision non aboutie">Décision non aboutie</option>
+          <option value="Décision terminée">Décision terminée</option>
+          <option value="Conflit sur la décision">
+            Conflit sur la décision
+          </option>
         </select>
       </label>
       <label className="createDecisionForm__label" htmlFor="section1">
@@ -122,7 +145,8 @@ function UpdateCreateDecisionFormContent({
 }
 
 UpdateCreateDecisionFormContent.propTypes = {
-  SelectedValue: PropTypes.string.isRequired,
+  progress: PropTypes.string.isRequired,
+  selectedValue: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
   impact: PropTypes.string.isRequired,
@@ -131,6 +155,7 @@ UpdateCreateDecisionFormContent.propTypes = {
   firstDecision: PropTypes.string.isRequired,
   finalDecision: PropTypes.string.isRequired,
   setSelectedValue: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   setDetails: PropTypes.func.isRequired,
   setImpact: PropTypes.func.isRequired,

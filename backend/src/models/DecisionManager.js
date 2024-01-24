@@ -174,7 +174,6 @@ class DecisionManager extends AbstractManager {
     paragraph_benefits = ?,
     paragraph_risks = ?,
     paragraph_first_decision = ?,
-    paragraph_decision = ?,
     paragraph_finale_decision = ?
     WHERE decision_id = ?
     `,
@@ -184,7 +183,6 @@ class DecisionManager extends AbstractManager {
         decision[0].paragraph_benefits,
         decision[0].paragraph_risks,
         decision[0].paragraph_first_decision,
-        decision[0].paragraph_decision,
         decision[0].paragraph_finale_decision,
         decision[0].decision_id,
       ]
@@ -194,7 +192,7 @@ class DecisionManager extends AbstractManager {
       `
     UPDATE decision
     SET status = ?,
-    decision_delay=?,
+    decision_delay= ?,
     decision_title = ?
     WHERE decision_id = ?
    

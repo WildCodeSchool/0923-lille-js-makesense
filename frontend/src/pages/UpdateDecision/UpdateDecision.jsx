@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import UpdateCreateDecisionFormImpacted from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormImpacted";
 import UpdateCreateDecisionFormExperts from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormExperts";
 import UpdateCreateDecisionFormContent from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormContent";
-import ProgressBar from "../../components/UpdateProgressBar/UpdateProgressBar";
 import "./UpdateDecision.scss";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateDecision() {
   const { decisionId } = useDecisionContext();
-  const [updatedecision, setupdateDecision] = useState(""); // should I put a "" instead?
+  const [updatedecision, setupdateDecision] = useState("");
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
       .then((response) => response.json())
@@ -16,7 +15,8 @@ function UpdateDecision() {
       .catch((error) => console.error(error));
   }, []);
 
-  const [SelectedValue, setSelectedValue] = useState(
+  const [progress, setProgress] = useState(updatedecision.status);
+  const [selectedValue, setSelectedValue] = useState(
     updatedecision.decision_delay
   );
   const [title, setTitle] = useState(updatedecision.decision_title);
@@ -31,6 +31,7 @@ function UpdateDecision() {
     updatedecision.paragraph_finale_decision
   );
   useEffect(() => {
+    setProgress(updatedecision.status);
     setSelectedValue(updatedecision.decision_delay);
     setTitle(updatedecision.decision_title);
     setDetails(updatedecision.paragraph_details);
@@ -41,13 +42,51 @@ function UpdateDecision() {
     setFinalDecision(updatedecision.paragraph_finale_decision);
   }, [updatedecision]);
 
+  const handleUpdateDecision = () => {
+    const apiEndpoint = `${import.meta.env.VITE_BACKEND_URL}/api/updateDecision`;
+
+    const updatedData = {
+      paragraph_details: details,
+      paragraph_impact: impact,
+      paragraph_benefits: benefits,
+      paragraph_risks: risks,
+      paragraph_first_decision: firstDecision,
+      paragraph_finale_decision: finalDecision,
+      decision_id: decisionId,
+    };
+
+    const updatedDatas = {
+      status: progress,
+      decision_delay: selectedValue,
+      decision_title: title,
+      decision_id: decisionId,
+    };
+
+    fetch(apiEndpoint, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([updatedData, updatedDatas]),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.info("Mise à jour réussie :", data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la mise à jour :", error);
+      });
+  };
+
   return (
     <main className="createDecision__main">
-      <ProgressBar />
       {updatedecision && (
         <>
           <UpdateCreateDecisionFormContent
-            SelectedValue={SelectedValue}
+            progress={progress}
+            selectedValue={selectedValue}
             updateDecision={updatedecision}
             title={title}
             details={details}
@@ -56,6 +95,7 @@ function UpdateDecision() {
             risks={risks}
             firstDecision={firstDecision}
             finalDecision={finalDecision}
+            setProgress={setProgress}
             setSelectedValue={setSelectedValue}
             setTitle={setTitle}
             setDetails={setDetails}
@@ -68,7 +108,11 @@ function UpdateDecision() {
           <aside className="createDecision__aside">
             <UpdateCreateDecisionFormExperts />
             <UpdateCreateDecisionFormImpacted />
-            <button type="button" className="createDecisionForm__button">
+            <button
+              onClick={handleUpdateDecision}
+              type="button"
+              className="createDecisionForm__button"
+            >
               Mettre à jour la décision
             </button>
           </aside>

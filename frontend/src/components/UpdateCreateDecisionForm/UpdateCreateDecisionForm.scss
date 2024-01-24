@@ -75,3 +75,21 @@
     }
   }
 }
+
+.createDecisionForm__status select {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
+}
+
+.createDecisionForm__progress {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
+}

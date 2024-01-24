@@ -94,7 +94,7 @@ const createDecision = async (req, res, next) => {
 
 const updateDecision = async (req, res, next) => {
   // Extract the decision data from the request body
-  const decision = await tables.decision.read(req.params.id);
+  const decision = req.body;
 
   try {
     // Insert the decision into the database

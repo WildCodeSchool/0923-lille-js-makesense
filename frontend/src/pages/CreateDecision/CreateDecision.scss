@@ -23,6 +23,7 @@
   }
   .createDecisionForm__button {
     margin-block: 4%;
+    cursor: pointer;
   }
 }
 
@@ -40,4 +41,5 @@
 .createDecisionForm__button {
   @include buttons;
   font-size: larger;
+  cursor: pointer;
 }

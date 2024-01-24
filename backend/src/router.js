@@ -67,7 +67,7 @@ router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
 // Route to create decision
 router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
-router.post("/updateDecision/:id", decisionControllers.updateDecision);
+router.put("/updateDecision", decisionControllers.updateDecision);
 // Route to retrieve a complete posted decision by ID
 router.get("/decision/:id", decisionControllers.read);
 
