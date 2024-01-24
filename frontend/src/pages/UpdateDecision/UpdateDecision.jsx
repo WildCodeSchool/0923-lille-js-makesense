@@ -44,7 +44,9 @@ function UpdateDecision() {
   }, [updatedecision]);
 
   const handleUpdateDecision = () => {
-    const apiEndpoint = `${import.meta.env.VITE_BACKEND_URL}/api/updateDecision`;
+    const apiEndpoint = `${
+      import.meta.env.VITE_BACKEND_URL
+    }/api/updateDecision`;
 
     const updatedData = {
       paragraph_details: details,
@@ -110,7 +112,7 @@ function UpdateDecision() {
             <UpdateCreateDecisionFormExperts />
             <UpdateCreateDecisionFormImpacted />
             <Link
-              to="/decision"
+              to={`/decision/${decisionId}`}
               onClick={handleUpdateDecision}
               type="button"
               className="createDecisionForm__button"

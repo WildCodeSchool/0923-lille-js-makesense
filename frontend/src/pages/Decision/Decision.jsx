@@ -10,7 +10,7 @@ function Decision() {
   const [writeComment, setWriteComment] = useState();
   const { decisionId } = useDecisionContext();
   const [decision, setDecision] = useState({
-    decision_date: null,
+    decision_date: "--",
     decision_delay: "--",
     decision_id: 0,
     decision_title: "--",
@@ -30,12 +30,14 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
   }, []);
+
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -44,45 +46,53 @@ function Decision() {
   });
   return (
     <main className="decision__page">
-      <header className="decision__page--header">
-        <h2 className="openAndClose__date">
-          Date d'ouverture: {formattedDate} <br />
-          Date de clôture: {decision.decision_delay}
-        </h2>
-        <ProgressBar status={decision.status} />
-        <EditButton />
-      </header>
-      <section className="decision__page--body">
-        <section className={`left__section ${writeComment ? "hidden" : null}`}>
-          <DescriptionBox
-            title={decision.decision_title}
-            status={decision.status}
-            location={decision.location}
-            comments={decision.nb_comments}
-            picture={decision.picture}
-            firstname={decision.firstname}
-            lastname={decision.lastname}
-            paragraphBenefits={decision.paragraph_benefits}
-            paragraphDecision={decision.paragraph_decision}
-            paragraphDetails={decision.paragraph_details}
-            paragraphFinaleDecision={decision.paragraph_finale_decision}
-            paragraphFirstDecision={decision.paragraph_first_decision}
-            paragraphImpact={decision.paragraph_impact}
-            paragraphRisks={decision.paragraph_risks}
-          />
-        </section>
-        <section
-          className={`right__section ${!writeComment ? "hidden" : null}`}
-        >
-          <CommentSection />
-        </section>
-        <input
-          value={writeComment ? "Voir la décision" : "Voir les commentaires"}
-          onClick={() => setWriteComment(!writeComment)}
-          type="button"
-          className="commentLink__button"
-        />
-      </section>
+      {decision && (
+        <>
+          <header className="decision__page--header">
+            <h2 className="openAndClose__date">
+              Date d'ouverture: {formattedDate} <br />
+              Date de clôture: {decision.decision_delay}
+            </h2>
+            <ProgressBar status={decision.status} />
+            <EditButton />
+          </header>
+          <section className="decision__page--body">
+            <section
+              className={`left__section ${writeComment ? "hidden" : null}`}
+            >
+              <DescriptionBox
+                title={decision.decision_title}
+                status={decision.status}
+                location={decision.location}
+                comments={decision.nb_comments}
+                picture={decision.picture}
+                firstname={decision.firstname}
+                lastname={decision.lastname}
+                paragraphBenefits={decision.paragraph_benefits}
+                paragraphDecision={decision.paragraph_decision}
+                paragraphDetails={decision.paragraph_details}
+                paragraphFinaleDecision={decision.paragraph_finale_decision}
+                paragraphFirstDecision={decision.paragraph_first_decision}
+                paragraphImpact={decision.paragraph_impact}
+                paragraphRisks={decision.paragraph_risks}
+              />
+            </section>
+            <section
+              className={`right__section ${!writeComment ? "hidden" : null}`}
+            >
+              <CommentSection />
+            </section>
+            <input
+              value={
+                writeComment ? "Voir la décision" : "Voir les commentaires"
+              }
+              onClick={() => setWriteComment(!writeComment)}
+              type="button"
+              className="commentLink__button"
+            />
+          </section>
+        </>
+      )}
     </main>
   );
 }

@@ -29,6 +29,10 @@ const router = createBrowserRouter([
         element: <Decision />,
       },
       {
+        path: "/decision/:id",
+        element: <Decision />,
+      },
+      {
         path: "/decision/create",
         element: <CreateDecision />,
       },
