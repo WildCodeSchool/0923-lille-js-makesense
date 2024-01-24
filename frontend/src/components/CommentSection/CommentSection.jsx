@@ -41,7 +41,7 @@ function CommentSection() {
               <img
                 className="commentSection__comment--avatar"
                 src="src/assets/vincent.png"
-                alt="avatar de l'auteur du commentaire"
+                alt="avatar"
               />
               <section className="commentSection__comment--box">
                 <section className="commentSection__comment__textSection">
