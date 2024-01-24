@@ -53,7 +53,7 @@ function Login() {
         className="login__logo"
         src={`${
           import.meta.env.VITE_BACKEND_URL
-        }/public/images/logoMakeSense.png`}
+        }/assets/images/logo-Make_sense.png`}
         alt="logo"
       />
       <form className="login__form" onSubmit={handleSubmit}>

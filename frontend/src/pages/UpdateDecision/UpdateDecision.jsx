@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import UpdateCreateDecisionFormImpacted from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormImpacted";
 import UpdateCreateDecisionFormExperts from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormExperts";
 import UpdateCreateDecisionFormContent from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormContent";
@@ -108,13 +109,14 @@ function UpdateDecision() {
           <aside className="createDecision__aside">
             <UpdateCreateDecisionFormExperts />
             <UpdateCreateDecisionFormImpacted />
-            <button
+            <Link
+              to="/decision"
               onClick={handleUpdateDecision}
               type="button"
               className="createDecisionForm__button"
             >
               Mettre à jour la décision
-            </button>
+            </Link>
           </aside>
         </>
       )}
