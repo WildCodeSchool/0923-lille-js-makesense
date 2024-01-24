@@ -53,7 +53,9 @@ function ProgressBar() {
             >
               <img
                 className="status__icon tulip"
-                src={`${import.meta.env.VITE_BACKEND_URL}/images/flower-tulip.png`}
+                src={`${
+                  import.meta.env.VITE_BACKEND_URL
+                }/images/flower-tulip.png`}
                 alt="icône décision prise"
               />
             </section>
