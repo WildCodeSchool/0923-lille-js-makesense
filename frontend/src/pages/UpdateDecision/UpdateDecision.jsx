@@ -8,7 +8,7 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateDecision() {
   const { decisionId } = useDecisionContext();
-  const [updatedecision, setupdateDecision] = useState("");
+  const [updateDecision, setupdateDecision] = useState("");
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
       .then((response) => response.json())
@@ -16,37 +16,37 @@ function UpdateDecision() {
       .catch((error) => console.error(error));
   }, []);
 
-  const [progress, setProgress] = useState(updatedecision.status);
+  const [progress, setProgress] = useState(updateDecision.status);
   const [selectedValue, setSelectedValue] = useState(
-    updatedecision.decision_delay
+    updateDecision.decision_delay
   );
-  const [title, setTitle] = useState(updatedecision.decision_title);
-  const [details, setDetails] = useState(updatedecision.paragraph_details);
-  const [impact, setImpact] = useState(updatedecision.paragraph_impact);
-  const [benefits, setBenefits] = useState(updatedecision.paragraph_benefits);
-  const [risks, setRisks] = useState(updatedecision.paragraph_risks);
+  const [title, setTitle] = useState(updateDecision.decision_title);
+  const [details, setDetails] = useState(updateDecision.paragraph_details);
+  const [impact, setImpact] = useState(updateDecision.paragraph_impact);
+  const [benefits, setBenefits] = useState(updateDecision.paragraph_benefits);
+  const [risks, setRisks] = useState(updateDecision.paragraph_risks);
   const [firstDecision, setFirstDecision] = useState(
-    updatedecision.paragraph_first_decision
+    updateDecision.paragraph_first_decision
   );
   const [finalDecision, setFinalDecision] = useState(
-    updatedecision.paragraph_finale_decision
+    updateDecision.paragraph_finale_decision
   );
   useEffect(() => {
-    setProgress(updatedecision.status);
-    setSelectedValue(updatedecision.decision_delay);
-    setTitle(updatedecision.decision_title);
-    setDetails(updatedecision.paragraph_details);
-    setImpact(updatedecision.paragraph_impact);
-    setBenefits(updatedecision.paragraph_benefits);
-    setRisks(updatedecision.paragraph_risks);
-    setFirstDecision(updatedecision.paragraph_first_decision);
-    setFinalDecision(updatedecision.paragraph_finale_decision);
-  }, [updatedecision]);
+    setProgress(updateDecision.status);
+    setSelectedValue(updateDecision.decision_delay);
+    setTitle(updateDecision.decision_title);
+    setDetails(updateDecision.paragraph_details);
+    setImpact(updateDecision.paragraph_impact);
+    setBenefits(updateDecision.paragraph_benefits);
+    setRisks(updateDecision.paragraph_risks);
+    setFirstDecision(updateDecision.paragraph_first_decision);
+    setFinalDecision(updateDecision.paragraph_finale_decision);
+  }, [updateDecision]);
 
   const handleUpdateDecision = () => {
     const apiEndpoint = `${
       import.meta.env.VITE_BACKEND_URL
-    }/api/updateDecision`;
+    }/api/decision/update`;
 
     const updatedData = {
       paragraph_details: details,
@@ -85,12 +85,12 @@ function UpdateDecision() {
 
   return (
     <main className="createDecision__main">
-      {updatedecision && (
+      {updateDecision && (
         <>
           <UpdateCreateDecisionFormContent
             progress={progress}
             selectedValue={selectedValue}
-            updateDecision={updatedecision}
+            updateDecision={updateDecision}
             title={title}
             details={details}
             impact={impact}

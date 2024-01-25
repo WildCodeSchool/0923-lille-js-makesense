@@ -1,7 +1,3 @@
-DROP DATABASE make_sense_v2;
-CREATE DATABASE make_sense_v2;
-USE make_sense_v2;
-
 CREATE TABLE user (
   user_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   lastname VARCHAR(100) NOT NULL,

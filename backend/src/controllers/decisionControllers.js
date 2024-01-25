@@ -110,15 +110,15 @@ const updateDecision = async (req, res, next) => {
   }
 };
 
-// Experts and Impactes
+// Experts
 const getExperts = async (req, res, next) => {
   try {
     const decisionId = req.params.id;
 
-    // Call your decision manager's method to retrieve the experts and impacted
+    // Call your decision manager's method to retrieve the experts
     const experts = await tables.decision.getExperts(decisionId);
 
-    // Respond with experts and impacted in JSON format
+    // Respond with experts in JSON format
     res.json(experts);
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -126,15 +126,17 @@ const getExperts = async (req, res, next) => {
   }
 };
 
-const getImpacte = async (req, res, next) => {
+// Impacted
+
+const getImpacted = async (req, res, next) => {
   try {
     const decisionId = req.params.id;
 
-    // Call your decision manager's method to retrieve the experts and impacted
-    const impactés = await tables.decision.getImpacte(decisionId);
+    // Call your decision manager's method to retrieve the impacted
+    const impacted = await tables.decision.getImpacted(decisionId);
 
-    // Respond with experts and impacted in JSON format
-    res.json(impactés);
+    // Respond with impacted in JSON format
+    res.json(impacted);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -170,7 +172,7 @@ module.exports = {
   createDecision,
   updateDecision,
   getExperts,
-  getImpacte,
+  getImpacted,
   getRelatedDecisions,
   // destroy,
 };

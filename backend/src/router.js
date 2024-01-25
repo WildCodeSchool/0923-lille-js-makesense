@@ -36,10 +36,10 @@ router.get("/decisions/all", decisionControllers.browse);
 router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
 router.get("/decisions/pending", decisionControllers.browsePending);
-// chercher expert
+// get experts
 router.get("/decisions/:id/experts", decisionControllers.getExperts);
-// cherche impacter
-router.get("/decisions/:id/impacte", decisionControllers.getImpacte);
+// get impacted
+router.get("/decisions/:id/impacted", decisionControllers.getImpacted);
 // filter decisions linked to a user
 router.get(
   "/decisions/:id/related-decisions",
@@ -70,7 +70,7 @@ router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
 // Route to create decision
 router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
-router.put("/updateDecision", decisionControllers.updateDecision);
+router.put("/decision/update", decisionControllers.updateDecision);
 // Route to retrieve a complete posted decision by ID
 router.get("/decision/:id", decisionControllers.read);
 

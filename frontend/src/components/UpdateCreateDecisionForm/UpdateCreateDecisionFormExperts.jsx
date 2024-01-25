@@ -1,21 +1,18 @@
 import "./UpdateCreateDecisionForm.scss";
 import { useEffect, useState } from "react";
-import { mockUser } from "../../mockData";
 import { useDecisionContext } from "../../contexts/decisionContext";
-
-// ... import statements ...
 
 function UpdateCreateDecisionFormExperts() {
   const { decisionId } = useDecisionContext();
 
-  const [updateExperts, setupdateExperts] = useState([]);
+  const [updateExperts, setUpdateExperts] = useState([]);
 
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/experts`
     )
       .then((response) => response.json())
-      .then((data) => setupdateExperts(data))
+      .then((data) => setUpdateExperts(data))
       .catch((error) => console.error(error));
   }, [decisionId]);
 
@@ -27,7 +24,7 @@ function UpdateCreateDecisionFormExperts() {
           {updateExperts.map((updateExpert) => (
             <li className="createDecisionForm__chosen">
               <img
-                src={mockUser[0].picture}
+                src={updateExpert.picture}
                 alt="avatar de l'expert choisi"
                 className="createDecisionForm__chosen--avatar"
               />

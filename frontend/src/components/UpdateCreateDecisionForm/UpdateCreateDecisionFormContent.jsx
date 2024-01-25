@@ -10,7 +10,7 @@ function UpdateCreateDecisionFormContent({
   benefits,
   risks,
   firstDecision,
-  finalDecision,
+  finaleDecision,
   setSelectedValue,
   setProgress,
   setTitle,
@@ -19,7 +19,7 @@ function UpdateCreateDecisionFormContent({
   setBenefits,
   setRisks,
   setFirstDecision,
-  setFinalDecision,
+  setFinaleDecision,
 }) {
   return (
     <main>
@@ -140,8 +140,8 @@ function UpdateCreateDecisionFormContent({
           name="section6"
           placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
           className="createDecisionForm__input"
-          value={finalDecision}
-          onChange={(e) => setFinalDecision(e.target.value)}
+          value={finaleDecision}
+          onChange={(e) => setFinaleDecision(e.target.value)}
         />
       </form>
     </main>
@@ -157,7 +157,7 @@ UpdateCreateDecisionFormContent.propTypes = {
   benefits: PropTypes.string.isRequired,
   risks: PropTypes.string.isRequired,
   firstDecision: PropTypes.string.isRequired,
-  finalDecision: PropTypes.string.isRequired,
+  finaleDecision: PropTypes.string.isRequired,
   setSelectedValue: PropTypes.func.isRequired,
   setProgress: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
@@ -166,6 +166,6 @@ UpdateCreateDecisionFormContent.propTypes = {
   setBenefits: PropTypes.func.isRequired,
   setRisks: PropTypes.func.isRequired,
   setFirstDecision: PropTypes.func.isRequired,
-  setFinalDecision: PropTypes.func.isRequired,
+  setFinaleDecision: PropTypes.func.isRequired,
 };
 export default UpdateCreateDecisionFormContent;

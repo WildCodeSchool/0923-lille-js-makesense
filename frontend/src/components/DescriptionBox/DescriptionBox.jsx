@@ -1,7 +1,6 @@
 import "./DescriptionBox.scss";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import EditButton from "../EditButton/EditButton";
 
 function DescriptionBox({
   title,
@@ -27,7 +26,6 @@ function DescriptionBox({
 
   return (
     <section className="descriptionBox boxButton">
-      <EditButton />
       <section className="descriptionBox__scroll">
         <header className="descriptionBox__header">
           <img

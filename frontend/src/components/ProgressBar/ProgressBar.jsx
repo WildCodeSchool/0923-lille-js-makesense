@@ -4,17 +4,17 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function ProgressBar() {
   const { decisionId } = useDecisionContext();
-  const [updateprogressbar, setupdateprogressbar] = useState("");
+  const [updateProgressBar, setupdateProgressBar] = useState("");
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
       .then((response) => response.json())
-      .then((data) => setupdateprogressbar(data))
+      .then((data) => setupdateProgressBar(data))
       .catch((error) => console.error(error));
   }, []);
   const [activeStatus, setactiveStatus] = useState();
   useEffect(() => {
-    setactiveStatus(updateprogressbar.status);
-  }, [updateprogressbar.status]);
+    setactiveStatus(updateProgressBar.status);
+  }, [updateProgressBar.status]);
 
   const firstStatus = "Décision commencée";
   const secondStatus = "Première décision prise";
@@ -22,7 +22,7 @@ function ProgressBar() {
   const fourthStatus = "Décision non aboutie";
   const fifthStatus = "Décision terminée";
   return (
-    <main>
+    <section>
       {activeStatus && (
         <section className="progress__bar">
           <section className="status">
@@ -129,7 +129,7 @@ function ProgressBar() {
           </section>
         </section>
       )}
-    </main>
+    </section>
   );
 }
 

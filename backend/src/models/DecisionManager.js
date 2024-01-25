@@ -120,7 +120,7 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  // Implement logic to retrieve experts and impacts for a given decision
+  // Implement logic to retrieve experts for a given decision
   async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
@@ -133,7 +133,9 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  async getImpacte(decisionId) {
+  // Implement logic to retrieve Impacted for a given decision
+
+  async getImpacted(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
      FROM assignment

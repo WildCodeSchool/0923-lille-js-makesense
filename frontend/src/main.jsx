@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         element: <CreateUser />,
       },
       {
-        path: "/decision/updatedecision",
+        path: "/decision/update",
         element: <UpdateDecision />,
       },
     ],

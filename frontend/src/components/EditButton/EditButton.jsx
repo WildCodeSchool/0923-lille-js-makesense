@@ -3,7 +3,7 @@ import "./EditButton.scss";
 
 function EditButton() {
   return (
-    <Link to="/decision/updatedecision" className="edit_button">
+    <Link to="/decision/update" className="edit_button">
       Editer la décision
     </Link>
   );

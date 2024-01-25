@@ -1,19 +1,18 @@
 import "./UpdateCreateDecisionForm.scss";
 import { useEffect, useState } from "react";
-import { mockUser } from "../../mockData";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateCreateDecisionFormImpacted() {
   const { decisionId } = useDecisionContext();
 
-  const [updateImpacted, setupdateImpacted] = useState([]);
+  const [updateImpacted, setUpdateImpacted] = useState([]);
 
   useEffect(() => {
     fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/impacte`
+      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/impacted`
     )
       .then((response) => response.json())
-      .then((data) => setupdateImpacted(data))
+      .then((data) => setUpdateImpacted(data))
       .catch((error) => console.error(error));
   }, [decisionId]);
   return (
@@ -24,7 +23,7 @@ function UpdateCreateDecisionFormImpacted() {
           {updateImpacted.map((updateImpacteds) => (
             <li className="createDecisionForm__chosen">
               <img
-                src={mockUser[2].picture}
+                src={updateImpacted.picture}
                 alt="avatar de la personne impactée choisie"
                 className="createDecisionForm__chosen--avatar"
               />

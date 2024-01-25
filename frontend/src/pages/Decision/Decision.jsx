@@ -4,6 +4,7 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
   const [writeComment, setWriteComment] = useState();
@@ -51,7 +52,10 @@ function Decision() {
           Date d'ouverture: {formattedDate} <br />
           Date de clôture: {decision.decision_delay}
         </h2>
-        <ProgressBar status={decision.status} />
+        <section className="progress_edit">
+          <ProgressBar status={decision.status} />
+          <EditButton />
+        </section>
       </header>
       <section className="decision__page--body">
         <section className={`left__section ${writeComment ? "hidden" : null}`}>
