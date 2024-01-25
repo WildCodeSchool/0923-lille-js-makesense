@@ -22,28 +22,50 @@ function SecondaryNav({ setRelatedDecisions }) {
       .catch((error) => console.error(error));
   };
 
+  const handleClickFilterDecisionsCompleted = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/completed`)
+      .then((response) => response.json())
+      .then((data) => setRelatedDecisions(data))
+      .catch((error) => console.error(error));
+  };
+
+  const handleClickFilterCurrentDécisions = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/current`)
+      .then((response) => response.json())
+      .then((data) => setRelatedDecisions(data))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <nav className="secondaryNav__nav">
-      <ul className="secondaryNav__links">
-        <button type="button" className="secondaryNav__links--first">
+      <ul className="secondaryNav__button">
+        <button
+          onClick={handleClickFilterCurrentDécisions}
+          type="button"
+          className="secondaryNav__button--first"
+        >
           Décisions en cours
         </button>
         <button
           onClick={handleClickFilterPendingDecisions}
           type="button"
-          className="secondaryNav__links--second"
+          className="secondaryNav__button--second"
         >
           Décisions en retard
         </button>
         <button
           onClick={handleClickFilterMyDecisions}
           type="button"
-          className="secondaryNav__links--third"
+          className="secondaryNav__button--third"
         >
           Vos décisions
         </button>
-        <button type="button" className="secondaryNav__links--third">
-          Décisions prises
+        <button
+          onClick={handleClickFilterDecisionsCompleted}
+          type="button"
+          className="secondaryNav__button--third"
+        >
+          Décisions terminées
         </button>
       </ul>
       <img

@@ -159,6 +159,33 @@ const getRelatedDecisions = async (req, res, next) => {
   }
 };
 
+// all completed decision for user
+const getDecisionsCompleted = async (req, res, next) => {
+  try {
+    // Fetch all decisionsCompleted from the database
+    const decisionsCompleted = await tables.decision.getDecisionsCompleted();
+
+    // Respond with the decisionsCompleted in JSON format
+    res.json(decisionsCompleted);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const getCurrentDecisions = async (req, res, next) => {
+  try {
+    // Fetch all currentDecisions from the database
+    const currentDecisions = await tables.decision.getCurrentDecisions();
+
+    // Respond with the currentDecisions in JSON format
+    res.json(currentDecisions);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
@@ -174,5 +201,7 @@ module.exports = {
   getExperts,
   getImpacted,
   getRelatedDecisions,
+  getDecisionsCompleted,
+  getCurrentDecisions,
   // destroy,
 };

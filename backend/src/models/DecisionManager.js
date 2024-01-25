@@ -108,6 +108,36 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
+  async getDécisionsCompleted() {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+    );
+
+    // Retournez le résultat
+    return rows;
+  }
+
+  async getCurrentDecisions(userId) {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
+`,
+      [userId, userId, userId]
+    );
+
+    // Retournez le résultat
+    return rows;
+  }
+
   // The U of CRUD - Update operation
   async updatePicture(id, picture) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
