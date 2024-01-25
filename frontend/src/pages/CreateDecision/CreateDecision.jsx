@@ -53,7 +53,7 @@ function CreateDecision() {
 
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 201) {
-        navigate("/decision");
+        navigate("/homepage");
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);

@@ -120,13 +120,27 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  // Implement logic to retrieve experts and impacts for a given decision
-  async getExpertsAndImpactes(decisionId) {
+  // Implement logic to retrieve experts for a given decision
+  async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
      FROM assignment
      JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ?`,
+     WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
+      [decisionId]
+    );
+
+    return rows;
+  }
+
+  // Implement logic to retrieve Impacted for a given decision
+
+  async getImpacted(decisionId) {
+    const [rows] = await this.database.query(
+      `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
+     FROM assignment
+     JOIN user ON assignment.user_id = user.user_id
+     WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
       [decisionId]
     );
 
@@ -170,7 +184,6 @@ class DecisionManager extends AbstractManager {
     paragraph_benefits = ?,
     paragraph_risks = ?,
     paragraph_first_decision = ?,
-    paragraph_decision = ?,
     paragraph_finale_decision = ?
     WHERE decision_id = ?
     `,
@@ -180,7 +193,6 @@ class DecisionManager extends AbstractManager {
         decision[0].paragraph_benefits,
         decision[0].paragraph_risks,
         decision[0].paragraph_first_decision,
-        decision[0].paragraph_decision,
         decision[0].paragraph_finale_decision,
         decision[0].decision_id,
       ]
@@ -190,7 +202,7 @@ class DecisionManager extends AbstractManager {
       `
     UPDATE decision
     SET status = ?,
-    decision_delay=?,
+    decision_delay= ?,
     decision_title = ?
     WHERE decision_id = ?
    

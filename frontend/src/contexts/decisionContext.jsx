@@ -9,7 +9,6 @@ export function DecisionProvider({ children }) {
     () => ({ decisionId, setDecisionId }),
     [decisionId, setDecisionId]
   );
-
   return (
     <DecisionContext.Provider value={decisionContext}>
       {children}

@@ -1,0 +1,95 @@
+@import "../../variables";
+
+.createDecisionForm__content {
+  @include box;
+  margin-block-start: 2%;
+  display: flex;
+  flex-direction: column;
+  @include scroll;
+  overflow-x: hidden;
+}
+
+.createDecisionForm__content--choiceBoxes {
+  min-height: 30vh;
+  justify-content: space-between;
+}
+
+.createDecisionForm__titles {
+  text-align: center;
+  padding-block: 1%;
+}
+
+.createDecisionForm__chosen {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-block: 1%;
+  border-radius: 20px;
+  background-color: $background;
+  padding: 1%;
+  &--avatar {
+    @include avatar;
+    margin-inline-end: 3%;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.createDecisionForm__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $background;
+  margin: 0 -2% -2% -2%;
+  & input {
+    all: unset;
+    background-color: $background;
+    padding: 2%;
+  }
+  & button {
+    @include buttons;
+    padding: 2%;
+    margin: 3px;
+  }
+}
+
+.createDecisionForm__content--decision {
+  padding: 1%;
+  height: 80vh;
+  width: 72vw;
+  & textarea:focus,
+  input:focus {
+    outline: none !important;
+    border-color: $primary-medium;
+    box-shadow: 0 0 5px $primary-medium;
+  }
+  & label {
+    font-weight: bold;
+    font-size: larger;
+    margin-block: 0.8%;
+    &:first-child {
+      font-size: 30px;
+      & input {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.createDecisionForm__status select {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
+}
+
+.createDecisionForm__progress {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
+}
