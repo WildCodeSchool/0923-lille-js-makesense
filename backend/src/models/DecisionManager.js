@@ -9,44 +9,52 @@ class DecisionManager extends AbstractManager {
 
   // The C of CRUD - Create operation
   async create(decision) {
-    // Execute the SQL INSERT queries to add a new decision, paragraph, and assignment
-    const [resultDecision] = await this.database.query(
-      `INSERT INTO ${this.table} (decision_date, decision_delay, status, decision_title, user_id)     
-      VALUES (?,?,?,?,?);`,
-      [
-        decision[0].decision_date,
-        decision[0].decision_delay,
-        decision[0].status,
-        decision[0].decision_title,
-        decision[0].user_id,
-      ]
-    );
-    const [resultParagraph] = await this.database.query(
-      `INSERT INTO paragraph (paragraph_title, paragraph_content, decision_id) 
-        VALUES (?, ?, ?);`,
-      [
-        decision[1].paragraph_title,
-        decision[1].paragraph_content,
-        resultDecision.insertId,
-      ]
-    );
+    // Execute the SQL INSERT queries to add a new decision, new paragraphs, and assignments
+    try {
+      const [resultDecision] = await this.database.query(
+        `INSERT INTO ${this.table} (decision_date, decision_delay, status, decision_title, user_id) 
+          VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"),?, ?,?,?);`,
+        [
+          decision.decision_delay,
+          decision.status,
+          decision.decision_title,
+          decision.user_id,
+        ]
+      );
+      // Taking the id from the first insert to update the other tables
+      const decisionId = resultDecision.insertId;
 
-    const [resultAssignment] = await this.database.query(
-      `INSERT INTO assignment (date, role, decision_id, user_id) 
-        VALUES (?,?,?,?);`,
-      [
-        decision[2].date,
-        decision[2].role,
-        resultDecision.insertId,
-        decision[2].user_id,
-      ]
-    );
-
-    return {
-      resultDecision,
-      resultParagraph,
-      resultAssignment,
-    };
+      await this.database.query(
+        `INSERT INTO paragraph (paragraph_details, paragraph_impact, paragraph_benefits, paragraph_risks, paragraph_first_decision, paragraph_finale_decision, decision_id) 
+          VALUES (?, ?, ?, ?, ?, ?, ?);`,
+        [
+          decision.paragraph_details,
+          decision.paragraph_impact,
+          decision.paragraph_benefits,
+          decision.paragraph_risks,
+          decision.paragraph_first_decision,
+          decision.paragraph_finale_decision,
+          decisionId,
+        ]
+      );
+      // Loop for experts users
+      for (let i = 0; i < decision.experts.length; i += 1) {
+        this.database.query(
+          `INSERT INTO assignment (date, role, decision_id, user_id) VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"), "Expert", ?, ?);`,
+          [decisionId, decision.experts[i].user_id]
+        );
+      }
+      // Loop for impacted users
+      for (let i = 0; i < decision.impacted.length; i += 1) {
+        this.database.query(
+          `INSERT INTO assignment (date, role, decision_id, user_id) VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"), "Impacté", ?, ?);`,
+          [decisionId, decision.impacted[i].user_id]
+        );
+      }
+      return resultDecision.insertId;
+    } catch (error) {
+      return error;
+    }
   }
 
   // The Rs of CRUD - Read operations
@@ -137,7 +145,7 @@ class DecisionManager extends AbstractManager {
       user.picture AS author_picture,
       user.location,
       COUNT(comment.comment_id) AS nb_comments
-    FROM decision
+    FROM ${this.table}
     JOIN user ON decision.user_id = user.user_id
     LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
     LEFT JOIN comment ON decision.decision_id = comment.decision_id

@@ -46,7 +46,10 @@ router.get(
   "/decisions/:id/related-decisions",
   decisionControllers.getRelatedDecisions
 );
-// Route to get all decisions waiting for an answer (query ready in queries list)
+// Route to create decision
+router.post("/decision/create", decisionControllers.createDecision);
+// Route to update decision
+router.post("/decision/update", decisionControllers.updateDecision);
 
 // COMMENT ROUTES
 // Import Controller
@@ -65,12 +68,6 @@ router.post("/decisions/:id/comment", commentControllers.add);
 const paragraphsControllers = require("./controllers/paragraphsControllers");
 // Route to get all paragraphs for 1 decision
 router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
-// Route to create decision
-router.post("/decision/create", decisionControllers.createDecision);
-// Route to update decision
-router.post("/decision/update", decisionControllers.updateDecision);
-// Route to retrieve a complete posted decision by ID
-router.get("/decision/:id", decisionControllers.read);
 
 /* ************************************************************************* */
 

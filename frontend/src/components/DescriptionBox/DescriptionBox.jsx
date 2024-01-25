@@ -15,7 +15,6 @@ function DescriptionBox({
   paragraphBenefits,
   paragraphRisks,
   paragraphFirstDecision,
-  paragraphDecision,
   paragraphFinaleDecision,
 }) {
   const [isCollapsedDetails, setIsCollapsedDetails] = useState();
@@ -23,7 +22,6 @@ function DescriptionBox({
   const [isCollapsedBenefits, setIsCollapsedBenefits] = useState();
   const [isCollapsedHazards, setIsCollapsedHazards] = useState();
   const [isCollapsedFirstDecision, setIsCollapsedFirstDecision] = useState();
-  const [isCollapsedDecision, setIsCollapsedDecision] = useState();
   const [isCollapsedFinaleDecision, setIsCollapsedFinaleDecision] = useState();
 
   return (
@@ -135,22 +133,6 @@ function DescriptionBox({
           </article>
           <button
             type="button"
-            onClick={() => setIsCollapsedDecision(!isCollapsedDecision)}
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedDecision ? "➖" : "➕"} Décision
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--decision ${
-              isCollapsedDecision ? "expanded" : "collapsed"
-            }`}
-          >
-            <p className="descriptionBox__body--text">{paragraphDecision}</p>
-          </article>
-          <button
-            type="button"
             onClick={() =>
               setIsCollapsedFinaleDecision(!isCollapsedFinaleDecision)
             }
@@ -185,7 +167,6 @@ DescriptionBox.propTypes = {
   comments: PropTypes.number.isRequired,
   picture: PropTypes.string.isRequired,
   paragraphBenefits: PropTypes.string,
-  paragraphDecision: PropTypes.string,
   paragraphDetails: PropTypes.string.isRequired,
   paragraphFinaleDecision: PropTypes.string,
   paragraphFirstDecision: PropTypes.string,
@@ -195,7 +176,6 @@ DescriptionBox.propTypes = {
 
 DescriptionBox.defaultProps = {
   paragraphBenefits: "default",
-  paragraphDecision: "default",
   paragraphFinaleDecision: "default",
   paragraphFirstDecision: "default",
   paragraphImpact: "default",
