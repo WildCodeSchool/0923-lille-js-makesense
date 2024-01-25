@@ -1,14 +1,18 @@
 import "./Decision.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
-  const [writeComment, setWriteComment] = useState();
   const { decisionId } = useDecisionContext();
+  const { user } = useContext(AuthContext);
+
+  const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
     decision_delay: "--",
@@ -30,6 +34,15 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
+
+  const navigate = useNavigate();
+
+  // Le site n'est accessible qu'en étant connecté
+  useEffect(() => {
+    if (user[0].user_id === 0) {
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)

@@ -20,7 +20,8 @@ function DecisionCard({
   return (
     <Link onClick={handleClick} to="/decision">
       <button type="button" className="decisionCard__container">
-        <h2>{title}</h2>
+        {/* Titles are too long for the small cards in homepage, only displaying the first 50 characeters */}
+        <h2>{title.length >= 40 ? `${title.substring(0, 40)}(...)` : title}</h2>
         <p className="decisionCard__author">
           <img
             src={picture}
