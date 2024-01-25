@@ -8,7 +8,27 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateDecision() {
   const { decisionId } = useDecisionContext();
-  const [updateDecision, setUpdateDecision] = useState("");
+  const [updateDecision, setUpdateDecision] = useState({
+    decision_date: "--",
+    decision_delay: "--",
+    decision_id: 0,
+    decision_title: "--",
+    firstname: "--",
+    lastname: "--",
+    location: "--",
+    nb_comments: 0,
+    paragraph_benefits: "--",
+    paragraph_decision: "--",
+    paragraph_details: "--",
+    paragraph_finale_decision: "--",
+    paragraph_first_decision: "--",
+    paragraph_id: 0,
+    paragraph_impact: "--",
+    paragraph_risks: "--",
+    picture: "http://placekitten.com/200/311",
+    status: "--",
+    user_id: 0,
+  });
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
       .then((response) => response.json())
