@@ -4,20 +4,24 @@ import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 
 function Homepage() {
-  const [decisions, setDecisions] = useState();
+  const [relatedDecisions, setRelatedDecisions] = useState();
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
       .then((response) => response.json())
-      .then((data) => setDecisions(data))
+      .then((data) => setRelatedDecisions(data))
       .catch((error) => console.error(error));
-  }, [decisions]);
+  }, []);
   return (
     <>
-      <SecondaryNav />
+      <SecondaryNav
+        relatedDecisions={relatedDecisions}
+        setRelatedDecisions={setRelatedDecisions}
+      />
       <h1 className="homepage__title">Décisions en cours</h1>
       <main className="homepage__main">
-        {decisions
-          ? decisions
+        {relatedDecisions
+          ? relatedDecisions
               .toReversed()
               .map((card) => (
                 <DecisionCard
