@@ -123,9 +123,9 @@ class DecisionManager extends AbstractManager {
   async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
-     FROM assignment
-     JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
+      FROM assignment
+      JOIN user ON assignment.user_id = user.user_id
+      WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
       [decisionId]
     );
 
@@ -137,9 +137,9 @@ class DecisionManager extends AbstractManager {
   async getImpacted(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
-     FROM assignment
-     JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
+      FROM assignment
+      JOIN user ON assignment.user_id = user.user_id
+      WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
       [decisionId]
     );
 
@@ -153,9 +153,9 @@ class DecisionManager extends AbstractManager {
       decision.decision_id,
       decision.decision_title,
       decision.status,
-      user.firstname AS author_firstname,
-      user.lastname AS author_lastname,
-      user.picture AS author_picture,
+      user.firstname,
+      user.lastname,
+      user.picture,
       user.location,
       COUNT(comment.comment_id) AS nb_comments
     FROM ${this.table}
@@ -163,9 +163,9 @@ class DecisionManager extends AbstractManager {
     LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
     LEFT JOIN comment ON decision.decision_id = comment.decision_id
     WHERE user.user_id = ?
-       OR assignment.user_id = ?
-       OR comment.user_id = ? 
-    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location`,
+        OR assignment.user_id = ?
+        OR comment.user_id = ? 
+    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`,
       [userId, userId, userId]
     );
 

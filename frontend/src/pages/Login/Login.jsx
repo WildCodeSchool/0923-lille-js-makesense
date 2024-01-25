@@ -36,7 +36,7 @@ function Login() {
 
         setUser(user);
 
-        navigate("/homepage");
+        navigate("/homepage/decisions/all");
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);

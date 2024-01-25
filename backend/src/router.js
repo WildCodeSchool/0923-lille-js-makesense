@@ -35,7 +35,7 @@ router.get("/decisions/all", decisionControllers.browse);
 // Route to get one decision
 router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
-router.get("/decisions/pending", decisionControllers.browsePending);
+router.get("/decision/pending", decisionControllers.browsePending);
 // get experts
 router.get("/decisions/:id/experts", decisionControllers.getExperts);
 // get impacted
@@ -67,12 +67,6 @@ router.post("/comment", commentControllers.add);
 const paragraphsControllers = require("./controllers/paragraphsControllers");
 // Route to get all paragraphs for 1 decision
 router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
-// Route to create decision
-router.post("/decision/create", decisionControllers.createDecision);
-// Route to update decision
-router.put("/decision/update", decisionControllers.updateDecision);
-// Route to retrieve a complete posted decision by ID
-router.get("/decision/:id", decisionControllers.read);
 
 /* ************************************************************************* */
 

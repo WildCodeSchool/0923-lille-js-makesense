@@ -1,8 +1,7 @@
 import "./Homepage.scss";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
-import DecisionCard from "../../components/DecisionCard/DecisionCard";
 import { AuthContext } from "../../contexts/authContext";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
@@ -32,30 +31,8 @@ function Homepage() {
 
   return (
     <>
-      <SecondaryNav
-        decisionsHome={decisionsHome}
-        setDecisionsHome={setDecisionsHome}
-      />
-      <h1 className="homepage__title">Décisions en cours</h1>
-      <main className="homepage__main">
-        {decisionsHome
-          ? decisionsHome
-              .toReversed()
-              .map((card) => (
-                <DecisionCard
-                  key={card.decision_id}
-                  title={card.decision_title}
-                  status={card.status}
-                  authorFirstname={card.firstname}
-                  authorLastname={card.lastname}
-                  location={card.location}
-                  comments={card.nb_comments}
-                  picture={card.picture}
-                  id={card.decision_id}
-                />
-              ))
-          : "Loading"}
-      </main>
+      <SecondaryNav />
+      <Outlet decisionsHome={decisionsHome} />
     </>
   );
 }

@@ -6,7 +6,6 @@ const browsePending = async (req, res, next) => {
   try {
     // Fetch all decisions from the database
     const decisions = await tables.decision.readAllPending();
-
     // Respond with the decisions in JSON format
     res.json(decisions);
   } catch (err) {
