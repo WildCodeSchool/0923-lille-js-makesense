@@ -65,9 +65,13 @@ function Decision() {
             Date d'ouverture: {formattedDate} <br />
             Date de clôture: {decision.decision_delay}
           </h2>
-          <Link to="/decision/update" className="decision__edit">
-            Editer la décision
-          </Link>
+          {user[0].user_id === decision.user_id ? (
+            <Link to="/decision/update" className="decision__edit">
+              Editer la décision
+            </Link>
+          ) : (
+            ""
+          )}
         </section>
         <ProgressBar status={decision.status} />
       </header>
