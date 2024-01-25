@@ -11,7 +11,7 @@ function Homepage() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-  // Le site n'est accessible qu'en étant connecté
+  // Redirect unconnected users
   useEffect(() => {
     if (user[0].user_id === 0) {
       navigate("/");

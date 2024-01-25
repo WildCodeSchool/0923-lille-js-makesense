@@ -19,10 +19,10 @@ function CreateDecision() {
   );
   const [decisionStatus] = useState("Décision commencée");
 
-  // Hook pour la navigation
+  // Hook for navigation
   const navigate = useNavigate();
 
-  // Le site n'est accessible qu'en étant connecté
+  // Redirect unconnected users
   useEffect(() => {
     if (user[0].user_id === 0) {
       navigate("/");
@@ -33,7 +33,6 @@ function CreateDecision() {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/decision/create`,
         {
@@ -58,15 +57,12 @@ function CreateDecision() {
         }
       );
 
-      // Redirection vers la page de connexion si la création réussit
       if (response.status === 201) {
         navigate("/homepage");
       } else {
-        // Log des détails de la réponse en cas d'échec
         console.info(response);
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error("Error in decision creation", err);
     }
   };
