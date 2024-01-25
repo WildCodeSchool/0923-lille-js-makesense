@@ -32,7 +32,10 @@ function Homepage() {
 
   return (
     <>
-      <SecondaryNav />
+      <SecondaryNav
+        decisionsHome={decisionsHome}
+        setDecisionsHome={setDecisionsHome}
+      />
       <h1 className="homepage__title">Décisions en cours</h1>
       <main className="homepage__main">
         {decisionsHome
