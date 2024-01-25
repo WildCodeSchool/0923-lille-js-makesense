@@ -1,11 +1,15 @@
 import "./Decision.scss";
-import { useState, useEffect } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { useDecisionContext } from "../../contexts/decisionContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import { AuthContext } from "../../contexts/authContext";
 
 function Decision() {
+  const { user } = useContext(AuthContext);
+  const commentContentRef = useRef();
+  const [comment, setComment] = useState("");
   const [writeComment, setWriteComment] = useState();
   const { decisionId } = useDecisionContext();
   const [decision, setDecision] = useState({
@@ -35,6 +39,24 @@ function Decision() {
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
   }, []);
+
+  const handleSubmit = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        commentContent: commentContentRef,
+        userId: user.user_id,
+      }),
+    };
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/comment`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => setComment(data))
+      .catch((error) => console.error(error));
+  };
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -72,7 +94,12 @@ function Decision() {
         <section
           className={`right__section ${!writeComment ? "hidden" : null}`}
         >
-          <CommentSection />
+          <CommentSection
+            handleSubmit={handleSubmit}
+            comment={comment}
+            setComment={setComment}
+            commentContentRef={commentContentRef}
+          />
         </section>
         <input
           value={writeComment ? "Voir la décision" : "Voir les commentaires"}

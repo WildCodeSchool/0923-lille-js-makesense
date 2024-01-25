@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
-import { useDecisionContext } from "../../contexts/decisionContext";
+import { useState } from "react";
 import "./CommentSection.scss";
+import PropTypes from "prop-types";
 
-function CommentSection() {
-  const { decisionId } = useDecisionContext();
-  const [comment, setComment] = useState("");
+function CommentSection({
+  handleSubmit,
+  comment,
+  setComment,
+  commentContentRef,
+}) {
   const [commentList, setCommentList] = useState([]);
-  useEffect(() => {
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/comments`
-    )
-      .then((response) => response.json())
-      .then((data) => setComment(data))
-      .catch((error) => console.error(error));
-  }, [decisionId]);
 
   const onChangeHandler = (event) => {
     setComment(event.target.value);
@@ -58,26 +53,35 @@ function CommentSection() {
           ))}
         </section>
         <hr className="dividing__line" />
-        <section className="commentSection__input--field">
+        <form method="post" className="commentSection__input--field">
           <textarea
             value={comment}
             placeholder="Rédigez un commentaire..."
             onKeyDown={handlePress}
             onChange={onChangeHandler}
             className="commentSection__textarea"
+            ref={commentContentRef}
             required
           />
           <button
+            onSubmit={handleSubmit}
             onClick={onClickHandler}
             type="button"
             className="comment__button"
           >
             Commenter
           </button>
-        </section>
+        </form>
       </section>
     </section>
   );
 }
 
 export default CommentSection;
+
+CommentSection.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired,
+  setComment: PropTypes.func.isRequired,
+  commentContentRef: PropTypes.func.isRequired,
+};
