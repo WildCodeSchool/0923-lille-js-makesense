@@ -1,5 +1,5 @@
 import "./Decision.scss";
-import { useState, useContext, useRef, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useDecisionContext } from "../../contexts/decisionContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
@@ -8,12 +8,11 @@ import { AuthContext } from "../../contexts/authContext";
 
 function Decision() {
   const { user } = useContext(AuthContext);
-  const commentContentRef = useRef();
   const [comment, setComment] = useState("");
   const [writeComment, setWriteComment] = useState();
   const { decisionId } = useDecisionContext();
   const [decision, setDecision] = useState({
-    decision_date: null,
+    decision_date: "--",
     decision_delay: "--",
     decision_id: 0,
     decision_title: "--",
@@ -33,6 +32,7 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
@@ -40,23 +40,6 @@ function Decision() {
       .catch((error) => console.error(error));
   }, []);
 
-  const handleSubmit = () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        commentContent: commentContentRef,
-        userId: user.user_id,
-      }),
-    };
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/comment`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((data) => setComment(data))
-      .catch((error) => console.error(error));
-  };
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -95,10 +78,10 @@ function Decision() {
           className={`right__section ${!writeComment ? "hidden" : null}`}
         >
           <CommentSection
-            handleSubmit={handleSubmit}
             comment={comment}
             setComment={setComment}
-            commentContentRef={commentContentRef}
+            user={user}
+            decisionId={decisionId}
           />
         </section>
         <input

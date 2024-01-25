@@ -60,8 +60,8 @@
 }
 .commentSection__comment--avatar {
   @include avatar;
-  height: 6vh;
-  width: auto;
+  height: 4rem;
+  width: 4rem;
   border-width: 3px;
   margin-block: 1vh;
 }

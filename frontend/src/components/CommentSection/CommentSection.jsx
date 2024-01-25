@@ -1,29 +1,51 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./CommentSection.scss";
 import PropTypes from "prop-types";
 
-function CommentSection({
-  handleSubmit,
-  comment,
-  setComment,
-  commentContentRef,
-}) {
-  const [commentList, setCommentList] = useState([]);
+function CommentSection({ comment, setComment, decisionId, user }) {
+  const commentContentRef = useRef(null);
+  const [allComments, setAllComments] = useState([]);
+  useEffect(() => {
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/comments`
+    )
+      .then((response) => response.json())
+      .then((data) => setAllComments(data))
+      .catch((err) => console.error(err));
+  }, [comment]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/decisions/${decisionId}/comments`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            commentContent: commentContentRef.current.value,
+            userId: user[0].user_id,
+          }),
+        }
+      );
+      if (response.status === 201) {
+        setComment("");
+      }
+    } catch (err) {
+      console.error("Error", err);
+    }
+  };
 
   const onChangeHandler = (event) => {
     setComment(event.target.value);
   };
+
   const onClickHandler = () => {
     if (comment.trim() !== "") {
-      setCommentList((comments) => [...comments, comment]);
-      setComment("");
-    }
-  };
-  const handlePress = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      onClickHandler();
-      e.target.value = "";
+      setAllComments((comments) => [...comments, comment]);
     }
   };
   return (
@@ -31,42 +53,46 @@ function CommentSection({
       <h2 className="commentSection__title">Commentaires</h2>
       <section className="commentSection__container">
         <section className="commentSection__comment--container">
-          {commentList.map((com) => (
-            <section className="commentSection__comment--assembly">
+          {allComments.map((com) => (
+            <section
+              key={com.comment_id}
+              className="commentSection__comment--assembly"
+            >
               <img
                 className="commentSection__comment--avatar"
-                src="src/assets/vincent.png"
+                src={com.picture}
                 alt="avatar"
               />
               <section className="commentSection__comment--box">
                 <section className="commentSection__comment__textSection">
                   <h4 className="commentSection__comment--name">
-                    Vincent Rousseaux (expert)
+                    {com.firstname} {com.lastname}
                   </h4>
                   <p className="commenSection__comment--dateTime">
-                    le 15 janvier à 10h
+                    {com.date_courte}
                   </p>
-                  <p>{com}</p>
+                  <p>{[com.comment_content]}</p>
                 </section>
               </section>
             </section>
           ))}
         </section>
         <hr className="dividing__line" />
-        <form method="post" className="commentSection__input--field">
+        <form
+          method="post"
+          onSubmit={handleSubmit}
+          className="commentSection__input--field"
+        >
           <textarea
             value={comment}
             placeholder="Rédigez un commentaire..."
-            onKeyDown={handlePress}
             onChange={onChangeHandler}
             className="commentSection__textarea"
             ref={commentContentRef}
-            required
           />
           <button
-            onSubmit={handleSubmit}
             onClick={onClickHandler}
-            type="button"
+            type="submit"
             className="comment__button"
           >
             Commenter
@@ -80,8 +106,8 @@ function CommentSection({
 export default CommentSection;
 
 CommentSection.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired,
+  decisionId: PropTypes.number.isRequired,
   comment: PropTypes.string.isRequired,
   setComment: PropTypes.func.isRequired,
-  commentContentRef: PropTypes.func.isRequired,
 };

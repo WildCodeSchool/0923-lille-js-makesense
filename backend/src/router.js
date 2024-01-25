@@ -59,9 +59,9 @@ router.get("/comment", commentControllers.read);
 // Route to retrieve all comments from the "comment" table with its author and role
 router.get("/comment/all", commentControllers.browse);
 // Route to access comments belonging to a posted decision
-router.get("/decision/:id/comments", commentControllers.readByDecision);
+router.get("/decisions/:id/comments", commentControllers.readByDecision);
 // Route to add a new comment
-router.post("/decisions/:id/comment", commentControllers.add);
+router.post("/decisions/:id/comments", commentControllers.add);
 
 // PARAGRAPHS ROUTES
 // Import Controller

@@ -106,14 +106,13 @@ const add = async (req, res, next) => {
   const decisionId = parseInt(req.params.id, 10);
   try {
     // Insert the decision into the database
-    const insertId = await tables.comment.create(
+    const allComments = await tables.comment.create(
       commentContent,
       userId,
       decisionId
     );
-
     // Respond with HTTP 201 (Created) and the ID of the newly inserted decision
-    res.status(201).json({ insertId });
+    res.status(201).json({ allComments });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
