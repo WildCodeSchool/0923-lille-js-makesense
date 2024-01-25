@@ -1,12 +1,11 @@
 import "./Decision.scss";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDecisionContext } from "../../contexts/decisionContext";
 import { AuthContext } from "../../contexts/authContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
-import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
   const { decisionId } = useDecisionContext();
@@ -61,14 +60,16 @@ function Decision() {
   return (
     <main className="decision__page">
       <header className="decision__page--header">
-        <h2 className="openAndClose__date">
-          Date d'ouverture: {formattedDate} <br />
-          Date de clôture: {decision.decision_delay}
-        </h2>
-        <section className="progress_edit">
-          <ProgressBar status={decision.status} />
-          <EditButton />
+        <section className="decision__header">
+          <h2 className="openAndClose__date">
+            Date d'ouverture: {formattedDate} <br />
+            Date de clôture: {decision.decision_delay}
+          </h2>
+          <Link to="/decision/update" className="decision__edit">
+            Editer la décision
+          </Link>
         </section>
+        <ProgressBar status={decision.status} />
       </header>
       <section className="decision__page--body">
         <section className={`left__section ${writeComment ? "hidden" : null}`}>

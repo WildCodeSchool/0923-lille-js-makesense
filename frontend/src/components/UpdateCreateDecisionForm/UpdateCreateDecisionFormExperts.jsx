@@ -17,30 +17,30 @@ function UpdateCreateDecisionFormExperts() {
   }, [decisionId]);
 
   return (
-    <article className="createDecisionForm__experts">
-      <h2 className="createDecisionForm__titles">Expert·e·s</h2>
-      <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
-        <ul className="createDecisionForm__list">
+    <article className="updateDecisionForm__experts">
+      <h2 className="updateDecisionForm__titles">Expert·e·s</h2>
+      <span className="updateDecisionForm__content updateDecisionForm__content--choiceBoxes">
+        <ul className="updateDecisionForm__list">
           {updateExperts.map((updateExpert) => (
-            <li className="createDecisionForm__chosen">
+            <li className="updateDecisionForm__chosen">
               <img
                 src={updateExpert.picture}
                 alt="avatar de l'expert choisi"
-                className="createDecisionForm__chosen--avatar"
+                className="updateDecisionForm__chosen--avatar"
               />
-              <p className="createDecisionForm__chosen--fullname">
+              <p className="updateDecisionForm__chosen--fullname">
                 {updateExpert.firstname} {updateExpert.lastname}
               </p>
             </li>
           ))}
         </ul>
-        <form className="createDecisionForm__search">
+        <form className="updateDecisionForm__search">
           <input
-            className="createDecisionForm__input"
+            className="updateDecisionForm__input"
             type="text"
             placeholder="Rechercher expert·e·s"
           />
-          <button className="createDecisionForm__submit" type="submit">
+          <button className="updateDecisionForm__submit" type="submit">
             Choisir
           </button>
         </form>

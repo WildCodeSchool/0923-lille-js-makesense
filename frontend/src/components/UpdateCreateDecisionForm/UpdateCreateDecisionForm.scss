@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.createDecisionForm__content {
+.updateDecisionForm__content {
   @include box;
   margin-block-start: 2%;
   display: flex;
@@ -9,17 +9,17 @@
   overflow-x: hidden;
 }
 
-.createDecisionForm__content--choiceBoxes {
+.updateDecisionForm__content--choiceBoxes {
   min-height: 30vh;
   justify-content: space-between;
 }
 
-.createDecisionForm__titles {
+.updateDecisionForm__titles {
   text-align: center;
   padding-block: 1%;
 }
 
-.createDecisionForm__chosen {
+.updateDecisionForm__chosen {
   display: flex;
   align-items: center;
   font-weight: 700;
@@ -35,7 +35,7 @@
   }
 }
 
-.createDecisionForm__search {
+.updateDecisionForm__search {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,7 +53,7 @@
   }
 }
 
-.createDecisionForm__content--decision {
+.updateDecisionForm__content--decision {
   padding: 1%;
   height: 80vh;
   width: 72vw;
@@ -76,7 +76,7 @@
   }
 }
 
-.createDecisionForm__status select {
+.updateDecisionForm__status select {
   background-color: $secondary-background;
   border-radius: 5px;
   & option {
@@ -85,7 +85,7 @@
   }
 }
 
-.createDecisionForm__progress {
+.updateDecisionForm__progress {
   background-color: $secondary-background;
   border-radius: 5px;
   & option {

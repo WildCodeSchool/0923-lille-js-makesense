@@ -23,20 +23,20 @@ function UpdateCreateDecisionFormContent({
 }) {
   return (
     <main>
-      <form className="createDecisionForm__content createDecisionForm__content--decision">
-        <label className="createDecisionForm__label" htmlFor="titre">
+      <form className="updateDecisionForm__content updateDecisionForm__content--decision">
+        <label className="updateDecisionForm__label" htmlFor="titre">
           Titre :&nbsp;&nbsp;
           <input
             type="text"
             name="titre"
             placeholder="Titre..."
-            className="createDecisionForm__input"
+            className="updateDecisionForm__input"
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
-        <label className="createDecisionForm__status" htmlFor="status">
+        <label className="updateDecisionForm__status" htmlFor="status">
           Délai :&nbsp;&nbsp;
           <select
             name="status"
@@ -54,7 +54,7 @@ function UpdateCreateDecisionFormContent({
           </select>
         </label>
 
-        <label className="createDecisionForm__status" htmlFor="progress">
+        <label className="updateDecisionForm__status" htmlFor="progress">
           Progression :&nbsp;&nbsp;
           <select
             name="progress"
@@ -74,72 +74,72 @@ function UpdateCreateDecisionFormContent({
             </option>
           </select>
         </label>
-        <label className="createDecisionForm__label" htmlFor="section1">
+        <label className="updateDecisionForm__label" htmlFor="section1">
           Détails de la décision :
         </label>
         <textarea
           id="section1"
           name="section1"
           placeholder="Expliquez l'idée derrière votre proposition."
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           required
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         />
 
-        <label className="createDecisionForm__label" htmlFor="section2">
+        <label className="updateDecisionForm__label" htmlFor="section2">
           Impact sur l'organisation :
         </label>
         <textarea
           id="section2"
           name="section2"
           placeholder="En quoi Make Sense sera impacté par cette décision ?"
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           required
           value={impact}
           onChange={(e) => setImpact(e.target.value)}
         />
-        <label className="createDecisionForm__label" htmlFor="section3">
+        <label className="updateDecisionForm__label" htmlFor="section3">
           Bénéfices :
         </label>
         <textarea
           id="section3"
           name="section3"
           placeholder="Quels sont les bénéfices pour Make Sense ?"
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={benefits}
           onChange={(e) => setBenefits(e.target.value)}
         />
-        <label className="createDecisionForm__label" htmlFor="section4">
+        <label className="updateDecisionForm__label" htmlFor="section4">
           Risques potentiels :
         </label>
         <textarea
           id="section4"
           name="section4"
           placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={risks}
           onChange={(e) => setRisks(e.target.value)}
         />
-        <label className="createDecisionForm__label" htmlFor="section5">
+        <label className="updateDecisionForm__label" htmlFor="section5">
           Première décision :
         </label>
         <textarea
           id="section5"
           name="section5"
           placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={firstDecision}
           onChange={(e) => setFirstDecision(e.target.value)}
         />
-        <label className="createDecisionForm__label" htmlFor="section6">
+        <label className="updateDecisionForm__label" htmlFor="section6">
           Décision définitive :
         </label>
         <textarea
           id="section6"
           name="section6"
           placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={finaleDecision}
           onChange={(e) => setFinaleDecision(e.target.value)}
         />

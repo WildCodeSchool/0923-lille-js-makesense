@@ -82,7 +82,7 @@ function UpdateDecision() {
   };
 
   return (
-    <main className="createDecision__main">
+    <main className="updateDecision__main">
       {updateDecision && (
         <>
           <UpdateCreateDecisionFormContent
@@ -106,14 +106,14 @@ function UpdateDecision() {
             setFirstDecision={setFirstDecision}
             setFinalDecision={setFinalDecision}
           />
-          <aside className="createDecision__aside">
+          <aside className="updateDecision__aside">
             <UpdateCreateDecisionFormExperts />
             <UpdateCreateDecisionFormImpacted />
             <Link
               to="/homepage"
               onClick={handleUpdateDecision}
               type="button"
-              className="createDecisionForm__button"
+              className="updateDecisionForm__button"
             >
               Mettre à jour la décision
             </Link>
