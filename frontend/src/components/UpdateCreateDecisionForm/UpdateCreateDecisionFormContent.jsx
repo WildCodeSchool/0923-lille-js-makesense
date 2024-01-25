@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./UpdateCreateDecisionForm.scss";
 
 function UpdateCreateDecisionFormContent({
-  selectedValue,
+  delay,
   progress,
   title,
   details,
@@ -11,7 +11,7 @@ function UpdateCreateDecisionFormContent({
   risks,
   firstDecision,
   finaleDecision,
-  setSelectedValue,
+  setDelay,
   setProgress,
   setTitle,
   setDetails,
@@ -41,8 +41,8 @@ function UpdateCreateDecisionFormContent({
           <select
             name="status"
             id="status"
-            value={selectedValue}
-            onChange={(e) => setSelectedValue(e.target.value)}
+            value={delay}
+            onChange={(e) => setDelay(e.target.value)}
           >
             <option value="Court terme (deux semaines)">
               Court terme (deux semaines)
@@ -150,7 +150,7 @@ function UpdateCreateDecisionFormContent({
 
 UpdateCreateDecisionFormContent.propTypes = {
   progress: PropTypes.string.isRequired,
-  selectedValue: PropTypes.string.isRequired,
+  delay: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
   impact: PropTypes.string.isRequired,
@@ -158,7 +158,7 @@ UpdateCreateDecisionFormContent.propTypes = {
   risks: PropTypes.string.isRequired,
   firstDecision: PropTypes.string.isRequired,
   finaleDecision: PropTypes.string.isRequired,
-  setSelectedValue: PropTypes.func.isRequired,
+  setDelay: PropTypes.func.isRequired,
   setProgress: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   setDetails: PropTypes.func.isRequired,

@@ -8,18 +8,16 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateDecision() {
   const { decisionId } = useDecisionContext();
-  const [updateDecision, setupdateDecision] = useState("");
+  const [updateDecision, setUpdateDecision] = useState("");
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
       .then((response) => response.json())
-      .then((data) => setupdateDecision(data))
+      .then((data) => setUpdateDecision(data))
       .catch((error) => console.error(error));
   }, []);
 
   const [progress, setProgress] = useState(updateDecision.status);
-  const [selectedValue, setSelectedValue] = useState(
-    updateDecision.decision_delay
-  );
+  const [delay, setDelay] = useState(updateDecision.decision_delay);
   const [title, setTitle] = useState(updateDecision.decision_title);
   const [details, setDetails] = useState(updateDecision.paragraph_details);
   const [impact, setImpact] = useState(updateDecision.paragraph_impact);
@@ -33,7 +31,7 @@ function UpdateDecision() {
   );
   useEffect(() => {
     setProgress(updateDecision.status);
-    setSelectedValue(updateDecision.decision_delay);
+    setDelay(updateDecision.decision_delay);
     setTitle(updateDecision.decision_title);
     setDetails(updateDecision.paragraph_details);
     setImpact(updateDecision.paragraph_impact);
@@ -60,7 +58,7 @@ function UpdateDecision() {
 
     const updatedDatas = {
       status: progress,
-      decision_delay: selectedValue,
+      decision_delay: delay,
       decision_title: title,
       decision_id: decisionId,
     };
@@ -89,7 +87,7 @@ function UpdateDecision() {
         <>
           <UpdateCreateDecisionFormContent
             progress={progress}
-            selectedValue={selectedValue}
+            delay={delay}
             updateDecision={updateDecision}
             title={title}
             details={details}
@@ -99,7 +97,7 @@ function UpdateDecision() {
             firstDecision={firstDecision}
             finalDecision={finalDecision}
             setProgress={setProgress}
-            setSelectedValue={setSelectedValue}
+            setDelay={setDelay}
             setTitle={setTitle}
             setDetails={setDetails}
             setImpact={setImpact}
