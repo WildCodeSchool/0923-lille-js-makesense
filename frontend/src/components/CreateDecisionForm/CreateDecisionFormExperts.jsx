@@ -94,6 +94,7 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
           <datalist id="usersList">
             {users.map((user) => (
               <option
+                className="createDecisionForm__search--options"
                 key={user.user_id}
                 aria-label="Noms"
                 value={`${user.firstname} ${user.lastname} (${user.email})`}
