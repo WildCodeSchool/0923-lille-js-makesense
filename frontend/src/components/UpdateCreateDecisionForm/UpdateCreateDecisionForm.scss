@@ -5,8 +5,11 @@
   margin-block-start: 2%;
   display: flex;
   flex-direction: column;
-  @include scroll;
   overflow-x: hidden;
+  background-color: $background;
+  & * {
+    background-color: $background;
+  }
 }
 
 .updateDecisionForm__content--choiceBoxes {
@@ -19,13 +22,23 @@
   padding-block: 1%;
 }
 
+.updateDecisionForm__titles {
+  text-align: center;
+  padding-block: 1%;
+}
+
+.updateDecisionForm__list {
+  @include scroll;
+  height: 100%;
+}
+
 .updateDecisionForm__chosen {
   display: flex;
   align-items: center;
   font-weight: 700;
   margin-block: 1%;
   border-radius: 20px;
-  background-color: $background;
+  background-color: $secondary-background;
   padding: 1%;
   &--avatar {
     @include avatar;
@@ -33,6 +46,27 @@
     width: 40px;
     height: 40px;
   }
+  &--fullname {
+    display: flex;
+    justify-content: space-between;
+    width: 83%;
+    margin-inline-end: 1%;
+  }
+  & * {
+    background-color: $secondary-background;
+  }
+}
+
+.updateDecisionForm__chosen--remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $tertiary-medium;
+  border: 2px solid $tertiary-medium;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .updateDecisionForm__search {
@@ -45,6 +79,7 @@
     all: unset;
     background-color: $background;
     padding: 2%;
+    width: 100%;
   }
   & button {
     @include buttons;
@@ -54,16 +89,14 @@
 }
 
 .updateDecisionForm__content--decision {
+  @include scroll;
   padding: 1%;
-  height: 80vh;
-  width: 72vw;
-  & * {
-    background-color: transparent;
-  }
+  height: 85vh;
+  width: 68vw;
+  flex-grow: 3;
   & textarea,
   input {
     background-color: $secondary-background;
-    @include scroll;
     border-radius: 5px;
   }
   & textarea:focus,
@@ -101,4 +134,9 @@
     background-color: $secondary-background;
     border-radius: 5px;
   }
+}
+
+.updateDecisionForm__label input,
+.updateDecisionForm__status select {
+  margin-inline-start: 1vw;
 }

@@ -79,7 +79,7 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
           placeholder="Expliquez l'idée derrière votre proposition."
           className="updateDecisionForm__input"
           required
-          rows={30}
+          rows={20}
           value={decisions.paragraph_details}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -98,7 +98,7 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
           placeholder="En quoi Make Sense sera impacté par cette décision ?"
           className="updateDecisionForm__input"
           required
-          rows={30}
+          rows={20}
           value={decisions.paragraph_impact}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -115,7 +115,7 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
           name="section3"
           placeholder="Quels sont les bénéfices pour Make Sense ?"
           className="updateDecisionForm__input"
-          rows={30}
+          rows={20}
           value={decisions.paragraph_benefits}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
