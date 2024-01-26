@@ -21,7 +21,7 @@ function UpdateDecision() {
       import.meta.env.VITE_BACKEND_URL
     }/api/decision/update`;
 
-    const updatedData = {
+    const updatedParagraph = {
       paragraph_details: decisions.paragraph_details,
       paragraph_impact: decisions.paragraph_impact,
       paragraph_benefits: decisions.paragraph_benefits,
@@ -31,7 +31,7 @@ function UpdateDecision() {
       decision_id: decisionId,
     };
 
-    const updatedDatas = {
+    const updatedDécisions = {
       status: decisions.status,
       decision_delay: decisions.decision_delay,
       decision_title: decisions.decision_title,
@@ -42,12 +42,12 @@ function UpdateDecision() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify([updatedData, updatedDatas]),
+      body: JSON.stringify([updatedParagraph, updatedDécisions]),
     })
       .then((response) => response.json())
       .then((data) => {
         console.info("Mise à jour réussie :", data);
-        setDecisions(updatedDatas);
+        setDecisions(updatedDécisions);
       })
       .catch((error) => {
         console.error("Erreur lors de la mise à jour :", error);

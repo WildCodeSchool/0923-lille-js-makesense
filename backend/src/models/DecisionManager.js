@@ -117,7 +117,7 @@ class DecisionManager extends AbstractManager {
       GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
     );
 
-    // Retournez le résultat
+    // Return Result
     return rows;
   }
 
@@ -133,7 +133,7 @@ class DecisionManager extends AbstractManager {
       [userId, userId, userId]
     );
 
-    // Retournez le résultat
+    // Return result
     return rows;
   }
 
