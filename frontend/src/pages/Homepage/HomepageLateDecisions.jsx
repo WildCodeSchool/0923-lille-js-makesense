@@ -6,7 +6,7 @@ function HomepageLateDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/late`)
       .then((response) => response.json())
       .then((data) => {
         setRelatedDecisions(data);
@@ -16,7 +16,7 @@ function HomepageLateDecisions() {
 
   return (
     <>
-      <h1 className="homepage__title">Décisions en retard</h1>
+      <h1 className="homepage__title">Décisions en cours</h1>
       <main className="homepage__main">
         {relatedDecisions
           ? relatedDecisions

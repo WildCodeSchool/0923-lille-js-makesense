@@ -92,7 +92,7 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  async readAllPending() {
+  async readAllLate() {
     // Execute the SQL SELECT query to retrieve all pending decisions from the decision table
     const [rows] = await this.database.query(
       `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
@@ -104,6 +104,34 @@ class DecisionManager extends AbstractManager {
     );
 
     // Return the array of decisions
+    return rows;
+  }
+
+  async readAllCompleted() {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+    );
+
+    return rows;
+  }
+
+  async readAllDecisions(userId) {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
+`,
+      [userId, userId, userId]
+    );
+
     return rows;
   }
 
@@ -146,7 +174,6 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  // Implémentez la logique pour récupérer les décisions liées à un utilisateur
   async getRelatedDecisions(userId) {
     const [rows] = await this.database.query(
       `SELECT
@@ -169,7 +196,6 @@ class DecisionManager extends AbstractManager {
       [userId, userId, userId]
     );
 
-    // Retournez le résultat
     return rows;
   }
 

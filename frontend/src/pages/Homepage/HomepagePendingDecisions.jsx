@@ -6,7 +6,7 @@ function HomepagePendingDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/pending`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/late`)
       .then((response) => response.json())
       .then((data) => {
         setRelatedDecisions(data);

@@ -9,7 +9,7 @@ function HomepageUserDecisions() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/${
       user[0].user_id
     }/related-decisions
       `)

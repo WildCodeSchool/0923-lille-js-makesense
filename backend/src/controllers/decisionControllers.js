@@ -2,10 +2,10 @@
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
-const browsePending = async (req, res, next) => {
+const browseLate = async (req, res, next) => {
   try {
     // Fetch all decisions from the database
-    const decisions = await tables.decision.readAllPending();
+    const decisions = await tables.decision.readAllLate();
     // Respond with the decisions in JSON format
     res.json(decisions);
   } catch (err) {
@@ -157,13 +157,40 @@ const getRelatedDecisions = async (req, res, next) => {
   }
 };
 
+// all completed decisions
+const browseCompleted = async (req, res, next) => {
+  try {
+    // Fetch all decisions completed from the database
+    const decisionsCompleted = await tables.decision.readAllCompleted();
+
+    // Respond with the decisions completed in JSON format
+    res.json(decisionsCompleted);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const browseCurrent = async (req, res, next) => {
+  try {
+    // Fetch all current decisions from the database
+    const currentDecisions = await tables.decision.readAllCurrent();
+
+    // Respond with the current decisions in JSON format
+    res.json(currentDecisions);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
 // Ready to export the controller functions
 module.exports = {
   browse,
-  browsePending,
+  browseLate,
   read,
   readByRole,
   updatePicture,
@@ -172,5 +199,7 @@ module.exports = {
   getExperts,
   getImpacted,
   getRelatedDecisions,
+  browseCompleted,
+  browseCurrent,
   // destroy,
 };
