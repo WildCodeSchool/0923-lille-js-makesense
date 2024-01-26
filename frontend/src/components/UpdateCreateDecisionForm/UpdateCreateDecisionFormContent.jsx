@@ -83,6 +83,7 @@ function UpdateCreateDecisionFormContent({
           placeholder="Expliquez l'idée derrière votre proposition."
           className="updateDecisionForm__input"
           required
+          rows={30}
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         />
@@ -96,6 +97,7 @@ function UpdateCreateDecisionFormContent({
           placeholder="En quoi Make Sense sera impacté par cette décision ?"
           className="updateDecisionForm__input"
           required
+          rows={30}
           value={impact}
           onChange={(e) => setImpact(e.target.value)}
         />
@@ -107,6 +109,7 @@ function UpdateCreateDecisionFormContent({
           name="section3"
           placeholder="Quels sont les bénéfices pour Make Sense ?"
           className="updateDecisionForm__input"
+          rows={30}
           value={benefits}
           onChange={(e) => setBenefits(e.target.value)}
         />

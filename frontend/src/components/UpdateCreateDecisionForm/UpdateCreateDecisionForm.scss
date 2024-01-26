@@ -57,6 +57,15 @@
   padding: 1%;
   height: 80vh;
   width: 72vw;
+  & * {
+    background-color: transparent;
+  }
+  & textarea,
+  input {
+    background-color: $secondary-background;
+    @include scroll;
+    border-radius: 5px;
+  }
   & textarea:focus,
   input:focus {
     outline: none !important;
