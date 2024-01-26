@@ -6,7 +6,6 @@ import { AuthContext } from "../../contexts/authContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
-import { AuthContext } from "../../contexts/authContext";
 
 function Decision() {
   const { user } = useContext(AuthContext);
