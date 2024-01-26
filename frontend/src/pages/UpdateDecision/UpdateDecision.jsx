@@ -37,7 +37,6 @@ function UpdateDecision() {
       decision_title: decisions.decision_title,
       decision_id: decisionId,
     };
-
     fetch(apiEndpoint, {
       method: "PUT",
       headers: {
@@ -45,12 +44,10 @@ function UpdateDecision() {
       },
       body: JSON.stringify([updatedData, updatedDatas]),
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        window.location.reload();
         console.info("Mise à jour réussie :", data);
+        setDecisions(updatedDatas);
       })
       .catch((error) => {
         console.error("Erreur lors de la mise à jour :", error);
@@ -69,7 +66,7 @@ function UpdateDecision() {
         <UpdateCreateDecisionFormExperts />
         <UpdateCreateDecisionFormImpacted />
         <Link
-          to="/homepage"
+          to="/decision"
           onClick={handleUpdateDecision}
           type="button"
           className="createDecisionForm__button"

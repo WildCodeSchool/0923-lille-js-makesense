@@ -10,6 +10,7 @@ import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
   const { decisionId } = useDecisionContext();
+  const { decisions } = useDecisionContext();
   const { user } = useContext(AuthContext);
 
   const [writeComment, setWriteComment] = useState();
@@ -49,7 +50,7 @@ function Decision() {
       .then((response) => response.json())
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisions]);
 
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
