@@ -6,7 +6,7 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
     <main>
       <form className="createDecisionForm__content createDecisionForm__content--decision">
         <label className="createDecisionForm__label" htmlFor="titre">
-          Titre :&nbsp;&nbsp;
+          Titre :
           <input
             type="text"
             name="titre"
