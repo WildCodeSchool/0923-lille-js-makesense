@@ -9,18 +9,17 @@ class CommentManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(comment) {
-    // Execute the SQL INSERT query to add a new user to the "comment" table
+  async create(comment, userId, decisionId) {
+    // Execute the SQL INSERT query to add a new comment to the "comment" table
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (comment_date_time, comment_content, user_id, decision_id) VALUES (?,?,?,?)`,
-      [
-        comment.comment_date_time,
-        comment.comment_content,
-        comment.user_id,
-        comment.decision_id,
-      ]
+      `INSERT INTO ${this.table} (comment_date_time, comment_content, user_id, decision_id) VALUES (NOW(),?,?,?)`,
+      [comment, userId, decisionId]
     );
     // Return the ID of the newly inserted comment
+    if (result.insertId) {
+      const allComments = await this.readByDecision(decisionId);
+      return allComments;
+    }
     return result.insertId;
   }
 
@@ -40,16 +39,16 @@ class CommentManager extends AbstractManager {
   // Execute the SQL SELECT query to retrieve a specific comment by the id of the decision to which it is associated
   async readByDecision(id) {
     const [rows] = await this.database.query(
-      `SELECT comment.comment_date_time, user.picture, CONCAT(user.firstname,' ', user.lastname) AS name, assignment.role, comment.comment_content
+      `SELECT DATE_FORMAT(comment.comment_date_time,'%d %b. %y - %T') AS short_date, user.picture, user.firstname, user.lastname, assignment.role, comment.comment_content
           FROM ${this.table}
-          INNER JOIN assignment ON comment.user_id = assignment.user_id
+          LEFT JOIN assignment ON comment.user_id = assignment.user_id
           INNER JOIN user ON comment.user_id = user.user_id
           INNER JOIN decision ON comment.decision_id = decision.decision_id
           WHERE decision.decision_id = ?
           ORDER BY comment.comment_date_time DESC`,
       [id]
     );
-    return rows[0];
+    return rows;
   }
 
   async readByRole(id) {
@@ -58,7 +57,7 @@ class CommentManager extends AbstractManager {
       `SELECT role FROM assignment WHERE user_id = ?`,
       [id]
     );
-    return rows[0] ? "" : ""; /* ??? */
+    return rows[0];
   }
 
   async readAll() {
