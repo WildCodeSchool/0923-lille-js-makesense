@@ -8,75 +8,51 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateDecision() {
   const { decisionId } = useDecisionContext();
-  const [updateDecision, setupdateDecision] = useState("");
+  const { decisions, setDecisions } = useDecisionContext();
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
       .then((response) => response.json())
-      .then((data) => setupdateDecision(data))
+      .then((data) => setDecisions(data))
       .catch((error) => console.error(error));
   }, []);
 
-  const [progress, setProgress] = useState(updateDecision.status);
-  const [selectedValue, setSelectedValue] = useState(
-    updateDecision.decision_delay
-  );
-  const [title, setTitle] = useState(updateDecision.decision_title);
-  const [details, setDetails] = useState(updateDecision.paragraph_details);
-  const [impact, setImpact] = useState(updateDecision.paragraph_impact);
-  const [benefits, setBenefits] = useState(updateDecision.paragraph_benefits);
-  const [risks, setRisks] = useState(updateDecision.paragraph_risks);
-  const [firstDecision, setFirstDecision] = useState(
-    updateDecision.paragraph_first_decision
-  );
-  const [finalDecision, setFinalDecision] = useState(
-    updateDecision.paragraph_finale_decision
-  );
+  const [updatedParagraph, setUpdateParagraph] = useState();
   useEffect(() => {
-    setProgress(updateDecision.status);
-    setSelectedValue(updateDecision.decision_delay);
-    setTitle(updateDecision.decision_title);
-    setDetails(updateDecision.paragraph_details);
-    setImpact(updateDecision.paragraph_impact);
-    setBenefits(updateDecision.paragraph_benefits);
-    setRisks(updateDecision.paragraph_risks);
-    setFirstDecision(updateDecision.paragraph_first_decision);
-    setFinalDecision(updateDecision.paragraph_finale_decision);
-  }, [updateDecision]);
+    setUpdateParagraph([
+      {
+        paragraph_details: decisions.paragraph_details,
+        paragraph_impact: decisions.paragraph_impact,
+        paragraph_benefits: decisions.paragraph_benefits,
+        paragraph_risks: decisions.paragraph_risks,
+        paragraph_first_decision: decisions.paragraph_first_decision,
+        paragraph_finale_decision: decisions.paragraph_finale_decision,
+        decision_id: decisionId,
+      },
+      {
+        status: decisions.status,
+        decision_delay: decisions.decision_delay,
+        decision_title: decisions.decision_title,
+        decision_id: decisionId,
+      },
+    ]);
+  }, [decisions]);
 
   const handleUpdateDecision = () => {
     const apiEndpoint = `${
       import.meta.env.VITE_BACKEND_URL
     }/api/decision/update`;
 
-    const updatedData = {
-      paragraph_details: details,
-      paragraph_impact: impact,
-      paragraph_benefits: benefits,
-      paragraph_risks: risks,
-      paragraph_first_decision: firstDecision,
-      paragraph_finale_decision: finalDecision,
-      decision_id: decisionId,
-    };
-
-    const updatedDatas = {
-      status: progress,
-      decision_delay: selectedValue,
-      decision_title: title,
-      decision_id: decisionId,
-    };
-
     fetch(apiEndpoint, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify([updatedData, updatedDatas]),
+      body: JSON.stringify(updatedParagraph),
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         console.info("Mise à jour réussie :", data);
+        setDecisions(updatedParagraph[1]);
       })
       .catch((error) => {
         console.error("Erreur lors de la mise à jour :", error);
@@ -85,43 +61,24 @@ function UpdateDecision() {
 
   return (
     <main className="createDecision__main">
-      {updateDecision && (
-        <>
-          <UpdateCreateDecisionFormContent
-            progress={progress}
-            selectedValue={selectedValue}
-            updateDecision={updateDecision}
-            title={title}
-            details={details}
-            impact={impact}
-            benefits={benefits}
-            risks={risks}
-            firstDecision={firstDecision}
-            finalDecision={finalDecision}
-            setProgress={setProgress}
-            setSelectedValue={setSelectedValue}
-            setTitle={setTitle}
-            setDetails={setDetails}
-            setImpact={setImpact}
-            setBenefits={setBenefits}
-            setRisks={setRisks}
-            setFirstDecision={setFirstDecision}
-            setFinalDecision={setFinalDecision}
-          />
-          <aside className="createDecision__aside">
-            <UpdateCreateDecisionFormExperts />
-            <UpdateCreateDecisionFormImpacted />
-            <Link
-              to="/homepage"
-              onClick={handleUpdateDecision}
-              type="button"
-              className="createDecisionForm__button"
-            >
-              Mettre à jour la décision
-            </Link>
-          </aside>
-        </>
+      {decisions && (
+        <UpdateCreateDecisionFormContent
+          decisions={decisions}
+          setDecisions={setDecisions}
+        />
       )}
+      <aside className="createDecision__aside">
+        <UpdateCreateDecisionFormExperts />
+        <UpdateCreateDecisionFormImpacted />
+        <Link
+          to="/decision"
+          onClick={handleUpdateDecision}
+          type="button"
+          className="createDecisionForm__button"
+        >
+          Mettre à jour la décision
+        </Link>
+      </aside>
     </main>
   );
 }

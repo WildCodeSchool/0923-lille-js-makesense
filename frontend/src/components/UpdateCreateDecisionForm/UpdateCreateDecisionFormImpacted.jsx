@@ -20,7 +20,7 @@ function UpdateCreateDecisionFormImpacted() {
       <h2 className="createDecisionForm__titles">Impacté·e·s</h2>
       <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
         <ul className="createDecisionForm__list">
-          {updateImpacted.map((updateImpacteds) => (
+          {updateImpacted.map((updateImpact) => (
             <li className="createDecisionForm__chosen">
               <img
                 src={updateImpacted.picture}
@@ -28,7 +28,7 @@ function UpdateCreateDecisionFormImpacted() {
                 className="createDecisionForm__chosen--avatar"
               />
               <p className="createDeicisionForm__chosen--fullname">
-                {updateImpacteds.firstname} {updateImpacteds.lastname}
+                {updateImpact.firstname} {updateImpact.lastname}
               </p>
             </li>
           ))}

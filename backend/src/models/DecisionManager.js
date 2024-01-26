@@ -81,13 +81,12 @@ class DecisionManager extends AbstractManager {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all decisions from the decision table
     const [rows] = await this.database
-      .query(`SELECT decision.decision_id, decision.decision_title, decision.status, 
-      user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      .query(`SELECT decision.*, paragraph.*, user.*, COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      GROUP BY decision.decision_id, decision.decision_title, decision.status, 
-      user.firstname, user.lastname, user.picture, user.location;`);
+      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;`);
 
     // Return the array of decisions
     return rows;
@@ -105,6 +104,36 @@ class DecisionManager extends AbstractManager {
     );
 
     // Return the array of decisions
+    return rows;
+  }
+
+  async getDecisionsCompleted() {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+    );
+
+    // Return Result
+    return rows;
+  }
+
+  async getCurrentDecisions(userId) {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
+`,
+      [userId, userId, userId]
+    );
+
+    // Return result
     return rows;
   }
 

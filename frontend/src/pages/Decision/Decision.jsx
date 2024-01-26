@@ -1,14 +1,19 @@
 import "./Decision.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
-  const [writeComment, setWriteComment] = useState();
+  const { user } = useContext(AuthContext);
+  const [comment, setComment] = useState("");
   const { decisionId } = useDecisionContext();
+  const { decisions } = useDecisionContext();
+  const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
     decision_delay: "--",
@@ -30,13 +35,21 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
+  const navigate = useNavigate();
+
+  // Redirect unconnected users
+  useEffect(() => {
+    if (user[0].user_id === 0) {
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisions]);
 
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
@@ -79,7 +92,12 @@ function Decision() {
         <section
           className={`right__section ${!writeComment ? "hidden" : null}`}
         >
-          <CommentSection />
+          <CommentSection
+            comment={comment}
+            setComment={setComment}
+            user={user}
+            decisionId={decisionId}
+          />
         </section>
         <input
           value={writeComment ? "Voir la décision" : "Voir les commentaires"}

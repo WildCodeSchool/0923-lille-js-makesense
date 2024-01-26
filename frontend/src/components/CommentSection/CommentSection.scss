@@ -49,6 +49,7 @@
 .commentSection__comment--box {
   @include textBox;
   padding-block: 0.5vh;
+  max-width: 31vw;
   display: flex;
   word-break: normal;
   margin-block: 1vh;
@@ -59,8 +60,8 @@
 }
 .commentSection__comment--avatar {
   @include avatar;
-  height: 6vh;
-  width: auto;
+  height: 4rem;
+  width: 4rem;
   border-width: 3px;
   margin-block: 1vh;
 }
