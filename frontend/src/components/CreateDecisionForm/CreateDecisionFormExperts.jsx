@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
-  // liste de tous les users
+  // list all users
   const [users, setUsers] = useState([]);
-  // recherche des users dans l'input
+  // search users in input
   const [searchUser, setSearchUser] = useState("");
-  // liste des users experts
+  // list experts users
   const [filteredUsers, setFilteredUsers] = useState([]);
   const expertRef = useRef();
 
@@ -22,37 +22,37 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
   }, []);
 
   const handleInputChange = (e) => {
-    // Lis les inputs clavier pour créer un auto-complete basé sur [users]
+    // read keyboard inputs to autocomplete based on users
     setSearchUser(e.target.value);
   };
 
-  // Ajoute un expert à la liste filtrée
+  // Add an expert to the filtered users
   const handleClick = () => {
-    // cherche le user qui correspond à l'input
+    // Search for the user corresponding the input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
         expertRef.current.value
     );
-    // si le user correspond, ajoute le user aux users filtrés
+    // if there's a corresponding user, add it to the list
     if (newFilteredUser) {
       setFilteredUsers((prevFilteredUsers) => [
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // met à jour la liste des experts envoyés au parent
+      // update the expert list sent to the parent
       setCreateDecisionFormExperts(filteredUsers);
-      // Vide l'input après validation
+      // Clear input after validation
       setSearchUser("");
     }
   };
 
-  // Enlève un expert de la liste filtrée
+  // Remove an expert from the filtered list
   const handleRemoveUser = (userId) => {
     setFilteredUsers((prevFilteredUsers) =>
       prevFilteredUsers.filter((user) => user.user_id !== userId)
     );
-    // met à jour la liste des experts envoyés au parent
+    // update the expert list sent to the parent
     setCreateDecisionFormExperts(filteredUsers);
   };
 
@@ -94,6 +94,7 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
           <datalist id="usersList">
             {users.map((user) => (
               <option
+                className="createDecisionForm__search--options"
                 key={user.user_id}
                 aria-label="Noms"
                 value={`${user.firstname} ${user.lastname} (${user.email})`}

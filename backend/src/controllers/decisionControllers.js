@@ -84,7 +84,6 @@ const updatePicture = async (req, res, next) => {
 // The A of BREAD - Add (Create) operation
 const createDecision = async (req, res, next) => {
   const decision = req.body;
-
   try {
     // Insert the decision into the database
     const insertId = await tables.decision.create(decision);

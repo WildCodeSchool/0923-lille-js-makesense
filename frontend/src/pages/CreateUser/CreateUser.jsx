@@ -1,4 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
 import "./CreateUser.scss";
 
 function CreateUser() {
@@ -9,6 +11,18 @@ function CreateUser() {
   const passwordRef = useRef();
   const [isAdmin, setIsAdmin] = useState(false);
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  // Cette page n'est accessible qu'aux admins
+  useEffect(() => {
+    if (!user[0].admin_id) {
+      navigate("/homepage");
+    } else if (user.user_id === 0) {
+      navigate("/");
+    }
+  }, []);
 
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
