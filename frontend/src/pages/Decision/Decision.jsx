@@ -11,7 +11,6 @@ function Decision() {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
   const { decisionId } = useDecisionContext();
-  const { user } = useContext(AuthContext);
   const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
