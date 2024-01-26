@@ -16,6 +16,7 @@ function CreateUser() {
   const { user } = useContext(AuthContext);
 
   // Cette page n'est accessible qu'aux admins
+  // Redirect unconnected users
   useEffect(() => {
     if (!user[0].admin_id) {
       navigate("/homepage");
@@ -23,13 +24,11 @@ function CreateUser() {
       navigate("/");
     }
   }, []);
-
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/create`,
         {
@@ -46,7 +45,6 @@ function CreateUser() {
         }
       );
 
-      // Redirection vers la page de connexion si la création réussit
       if (response.status === 201) {
         setMessage(
           `🚀 Utilisateur créé : ${lastnameRef.current.value} ${firstnameRef.current.value}. 🚀`
@@ -57,11 +55,9 @@ function CreateUser() {
         locationRef.current.value = "Americas";
         passwordRef.current.value = "";
       } else {
-        // Log des détails de la réponse en cas d'échec
         console.info(response);
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error("Error in user creation", err);
     }
   };
