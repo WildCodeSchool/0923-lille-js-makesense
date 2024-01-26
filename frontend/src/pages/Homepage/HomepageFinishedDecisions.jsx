@@ -6,7 +6,7 @@ function HomepageFinishedDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/completed`)
       .then((response) => response.json())
       .then((data) => {
         setRelatedDecisions(data);

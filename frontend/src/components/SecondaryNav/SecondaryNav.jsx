@@ -6,7 +6,7 @@ function SecondaryNav() {
     <nav className="secondaryNav__nav">
       <ul className="secondaryNav__links">
         <Link
-          to="/homepage/decisions/pending"
+          to="/homepage/decisions/current"
           className="secondaryNav__links--first"
         >
           Décisions en cours

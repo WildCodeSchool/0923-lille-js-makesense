@@ -9,7 +9,7 @@ import Login from "./pages/Login/Login";
 import Homepage from "./pages/Homepage/Homepage";
 import HomepageAllDecisions from "./pages/Homepage/HomepageAllDecisions";
 import HomepageUserDecisions from "./pages/Homepage/HomepageUserDecisions";
-import HomepagePendingDecisions from "./pages/Homepage/HomepagePendingDecisions";
+import HomepageCurrentDecisions from "./pages/Homepage/HomepageCurrentDecisions";
 import HomepageLateDecisions from "./pages/Homepage/HomepageLateDecisions";
 import HomepageFinishedDecisions from "./pages/Homepage/HomepageFinishedDecisions";
 import Decision from "./pages/Decision/Decision";
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
             element: <HomepageAllDecisions />,
           },
           {
-            path: "/homepage/decisions/pending",
-            element: <HomepagePendingDecisions />,
+            path: "/homepage/decisions/current",
+            element: <HomepageCurrentDecisions />,
           },
           {
             path: "/homepage/decisions/user",

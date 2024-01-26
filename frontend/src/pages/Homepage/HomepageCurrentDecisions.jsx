@@ -2,11 +2,11 @@ import "./Homepage.scss";
 import { useState, useEffect } from "react";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 
-function HomepagePendingDecisions() {
+function HomepageCurrentDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/late`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/current`)
       .then((response) => response.json())
       .then((data) => {
         setRelatedDecisions(data);
@@ -40,4 +40,4 @@ function HomepagePendingDecisions() {
   );
 }
 
-export default HomepagePendingDecisions;
+export default HomepageCurrentDecisions;
