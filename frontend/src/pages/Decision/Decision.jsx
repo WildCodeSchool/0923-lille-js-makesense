@@ -13,7 +13,6 @@ function Decision() {
   const [comment, setComment] = useState("");
   const { decisionId } = useDecisionContext();
   const { decisions } = useDecisionContext();
-
   const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
@@ -36,7 +35,6 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
-
   const navigate = useNavigate();
 
   // Redirect unconnected users
