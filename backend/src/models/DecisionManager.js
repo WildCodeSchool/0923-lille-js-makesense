@@ -109,7 +109,7 @@ class DecisionManager extends AbstractManager {
 
   async readAllCompleted() {
     const [rows] = await this.database.query(
-      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
