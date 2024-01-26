@@ -107,7 +107,7 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  async getDécisionsCompleted() {
+  async getDecisionsCompleted() {
     const [rows] = await this.database.query(
       `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
       FROM decision
