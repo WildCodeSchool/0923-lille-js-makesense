@@ -10,6 +10,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Decision from "./pages/Decision/Decision";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import CreateUser from "./pages/CreateUser/CreateUser";
+import UpdateDecision from "./pages/UpdateDecision/UpdateDecision";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/user/create",
         element: <CreateUser />,
+      },
+      {
+        path: "/decision/update",
+        element: <UpdateDecision />,
       },
     ],
   },

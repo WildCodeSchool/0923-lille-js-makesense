@@ -24,7 +24,7 @@ function Profile({ handleMoveBubble, showProfile, user }) {
               href="mailto:vincent.rssx59@gmail.com"
               onClick={handleMoveBubble}
             >
-              ?
+              contact
             </a>
           </li>
           <li className="bubble__logout">

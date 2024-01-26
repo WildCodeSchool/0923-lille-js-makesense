@@ -5,11 +5,11 @@ const DecisionContext = createContext();
 
 export function DecisionProvider({ children }) {
   const [decisionId, setDecisionId] = useState();
+  const [decisions, setDecisions] = useState();
   const decisionContext = useMemo(
-    () => ({ decisionId, setDecisionId }),
-    [decisionId, setDecisionId]
+    () => ({ decisionId, setDecisionId, decisions, setDecisions }),
+    [decisionId, setDecisionId, decisions, setDecisions]
   );
-
   return (
     <DecisionContext.Provider value={decisionContext}>
       {children}

@@ -15,6 +15,7 @@ function CreateUser() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  // This page is only accessible to admins
   // Redirect unconnected users
   useEffect(() => {
     if (!user[0].admin_id) {
@@ -23,7 +24,7 @@ function CreateUser() {
       navigate("/");
     }
   }, []);
-
+  // Form Submission Manager
   const handleSubmit = async (event) => {
     event.preventDefault();
 

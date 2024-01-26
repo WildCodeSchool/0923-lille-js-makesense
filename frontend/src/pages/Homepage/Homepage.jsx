@@ -3,13 +3,15 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
+import { useDecisionContext } from "../../contexts/decisionContext";
 import { AuthContext } from "../../contexts/authContext";
 
 function Homepage() {
-  const [decisions, setDecisions] = useState();
+  const [decisionsHome, setDecisionsHome] = useState();
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const { setDecisions } = useDecisionContext();
 
   // Redirect unconnected users
   useEffect(() => {
@@ -21,16 +23,19 @@ function Homepage() {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
       .then((response) => response.json())
-      .then((data) => setDecisions(data))
+      .then((data) => {
+        setDecisionsHome(data);
+        setDecisions(data);
+      })
       .catch((error) => console.error(error));
   }, []);
   return (
     <>
-      <SecondaryNav />
+      <SecondaryNav setdecisionsHome={setDecisionsHome} />
       <h1 className="homepage__title">Décisions en cours</h1>
       <main className="homepage__main">
-        {decisions
-          ? decisions
+        {decisionsHome
+          ? decisionsHome
               .toReversed()
               .map((card) => (
                 <DecisionCard
