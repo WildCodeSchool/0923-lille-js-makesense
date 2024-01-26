@@ -1,39 +1,25 @@
 import PropTypes from "prop-types";
 import "./UpdateCreateDecisionForm.scss";
 
-function UpdateCreateDecisionFormContent({
-  delay,
-  progress,
-  title,
-  details,
-  impact,
-  benefits,
-  risks,
-  firstDecision,
-  finaleDecision,
-  setDelay,
-  setProgress,
-  setTitle,
-  setDetails,
-  setImpact,
-  setBenefits,
-  setRisks,
-  setFirstDecision,
-  setFinaleDecision,
-}) {
+function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
   return (
     <main>
       <form className="updateDecisionForm__content updateDecisionForm__content--decision">
         <label className="updateDecisionForm__label" htmlFor="titre">
-          Titre :&nbsp;&nbsp;
+          Titre :
           <input
             type="text"
             name="titre"
             placeholder="Titre..."
             className="updateDecisionForm__input"
             required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={decisions.decision_title}
+            onChange={(e) =>
+              setDecisions((prevDecisions) => ({
+                ...prevDecisions,
+                decision_title: e.target.value,
+              }))
+            }
           />
         </label>
         <label className="updateDecisionForm__status" htmlFor="status">
@@ -41,8 +27,13 @@ function UpdateCreateDecisionFormContent({
           <select
             name="status"
             id="status"
-            value={delay}
-            onChange={(e) => setDelay(e.target.value)}
+            value={decisions.decision_delay}
+            onChange={(e) =>
+              setDecisions((prevDecisions) => ({
+                ...prevDecisions,
+                decision_delay: e.target.value,
+              }))
+            }
           >
             <option value="Court terme (deux semaines)">
               Court terme (deux semaines)
@@ -59,8 +50,13 @@ function UpdateCreateDecisionFormContent({
           <select
             name="progress"
             id="status"
-            value={progress}
-            onChange={(e) => setProgress(e.target.value)}
+            value={decisions.status}
+            onChange={(e) =>
+              setDecisions((prevDecisions) => ({
+                ...prevDecisions,
+                status: e.target.value,
+              }))
+            }
           >
             <option value="Décision commencée">Décision commencée</option>
             <option value="Première décision prise">
@@ -84,8 +80,13 @@ function UpdateCreateDecisionFormContent({
           className="updateDecisionForm__input"
           required
           rows={30}
-          value={details}
-          onChange={(e) => setDetails(e.target.value)}
+          value={decisions.paragraph_details}
+          onChange={(e) =>
+            setDecisions((prevDecisions) => ({
+              ...prevDecisions,
+              paragraph_details: e.target.value,
+            }))
+          }
         />
 
         <label className="updateDecisionForm__label" htmlFor="section2">
@@ -98,8 +99,13 @@ function UpdateCreateDecisionFormContent({
           className="updateDecisionForm__input"
           required
           rows={30}
-          value={impact}
-          onChange={(e) => setImpact(e.target.value)}
+          value={decisions.paragraph_impact}
+          onChange={(e) =>
+            setDecisions((prevDecisions) => ({
+              ...prevDecisions,
+              paragraph_impact: e.target.value,
+            }))
+          }
         />
         <label className="updateDecisionForm__label" htmlFor="section3">
           Bénéfices :
@@ -110,8 +116,13 @@ function UpdateCreateDecisionFormContent({
           placeholder="Quels sont les bénéfices pour Make Sense ?"
           className="updateDecisionForm__input"
           rows={30}
-          value={benefits}
-          onChange={(e) => setBenefits(e.target.value)}
+          value={decisions.paragraph_benefits}
+          onChange={(e) =>
+            setDecisions((prevDecisions) => ({
+              ...prevDecisions,
+              paragraph_benefits: e.target.value,
+            }))
+          }
         />
         <label className="updateDecisionForm__label" htmlFor="section4">
           Risques potentiels :
@@ -121,8 +132,13 @@ function UpdateCreateDecisionFormContent({
           name="section4"
           placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
           className="updateDecisionForm__input"
-          value={risks}
-          onChange={(e) => setRisks(e.target.value)}
+          value={decisions.paragraph_risks}
+          onChange={(e) =>
+            setDecisions((prevDecisions) => ({
+              ...prevDecisions,
+              paragraph_risks: e.target.value,
+            }))
+          }
         />
         <label className="updateDecisionForm__label" htmlFor="section5">
           Première décision :
@@ -132,8 +148,13 @@ function UpdateCreateDecisionFormContent({
           name="section5"
           placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
           className="updateDecisionForm__input"
-          value={firstDecision}
-          onChange={(e) => setFirstDecision(e.target.value)}
+          value={decisions.paragraph_first_decision}
+          onChange={(e) =>
+            setDecisions((prevDecisions) => ({
+              ...prevDecisions,
+              paragraph_first_decision: e.target.value,
+            }))
+          }
         />
         <label className="updateDecisionForm__label" htmlFor="section6">
           Décision définitive :
@@ -143,8 +164,13 @@ function UpdateCreateDecisionFormContent({
           name="section6"
           placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
           className="updateDecisionForm__input"
-          value={finaleDecision}
-          onChange={(e) => setFinaleDecision(e.target.value)}
+          value={decisions.paragraph_finale_decision}
+          onChange={(e) =>
+            setDecisions((prevDecisions) => ({
+              ...prevDecisions,
+              paragraph_finale_decision: e.target.value,
+            }))
+          }
         />
       </form>
     </main>
@@ -152,23 +178,17 @@ function UpdateCreateDecisionFormContent({
 }
 
 UpdateCreateDecisionFormContent.propTypes = {
-  progress: PropTypes.string.isRequired,
-  delay: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  details: PropTypes.string.isRequired,
-  impact: PropTypes.string.isRequired,
-  benefits: PropTypes.string.isRequired,
-  risks: PropTypes.string.isRequired,
-  firstDecision: PropTypes.string.isRequired,
-  finaleDecision: PropTypes.string.isRequired,
-  setDelay: PropTypes.func.isRequired,
-  setProgress: PropTypes.func.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setDetails: PropTypes.func.isRequired,
-  setImpact: PropTypes.func.isRequired,
-  setBenefits: PropTypes.func.isRequired,
-  setRisks: PropTypes.func.isRequired,
-  setFirstDecision: PropTypes.func.isRequired,
-  setFinaleDecision: PropTypes.func.isRequired,
+  decisions: PropTypes.shape({
+    decision_title: PropTypes.string.isRequired,
+    decision_delay: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    paragraph_benefits: PropTypes.string.isRequired,
+    paragraph_details: PropTypes.string.isRequired,
+    paragraph_finale_decision: PropTypes.string.isRequired,
+    paragraph_first_decision: PropTypes.string.isRequired,
+    paragraph_impact: PropTypes.string.isRequired,
+    paragraph_risks: PropTypes.string.isRequired,
+  }).isRequired,
+  setDecisions: PropTypes.func.isRequired,
 };
 export default UpdateCreateDecisionFormContent;

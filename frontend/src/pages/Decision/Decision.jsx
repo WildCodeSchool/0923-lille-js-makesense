@@ -8,9 +8,9 @@ import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 
 function Decision() {
-  const { decisionId } = useDecisionContext();
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
+  const { decisions, decisionId } = useDecisionContext();
   const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
@@ -33,7 +33,6 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
-
   const navigate = useNavigate();
 
   // Redirect unconnected users
@@ -48,7 +47,7 @@ function Decision() {
       .then((response) => response.json())
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisions]);
 
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {

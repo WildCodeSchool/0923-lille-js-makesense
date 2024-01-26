@@ -2,8 +2,8 @@ import "./Homepage.scss";
 import { useState, useEffect, useContext } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
-import { AuthContext } from "../../contexts/authContext";
 import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 
 function Homepage() {
   const [decisionsHome, setDecisionsHome] = useState();
