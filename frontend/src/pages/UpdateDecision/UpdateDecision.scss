@@ -7,6 +7,22 @@
   margin-top: 9vh;
 }
 
+.updateDecisionForm__content {
+  flex-grow: 3;
+}
+
+.updateDecision__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.updateDecisionForm__button {
+  @include buttons;
+  font-size: larger;
+}
+
 @media (max-width: 700px) {
   .updateDecision__main {
     display: flex;
@@ -23,20 +39,4 @@
     margin-block: 4%;
     cursor: pointer;
   }
-}
-
-.updateDecisionForm__content {
-  flex-grow: 3;
-}
-
-.updateDecision__aside {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-.updateDecisionForm__button {
-  @include buttons;
-  font-size: larger;
 }

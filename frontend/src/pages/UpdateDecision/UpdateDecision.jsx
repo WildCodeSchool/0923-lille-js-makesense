@@ -29,8 +29,9 @@ function UpdateDecision() {
     status: "--",
     user_id: 0,
   });
+
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
       .then((data) => setUpdateDecision(data))
       .catch((error) => console.error(error));
