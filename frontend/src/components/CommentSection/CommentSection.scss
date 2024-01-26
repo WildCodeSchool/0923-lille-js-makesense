@@ -51,7 +51,7 @@
   padding-block: 0.5vh;
   max-width: 31vw;
   display: flex;
-  word-break: break-all;
+  word-break: normal;
   margin-block: 1vh;
   background-color: $secondary-background;
   & * {

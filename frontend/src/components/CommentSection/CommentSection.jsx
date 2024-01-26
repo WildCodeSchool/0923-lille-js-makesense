@@ -66,10 +66,11 @@ function CommentSection({ comment, setComment, decisionId, user }) {
               <section className="commentSection__comment--box">
                 <section className="commentSection__comment__textSection">
                   <h4 className="commentSection__comment--name">
-                    {com.firstname} {com.lastname}
+                    {com.firstname} {com.lastname} (
+                    {com.role === null ? "Visiteur" : com.role})
                   </h4>
                   <p className="commenSection__comment--dateTime">
-                    {com.date_courte}
+                    {com.short_date}
                   </p>
                   <p>{[com.comment_content]}</p>
                 </section>
