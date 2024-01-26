@@ -58,7 +58,7 @@ function CreateDecision() {
       );
 
       if (response.status === 201) {
-        navigate("/homepage");
+        navigate("/homepage/decisions/all");
       } else {
         console.info(response);
       }

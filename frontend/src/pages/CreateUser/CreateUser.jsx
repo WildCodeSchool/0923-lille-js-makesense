@@ -18,7 +18,7 @@ function CreateUser() {
   // Redirect unconnected users
   useEffect(() => {
     if (!user[0].admin_id) {
-      navigate("/homepage");
+      navigate("/homepage/decisions/all");
     } else if (user.user_id === 0) {
       navigate("/");
     }
