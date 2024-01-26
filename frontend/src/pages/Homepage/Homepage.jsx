@@ -28,7 +28,6 @@ function Homepage() {
       })
       .catch((error) => console.error(error));
   }, []);
-
   return (
     <>
       <SecondaryNav />

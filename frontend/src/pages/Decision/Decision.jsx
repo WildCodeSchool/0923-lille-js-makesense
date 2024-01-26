@@ -10,7 +10,7 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar";
 function Decision() {
   const { decisionId } = useDecisionContext();
   const { user } = useContext(AuthContext);
-
+  const [comment, setComment] = useState("");
   const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
@@ -97,7 +97,12 @@ function Decision() {
         <section
           className={`right__section ${!writeComment ? "hidden" : null}`}
         >
-          <CommentSection />
+          <CommentSection
+            comment={comment}
+            setComment={setComment}
+            user={user}
+            decisionId={decisionId}
+          />
         </section>
         <input
           value={writeComment ? "Voir la décision" : "Voir les commentaires"}
