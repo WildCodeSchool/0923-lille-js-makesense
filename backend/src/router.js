@@ -61,7 +61,7 @@ router.get("/comment/all", commentControllers.browse);
 // Route to access comments belonging to a posted decision
 router.get("/decisions/:id/comments", commentControllers.readByDecision);
 // Route to add a new comment
-router.post("/comment", commentControllers.add);
+router.post("/decisions/:id/comments", commentControllers.add);
 
 // PARAGRAPHS ROUTES
 // Import Controller

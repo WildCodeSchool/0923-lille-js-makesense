@@ -6,14 +6,16 @@ import { AuthContext } from "../../contexts/authContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import { AuthContext } from "../../contexts/authContext";
 
 function Decision() {
+  const { user } = useContext(AuthContext);
+  const [comment, setComment] = useState("");
   const { decisionId } = useDecisionContext();
   const { user } = useContext(AuthContext);
-
   const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
-    decision_date: null,
+    decision_date: "--",
     decision_delay: "--",
     decision_id: 0,
     decision_title: "--",
@@ -49,6 +51,7 @@ function Decision() {
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
   }, []);
+
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -86,7 +89,12 @@ function Decision() {
         <section
           className={`right__section ${!writeComment ? "hidden" : null}`}
         >
-          <CommentSection />
+          <CommentSection
+            comment={comment}
+            setComment={setComment}
+            user={user}
+            decisionId={decisionId}
+          />
         </section>
         <input
           value={writeComment ? "Voir la décision" : "Voir les commentaires"}

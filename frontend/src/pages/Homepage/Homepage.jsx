@@ -24,7 +24,6 @@ function Homepage() {
       .then((data) => setDecisions(data))
       .catch((error) => console.error(error));
   }, []);
-
   return (
     <>
       <SecondaryNav />
