@@ -46,7 +46,11 @@ router.get(
   "/decisions/:id/related-decisions",
   decisionControllers.getRelatedDecisions
 );
-// Route to get all decisions waiting for an answer (query ready in queries list)
+// delete decision for admin
+router.delete(
+  "/decisions/:decisionId/users/:userId",
+  decisionControllers.deleteDecision
+);
 
 // COMMENT ROUTES
 // Import Controller

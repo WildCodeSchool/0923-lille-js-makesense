@@ -41,6 +41,7 @@ function Decision() {
     month: "2-digit",
     year: "numeric",
   });
+
   return (
     <main className="decision__page">
       <header className="decision__page--header">

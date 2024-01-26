@@ -21,6 +21,22 @@
   }
 }
 
+.title_delete {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete_button {
+  cursor: pointer;
+  border: solid black 2px;
+  border-radius: 50%;
+  width: 1.5vw;
+  height: 3vh;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
 .decisionCard__author {
   display: flex;
   align-items: center;
