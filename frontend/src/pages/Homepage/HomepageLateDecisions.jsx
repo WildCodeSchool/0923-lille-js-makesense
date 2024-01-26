@@ -16,7 +16,7 @@ function HomepageLateDecisions() {
 
   return (
     <>
-      <h1 className="homepage__title">Décisions en cours</h1>
+      <h1 className="homepage__title">Décisions en retard</h1>
       <main className="homepage__main">
         {relatedDecisions
           ? relatedDecisions
