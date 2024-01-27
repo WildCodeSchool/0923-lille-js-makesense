@@ -1,0 +1,48 @@
+@import "../../variables";
+
+.editDecision__main {
+  display: flex;
+  gap: 2%;
+  margin-inline: 2%;
+  background-color: $secondary-background;
+  height: 85vh;
+  margin-top: 9vh;
+}
+
+@media (max-width: 700px) {
+  .editDecision__main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .editDecisionForm__content--decision {
+    width: auto;
+    height: auto;
+  }
+
+  .editDecisionForm__content {
+    overflow: auto;
+  }
+
+  .editDecisionForm__button {
+    margin-block: 4%;
+    cursor: pointer;
+  }
+}
+
+.editDecisionForm__content {
+  flex-grow: 3;
+}
+
+.editDecision__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.editDecisionForm__button {
+  @include buttons;
+  font-size: larger;
+  cursor: pointer;
+}

@@ -1,13 +1,18 @@
-import "./CreateDecisionForm.scss";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { useDecisionContext } from "../../contexts/decisionContext";
+import "./EditDecisionForm.scss";
 
-function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
-  // list all users
+function EditDecisionFormExperts({ setEditDecisionFormExperts }) {
+  const { decisionId } = useDecisionContext();
+
+  const [editExperts, setEditExperts] = useState([]);
+
+  // List all users
   const [users, setUsers] = useState([]);
-  // search users in input
+  // Search users in input
   const [searchUser, setSearchUser] = useState("");
-  // list expert users
+  // List expert users
   const [filteredUsers, setFilteredUsers] = useState([]);
   const expertRef = useRef();
 
@@ -18,27 +23,36 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
       .catch((error) => console.error("Error fetching user data", error));
   }, []);
 
+  useEffect(() => {
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}/experts`
+    )
+      .then((response) => response.json())
+      .then((data) => setEditExperts(data))
+      .catch((error) => console.error(error));
+  }, [decisionId]);
+
   const handleInputChange = (e) => {
-    // read keyboard inputs to autocomplete based on users
+    // Read keyboard inputs to autocomplete based on users
     setSearchUser(e.target.value);
   };
 
   // Add an expert to the filtered users
   const handleClick = () => {
-    // Search for the user corresponding the input
+    // Search for the user corresponding to the input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
         expertRef.current.value
     );
-    // if there's a corresponding user, add it to the list
+    // If there's a corresponding user, add it to the list
     if (newFilteredUser) {
       setFilteredUsers((prevFilteredUsers) => [
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // update the expert list sent to the parent
-      setCreateDecisionFormExperts(filteredUsers);
+      // Update the expert list sent to the parent
+      setEditDecisionFormExperts(filteredUsers);
       // Clear input after validation
       setSearchUser("");
     }
@@ -49,27 +63,27 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
     setFilteredUsers((prevFilteredUsers) =>
       prevFilteredUsers.filter((user) => user.user_id !== userId)
     );
-    // update the expert list sent to the parent
-    setCreateDecisionFormExperts(filteredUsers);
+    // Update the expert list sent to the parent
+    setEditDecisionFormExperts(filteredUsers);
   };
 
   return (
-    <article className="createDecisionForm__experts">
-      <h2 className="createDecisionForm__titles">Expert·e·s</h2>
-      <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
-        <ul className="createDecisionForm__list">
-          {filteredUsers.map((user) => (
-            <li key={user.user_id} className="createDecisionForm__chosen">
+    <article className="editDecisionForm__experts">
+      <h2 className="editDecisionForm__titles">Expert·e·s</h2>
+      <span className="editDecisionForm__content editDecisionForm__content--choiceBoxes">
+        <ul className="editDecisionForm__list">
+          {editExperts.map((user) => (
+            <li key={user.user_id} className="editDecisionForm__chosen">
               <img
                 src={user.picture}
                 alt={`avatar de ${user.firstname} ${user.lastname}`}
-                className="createDecisionForm__chosen--avatar"
+                className="editDecisionForm__chosen--avatar"
               />
-              <p className="createDecisionForm__chosen--fullname">
+              <p className="editDecisionForm__chosen--fullname">
                 {user.firstname} {user.lastname}
                 <button
                   type="button"
-                  className="createDecisionForm__chosen--remove"
+                  className="editDecisionForm__chosen--remove"
                   onClick={() => handleRemoveUser(user.user_id)}
                 >
                   -
@@ -78,9 +92,9 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
             </li>
           ))}
         </ul>
-        <section className="createDecisionForm__search">
+        <section className="editDecisionForm__search">
           <input
-            className="createDecisionForm__input"
+            className="editDecisionForm__input"
             type="text"
             placeholder="Rechercher expert·e·s"
             value={searchUser}
@@ -91,7 +105,7 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
           <datalist id="usersList">
             {users.map((user) => (
               <option
-                className="createDecisionForm__search--options"
+                className="editDecisionForm__search--options"
                 key={user.user_id}
                 aria-label="Noms"
                 value={`${user.firstname} ${user.lastname} (${user.email})`}
@@ -99,7 +113,7 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
             ))}
           </datalist>
           <button
-            className="createDecisionForm__submit"
+            className="editDecisionForm__submit"
             type="button"
             onClick={handleClick}
           >
@@ -111,8 +125,8 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
   );
 }
 
-CreateDecisionFormExperts.propTypes = {
-  setCreateDecisionFormExperts: PropTypes.func.isRequired,
+EditDecisionFormExperts.propTypes = {
+  setEditDecisionFormExperts: PropTypes.func.isRequired,
 };
 
-export default CreateDecisionFormExperts;
+export default EditDecisionFormExperts;

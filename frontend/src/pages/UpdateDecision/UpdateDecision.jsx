@@ -17,6 +17,7 @@ function UpdateDecision() {
   }, []);
 
   const [updatedParagraph, setUpdateParagraph] = useState();
+
   useEffect(() => {
     setUpdateParagraph([
       {
@@ -68,8 +69,10 @@ function UpdateDecision() {
         />
       )}
       <aside className="updateDecision__aside">
-        <UpdateCreateDecisionFormExperts />
-        <UpdateCreateDecisionFormImpacted />
+        <UpdateCreateDecisionFormExperts setUpdateDecisionFormExperts={null} />
+        <UpdateCreateDecisionFormImpacted
+          setUpdateDecisionFormImpacted={null}
+        />
         <Link
           to="/decision"
           onClick={handleUpdateDecision}

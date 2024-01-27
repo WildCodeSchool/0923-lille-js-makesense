@@ -1,61 +1,64 @@
-import "./CreateDecisionForm.scss";
+import "./EditDecisionForm.scss";
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
-  // list all users
+function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
+  // liste de tous les users
   const [users, setUsers] = useState([]);
-  // search users in input
+  // recherche des users dans l'input
   const [searchUser, setSearchUser] = useState("");
-  // list expert users
+  // liste des users impactés
   const [filteredUsers, setFilteredUsers] = useState([]);
   const expertRef = useRef();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
       .then((response) => response.json())
-      .then((data) => setUsers(data))
+      .then((data) => {
+        setUsers(data);
+      })
+      .then()
       .catch((error) => console.error("Error fetching user data", error));
   }, []);
 
   const handleInputChange = (e) => {
-    // read keyboard inputs to autocomplete based on users
+    // Lis les inputs clavier pour créer un auto-complete basé sur [users]
     setSearchUser(e.target.value);
   };
 
-  // Add an expert to the filtered users
+  // Ajoute un expert à la liste filtrée
   const handleClick = () => {
-    // Search for the user corresponding the input
+    // cherche le user qui correspond à l'input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
         expertRef.current.value
     );
-    // if there's a corresponding user, add it to the list
+    // si le user correspond, ajoute le user aux users filtrés
     if (newFilteredUser) {
       setFilteredUsers((prevFilteredUsers) => [
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // update the expert list sent to the parent
-      setCreateDecisionFormExperts(filteredUsers);
-      // Clear input after validation
+      // met à jour la liste des impactés envoyés au parent
+      setCreateDecisionFormImpacted(filteredUsers);
+      // Vide l'input après validation
       setSearchUser("");
     }
   };
 
-  // Remove an expert from the filtered list
+  // Enlève un expert de la liste filtrée
   const handleRemoveUser = (userId) => {
     setFilteredUsers((prevFilteredUsers) =>
       prevFilteredUsers.filter((user) => user.user_id !== userId)
     );
-    // update the expert list sent to the parent
-    setCreateDecisionFormExperts(filteredUsers);
+    // met à jour la liste des impactés envoyés au parent
+    setCreateDecisionFormImpacted(filteredUsers);
   };
 
   return (
-    <article className="createDecisionForm__experts">
-      <h2 className="createDecisionForm__titles">Expert·e·s</h2>
+    <article className="createDecisionForm__impacted">
+      <h2 className="createDecisionForm__titles">Impacté·e·s</h2>
       <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
         <ul className="createDecisionForm__list">
           {filteredUsers.map((user) => (
@@ -85,13 +88,12 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
             placeholder="Rechercher expert·e·s"
             value={searchUser}
             onChange={handleInputChange}
-            list="usersList"
+            list="users-list"
             ref={expertRef}
           />
-          <datalist id="usersList">
+          <datalist id="users-list">
             {users.map((user) => (
               <option
-                className="createDecisionForm__search--options"
                 key={user.user_id}
                 aria-label="Noms"
                 value={`${user.firstname} ${user.lastname} (${user.email})`}
@@ -111,8 +113,8 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
   );
 }
 
-CreateDecisionFormExperts.propTypes = {
-  setCreateDecisionFormExperts: PropTypes.func.isRequired,
+CreateDecisionFormImpacted.propTypes = {
+  setCreateDecisionFormImpacted: PropTypes.func.isRequired,
 };
 
-export default CreateDecisionFormExperts;
+export default CreateDecisionFormImpacted;

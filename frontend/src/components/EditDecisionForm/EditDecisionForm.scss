@@ -1,0 +1,144 @@
+@import "../../variables";
+
+.editDecisionForm__content {
+  @include box;
+  margin-block-start: 2%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: $background;
+  & * {
+    background-color: $background;
+  }
+}
+
+.editDecisionForm__content--choiceBoxes {
+  height: 30vh;
+  justify-content: space-between;
+}
+
+.editDecisionForm__titles {
+  text-align: center;
+  padding-block: 1%;
+}
+
+.editDecisionForm__list {
+  @include scroll;
+  height: 100%;
+}
+
+.editDecisionForm__chosen {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-block: 1%;
+  border-radius: 20px;
+  background-color: $secondary-background;
+  padding: 1%;
+  &--avatar {
+    @include avatar;
+    margin-inline-end: 3%;
+    width: 40px;
+    height: 40px;
+  }
+  &--fullname {
+    display: flex;
+    justify-content: space-between;
+    width: 83%;
+    margin-inline-end: 1%;
+  }
+  & * {
+    background-color: $secondary-background;
+  }
+}
+.editDecisionForm__chosen--remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $tertiary-medium;
+  border: 2px solid $tertiary-medium;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.editDecisionForm__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $background;
+  margin: 0 -2% -2% -2%;
+  & input {
+    all: unset;
+    background-color: $background;
+    padding: 2%;
+    width: 100%;
+  }
+  & button {
+    @include buttons;
+    padding: 2%;
+    margin: 3px;
+  }
+}
+
+.editDecisionForm__content--decision {
+  @include scroll;
+  padding: 1%;
+  height: 85vh;
+  width: 40vw;
+  & textarea {
+    background-color: $secondary-background;
+    border-radius: 5px;
+    resize: none;
+    scrollbar-width: thin;
+    scrollbar-color: currentColor rgb($primary-medium, 0.5);
+
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb($primary-medium, 0.5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: currentColor;
+      border-radius: 20px;
+      border: 3px solid rgb($primary-medium, 0.5);
+    }
+  }
+  & textarea:focus,
+  input:focus {
+    outline: none !important;
+    border-color: $primary-medium;
+    box-shadow: 0 0 5px $primary-medium;
+  }
+  & label {
+    font-weight: bold;
+    font-size: larger;
+    margin-block: 0.8%;
+    &:first-child {
+      font-size: 30px;
+      & input {
+        font-size: 20px;
+        background-color: $secondary-background;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.editDecisionForm__status select {
+  background-color: $secondary-background;
+  border-radius: 5px;
+  & option {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
+}
+
+.editDecisionForm__label input,
+.editDecisionForm__status select {
+  margin-inline-start: 1vw;
+}
