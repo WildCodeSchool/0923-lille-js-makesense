@@ -39,11 +39,7 @@ function UpdateDecision() {
   }, [decisions]);
 
   const handleUpdateDecision = () => {
-    const apiEndpoint = `${
-      import.meta.env.VITE_BACKEND_URL
-    }/api/decision/update`;
-
-    fetch(apiEndpoint, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -62,12 +58,10 @@ function UpdateDecision() {
 
   return (
     <main className="updateDecision__main">
-      {decisions && (
-        <UpdateCreateDecisionFormContent
-          decisions={decisions}
-          setDecisions={setDecisions}
-        />
-      )}
+      <UpdateCreateDecisionFormContent
+        decisions={decisions}
+        setDecisions={setDecisions}
+      />
       <aside className="updateDecision__aside">
         <UpdateCreateDecisionFormExperts setUpdateDecisionFormExperts={null} />
         <UpdateCreateDecisionFormImpacted

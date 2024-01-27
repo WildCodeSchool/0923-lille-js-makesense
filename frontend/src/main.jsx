@@ -15,7 +15,7 @@ import HomepageFinishedDecisions from "./pages/Homepage/HomepageFinishedDecision
 import Decision from "./pages/Decision/Decision";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import CreateUser from "./pages/CreateUser/CreateUser";
-import EditDecision from "./pages/EditDecision/EditDecision";
+import UpdateDecision from "./pages/UpdateDecision/UpdateDecision";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/decision/update",
-        element: <EditDecision />,
+        element: <UpdateDecision />,
       },
     ],
   },
