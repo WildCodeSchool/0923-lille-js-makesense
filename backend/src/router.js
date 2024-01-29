@@ -36,16 +36,23 @@ router.get("/decisions/all", decisionControllers.browse);
 router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
 router.get("/decisions/pending", decisionControllers.browsePending);
-// chercher expert / impacter
-router.get(
-  "/decisions/:id/experts-impactes",
-  decisionControllers.getExpertsAndImpactes
-);
+// get Decisions Completed
+router.get("/decisions/completed", decisionControllers.getDecisionsCompleted);
+// get current decisions
+router.get("/decisions/current", decisionControllers.getCurrentDecisions);
+// get experts
+router.get("/decisions/:id/experts", decisionControllers.getExperts);
+// get impacted
+router.get("/decisions/:id/impacted", decisionControllers.getImpacted);
 // filter decisions linked to a user
 router.get(
   "/decisions/:id/related-decisions",
   decisionControllers.getRelatedDecisions
 );
+// Route to create decision
+router.post("/decision/create", decisionControllers.createDecision);
+// Route to update decision
+router.post("/decision/update", decisionControllers.updateDecision);
 // delete decision for admin
 router.delete(
   "/decisions/:decisionId/users/:userId",
@@ -62,7 +69,7 @@ router.get("/comment/all", commentControllers.browse);
 // Route to access comments belonging to a posted decision
 router.get("/decisions/:id/comments", commentControllers.readByDecision);
 // Route to add a new comment
-router.post("/comment", commentControllers.add);
+router.post("/decisions/:id/comments", commentControllers.add);
 
 // PARAGRAPHS ROUTES
 // Import Controller
@@ -72,7 +79,7 @@ router.get("/decisions/:id/paragraphs", paragraphsControllers.read);
 // Route to create decision
 router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
-router.post("/decision/update", decisionControllers.updateDecision);
+router.put("/decision/update", decisionControllers.updateDecision);
 // Route to retrieve a complete posted decision by ID
 router.get("/decision/:id", decisionControllers.read);
 

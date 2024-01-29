@@ -3,7 +3,6 @@ CREATE TABLE user (
   lastname VARCHAR(100) NOT NULL,
   firstname VARCHAR(100) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  /* frontend sends "Americas", "France", "Lebanon", "Philippines" or "West Africa" */
   location VARCHAR(255) NOT NULL,
   picture VARCHAR(255) NOT NULL DEFAULT 'https://placehold.co/100x100'
 );
@@ -40,7 +39,7 @@ CREATE TABLE decision (
 );
 
 CREATE TABLE assignment (
-	assignment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  assignment_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   date DATE NOT NULL,
   /* frontend sends "Expert" or "Impacté" */
   role VARCHAR(10) NOT NULL,

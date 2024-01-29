@@ -85,6 +85,7 @@ const updatePicture = async (req, res, next) => {
 const createDecision = async (req, res, next) => {
   const decision = req.body;
   try {
+    // Insert the decision into the database
     const insertId = await tables.decision.create(decision);
     res.status(201).json({ insertId });
   } catch (err) {
@@ -108,23 +109,39 @@ const updateDecision = async (req, res, next) => {
   }
 };
 
-// Experts and Impactes
-const getExpertsAndImpactes = async (req, res, next) => {
+// Experts
+const getExperts = async (req, res, next) => {
   try {
     const decisionId = req.params.id;
 
-    // Call your decision manager's method to retrieve the experts and impacted
-    const expertsAndImpactes = await tables.decision.getExpertsAndImpactes(
-      decisionId
-    );
+    // Call your decision manager's method to retrieve the experts
+    const experts = await tables.decision.getExperts(decisionId);
 
-    // Respond with experts and impacted in JSON format
-    res.json(expertsAndImpactes);
+    // Respond with experts in JSON format
+    res.json(experts);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
   }
 };
+
+// Impacted
+
+const getImpacted = async (req, res, next) => {
+  try {
+    const decisionId = req.params.id;
+
+    // Call your decision manager's method to retrieve the impacted
+    const impacted = await tables.decision.getImpacted(decisionId);
+
+    // Respond with impacted in JSON format
+    res.json(impacted);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 // filter decisions linked to a user
 const getRelatedDecisions = async (req, res, next) => {
   try {
@@ -135,6 +152,33 @@ const getRelatedDecisions = async (req, res, next) => {
 
     // Respond with decisions in JSON format
     res.json(relatedDecisions);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+// all completed decision for user
+const getDecisionsCompleted = async (req, res, next) => {
+  try {
+    // Fetch all decisionsCompleted from the database
+    const decisionsCompleted = await tables.decision.getDecisionsCompleted();
+
+    // Respond with the decisionsCompleted in JSON format
+    res.json(decisionsCompleted);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const getCurrentDecisions = async (req, res, next) => {
+  try {
+    // Fetch all currentDecisions from the database
+    const currentDecisions = await tables.decision.getCurrentDecisions();
+
+    // Respond with the currentDecisions in JSON format
+    res.json(currentDecisions);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -172,8 +216,11 @@ module.exports = {
   updatePicture,
   createDecision,
   updateDecision,
-  getExpertsAndImpactes,
+  getExperts,
+  getImpacted,
   getRelatedDecisions,
+  getDecisionsCompleted,
+  getCurrentDecisions,
   deleteDecision,
   // destroy,
 };

@@ -15,7 +15,6 @@ function DescriptionBox({
   paragraphBenefits,
   paragraphRisks,
   paragraphFirstDecision,
-  paragraphDecision,
   paragraphFinaleDecision,
 }) {
   const [isCollapsedDetails, setIsCollapsedDetails] = useState();
@@ -23,11 +22,10 @@ function DescriptionBox({
   const [isCollapsedBenefits, setIsCollapsedBenefits] = useState();
   const [isCollapsedHazards, setIsCollapsedHazards] = useState();
   const [isCollapsedFirstDecision, setIsCollapsedFirstDecision] = useState();
-  const [isCollapsedDecision, setIsCollapsedDecision] = useState();
   const [isCollapsedFinaleDecision, setIsCollapsedFinaleDecision] = useState();
 
   return (
-    <section className="descriptionBox">
+    <section className="descriptionBox boxButton">
       <section className="descriptionBox__scroll">
         <header className="descriptionBox__header">
           <img
@@ -48,127 +46,143 @@ function DescriptionBox({
           </section>
         </header>
 
-        <section className="descriptionBox__body--paragraphs">
-          <button
-            type="button"
-            onClick={() => setIsCollapsedDetails(!isCollapsedDetails)}
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedDetails ? "➕" : "➖"} Détails de la décision
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--details ${
-              isCollapsedDetails ? "collapsed" : "expanded"
+        <section className="descriptionBox__body">
+          <section className="descriptionBox__body--paragraphs">
+            <button
+              type="button"
+              onClick={() => setIsCollapsedDetails(!isCollapsedDetails)}
+            >
+              <h2 className="title__paragraph">
+                {isCollapsedDetails ? "➕" : "➖"} Détails de la décision
+              </h2>
+            </button>
+            <hr className="dividing__line" />
+            <article
+              className={`descriptionBox__body--details ${
+                isCollapsedDetails ? "collapsed" : "expanded"
+              }`}
+            >
+              <p className="descriptionBox__body--text">{paragraphDetails}</p>
+            </article>
+          </section>
+          <section
+            className={`descriptionBox__body--paragraphs ${
+              paragraphImpact === null && "disabled"
             }`}
           >
-            <p className="descriptionBox__body--text">{paragraphDetails}</p>
-          </article>
-          <button
-            type="button"
-            onClick={() => setIsCollapsedImpact(!isCollapsedImpact)}
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedImpact ? "➖" : "➕"} Impact sur l'organisation
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--impact ${
-              isCollapsedImpact ? "expanded" : "collapsed"
+            <button
+              type="button"
+              onClick={() => setIsCollapsedImpact(!isCollapsedImpact)}
+            >
+              <h2 className="title__paragraph">
+                {isCollapsedImpact ? "➖" : "➕"} Impact sur l'organisation
+              </h2>
+            </button>
+            <hr className="dividing__line" />
+            <article
+              className={`descriptionBox__body--impact ${
+                isCollapsedImpact ? "expanded" : "collapsed"
+              }`}
+            >
+              <p className="descriptionBox__body--text">{paragraphImpact}</p>
+            </article>
+          </section>
+          <section
+            className={`descriptionBox__body--paragraphs ${
+              paragraphBenefits === null && "disabled"
             }`}
           >
-            <p className="descriptionBox__body--text">{paragraphImpact}</p>
-          </article>
-          <button
-            type="button"
-            onClick={() => setIsCollapsedBenefits(!isCollapsedBenefits)}
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedBenefits ? "➖" : "➕"} Bénéfices
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--benefits ${
-              isCollapsedBenefits ? "expanded" : "collapsed"
+            <button
+              type="button"
+              onClick={() => setIsCollapsedBenefits(!isCollapsedBenefits)}
+            >
+              <h2 className="title__paragraph">
+                {isCollapsedBenefits ? "➖" : "➕"} Bénéfices
+              </h2>
+            </button>
+            <hr className="dividing__line" />
+            <article
+              className={`descriptionBox__body--benefits ${
+                isCollapsedBenefits ? "expanded" : "collapsed"
+              }`}
+            >
+              <p className="descriptionBox__body--text">{paragraphBenefits}</p>
+            </article>
+          </section>
+          <section
+            className={`descriptionBox__body--paragraphs ${
+              paragraphRisks === null && "disabled"
             }`}
           >
-            <p className="descriptionBox__body--text">{paragraphBenefits}</p>
-          </article>
-          <button
-            type="button"
-            onClick={() => setIsCollapsedHazards(!isCollapsedHazards)}
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedHazards ? "➖" : "➕"} Risques potentiels
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--hazards ${
-              isCollapsedHazards ? "expanded" : "collapsed"
+            <button
+              type="button"
+              onClick={() => setIsCollapsedHazards(!isCollapsedHazards)}
+            >
+              <h2 className="title__paragraph">
+                {isCollapsedHazards ? "➖" : "➕"} Risques potentiels
+              </h2>
+            </button>
+            <hr className="dividing__line" />
+            <article
+              className={`descriptionBox__body--hazards ${
+                isCollapsedHazards ? "expanded" : "collapsed"
+              }`}
+            >
+              <p className="descriptionBox__body--text">{paragraphRisks}</p>
+            </article>
+          </section>
+          <section
+            className={`descriptionBox__body--paragraphs ${
+              paragraphFirstDecision === null && "disabled"
             }`}
           >
-            <p className="descriptionBox__body--text">{paragraphRisks}</p>
-          </article>
-          <button
-            type="button"
-            onClick={() =>
-              setIsCollapsedFirstDecision(!isCollapsedFirstDecision)
-            }
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedFirstDecision ? "➖" : "➕"} Première décision prise
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--firstDecision ${
-              isCollapsedFirstDecision ? "expanded" : "collapsed"
+            <button
+              type="button"
+              onClick={() =>
+                setIsCollapsedFirstDecision(!isCollapsedFirstDecision)
+              }
+            >
+              <h2 className="title__paragraph">
+                {isCollapsedFirstDecision ? "➖" : "➕"} Première décision prise
+              </h2>
+            </button>
+            <hr className="dividing__line" />
+            <article
+              className={`descriptionBox__body--firstDecision ${
+                isCollapsedFirstDecision ? "expanded" : "collapsed"
+              }`}
+            >
+              <p className="descriptionBox__body--text">
+                {paragraphFirstDecision}
+              </p>
+            </article>
+          </section>
+          <section
+            className={`descriptionBox__body--paragraphs ${
+              paragraphFinaleDecision === null && "disabled"
             }`}
           >
-            <p className="descriptionBox__body--text">
-              {paragraphFirstDecision}
-            </p>
-          </article>
-          <button
-            type="button"
-            onClick={() => setIsCollapsedDecision(!isCollapsedDecision)}
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedDecision ? "➖" : "➕"} Décision
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--decision ${
-              isCollapsedDecision ? "expanded" : "collapsed"
-            }`}
-          >
-            <p className="descriptionBox__body--text">{paragraphDecision}</p>
-          </article>
-          <button
-            type="button"
-            onClick={() =>
-              setIsCollapsedFinaleDecision(!isCollapsedFinaleDecision)
-            }
-          >
-            <h2 className="title__paragraph">
-              {isCollapsedFinaleDecision ? "➖" : "➕"} Décision finale
-            </h2>
-          </button>
-          <hr className="dividing__line" />
-          <article
-            className={`descriptionBox__body--finaleDecision ${
-              isCollapsedFinaleDecision ? "expanded" : "collapsed"
-            }`}
-          >
-            <p className="descriptionBox__body--text">
-              {paragraphFinaleDecision}
-            </p>
-          </article>
+            <button
+              type="button"
+              onClick={() =>
+                setIsCollapsedFinaleDecision(!isCollapsedFinaleDecision)
+              }
+            >
+              <h2 className="title__paragraph">
+                {isCollapsedFinaleDecision ? "➖" : "➕"} Décision finale
+              </h2>
+            </button>
+            <hr className="dividing__line" />
+            <article
+              className={`descriptionBox__body--finaleDecision ${
+                isCollapsedFinaleDecision ? "expanded" : "collapsed"
+              }`}
+            >
+              <p className="descriptionBox__body--text">
+                {paragraphFinaleDecision}
+              </p>
+            </article>
+          </section>
         </section>
       </section>
     </section>
@@ -185,7 +199,6 @@ DescriptionBox.propTypes = {
   comments: PropTypes.number.isRequired,
   picture: PropTypes.string.isRequired,
   paragraphBenefits: PropTypes.string,
-  paragraphDecision: PropTypes.string,
   paragraphDetails: PropTypes.string.isRequired,
   paragraphFinaleDecision: PropTypes.string,
   paragraphFirstDecision: PropTypes.string,
@@ -195,7 +208,6 @@ DescriptionBox.propTypes = {
 
 DescriptionBox.defaultProps = {
   paragraphBenefits: "default",
-  paragraphDecision: "default",
   paragraphFinaleDecision: "default",
   paragraphFirstDecision: "default",
   paragraphImpact: "default",

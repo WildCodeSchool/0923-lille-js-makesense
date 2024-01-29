@@ -102,7 +102,6 @@ app.use("/api", router);
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your frontend's build artifacts are located.
 
 app.use(express.static("public"));
-
 const reactBuildPath = `${__dirname}/../../frontend/dist`;
 
 // Serve react resources

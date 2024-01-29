@@ -65,6 +65,13 @@ class UserManager extends AbstractManager {
     return rows[0] ? "is_admin" : "is_user";
   }
 
+  async readAll() {
+    // Execute the SQL SELECT query to retrieve all users from the "user" table
+    const [rows] = await this.database.query(`select * from ${this.table}`);
+    // Return the array of users
+    return rows;
+  }
+
   // The U of CRUD - Update operation
   async updatePicture(id, avatar) {
     // Execute the SQL SELECT query to update the picture of a specific user by its ID;
