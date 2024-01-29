@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import "./DecisionCard.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDecisionContext } from "../../contexts/decisionContext";
 import { AuthContext } from "../../contexts/authContext";
 
 function DecisionCard({
   setDeleteDecision,
+  deleteDecision,
   title,
   status,
   authorFirstname,
@@ -19,33 +20,28 @@ function DecisionCard({
   const { decisionId, setDecisionId } = useDecisionContext();
   const { user } = useContext(AuthContext);
 
-  const handleClickLink = async () => {
+  const handleClickLink = () => {
     setDecisionId(id);
   };
 
-  const handleClick = async () => {
+  const handleClick = () => {
     setDecisionId(id);
-
-    try {
-      const response = await fetch(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/decisions/${decisionId}/users/${user[0].user_id}`,
-        { method: "DELETE" }
-      );
-
-      setDeleteDecision(true);
-      if (response.ok) {
-        // La suppression a réussi, mettez à jour l'état local pour déclencher un re-render
-        console.info("La décision a été supprimée avec succès");
-      } else {
-        // La suppression a échoué, vous pouvez gérer les erreurs ici
-        console.error("Erreur lors de la suppression de la décision");
-      }
-    } catch (error) {
-      console.error("Erreur lors de la suppression de la décision:", error);
-    }
   };
+
+  useEffect(() => {
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}/users/${
+        user[0].user_id
+      }`,
+      { method: "DELETE" }
+    )
+      .then((response) => {
+        if (response.status === 200) {
+          setDeleteDecision(!deleteDecision);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, [decisionId]);
 
   return (
     <section>
@@ -60,11 +56,7 @@ function DecisionCard({
       <Link onClick={handleClickLink} to="/decision">
         <button type="button" className="decisionCard__container">
           <section className="title_delete">
-            {/* Titles are too long for the small cards in homepage, only displaying the first 40 characters */}
-
-            <h2>
-              {title.length >= 40 ? `${title.substring(0, 40)}(...)` : title}
-            </h2>
+            <h2>{title}</h2>
           </section>
           <p className="decisionCard__author">
             <img
@@ -90,6 +82,7 @@ function DecisionCard({
 
 DecisionCard.propTypes = {
   setDeleteDecision: PropTypes.func.isRequired,
+  deleteDecision: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   authorFirstname: PropTypes.string.isRequired,

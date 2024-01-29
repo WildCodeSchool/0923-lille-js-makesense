@@ -1,49 +1,33 @@
 import "./Homepage.scss";
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDecisionContext } from "../../contexts/decisionContext";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
-import { useDecisionContext } from "../../contexts/decisionContext";
-import { AuthContext } from "../../contexts/authContext";
 
 function Homepage() {
   const { decisionId } = useDecisionContext();
-  const [deleteDecision, setDeleteDecision] = useState();
+  const [deleteDecision, setDeleteDecision] = useState(false);
 
-  const [decisionsHome, setDecisionsHome] = useState();
-
-  const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-  const { setDecisions } = useDecisionContext();
-
-  // Redirect unconnected users
-  useEffect(() => {
-    if (user[0].user_id === 0) {
-      navigate("/");
-    }
-  }, []);
-
+  const [decisions, setDecisions] = useState();
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
       .then((response) => response.json())
-      .then((data) => {
-        setDecisionsHome(data);
-        setDecisions(data);
-      })
+      .then((data) => setDecisions(data))
       .catch((error) => console.error(error));
   }, [decisionId, deleteDecision]);
 
   return (
     <>
-      <SecondaryNav setdecisionsHome={setDecisionsHome} />
+      <SecondaryNav />
       <h1 className="homepage__title">Décisions en cours</h1>
       <main className="homepage__main">
-        {decisionsHome
-          ? decisionsHome
+        {decisions
+          ? decisions
               .toReversed()
               .map((card) => (
                 <DecisionCard
                   setDeleteDecision={setDeleteDecision}
+                  deleteDecision={deleteDecision}
                   key={card.decision_id}
                   title={card.decision_title}
                   status={card.status}
