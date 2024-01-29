@@ -3,8 +3,50 @@ const express = require("express");
 const router = express.Router();
 
 /* ************************************************************************* */
+/* Upload pictures with multer */
+
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
+/* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
+// Upload image
+
+router.post("/upload-image", upload.single("image"), async (req, res) => {
+  const imageName = req.file.filename;
+
+  try {
+    await Image.create({ image: imageName });
+    res.json({ status: "ok" });
+  } catch (error) {
+    res.json({ status: error });
+  }
+});
+
+// Get image
+
+router.get("/get-image", async (req, res) => {
+  try {
+    Image.find({}).then((data) => {
+      res.send({ status: "ok", data });
+    });
+  } catch (error) {
+    res.json({ status: error });
+  }
+});
+
 // hashing password middleware
 const { hashPassword } = require("./services/auth");
 
