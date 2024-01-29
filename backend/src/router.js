@@ -55,7 +55,7 @@ router.post("/decision/create", decisionControllers.createDecision);
 router.post("/decision/update", decisionControllers.updateDecision);
 // delete decision for admin
 router.delete(
-  "/decision/:decisionId/users/:userId",
+  "/decision/delete/:decisionId/users/:userId",
   decisionControllers.deleteDecision
 );
 

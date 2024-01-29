@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./DecisionCard.scss";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDecisionContext } from "../../contexts/decisionContext";
 import { AuthContext } from "../../contexts/authContext";
@@ -15,9 +15,10 @@ function DecisionCard({
   picture,
   id,
 }) {
-  const { decisionId, setDecisionId } = useDecisionContext();
+  const { setDecisionId } = useDecisionContext();
   const { user } = useContext(AuthContext);
   const { deleteDecision, setDeleteDecision } = useDecisionContext();
+  const [isAdmin, setIsAdmin] = useState(null);
 
   const handleDeleteClick = (event) => {
     event.preventDefault();
@@ -37,23 +38,31 @@ function DecisionCard({
   };
 
   useEffect(() => {
-    // Effect pour quelque chose ?
-  }, [decisionId]);
+    if (!user[0].admin_id) {
+      setIsAdmin("decision__delete--notAdmin");
+    }
+    if (user[0].admin_id) {
+      setIsAdmin(false);
+    }
+  }, []);
 
   return (
     <section>
       <Link onClick={() => setDecisionId(id)} to="/decision">
         <button type="button" className="decisionCard__container">
+          <button
+            onClick={handleDeleteClick}
+            onKeyUp={() => setDecisionId(id)}
+            type="button"
+            className={`delete_button ${isAdmin}`}
+          >
+            x
+          </button>
           <section className="title_delete">
-            <h2>{title}</h2>
-            <button
-              onClick={handleDeleteClick}
-              onKeyUp={() => setDecisionId(id)}
-              type="button"
-              className="delete_button"
-            >
-              X
-            </button>
+            {/* Titles are too long for the small cards in homepage, only displaying the first 40 characters */}
+            <h2>
+              {title.length >= 40 ? `${title.substring(0, 40)} (...)` : title}
+            </h2>
           </section>
           <p className="decisionCard__author">
             <img

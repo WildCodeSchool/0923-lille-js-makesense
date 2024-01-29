@@ -28,13 +28,22 @@
 
 .delete_button {
   cursor: pointer;
-  border: solid black 2px;
-  border-radius: 50%;
-  width: 8%;
-  height: auto;
-  text-align: center;
-  font-size: 0.8rem;
   font-weight: bold;
+  color: $tertiary-medium;
+  border: 2px solid $tertiary-medium;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: -2rem;
+  margin-inline-start: 18rem;
+  z-index: 2;
+}
+
+.decision__delete--notAdmin {
+  display: none;
 }
 
 .decisionCard__author {
