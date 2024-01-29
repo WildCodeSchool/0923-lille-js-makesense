@@ -1,7 +1,6 @@
 // Load the express module to create a web application
 
 const express = require("express");
-const path = require("path");
 
 const app = express();
 
@@ -103,15 +102,16 @@ app.use("/api", router);
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your frontend's build artifacts are located.
 
 app.use(express.static("public"));
+const reactBuildPath = `${__dirname}/../../frontend/dist`;
 
-app.use("*", (req, res) => {
-  if (req.originalUrl.includes("assets")) {
-    res.sendFile(
-      path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
-    );
-  } else {
-    res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
-  }
+// Serve react resources
+
+app.use(express.static(reactBuildPath));
+
+// Redirect unhandled requests to the react index file
+
+app.get("*", (req, res) => {
+  res.sendFile(`${reactBuildPath}/index.html`);
 });
 
 /* ************************************************************************* */

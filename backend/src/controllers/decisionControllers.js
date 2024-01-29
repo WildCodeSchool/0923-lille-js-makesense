@@ -2,10 +2,11 @@
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
-const browseLate = async (req, res, next) => {
+const browsePending = async (req, res, next) => {
   try {
     // Fetch all decisions from the database
-    const decisions = await tables.decision.readAllLate();
+    const decisions = await tables.decision.readAllPending();
+
     // Respond with the decisions in JSON format
     res.json(decisions);
   } catch (err) {
@@ -95,6 +96,7 @@ const createDecision = async (req, res, next) => {
 const updateDecision = async (req, res, next) => {
   // Extract the decision data from the request body
   const decision = req.body;
+
   try {
     // Insert the decision into the database
     const insertId = await tables.decision.update(decision);
@@ -156,13 +158,13 @@ const getRelatedDecisions = async (req, res, next) => {
   }
 };
 
-// all completed decisions
-const browseCompleted = async (req, res, next) => {
+// all completed decision for user
+const getDecisionsCompleted = async (req, res, next) => {
   try {
-    // Fetch all decisions completed from the database
-    const decisionsCompleted = await tables.decision.readAllCompleted();
+    // Fetch all decisionsCompleted from the database
+    const decisionsCompleted = await tables.decision.getDecisionsCompleted();
 
-    // Respond with the decisions completed in JSON format
+    // Respond with the decisionsCompleted in JSON format
     res.json(decisionsCompleted);
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -170,12 +172,12 @@ const browseCompleted = async (req, res, next) => {
   }
 };
 
-const browseCurrent = async (req, res, next) => {
+const getCurrentDecisions = async (req, res, next) => {
   try {
-    // Fetch all current decisions from the database
-    const currentDecisions = await tables.decision.readAllCurrent();
+    // Fetch all currentDecisions from the database
+    const currentDecisions = await tables.decision.getCurrentDecisions();
 
-    // Respond with the current decisions in JSON format
+    // Respond with the currentDecisions in JSON format
     res.json(currentDecisions);
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -189,7 +191,7 @@ const browseCurrent = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
-  browseLate,
+  browsePending,
   read,
   readByRole,
   updatePicture,
@@ -198,7 +200,7 @@ module.exports = {
   getExperts,
   getImpacted,
   getRelatedDecisions,
-  browseCompleted,
-  browseCurrent,
+  getDecisionsCompleted,
+  getCurrentDecisions,
   // destroy,
 };
