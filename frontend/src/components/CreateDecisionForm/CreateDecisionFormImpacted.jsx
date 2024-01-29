@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
-  // liste de tous les users
+  // List all users
   const [users, setUsers] = useState([]);
-  // recherche des users dans l'input
+  // search users in input
   const [searchUser, setSearchUser] = useState("");
-  // liste des users impactés
+  // list impacted users
   const [filteredUsers, setFilteredUsers] = useState([]);
   const expertRef = useRef();
 
@@ -22,37 +22,37 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
   }, []);
 
   const handleInputChange = (e) => {
-    // Lis les inputs clavier pour créer un auto-complete basé sur [users]
+    // Read keyboard inputs to autocomplete based on user
     setSearchUser(e.target.value);
   };
 
-  // Ajoute un expert à la liste filtrée
+  // Add an impacted to the filtered users
   const handleClick = () => {
-    // cherche le user qui correspond à l'input
+    // search for the user corresponding the input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
         expertRef.current.value
     );
-    // si le user correspond, ajoute le user aux users filtrés
+    // if there's a corresponding user, add it to the list
     if (newFilteredUser) {
       setFilteredUsers((prevFilteredUsers) => [
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // met à jour la liste des impactés envoyés au parent
+      // update the impacted list sent to the parent
       setCreateDecisionFormImpacted(filteredUsers);
-      // Vide l'input après validation
+      // Clear the input after validation
       setSearchUser("");
     }
   };
 
-  // Enlève un expert de la liste filtrée
+  // Remove a user from the filtered user list
   const handleRemoveUser = (userId) => {
     setFilteredUsers((prevFilteredUsers) =>
       prevFilteredUsers.filter((user) => user.user_id !== userId)
     );
-    // met à jour la liste des impactés envoyés au parent
+    // update the list sent to the parent
     setCreateDecisionFormImpacted(filteredUsers);
   };
 

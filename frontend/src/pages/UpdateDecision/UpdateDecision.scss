@@ -14,9 +14,6 @@
   flex-direction: column;
   overflow-x: hidden;
   background-color: $background;
-  & * {
-    background-color: $background;
-  }
 }
 
 .updateDecision__aside {

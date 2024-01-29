@@ -53,6 +53,11 @@ router.get(
 router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
 router.post("/decision/update", decisionControllers.updateDecision);
+// Route to only add assigneds
+router.post(
+  "/decision/:id/create/assigned",
+  decisionControllers.createAssigned
+);
 
 // COMMENT ROUTES
 // Import Controller

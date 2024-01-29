@@ -73,17 +73,29 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
       <span className="updateDecisionForm__content updateDecisionForm__content--choiceBoxes">
         <ul className="updateDecisionForm__list">
           {updateExperts.map((user) => (
-            <li key={user.user_id} className="createDecisionForm__chosen">
+            <li key={user.user_id} className="updateDecisionForm__chosen">
               <img
                 src={user.picture}
                 alt={`avatar de ${user.firstname} ${user.lastname}`}
-                className="createDecisionForm__chosen--avatar"
+                className="updateDecisionForm__chosen--avatar"
               />
-              <p className="createDecisionForm__chosen--fullname">
+              <p className="updateDecisionForm__chosen--fullname">
+                {user.firstname} {user.lastname}
+              </p>
+            </li>
+          ))}
+          {filteredUsers.map((user) => (
+            <li key={user.user_id} className="updateDecisionForm__chosen">
+              <img
+                src={user.picture}
+                alt={`avatar de ${user.firstname} ${user.lastname}`}
+                className="updateDecisionForm__chosen--avatar"
+              />
+              <p className="updateDecisionForm__chosen--fullname">
                 {user.firstname} {user.lastname}
                 <button
                   type="button"
-                  className="createDecisionForm__chosen--remove"
+                  className="updateDecisionForm__chosen--remove"
                   onClick={() => handleRemoveUser(user.user_id)}
                 >
                   -
@@ -94,7 +106,7 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
         </ul>
         <section className="updateDecisionForm__search">
           <input
-            className="createDecisionForm__input"
+            className="updateDecisionForm__input"
             type="text"
             placeholder="Rechercher expert·e·s"
             value={searchUser}
@@ -105,7 +117,7 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
           <datalist id="usersList">
             {users.map((user) => (
               <option
-                className="createDecisionForm__search--options"
+                className="updateDecisionForm__search--options"
                 key={user.user_id}
                 aria-label="Noms"
                 value={`${user.firstname} ${user.lastname} (${user.email})`}
@@ -113,7 +125,7 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
             ))}
           </datalist>
           <button
-            className="createDecisionForm__submit"
+            className="updateDecisionForm__submit"
             type="button"
             onClick={handleClick}
           >

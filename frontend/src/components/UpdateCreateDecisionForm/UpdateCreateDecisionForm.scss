@@ -13,13 +13,8 @@
 }
 
 .updateDecisionForm__content--choiceBoxes {
-  min-height: 30vh;
+  height: 30vh;
   justify-content: space-between;
-}
-
-.updateDecisionForm__titles {
-  text-align: center;
-  padding-block: 1%;
 }
 
 .updateDecisionForm__titles {
@@ -94,10 +89,26 @@
   height: 85vh;
   width: 68vw;
   flex-grow: 3;
-  & textarea,
-  input {
+  & textarea {
     background-color: $secondary-background;
     border-radius: 5px;
+    resize: none;
+    scrollbar-width: thin;
+    scrollbar-color: currentColor rgb($primary-medium, 0.5);
+
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb($primary-medium, 0.5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: currentColor;
+      border-radius: 20px;
+      border: 3px solid rgb($primary-medium, 0.5);
+    }
   }
   & textarea:focus,
   input:focus {
@@ -113,20 +124,14 @@
       font-size: 30px;
       & input {
         font-size: 20px;
+        background-color: $secondary-background;
+        border-radius: 5px;
       }
     }
   }
 }
 
-.updateDecisionForm__status select {
-  background-color: $secondary-background;
-  border-radius: 5px;
-  & option {
-    background-color: $secondary-background;
-    border-radius: 5px;
-  }
-}
-
+.updateDecisionForm__status select,
 .updateDecisionForm__progress {
   background-color: $secondary-background;
   border-radius: 5px;
