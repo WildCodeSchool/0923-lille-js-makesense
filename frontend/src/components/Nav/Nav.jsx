@@ -45,7 +45,7 @@ function Nav() {
 
   return (
     <nav className="nav__nav">
-      <Link to="/homepage" className="nav__logo">
+      <Link to="/homepage/decisions/all" className="nav__logo">
         <img
           className="nav__logo--img"
           src={`${

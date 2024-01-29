@@ -1,4 +1,5 @@
 @import "../../variables";
+
 @keyframes LogoAnimation {
   0% {
     transform: translateY(0vw);
@@ -49,12 +50,12 @@
   }
 }
 .login__form {
-  animation: FormAnimation 7s linear forwards;
+  animation: FormAnimation 2s linear forwards;
   width: 14rem;
   margin-top: 1rem;
 }
 .login__logo {
-  animation: LogoAnimation 5s linear forwards;
+  animation: LogoAnimation 1.5s linear forwards;
   width: 20rem;
   scale: 4;
   position: absolute;

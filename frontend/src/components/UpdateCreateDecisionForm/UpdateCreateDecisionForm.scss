@@ -1,31 +1,44 @@
 @import "../../variables";
 
-.createDecisionForm__content {
+.updateDecisionForm__content {
   @include box;
   margin-block-start: 2%;
   display: flex;
   flex-direction: column;
-  @include scroll;
   overflow-x: hidden;
+  background-color: $background;
+  & * {
+    background-color: $background;
+  }
 }
 
-.createDecisionForm__content--choiceBoxes {
+.updateDecisionForm__content--choiceBoxes {
   min-height: 30vh;
   justify-content: space-between;
 }
 
-.createDecisionForm__titles {
+.updateDecisionForm__titles {
   text-align: center;
   padding-block: 1%;
 }
 
-.createDecisionForm__chosen {
+.updateDecisionForm__titles {
+  text-align: center;
+  padding-block: 1%;
+}
+
+.updateDecisionForm__list {
+  @include scroll;
+  height: 100%;
+}
+
+.updateDecisionForm__chosen {
   display: flex;
   align-items: center;
   font-weight: 700;
   margin-block: 1%;
   border-radius: 20px;
-  background-color: $background;
+  background-color: $secondary-background;
   padding: 1%;
   &--avatar {
     @include avatar;
@@ -33,9 +46,30 @@
     width: 40px;
     height: 40px;
   }
+  &--fullname {
+    display: flex;
+    justify-content: space-between;
+    width: 83%;
+    margin-inline-end: 1%;
+  }
+  & * {
+    background-color: $secondary-background;
+  }
 }
 
-.createDecisionForm__search {
+.updateDecisionForm__chosen--remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $tertiary-medium;
+  border: 2px solid $tertiary-medium;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.updateDecisionForm__search {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,6 +79,7 @@
     all: unset;
     background-color: $background;
     padding: 2%;
+    width: 100%;
   }
   & button {
     @include buttons;
@@ -53,10 +88,17 @@
   }
 }
 
-.createDecisionForm__content--decision {
+.updateDecisionForm__content--decision {
+  @include scroll;
   padding: 1%;
-  height: 80vh;
-  width: 72vw;
+  height: 85vh;
+  width: 68vw;
+  flex-grow: 3;
+  & textarea,
+  input {
+    background-color: $secondary-background;
+    border-radius: 5px;
+  }
   & textarea:focus,
   input:focus {
     outline: none !important;
@@ -76,7 +118,7 @@
   }
 }
 
-.createDecisionForm__status select {
+.updateDecisionForm__status select {
   background-color: $secondary-background;
   border-radius: 5px;
   & option {
@@ -85,11 +127,16 @@
   }
 }
 
-.createDecisionForm__progress {
+.updateDecisionForm__progress {
   background-color: $secondary-background;
   border-radius: 5px;
   & option {
     background-color: $secondary-background;
     border-radius: 5px;
   }
+}
+
+.updateDecisionForm__label input,
+.updateDecisionForm__status select {
+  margin-inline-start: 1vw;
 }

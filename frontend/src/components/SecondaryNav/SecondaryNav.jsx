@@ -1,72 +1,34 @@
-import { useContext } from "react";
-import PropTypes from "prop-types";
-import { AuthContext } from "../../contexts/authContext";
+import { Link } from "react-router-dom";
 import "./SecondaryNav.scss";
 
-function SecondaryNav({ setDecisionsHome }) {
-  const { user } = useContext(AuthContext);
-
-  const handleClickFilterMyDecisions = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${
-      user[0].user_id
-    }/related-decisions
-      `)
-      .then((response) => response.json())
-      .then((data) => setDecisionsHome(data))
-      .catch((error) => console.error(error));
-  };
-  const handleClickFilterPendingDecisions = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/pending`)
-      .then((response) => response.json())
-      .then((data) => setDecisionsHome(data))
-      .catch((error) => console.error(error));
-  };
-
-  const handleClickFilterDecisionsCompleted = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/completed`)
-      .then((response) => response.json())
-      .then((data) => setDecisionsHome(data))
-      .catch((error) => console.error(error));
-  };
-
-  const handleClickFilterCurrentDécisions = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/current`)
-      .then((response) => response.json())
-      .then((data) => setDecisionsHome(data))
-      .catch((error) => console.error(error));
-  };
-
+function SecondaryNav() {
   return (
     <nav className="secondaryNav__nav">
-      <ul className="secondaryNav__button">
-        <button
-          onClick={handleClickFilterCurrentDécisions}
-          type="button"
-          className="secondaryNav__button--first"
+      <ul className="secondaryNav__links">
+        <Link
+          to="/homepage/decisions/current"
+          className="secondaryNav__links--first"
         >
           Décisions en cours
-        </button>
-        <button
-          onClick={handleClickFilterPendingDecisions}
-          type="button"
-          className="secondaryNav__button--second"
+        </Link>
+        <Link
+          to="/homepage/decisions/late"
+          className="secondaryNav__links--second"
         >
           Décisions en retard
-        </button>
-        <button
-          onClick={handleClickFilterMyDecisions}
-          type="button"
-          className="secondaryNav__button--third"
+        </Link>
+        <Link
+          to="/homepage/decisions/user"
+          className="secondaryNav__links--third"
         >
           Vos décisions
-        </button>
-        <button
-          onClick={handleClickFilterDecisionsCompleted}
-          type="button"
-          className="secondaryNav__button--third"
+        </Link>
+        <Link
+          to="/homepage/decisions/finished"
+          className="secondaryNav__links--third"
         >
-          Décisions terminées
-        </button>
+          Décisions prises
+        </Link>
       </ul>
       <img
         src={`${import.meta.env.VITE_BACKEND_URL}/images/ban-bottom.png`}
@@ -76,9 +38,5 @@ function SecondaryNav({ setDecisionsHome }) {
     </nav>
   );
 }
-
-SecondaryNav.propTypes = {
-  setDecisionsHome: PropTypes.func.isRequired,
-};
 
 export default SecondaryNav;

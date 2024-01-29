@@ -58,7 +58,7 @@ function CreateDecision() {
       );
 
       if (response.status === 201) {
-        navigate("/homepage");
+        navigate("/homepage/decisions/all");
       } else {
         console.info(response);
       }
@@ -72,7 +72,7 @@ function CreateDecision() {
       <CreateDecisionFormContent
         setCreateDecisionFormContent={setCreateDecisionFormContent}
       />
-      <section className="createDecision__sections">
+      <aside className="createDecision__aside">
         <CreateDecisionFormExperts
           setCreateDecisionFormExperts={setCreateDecisionFormExperts}
         />
@@ -82,7 +82,7 @@ function CreateDecision() {
         <button type="submit" className="createDecisionForm__button">
           Publier
         </button>
-      </section>
+      </aside>
     </form>
   );
 }

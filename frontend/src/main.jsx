@@ -7,6 +7,11 @@ import { AuthProvider } from "./contexts/authContext";
 import App from "./App";
 import Login from "./pages/Login/Login";
 import Homepage from "./pages/Homepage/Homepage";
+import HomepageAllDecisions from "./pages/Homepage/HomepageAllDecisions";
+import HomepageUserDecisions from "./pages/Homepage/HomepageUserDecisions";
+import HomepageCurrentDecisions from "./pages/Homepage/HomepageCurrentDecisions";
+import HomepageLateDecisions from "./pages/Homepage/HomepageLateDecisions";
+import HomepageFinishedDecisions from "./pages/Homepage/HomepageFinishedDecisions";
 import Decision from "./pages/Decision/Decision";
 import CreateDecision from "./pages/CreateDecision/CreateDecision";
 import CreateUser from "./pages/CreateUser/CreateUser";
@@ -21,8 +26,29 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/homepage",
         element: <Homepage />,
+        children: [
+          {
+            path: "/homepage/decisions/all",
+            element: <HomepageAllDecisions />,
+          },
+          {
+            path: "/homepage/decisions/current",
+            element: <HomepageCurrentDecisions />,
+          },
+          {
+            path: "/homepage/decisions/user",
+            element: <HomepageUserDecisions />,
+          },
+          {
+            path: "/homepage/decisions/late",
+            element: <HomepageLateDecisions />,
+          },
+          {
+            path: "/homepage/decisions/finished",
+            element: <HomepageFinishedDecisions />,
+          },
+        ],
       },
       {
         path: "/decision",

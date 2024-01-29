@@ -31,7 +31,7 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
       className="createDecisionForm__content createDecisionForm__content--decision"
     >
       <label className="createDecisionForm__label" htmlFor="titre">
-        Titre :&nbsp;&nbsp;
+        Titre :
         <input
           type="text"
           name="titre"
@@ -42,7 +42,7 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         />
       </label>
       <label className="createDecisionForm__status" htmlFor="status">
-        Délai :&nbsp;&nbsp;
+        Délai :
         <select name="status" id="status" ref={decisionDelayRef}>
           <option value="Court terme (deux semaines)">
             Court terme (deux semaines)
