@@ -8,9 +8,7 @@ import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 function Homepage() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { setDecisions } = useDecisionContext();
-  const { decisionId } = useDecisionContext();
-  const { deleteDecision } = useDecisionContext();
+  const { setDecisions, decisionId, deleteDecision } = useDecisionContext();
   const [decisionsHome, setDecisionsHome] = useState();
 
   useEffect(() => {

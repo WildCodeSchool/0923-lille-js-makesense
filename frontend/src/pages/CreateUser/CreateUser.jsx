@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./CreateUser.scss";
-// import { useNavigate } from "react-router-dom";
-// import { AuthContext } from "../../contexts/authContext";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
 
 function CreateUser() {
   const firstnameRef = useRef();
@@ -12,24 +12,23 @@ function CreateUser() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [message, setMessage] = useState("");
 
-  // const navigate = useNavigate();
-  // const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   // This page is only accessible to admins
   // Redirect unconnected users
-  // useEffect(() => {
-  //   if (!user[0].admin_id) {
-  //     navigate("/homepage/decisions/all");
-  //   } else if (user.user_id === 0) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!user[0].admin_id) {
+      navigate("/homepage/decisions/all");
+    } else if (user.user_id === 0) {
+      navigate("/");
+    }
+  }, []);
   // Form Submission Manager
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/create`,
         {
@@ -46,7 +45,6 @@ function CreateUser() {
         }
       );
 
-      // Redirection vers la page de connexion si la création réussit
       if (response.status === 201) {
         setMessage(
           `🚀 Utilisateur créé : ${lastnameRef.current.value} ${firstnameRef.current.value}. 🚀`
@@ -57,11 +55,9 @@ function CreateUser() {
         locationRef.current.value = "Americas";
         passwordRef.current.value = "";
       } else {
-        // Log des détails de la réponse en cas d'échec
         console.info(response);
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error("Error in user creation", err);
     }
   };

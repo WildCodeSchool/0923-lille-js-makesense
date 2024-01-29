@@ -6,8 +6,8 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function HomepageUserDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
-  const { decisionId } = useDecisionContext();
-  const { deleteDecision, setDeleteDecision } = useDecisionContext();
+  const { deleteDecision, setDeleteDecision, decisionId } =
+    useDecisionContext();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {

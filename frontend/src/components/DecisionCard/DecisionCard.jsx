@@ -23,7 +23,7 @@ function DecisionCard({
     event.preventDefault();
 
     fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/decision/${id}/users/${
+      `${import.meta.env.VITE_BACKEND_URL}/api/decision/delete/${id}/users/${
         user[0].user_id
       }`,
       { method: "DELETE" }

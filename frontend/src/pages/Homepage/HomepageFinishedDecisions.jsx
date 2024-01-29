@@ -5,8 +5,8 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function HomepageFinishedDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
-  const { decisionId } = useDecisionContext();
-  const { deleteDecision, setDeleteDecision } = useDecisionContext();
+  const { deleteDecision, setDeleteDecision, decisionId } =
+    useDecisionContext();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/completed`)
