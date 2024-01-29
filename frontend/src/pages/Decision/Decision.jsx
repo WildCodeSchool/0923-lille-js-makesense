@@ -1,16 +1,19 @@
 import "./Decision.scss";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 import DescriptionBox from "../../components/DescriptionBox/DescriptionBox";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
-import { AuthContext } from "../../contexts/authContext";
+import EditButton from "../../components/EditButton/EditButton";
 
 function Decision() {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
-  const [writeComment, setWriteComment] = useState();
   const { decisionId } = useDecisionContext();
+  const { decisions } = useDecisionContext();
+  const [writeComment, setWriteComment] = useState();
   const [decision, setDecision] = useState({
     decision_date: "--",
     decision_delay: "--",
@@ -32,13 +35,21 @@ function Decision() {
     status: "--",
     user_id: 0,
   });
+  const navigate = useNavigate();
+
+  // Redirect unconnected users
+  useEffect(() => {
+    if (user[0].user_id === 0) {
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
       .then((data) => setDecision(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisions]);
 
   const datetime = new Date(decision.decision_date);
   const formattedDate = datetime.toLocaleDateString("en-GB", {
@@ -46,6 +57,7 @@ function Decision() {
     month: "2-digit",
     year: "numeric",
   });
+
   return (
     <main className="decision__page">
       <header className="decision__page--header">
@@ -53,7 +65,10 @@ function Decision() {
           Date d'ouverture: {formattedDate} <br />
           Date de clôture: {decision.decision_delay}
         </h2>
-        <ProgressBar status={decision.status} />
+        <section className="progress_edit">
+          <ProgressBar status={decision.status} />
+          <EditButton />
+        </section>
       </header>
       <section className="decision__page--body">
         <section className={`left__section ${writeComment ? "hidden" : null}`}>

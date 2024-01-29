@@ -10,11 +10,12 @@
   }
 }
 
-.secondaryNav__links * {
+.secondaryNav__button * {
   background-color: $primary-medium;
+  cursor: pointer;
 }
 
-.secondaryNav__links {
+.secondaryNav__button {
   outline: 1px solid $primary-medium;
   background-color: $primary-medium;
   display: flex;

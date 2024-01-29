@@ -25,7 +25,7 @@ function DescriptionBox({
   const [isCollapsedFinaleDecision, setIsCollapsedFinaleDecision] = useState();
 
   return (
-    <section className="descriptionBox">
+    <section className="descriptionBox boxButton">
       <section className="descriptionBox__scroll">
         <header className="descriptionBox__header">
           <img

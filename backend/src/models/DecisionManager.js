@@ -81,13 +81,12 @@ class DecisionManager extends AbstractManager {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all decisions from the decision table
     const [rows] = await this.database
-      .query(`SELECT decision.decision_id, decision.decision_title, decision.status, 
-      user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      .query(`SELECT decision.*, paragraph.*, user.*, COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      GROUP BY decision.decision_id, decision.decision_title, decision.status, 
-      user.firstname, user.lastname, user.picture, user.location;`);
+      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;`);
 
     // Return the array of decisions
     return rows;
@@ -108,6 +107,36 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
+  async getDecisionsCompleted() {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+    );
+
+    // Return Result
+    return rows;
+  }
+
+  async getCurrentDecisions(userId) {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
+`,
+      [userId, userId, userId]
+    );
+
+    // Return result
+    return rows;
+  }
+
   // The U of CRUD - Update operation
   async updatePicture(id, picture) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
@@ -120,13 +149,27 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  // Implement logic to retrieve experts and impacts for a given decision
-  async getExpertsAndImpactes(decisionId) {
+  // Implement logic to retrieve experts for a given decision
+  async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
      FROM assignment
      JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ?`,
+     WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
+      [decisionId]
+    );
+
+    return rows;
+  }
+
+  // Implement logic to retrieve Impacted for a given decision
+
+  async getImpacted(decisionId) {
+    const [rows] = await this.database.query(
+      `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
+     FROM assignment
+     JOIN user ON assignment.user_id = user.user_id
+     WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
       [decisionId]
     );
 
@@ -170,7 +213,6 @@ class DecisionManager extends AbstractManager {
     paragraph_benefits = ?,
     paragraph_risks = ?,
     paragraph_first_decision = ?,
-    paragraph_decision = ?,
     paragraph_finale_decision = ?
     WHERE decision_id = ?
     `,
@@ -180,7 +222,6 @@ class DecisionManager extends AbstractManager {
         decision[0].paragraph_benefits,
         decision[0].paragraph_risks,
         decision[0].paragraph_first_decision,
-        decision[0].paragraph_decision,
         decision[0].paragraph_finale_decision,
         decision[0].decision_id,
       ]
@@ -190,7 +231,7 @@ class DecisionManager extends AbstractManager {
       `
     UPDATE decision
     SET status = ?,
-    decision_delay=?,
+    decision_delay= ?,
     decision_title = ?
     WHERE decision_id = ?
    
