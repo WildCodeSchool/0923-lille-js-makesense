@@ -1,28 +1,16 @@
 import "./Homepage.scss";
-import { useState, useEffect } from "react";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
 function HomepageAllDecisions() {
-  const [relatedDecisions, setRelatedDecisions] = useState();
-  const { decisionId } = useDecisionContext();
-  const { deleteDecision } = useDecisionContext();
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRelatedDecisions(data);
-      })
-      .catch((error) => console.error(error));
-  }, [decisionId, deleteDecision]);
+  const { decisions } = useDecisionContext();
 
   return (
     <>
       <h1 className="homepage__title">Toutes les décisions</h1>
       <main className="homepage__main">
-        {relatedDecisions
-          ? relatedDecisions
+        {decisions
+          ? decisions
               .toReversed()
               .map((card) => (
                 <DecisionCard

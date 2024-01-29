@@ -1,12 +1,12 @@
 import "./Homepage.scss";
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
-function HomepageCurrentDecisions({ deleteDecision, setDeleteDecision }) {
+function HomepageCurrentDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
   const { decisionId } = useDecisionContext();
+  const { deleteDecision } = useDecisionContext();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/current`)
@@ -26,8 +26,6 @@ function HomepageCurrentDecisions({ deleteDecision, setDeleteDecision }) {
               .toReversed()
               .map((card) => (
                 <DecisionCard
-                  deleteDecision={deleteDecision}
-                  setDeleteDecision={setDeleteDecision}
                   key={card.decision_id}
                   title={card.decision_title}
                   status={card.status}
@@ -44,10 +42,5 @@ function HomepageCurrentDecisions({ deleteDecision, setDeleteDecision }) {
     </>
   );
 }
-
-HomepageCurrentDecisions.propTypes = {
-  deleteDecision: PropTypes.bool.isRequired,
-  setDeleteDecision: PropTypes.func.isRequired,
-};
 
 export default HomepageCurrentDecisions;

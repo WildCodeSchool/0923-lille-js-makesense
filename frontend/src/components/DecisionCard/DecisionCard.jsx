@@ -19,9 +19,11 @@ function DecisionCard({
   const { user } = useContext(AuthContext);
   const { deleteDecision, setDeleteDecision } = useDecisionContext();
 
-  useEffect(() => {
+  const handleDeleteClick = (event) => {
+    event.preventDefault();
+
     fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}/users/${
+      `${import.meta.env.VITE_BACKEND_URL}/api/decision/${id}/users/${
         user[0].user_id
       }`,
       { method: "DELETE" }
@@ -32,22 +34,26 @@ function DecisionCard({
         }
       })
       .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    // Effect pour quelque chose ?
   }, [decisionId]);
 
   return (
     <section>
-      <button
-        onClick={() => setDecisionId(id)}
-        onKeyUp={() => setDecisionId(id)}
-        type="button"
-        className="delete_button"
-      >
-        X
-      </button>
       <Link onClick={() => setDecisionId(id)} to="/decision">
         <button type="button" className="decisionCard__container">
           <section className="title_delete">
             <h2>{title}</h2>
+            <button
+              onClick={handleDeleteClick}
+              onKeyUp={() => setDecisionId(id)}
+              type="button"
+              className="delete_button"
+            >
+              X
+            </button>
           </section>
           <p className="decisionCard__author">
             <img
