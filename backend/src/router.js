@@ -35,7 +35,7 @@ router.get("/decisions/all", decisionControllers.browse);
 // Route to get one decision
 router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
-router.get("/decision/late", decisionControllers.browsePending);
+router.get("/decision/late", decisionControllers.browseLate);
 // get Decisions Completed
 router.get("/decision/completed", decisionControllers.getDecisionsCompleted);
 // get current decisions

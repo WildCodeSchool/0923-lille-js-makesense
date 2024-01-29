@@ -92,15 +92,16 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  async readAllPending() {
-    // Execute the SQL SELECT query to retrieve all pending decisions from the decision table
+  async readAllLate() {
+    // Execute the SQL SELECT query to retrieve all late decisions from the decision table
     const [rows] = await this.database.query(
       `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
-      FROM ${this.table}
+      FROM decision
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision"
-      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+      WHERE decision.status IN ("Décision commencée", "Première décision prise", "Conflit sur la décision")
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location
+      HAVING nb_comments = 0;`
     );
 
     // Return the array of decisions
@@ -110,7 +111,7 @@ class DecisionManager extends AbstractManager {
   async getDecisionsCompleted() {
     const [rows] = await this.database.query(
       `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
-      FROM decision
+      FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
       WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie"
@@ -121,16 +122,14 @@ class DecisionManager extends AbstractManager {
     return rows;
   }
 
-  async getCurrentDecisions(userId) {
+  async getCurrentDecisions() {
     const [rows] = await this.database.query(
       `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
-      FROM decision
+      FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
-      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;
-`,
-      [userId, userId, userId]
+      WHERE decision.status = "Décision commencée" OR decision.status = "Première décision prise" OR decision.status = "Conflit sur la décision"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
     );
 
     // Return result
@@ -153,9 +152,9 @@ class DecisionManager extends AbstractManager {
   async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
-     FROM assignment
-     JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
+        FROM assignment
+        JOIN user ON assignment.user_id = user.user_id
+        WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
       [decisionId]
     );
 
@@ -167,9 +166,9 @@ class DecisionManager extends AbstractManager {
   async getImpacted(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
-     FROM assignment
-     JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
+        FROM assignment
+        JOIN user ON assignment.user_id = user.user_id
+        WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
       [decisionId]
     );
 
@@ -183,9 +182,9 @@ class DecisionManager extends AbstractManager {
       decision.decision_id,
       decision.decision_title,
       decision.status,
-      user.firstname AS author_firstname,
-      user.lastname AS author_lastname,
-      user.picture AS author_picture,
+      user.firstname,
+      user.lastname,
+      user.picture,
       user.location,
       COUNT(comment.comment_id) AS nb_comments
     FROM ${this.table}
@@ -193,8 +192,8 @@ class DecisionManager extends AbstractManager {
     LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
     LEFT JOIN comment ON decision.decision_id = comment.decision_id
     WHERE user.user_id = ?
-       OR assignment.user_id = ?
-       OR comment.user_id = ? 
+      OR assignment.user_id = ?
+      OR comment.user_id = ? 
     GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location`,
       [userId, userId, userId]
     );
@@ -234,7 +233,6 @@ class DecisionManager extends AbstractManager {
     decision_delay= ?,
     decision_title = ?
     WHERE decision_id = ?
-   
     `,
       [
         decision[1].status,
