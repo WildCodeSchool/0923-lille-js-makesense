@@ -2,10 +2,10 @@
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
-const browsePending = async (req, res, next) => {
+const browseLate = async (req, res, next) => {
   try {
     // Fetch all decisions from the database
-    const decisions = await tables.decision.readAllPending();
+    const decisions = await tables.decision.readAllLate();
 
     // Respond with the decisions in JSON format
     res.json(decisions);
@@ -210,7 +210,7 @@ const deleteDecision = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
-  browsePending,
+  browseLate,
   read,
   readByRole,
   updatePicture,

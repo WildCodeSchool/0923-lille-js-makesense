@@ -65,7 +65,7 @@
   flex-direction: column;
   justify-content: space-around;
   padding-top: 2vh;
-  height: 50vh;
+  min-height: 50vh;
 }
 .descriptionBox__body--text {
   font-size: clamp(12px, 2vw, 1.2rem);

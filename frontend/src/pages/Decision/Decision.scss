@@ -8,6 +8,14 @@
     background-color: $secondary-background;
   }
 }
+
+.decision__header {
+  display: flex;
+  width: 50vw;
+  margin-block-end: 1vh;
+  justify-content: space-between;
+  align-items: center;
+}
 .decision__page--body {
   display: flex;
   align-items: center;
@@ -28,9 +36,8 @@
   display: none;
 }
 
-.progress_edit {
-  display: flex;
-  flex-direction: row-reverse;
+.decision__edit {
+  @include buttons;
 }
 
 @media screen and (max-width: 700px) {

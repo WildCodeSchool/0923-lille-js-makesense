@@ -1,105 +1,91 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 import "./ProgressBar.scss";
 
-function ProgressBar() {
-  const firstStatus = "Décision commencée";
-  const secondStatus = "Première décision prise";
-  const thirdStatus = "Décision définitive";
-  const fourthStatus = "Décision non aboutie";
-  const fifthStatus = "Décision terminée";
-
-  const [activeStatus] = useState(thirdStatus);
-
+function ProgressBar({ status }) {
   return (
-    <section className="progress__bar">
-      <section className="status">
-        <section
-          className={`status__circle ${
-            activeStatus === firstStatus && "visible"
-          }`}
-        >
-          <img
-            className="status__icon seeding "
-            src={`${
-              import.meta.env.VITE_BACKEND_URL
-            }/images/hand-holding-seeding.png`}
-            alt="icône décision commencée"
-          />
+    <section>
+      <section className="progress__bar">
+        <section className="status">
+          <section
+            className={`status__circle ${
+              status === "Décision commencée" && "visible"
+            }`}
+          >
+            <img
+              className="status__icon seeding "
+              src={`${
+                import.meta.env.VITE_BACKEND_URL
+              }/images/hand-holding-seeding.png`}
+              alt="icône décision commencée"
+            />
+          </section>
         </section>
-        <p className={activeStatus !== firstStatus && "status__name--hidden"}>
-          Décision commencée
-        </p>
-      </section>
-      <section className="status">
-        <section
-          className={`status__circle ${
-            activeStatus === secondStatus && "visible"
-          }`}
-        >
-          <img
-            className="status__icon tulip"
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/flower-tulip.png`}
-            alt="icône décision prise"
-          />
+        <section className="status">
+          <section
+            className={`status__circle ${
+              status === "Première décision prise" && "visible"
+            }`}
+          >
+            <img
+              className="status__icon tulip"
+              src={`${
+                import.meta.env.VITE_BACKEND_URL
+              }/images/flower-tulip.png`}
+              alt="icône décision prise"
+            />
+          </section>
         </section>
-        <p className={activeStatus !== secondStatus && "status__name--hidden"}>
-          Première décision prise
-        </p>
-      </section>
-      <section className="status">
-        <section
-          className={`status__circle ${
-            activeStatus === thirdStatus && "visible"
-          }`}
-        >
-          <img
-            className="status__icon flower"
-            src={`${
-              import.meta.env.VITE_BACKEND_URL
-            }/images/flower-daffodil.png`}
-            alt="icône décision définitive"
-          />
+        <section className="status">
+          <section
+            className={`status__circle ${
+              status === "Décision définitive" && "visible"
+            }`}
+          >
+            <img
+              className="status__icon flower"
+              src={`${
+                import.meta.env.VITE_BACKEND_URL
+              }/images/flower-daffodil.png`}
+              alt="icône décision définitive"
+            />
+          </section>
         </section>
-        <p className={activeStatus !== thirdStatus && "status__name--hidden"}>
-          Décision définitive
-        </p>
-      </section>
-      <section className="status">
-        <section
-          className={`status__circle ${
-            activeStatus === fourthStatus && "visible"
-          }`}
-        >
-          <img
-            className="status__icon faucet"
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/faucet.png`}
-            alt="icône non aboutie"
-          />
+        <section className="status">
+          <section
+            className={`status__circle ${
+              status === "Décision non aboutie" && "visible"
+            }`}
+          >
+            <img
+              className="status__icon faucet"
+              src={`${import.meta.env.VITE_BACKEND_URL}/images/faucet.png`}
+              alt="icône non aboutie"
+            />
+          </section>
         </section>
-        <p className={activeStatus !== fourthStatus && "status__name--hidden"}>
-          Décision non aboutie
-        </p>
-      </section>
-      <section className="status">
-        <section
-          className={`status__circle ${
-            activeStatus === fifthStatus && "visible"
-          }`}
-        >
-          <img
-            className="status__icon bouquet"
-            src={`${
-              import.meta.env.VITE_BACKEND_URL
-            }/images/flower-bouquet.png`}
-            alt="icône décision terminé"
-          />
+        <section className="status">
+          <section
+            className={`status__circle ${
+              status === "Décision terminée" && "visible"
+            }`}
+          >
+            <img
+              className="status__icon bouquet"
+              src={`${
+                import.meta.env.VITE_BACKEND_URL
+              }/images/flower-bouquet.png`}
+              alt="icône décision terminé"
+            />
+          </section>
         </section>
-        <p className={activeStatus !== fifthStatus && "status__name--hidden"}>
-          Décision terminée
-        </p>
       </section>
+      <p className="progressBar__status">{status}</p>
     </section>
   );
 }
+
+ProgressBar.propTypes = {
+  status: PropTypes.string.isRequired,
+};
 
 export default ProgressBar;

@@ -7,17 +7,14 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
   const [users, setUsers] = useState([]);
   // search users in input
   const [searchUser, setSearchUser] = useState("");
-  // list experts users
+  // list expert users
   const [filteredUsers, setFilteredUsers] = useState([]);
   const expertRef = useRef();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
       .then((response) => response.json())
-      .then((data) => {
-        setUsers(data);
-      })
-      .then()
+      .then((data) => setUsers(data))
       .catch((error) => console.error("Error fetching user data", error));
   }, []);
 

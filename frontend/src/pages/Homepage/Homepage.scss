@@ -3,7 +3,8 @@
 .homepage__title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100vw;
   font-size: 1.4rem;
   font-weight: bold;
   padding-inline: 1vw;
@@ -25,6 +26,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   position: absolute;
+  width: 100vw;
   top: 25%;
   background-color: $secondary-background;
   & * {

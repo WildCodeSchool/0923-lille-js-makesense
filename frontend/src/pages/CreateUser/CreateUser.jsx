@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import "./CreateUser.scss";
+// import { useNavigate } from "react-router-dom";
+// import { AuthContext } from "../../contexts/authContext";
 
 function CreateUser() {
   const firstnameRef = useRef();
@@ -10,7 +12,19 @@ function CreateUser() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Gestionnaire de soumission du formulaire
+  // const navigate = useNavigate();
+  // const { user } = useContext(AuthContext);
+
+  // This page is only accessible to admins
+  // Redirect unconnected users
+  // useEffect(() => {
+  //   if (!user[0].admin_id) {
+  //     navigate("/homepage/decisions/all");
+  //   } else if (user.user_id === 0) {
+  //     navigate("/");
+  //   }
+  // }, []);
+  // Form Submission Manager
   const handleSubmit = async (event) => {
     event.preventDefault();
 

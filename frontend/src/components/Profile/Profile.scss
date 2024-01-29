@@ -17,8 +17,9 @@
   justify-content: center;
   border: 2px solid $darkFont;
   border-radius: 50px;
-  width: 2rem;
-  height: 2rem;
+  padding: 1vh;
+  margin-block-start: 2vh;
+  box-shadow: 1px 1px currentColor;
 }
 
 .bubble__list {

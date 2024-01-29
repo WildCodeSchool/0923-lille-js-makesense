@@ -137,3 +137,8 @@
     border-radius: 5px;
   }
 }
+
+.createDecisionForm__label input,
+.createDecisionForm__status select {
+  margin-inline-start: 1vw;
+}

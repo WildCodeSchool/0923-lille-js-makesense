@@ -6,8 +6,6 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 import { AuthContext } from "../../contexts/authContext";
 
 function DecisionCard({
-  setDeleteDecision,
-  deleteDecision,
   title,
   status,
   authorFirstname,
@@ -19,14 +17,7 @@ function DecisionCard({
 }) {
   const { decisionId, setDecisionId } = useDecisionContext();
   const { user } = useContext(AuthContext);
-
-  const handleClickLink = () => {
-    setDecisionId(id);
-  };
-
-  const handleClick = () => {
-    setDecisionId(id);
-  };
+  const { deleteDecision, setDeleteDecision } = useDecisionContext();
 
   useEffect(() => {
     fetch(
@@ -46,14 +37,14 @@ function DecisionCard({
   return (
     <section>
       <button
-        onClick={handleClick}
-        onKeyUp={handleClick}
+        onClick={() => setDecisionId(id)}
+        onKeyUp={() => setDecisionId(id)}
         type="button"
         className="delete_button"
       >
         X
       </button>
-      <Link onClick={handleClickLink} to="/decision">
+      <Link onClick={() => setDecisionId(id)} to="/decision">
         <button type="button" className="decisionCard__container">
           <section className="title_delete">
             <h2>{title}</h2>
@@ -81,8 +72,6 @@ function DecisionCard({
 }
 
 DecisionCard.propTypes = {
-  setDeleteDecision: PropTypes.func.isRequired,
-  deleteDecision: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   authorFirstname: PropTypes.string.isRequired,

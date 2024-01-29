@@ -10,13 +10,14 @@ function UpdateDecision() {
   const { decisionId } = useDecisionContext();
   const { decisions, setDecisions } = useDecisionContext();
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
       .then((data) => setDecisions(data))
       .catch((error) => console.error(error));
   }, []);
 
   const [updatedParagraph, setUpdateParagraph] = useState();
+
   useEffect(() => {
     setUpdateParagraph([
       {
@@ -38,11 +39,7 @@ function UpdateDecision() {
   }, [decisions]);
 
   const handleUpdateDecision = () => {
-    const apiEndpoint = `${
-      import.meta.env.VITE_BACKEND_URL
-    }/api/decision/update`;
-
-    fetch(apiEndpoint, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -60,21 +57,21 @@ function UpdateDecision() {
   };
 
   return (
-    <main className="createDecision__main">
-      {decisions && (
-        <UpdateCreateDecisionFormContent
-          decisions={decisions}
-          setDecisions={setDecisions}
+    <main className="updateDecision__main">
+      <UpdateCreateDecisionFormContent
+        decisions={decisions}
+        setDecisions={setDecisions}
+      />
+      <aside className="updateDecision__aside">
+        <UpdateCreateDecisionFormExperts setUpdateDecisionFormExperts={null} />
+        <UpdateCreateDecisionFormImpacted
+          setUpdateDecisionFormImpacted={null}
         />
-      )}
-      <aside className="createDecision__aside">
-        <UpdateCreateDecisionFormExperts />
-        <UpdateCreateDecisionFormImpacted />
         <Link
           to="/decision"
           onClick={handleUpdateDecision}
           type="button"
-          className="createDecisionForm__button"
+          className="updateDecisionForm__button"
         >
           Mettre à jour la décision
         </Link>
