@@ -49,18 +49,18 @@ function DecisionCard({
 
   return (
     <section>
+      <button
+        onClick={handleClick}
+        onKeyUp={handleClick}
+        type="button"
+        className="delete_button"
+      >
+        X
+      </button>
       <Link onClick={handleClickLink} to="/decision">
         <button type="button" className="decisionCard__container">
           <section className="title_delete">
             <h2>{title}</h2>
-            <button
-              onClick={handleClick}
-              onKeyUp={handleClick}
-              type="button"
-              className="delete_button"
-            >
-              X
-            </button>
           </section>
           <p className="decisionCard__author">
             <img
