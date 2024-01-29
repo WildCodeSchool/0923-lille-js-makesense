@@ -37,8 +37,8 @@
   .secondaryNav__links a {
     font-size: small;
     text-align: center;
-    border: 2px dashed lime;
-    border-color: currentColor;
+    border: dashed currentColor;
     border-width: 0 1px 0 1px;
+    padding-inline: 2%;
   }
 }
