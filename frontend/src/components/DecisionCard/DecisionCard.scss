@@ -42,8 +42,42 @@
   z-index: 2;
 }
 
-.decision__delete--notAdmin {
+.decisionCard__delete--notAdmin {
   display: none;
+}
+
+.decisionCard__delete--dialog {
+  position: absolute;
+  border: 5px solid $tertiary-medium;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  border-radius: 15px;
+  z-index: 3;
+  background-color: $tertiary-pale;
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: 2px 5px 3px 0px $tertiary-dark;
+  & * {
+    color: $tertiary-medium;
+    font-weight: bold;
+    background-color: $tertiary-pale;
+  }
+  & p {
+    margin-bottom: 2%;
+  }
+  & span {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+  & button {
+    @include buttons;
+    padding-inline: 10%;
+    background-color: $tertiary-medium;
+  }
 }
 
 .decisionCard__author {
