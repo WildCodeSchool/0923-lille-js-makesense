@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Nav.scss";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import Profile from "../Profile/Profile";
 import { AuthContext } from "../../contexts/authContext";
 
@@ -9,23 +9,25 @@ function Nav() {
 
   const [showProfile, setShowProfile] = useState(false);
   const [isAdmin, setIsAdmin] = useState(null);
+  const [image, setImage] = useState(user[0].picture);
 
-  const [image, setImage] = useState();
-  const [allImage, setAllImage] = useState();
+  const fileInputRef = useRef();
 
   const submitImage = async () => {
-    console.info(allImage);
-    if (image) {
-      // Vérifiez si une image a été sélectionnée
+    const imageName = fileInputRef.current.files[0];
+
+    if (fileInputRef.current.files.length > 0) {
       const formData = new FormData();
-      formData.append("image", image); // Utilisez le même clé 'image' que celle attendue par le back-end
+      formData.append("picture", imageName);
 
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/upload-image`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/picture/user/${
+            user[0].user_id
+          }`,
           {
-            method: "POST",
-            body: formData, // Pas besoin d'en-tête 'Content-Type', il est défini automatiquement par le navigateur, autrement il faut gérer des Boundary
+            method: "PUT",
+            body: formData,
           }
         );
 
@@ -33,52 +35,18 @@ function Nav() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.info("Upload success", result);
+
+        // Affiche l'image sur la page
+        setImage(result);
       } catch (err) {
         console.error("Upload error", err);
+        // Affiche un message d'erreur à l'utilisateur
+        alert("Une erreur s'est produite lors du téléchargement de l'image.");
       }
     } else {
       console.info("No image selected");
     }
   };
-  const onInputChange = (e) => {
-    console.info("input");
-    setImage(e.target.files[0]);
-    submitImage();
-  };
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/get-image`)
-      .then((response) => response.json())
-      .then((data) => setAllImage(data))
-      .catch((err) => console.error(err));
-  }, []);
-
-  // 1. upload the image in front and read it as data to preview it
-  // const handleAvatarUpload = (event) => {
-  //   const img = event.target.files[0];
-
-  // if (img) {
-  // FileReader is part of the JS File API and allows to read uploaded files stored on the user's computer
-  // its result comes as "result"
-
-  // const reader = new FileReader();
-  // reader.onload = (e) => {
-
-  // reads the result and stores it in a variable
-
-  // const imageDataUrl = e.target.result;
-
-  // Set the preview image
-
-  //   setPreviewImage(imageDataUrl);
-  // };
-
-  // Read the content of the file as Data URL through the readAsDataURL FileReader method
-
-  //     reader.readAsDataURL(img);
-  //   }
-  // };
 
   useEffect(() => {
     if (!user[0].admin_id) {
@@ -124,8 +92,10 @@ function Nav() {
         <form>
           <img
             className="nav__avatar--img"
-            alt="user avatar"
-            src={!image ? user[0].picture : image}
+            alt="avatar"
+            src={
+              image && `${import.meta.env.VITE_BACKEND_URL}/uploads/${image}`
+            }
             role="presentation"
           />
           <img
@@ -134,13 +104,13 @@ function Nav() {
             className="nav__avatar--edit"
           />
           <input
+            ref={fileInputRef}
+            id="imageInput"
             type="file"
             accept="image/*"
-            // accept=".png, .jpg, .jpeg"
             className="nav__avatar--input"
             onMouseEnter={handleMoveBubble}
-            onChange={onInputChange}
-            // onChange={handleAvatarUpload}
+            onChange={submitImage}
           />
         </form>
       </ul>

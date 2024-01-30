@@ -16,10 +16,6 @@ class CommentManager extends AbstractManager {
       [comment, userId, decisionId]
     );
     // Return the ID of the newly inserted comment
-    if (result.insertId) {
-      const allComments = await this.readByDecision(decisionId);
-      return allComments;
-    }
     return result.insertId;
   }
 

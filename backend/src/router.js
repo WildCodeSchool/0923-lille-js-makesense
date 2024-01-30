@@ -5,47 +5,15 @@ const router = express.Router();
 /* ************************************************************************* */
 /* Upload pictures with multer */
 
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + file.originalname);
-  },
-});
-
-const upload = multer({ storage });
-
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
+const userControllers = require("./controllers/userControllers");
+const { upload } = require("./services/uploadMiddleware");
 // Upload image
+router.put("/picture/user/:id", upload, userControllers.updatePicture);
 
-router.post("/upload-image", upload.single("image"), async (req, res) => {
-  const imageName = req.file.filename;
-
-  try {
-    await Image.create({ image: imageName });
-    res.json({ status: "ok" });
-  } catch (error) {
-    res.json({ status: error });
-  }
-});
-
-// Get image
-
-router.get("/get-image", async (req, res) => {
-  try {
-    Image.find({}).then((data) => {
-      res.send({ status: "ok", data });
-    });
-  } catch (error) {
-    res.json({ status: error });
-  }
-});
+// async (req, res) => {
 
 // hashing password middleware
 const { hashPassword } = require("./services/auth");
@@ -57,7 +25,6 @@ router.post("/login", authControllers.login);
 
 // USER ROUTES
 // Import Controller
-const userControllers = require("./controllers/userControllers");
 // Route to get a list of users
 router.get("/user", userControllers.browse);
 // Route to get a specific user by ID
@@ -67,7 +34,8 @@ router.get("/user/role/:id", userControllers.readByRole);
 // Route to add a new user
 router.post("/user/create", hashPassword, userControllers.add);
 // Route to update a user's picture
-router.put("/user/picture/:id", userControllers.updatePicture);
+
+// router.put("/user/picture/:id", userControllers.updatePicture);
 
 // DECISION ROUTES
 // Import Controller
