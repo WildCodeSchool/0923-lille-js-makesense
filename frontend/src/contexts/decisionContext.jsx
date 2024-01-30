@@ -6,9 +6,25 @@ const DecisionContext = createContext();
 export function DecisionProvider({ children }) {
   const [decisionId, setDecisionId] = useState();
   const [decisions, setDecisions] = useState();
+  const [deleteDecision, setDeleteDecision] = useState(false);
+
   const decisionContext = useMemo(
-    () => ({ decisionId, setDecisionId, decisions, setDecisions }),
-    [decisionId, setDecisionId, decisions, setDecisions]
+    () => ({
+      decisionId,
+      setDecisionId,
+      decisions,
+      setDecisions,
+      deleteDecision,
+      setDeleteDecision,
+    }),
+    [
+      decisionId,
+      setDecisionId,
+      decisions,
+      setDecisions,
+      deleteDecision,
+      setDeleteDecision,
+    ]
   );
   return (
     <DecisionContext.Provider value={decisionContext}>

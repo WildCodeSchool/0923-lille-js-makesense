@@ -1,9 +1,11 @@
 import "./Homepage.scss";
 import { useState, useEffect } from "react";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
+import { useDecisionContext } from "../../contexts/decisionContext";
 
 function HomepageCurrentDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
+  const { decisionId, deleteDecision } = useDecisionContext();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/current`)
@@ -12,7 +14,7 @@ function HomepageCurrentDecisions() {
         setRelatedDecisions(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisionId, deleteDecision]);
 
   return (
     <>

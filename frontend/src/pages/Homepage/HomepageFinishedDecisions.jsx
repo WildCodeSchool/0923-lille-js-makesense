@@ -1,9 +1,12 @@
 import "./Homepage.scss";
 import { useState, useEffect } from "react";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
+import { useDecisionContext } from "../../contexts/decisionContext";
 
 function HomepageFinishedDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
+  const { deleteDecision, setDeleteDecision, decisionId } =
+    useDecisionContext();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/completed`)
@@ -12,7 +15,7 @@ function HomepageFinishedDecisions() {
         setRelatedDecisions(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisionId, deleteDecision]);
 
   return (
     <>
@@ -23,6 +26,8 @@ function HomepageFinishedDecisions() {
               .toReversed()
               .map((card) => (
                 <DecisionCard
+                  deleteDecision={deleteDecision}
+                  setDeleteDecision={setDeleteDecision}
                   key={card.decision_id}
                   title={card.decision_title}
                   status={card.status}

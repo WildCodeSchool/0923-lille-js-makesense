@@ -53,6 +53,11 @@ router.get(
 router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
 router.post("/decision/update", decisionControllers.updateDecision);
+// delete decision for admin
+router.delete(
+  "/decision/delete/:decisionId/users/:userId",
+  decisionControllers.deleteDecision
+);
 
 // COMMENT ROUTES
 // Import Controller
