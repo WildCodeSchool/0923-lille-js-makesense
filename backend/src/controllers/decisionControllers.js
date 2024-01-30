@@ -93,6 +93,19 @@ const createDecision = async (req, res, next) => {
   }
 };
 
+// The A of BREAD - Add (Create) operation
+const createAssigned = async (req, res, next) => {
+  const assigned = req.body;
+  const decisionId = parseInt(req.params.id, 10);
+  try {
+    // Insert the decision into the database
+    const insertId = await tables.decision.addAssigned(decisionId, assigned);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const updateDecision = async (req, res, next) => {
   // Extract the decision data from the request body
   const decision = req.body;
@@ -215,6 +228,7 @@ module.exports = {
   readByRole,
   updatePicture,
   createDecision,
+  createAssigned,
   updateDecision,
   getExperts,
   getImpacted,

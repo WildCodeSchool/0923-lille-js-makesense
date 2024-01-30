@@ -25,7 +25,7 @@ function SecondaryNav() {
         </Link>
         <Link
           to="/homepage/decisions/finished"
-          className="secondaryNav__links--third"
+          className="secondaryNav__links--fourth"
         >
           Décisions prises
         </Link>

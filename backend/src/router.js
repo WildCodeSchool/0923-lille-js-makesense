@@ -58,6 +58,11 @@ router.delete(
   "/decision/delete/:decisionId/users/:userId",
   decisionControllers.deleteDecision
 );
+// Route to only add assigneds
+router.post(
+  "/decision/:id/create/assigned",
+  decisionControllers.createAssigned
+);
 
 // COMMENT ROUTES
 // Import Controller

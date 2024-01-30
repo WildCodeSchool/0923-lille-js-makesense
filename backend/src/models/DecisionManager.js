@@ -57,6 +57,36 @@ class DecisionManager extends AbstractManager {
     }
   }
 
+  async addAssigned(decisionId, assigned) {
+    try {
+      // Map to create a promise for each new expert user
+      const expertPromises = assigned.experts.map(async (expert) => {
+        await this.database.query(
+          `INSERT INTO assignment (date, role, decision_id, user_id) VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"), "Expert", ?, ?);`,
+          [decisionId, expert.user_id]
+        );
+      });
+      // Map to create a promise for each new impacted user
+      const impactedPromises = assigned.impacted.map(async (impacted) => {
+        await this.database.query(
+          `INSERT INTO assignment (date, role, decision_id, user_id) VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"), "Impacté", ?, ?);`,
+          [decisionId, impacted.user_id]
+        );
+      });
+      // Wait for all promises to be resolved
+      // Promise.all is a JS method that takes an array of promises as argument, returns a new promise and resolves it in a new array
+      // Spread operator allows the promises to get concatenated into the same argument array, without, there'd be two arrays
+      const resultAssignment = await Promise.all([
+        ...expertPromises,
+        ...impactedPromises,
+      ]);
+
+      return resultAssignment.insertId;
+    } catch (error) {
+      return error;
+    }
+  }
+
   // The Rs of CRUD - Read operations
 
   async read(id) {
