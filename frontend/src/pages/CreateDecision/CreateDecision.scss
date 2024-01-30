@@ -13,6 +13,8 @@
   .createDecision__main {
     display: flex;
     flex-direction: column;
+    height: auto;
+    padding-block-start: 2%;
   }
   .createDecisionForm__content--decision {
     width: auto;
@@ -24,6 +26,10 @@
   .createDecisionForm__button {
     margin-block: 4%;
     cursor: pointer;
+  }
+  .createDecisionForm__content--decision textarea {
+    margin: 1%;
+    padding: 1%;
   }
 }
 
@@ -41,5 +47,4 @@
 .createDecisionForm__button {
   @include buttons;
   font-size: larger;
-  cursor: pointer;
 }

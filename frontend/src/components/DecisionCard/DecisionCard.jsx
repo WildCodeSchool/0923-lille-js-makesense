@@ -19,10 +19,14 @@ function DecisionCard({
   const { user } = useContext(AuthContext);
   const { deleteDecision, setDeleteDecision } = useDecisionContext();
   const [isAdmin, setIsAdmin] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const handleDeleteClick = (event) => {
     event.preventDefault();
+    setConfirmDelete(true);
+  };
 
+  const handleConfirmDelete = () => {
     fetch(
       `${import.meta.env.VITE_BACKEND_URL}/api/decision/delete/${id}/users/${
         user[0].user_id
@@ -35,11 +39,18 @@ function DecisionCard({
         }
       })
       .catch((err) => console.error(err));
+    // Reset confirmDelete state
+    setConfirmDelete(false);
+  };
+
+  const handleCancelDelete = () => {
+    // Reset confirmDelete state
+    setConfirmDelete(false);
   };
 
   useEffect(() => {
     if (!user[0].admin_id) {
-      setIsAdmin("decision__delete--notAdmin");
+      setIsAdmin("decisionCard__delete--notAdmin");
     }
     if (user[0].admin_id) {
       setIsAdmin(false);
@@ -48,7 +59,27 @@ function DecisionCard({
 
   return (
     <section>
-      <Link onClick={() => setDecisionId(id)} to="/decision">
+      {confirmDelete && (
+        <article className="decisionCard__delete--dialog">
+          <p>
+            Vous êtes sur le point de supprimer définitivement cette décision,
+            êtes-vous sûr ?
+          </p>
+          <span>
+            <button type="button" onClick={handleConfirmDelete}>
+              Oui
+            </button>
+            <button type="button" onClick={handleCancelDelete}>
+              Non
+            </button>
+          </span>
+        </article>
+      )}
+      <Link
+        className="decisionCard__link"
+        onClick={() => setDecisionId(id)}
+        to="/decision"
+      >
         <button type="button" className="decisionCard__container">
           <button
             onClick={handleDeleteClick}

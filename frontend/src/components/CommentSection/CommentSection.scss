@@ -49,7 +49,6 @@
 .commentSection__comment--box {
   @include textBox;
   padding-block: 0.5vh;
-  max-width: 31vw;
   display: flex;
   word-break: normal;
   margin-block: 1vh;

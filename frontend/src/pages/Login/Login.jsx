@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
@@ -7,6 +7,7 @@ function Login() {
   // Ref for mail and password
   const emailRef = useRef();
   const passwordRef = useRef();
+  const [loginError, setLoginError] = useState();
 
   const { setUser } = useContext(AuthContext);
 
@@ -30,11 +31,10 @@ function Login() {
       );
       if (response.status === 200) {
         const user = await response.json();
-
         setUser(user);
-
         navigate("/homepage/decisions/all");
       } else {
+        setLoginError("⛔ Erreur dans votre mail ou mot de passe. ⛔");
         console.info(response);
       }
     } catch (err) {
@@ -72,6 +72,16 @@ function Login() {
           Se Connecter
         </button>
       </form>
+      <p className="login__error">{loginError}</p>
+      {loginError ? (
+        <a
+          className="bubble__help"
+          title="Une erreur ? Contactez l'administrateur."
+          href="mailto:vincent.rssx59@gmail.com"
+        >
+          Contacter un administrateur
+        </a>
+      ) : null}
     </main>
   );
 }

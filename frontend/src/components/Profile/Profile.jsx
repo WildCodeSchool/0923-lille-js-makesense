@@ -22,7 +22,6 @@ function Profile({ handleMoveBubble, showProfile, user }) {
               className="bubble__help"
               title="Une erreur ? Contactez l'administrateur."
               href="mailto:vincent.rssx59@gmail.com"
-              onClick={handleMoveBubble}
             >
               Contacter un administrateur
             </a>
