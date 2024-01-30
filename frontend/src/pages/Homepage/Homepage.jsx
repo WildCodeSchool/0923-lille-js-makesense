@@ -1,24 +1,15 @@
 import "./Homepage.scss";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
-import DecisionCard from "../../components/DecisionCard/DecisionCard";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useDecisionContext } from "../../contexts/decisionContext";
 import { AuthContext } from "../../contexts/authContext";
+import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 
 function Homepage() {
-  const [decisionsHome, setDecisionsHome] = useState();
-
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { setDecisions } = useDecisionContext();
-
-  // Redirect unconnected users
-  useEffect(() => {
-    if (user[0].user_id === 0) {
-      navigate("/");
-    }
-  }, []);
+  const { setDecisions, decisionId, deleteDecision } = useDecisionContext();
+  const [decisionsHome, setDecisionsHome] = useState();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
@@ -28,30 +19,18 @@ function Homepage() {
         setDecisions(data);
       })
       .catch((error) => console.error(error));
+  }, [decisionId, deleteDecision]);
+
+  useEffect(() => {
+    if (user[0].user_id === 0) {
+      navigate("/");
+    }
   }, []);
+
   return (
     <>
-      <SecondaryNav setdecisionsHome={setDecisionsHome} />
-      <h1 className="homepage__title">Décisions en cours</h1>
-      <main className="homepage__main">
-        {decisionsHome
-          ? decisionsHome
-              .toReversed()
-              .map((card) => (
-                <DecisionCard
-                  key={card.decision_id}
-                  title={card.decision_title}
-                  status={card.status}
-                  authorFirstname={card.firstname}
-                  authorLastname={card.lastname}
-                  location={card.location}
-                  comments={card.nb_comments}
-                  picture={card.picture}
-                  id={card.decision_id}
-                />
-              ))
-          : "Loading"}
-      </main>
+      <SecondaryNav />
+      <Outlet decisionsHome={decisionsHome} />
     </>
   );
 }

@@ -13,11 +13,70 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-block: 3%;
+  margin-block: 5%;
   box-shadow: 7px 7px 11px 1px rgba($primary-dark, 0.25);
   cursor: pointer;
   &:hover {
     box-shadow: 7px 7px 11px 1px rgba($primary-dark, 0.4);
+  }
+}
+
+.title_delete {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete_button {
+  cursor: pointer;
+  font-weight: bold;
+  color: $tertiary-medium;
+  border: 2px solid $tertiary-medium;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: -2rem;
+  margin-inline-start: 18rem;
+  z-index: 2;
+}
+
+.decisionCard__delete--notAdmin {
+  display: none;
+}
+
+.decisionCard__delete--dialog {
+  position: absolute;
+  border: 5px solid $tertiary-medium;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  border-radius: 15px;
+  z-index: 3;
+  background-color: $tertiary-pale;
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: 2px 5px 3px 0px $tertiary-dark;
+  & * {
+    color: $tertiary-medium;
+    font-weight: bold;
+    background-color: $tertiary-pale;
+  }
+  & p {
+    margin-bottom: 2%;
+  }
+  & span {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+  & button {
+    @include buttons;
+    padding-inline: 10%;
+    background-color: $tertiary-medium;
   }
 }
 
@@ -57,4 +116,11 @@
 .decisionCard__comments {
   color: $comment-solid;
   background-color: $comment-bg;
+}
+
+@media (max-width: 700px) {
+  .homepage__main {
+    display: flex;
+    flex-direction: column;
+  }
 }

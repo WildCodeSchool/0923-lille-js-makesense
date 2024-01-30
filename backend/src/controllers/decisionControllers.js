@@ -2,10 +2,10 @@
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
-const browsePending = async (req, res, next) => {
+const browseLate = async (req, res, next) => {
   try {
     // Fetch all decisions from the database
-    const decisions = await tables.decision.readAllPending();
+    const decisions = await tables.decision.readAllLate();
 
     // Respond with the decisions in JSON format
     res.json(decisions);
@@ -87,6 +87,19 @@ const createDecision = async (req, res, next) => {
   try {
     // Insert the decision into the database
     const insertId = await tables.decision.create(decision);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// The A of BREAD - Add (Create) operation
+const createAssigned = async (req, res, next) => {
+  const assigned = req.body;
+  const decisionId = parseInt(req.params.id, 10);
+  try {
+    // Insert the decision into the database
+    const insertId = await tables.decision.addAssigned(decisionId, assigned);
     res.status(201).json({ insertId });
   } catch (err) {
     next(err);
@@ -185,22 +198,43 @@ const getCurrentDecisions = async (req, res, next) => {
   }
 };
 
+const deleteDecision = async (req, res, next) => {
+  try {
+    const { decisionId } = req.params;
+    const { userId } = req.params;
+
+    // Appel de votre méthode de suppression avec les deux IDs
+    const decisionDelete = await tables.decision.delete({
+      paragraph: { decision_id: decisionId },
+      current_user_id: userId,
+    });
+
+    // ... le reste du code reste inchangé
+    res.json(decisionDelete);
+  } catch (err) {
+    // Gérer les erreurs
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
 // Ready to export the controller functions
 module.exports = {
   browse,
-  browsePending,
+  browseLate,
   read,
   readByRole,
   updatePicture,
   createDecision,
+  createAssigned,
   updateDecision,
   getExperts,
   getImpacted,
   getRelatedDecisions,
   getDecisionsCompleted,
   getCurrentDecisions,
+  deleteDecision,
   // destroy,
 };

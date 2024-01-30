@@ -10,12 +10,7 @@
   }
 }
 
-.secondaryNav__button * {
-  background-color: $primary-medium;
-  cursor: pointer;
-}
-
-.secondaryNav__button {
+.secondaryNav__links {
   outline: 1px solid $primary-medium;
   background-color: $primary-medium;
   display: flex;
@@ -36,4 +31,19 @@
 .secondaryNav__bottom {
   width: 100%;
   height: 15px;
+}
+
+@media (max-width: 700px) {
+  .secondaryNav__links a {
+    font-size: small;
+    text-align: center;
+    border: dashed currentColor;
+    border-width: 0 1px 0 1px;
+    padding-inline: 2%;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+  }
 }

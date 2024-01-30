@@ -45,24 +45,34 @@ router.get("/decisions/all", decisionControllers.browse);
 // Route to get one decision
 router.get("/decisions/:id", decisionControllers.read);
 // Route to get all pending decisions
-router.get("/decisions/pending", decisionControllers.browsePending);
+router.get("/decision/late", decisionControllers.browseLate);
 // get Decisions Completed
-router.get("/decisions/completed", decisionControllers.getDecisionsCompleted);
+router.get("/decision/completed", decisionControllers.getDecisionsCompleted);
 // get current decisions
-router.get("/decisions/current", decisionControllers.getCurrentDecisions);
+router.get("/decision/current", decisionControllers.getCurrentDecisions);
 // get experts
 router.get("/decisions/:id/experts", decisionControllers.getExperts);
 // get impacted
 router.get("/decisions/:id/impacted", decisionControllers.getImpacted);
 // filter decisions linked to a user
 router.get(
-  "/decisions/:id/related-decisions",
+  "/user/:id/related-decisions",
   decisionControllers.getRelatedDecisions
 );
 // Route to create decision
 router.post("/decision/create", decisionControllers.createDecision);
 // Route to update decision
 router.post("/decision/update", decisionControllers.updateDecision);
+// delete decision for admin
+router.delete(
+  "/decision/delete/:decisionId/users/:userId",
+  decisionControllers.deleteDecision
+);
+// Route to only add assigneds
+router.post(
+  "/decision/:id/create/assigned",
+  decisionControllers.createAssigned
+);
 
 // COMMENT ROUTES
 // Import Controller

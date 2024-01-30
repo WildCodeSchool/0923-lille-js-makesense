@@ -1,4 +1,5 @@
 @import "../../variables";
+
 .status__icon {
   width: clamp(4vh, 30px, 4vw);
   filter: invert(100%);
@@ -11,12 +12,11 @@
   justify-content: space-around;
   position: relative;
   width: 40vw;
-  height: 12vh;
 }
 .progress__bar::before {
   content: "";
   background-color: $primary-pale;
-  top: 30%;
+  top: 50%;
   transform: translateY(-50%);
   height: 4px;
   width: 85%;
@@ -25,7 +25,6 @@
   position: absolute;
 }
 .status {
-  width: 7vw;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -44,16 +43,24 @@
   z-index: 1;
 }
 .visible {
-  margin-bottom: 1vh;
   border: 5px solid $primary-dark;
   background-color: $primary-medium;
 }
 .status__name--hidden {
   display: none;
 }
+
+.progressBar__status {
+  font-weight: bold;
+  text-align: center;
+}
+
 @media screen and (max-width: 700px) {
   .progress__bar {
-    width: 70vw;
-    margin-block: 3vw;
+    width: 100%;
+    margin-block: 1%;
+  }
+  .progressBar__status {
+    margin-block-end: 2%;
   }
 }

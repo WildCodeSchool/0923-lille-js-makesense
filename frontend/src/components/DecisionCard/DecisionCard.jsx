@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import "./DecisionCard.scss";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 
 function DecisionCard({
   title,
@@ -14,33 +16,104 @@ function DecisionCard({
   id,
 }) {
   const { setDecisionId } = useDecisionContext();
-  const handleClick = () => {
-    setDecisionId(id);
-  };
-  return (
-    <Link onClick={handleClick} to="/decision">
-      <button type="button" className="decisionCard__container">
-        {/* Titles are too long for the small cards in homepage, only displaying the first 40 characters */}
+  const { user } = useContext(AuthContext);
+  const { deleteDecision, setDeleteDecision } = useDecisionContext();
+  const [isAdmin, setIsAdmin] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
-        <h2>{title.length >= 40 ? `${title.substring(0, 40)}(...)` : title}</h2>
-        <p className="decisionCard__author">
-          <img
-            src={picture}
-            alt="avatar de l'auteur"
-            className="decisionCard__avatar"
-          />
-          par
-          <strong className="decisionCard__author--fullname">
-            {authorFirstname} {authorLastname}
-          </strong>
-        </p>
-        <span className="decisionCard__beans">
-          <span className="decisionCard__status">{status}</span>
-          <span className="decisionCard__location">{location}</span>
-          <span className="decisionCard__comments">{comments} avis</span>
-        </span>
-      </button>
-    </Link>
+  const handleDeleteClick = (event) => {
+    event.preventDefault();
+    setConfirmDelete(true);
+  };
+
+  const handleConfirmDelete = () => {
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/decision/delete/${id}/users/${
+        user[0].user_id
+      }`,
+      { method: "DELETE" }
+    )
+      .then((response) => {
+        if (response.status === 200) {
+          setDeleteDecision(!deleteDecision);
+        }
+      })
+      .catch((err) => console.error(err));
+    // Reset confirmDelete state
+    setConfirmDelete(false);
+  };
+
+  const handleCancelDelete = () => {
+    // Reset confirmDelete state
+    setConfirmDelete(false);
+  };
+
+  useEffect(() => {
+    if (!user[0].admin_id) {
+      setIsAdmin("decisionCard__delete--notAdmin");
+    }
+    if (user[0].admin_id) {
+      setIsAdmin(false);
+    }
+  }, []);
+
+  return (
+    <section>
+      {confirmDelete && (
+        <article className="decisionCard__delete--dialog">
+          <p>
+            Vous êtes sur le point de supprimer définitivement cette décision,
+            êtes-vous sûr ?
+          </p>
+          <span>
+            <button type="button" onClick={handleConfirmDelete}>
+              Oui
+            </button>
+            <button type="button" onClick={handleCancelDelete}>
+              Non
+            </button>
+          </span>
+        </article>
+      )}
+      <Link
+        className="decisionCard__link"
+        onClick={() => setDecisionId(id)}
+        to="/decision"
+      >
+        <button type="button" className="decisionCard__container">
+          <button
+            onClick={handleDeleteClick}
+            onKeyUp={() => setDecisionId(id)}
+            type="button"
+            className={`delete_button ${isAdmin}`}
+          >
+            x
+          </button>
+          <section className="title_delete">
+            {/* Titles are too long for the small cards in homepage, only displaying the first 40 characters */}
+            <h2>
+              {title.length >= 40 ? `${title.substring(0, 40)} (...)` : title}
+            </h2>
+          </section>
+          <p className="decisionCard__author">
+            <img
+              src={picture}
+              alt="avatar de l'auteur"
+              className="decisionCard__avatar"
+            />
+            par
+            <strong className="decisionCard__author--fullname">
+              {authorFirstname} {authorLastname}
+            </strong>
+          </p>
+          <span className="decisionCard__beans">
+            <span className="decisionCard__status">{status}</span>
+            <span className="decisionCard__location">{location}</span>
+            <span className="decisionCard__comments">{comments} avis</span>
+          </span>
+        </button>
+      </Link>
+    </section>
   );
 }
 

@@ -4,14 +4,14 @@ import "./UpdateCreateDecisionForm.scss";
 function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
   return (
     <main>
-      <form className="createDecisionForm__content createDecisionForm__content--decision">
-        <label className="createDecisionForm__label" htmlFor="titre">
+      <form className="updateDecisionForm__content updateDecisionForm__content--decision">
+        <label className="updateDecisionForm__label" htmlFor="titre">
           Titre :
           <input
             type="text"
             name="titre"
             placeholder="Titre..."
-            className="createDecisionForm__input"
+            className="updateDecisionForm__input"
             required
             value={decisions.decision_title}
             onChange={(e) =>
@@ -22,7 +22,7 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
             }
           />
         </label>
-        <label className="createDecisionForm__status" htmlFor="status">
+        <label className="updateDecisionForm__status" htmlFor="status">
           Délai :&nbsp;&nbsp;
           <select
             name="status"
@@ -45,7 +45,7 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
           </select>
         </label>
 
-        <label className="createDecisionForm__status" htmlFor="progress">
+        <label className="updateDecisionForm__status" htmlFor="progress">
           Progression :&nbsp;&nbsp;
           <select
             name="progress"
@@ -70,15 +70,16 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
             </option>
           </select>
         </label>
-        <label className="createDecisionForm__label" htmlFor="section1">
+        <label className="updateDecisionForm__label" htmlFor="section1">
           Détails de la décision :
         </label>
         <textarea
           id="section1"
           name="section1"
           placeholder="Expliquez l'idée derrière votre proposition."
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           required
+          rows={20}
           value={decisions.paragraph_details}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -88,15 +89,16 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
           }
         />
 
-        <label className="createDecisionForm__label" htmlFor="section2">
+        <label className="updateDecisionForm__label" htmlFor="section2">
           Impact sur l'organisation :
         </label>
         <textarea
           id="section2"
           name="section2"
           placeholder="En quoi Make Sense sera impacté par cette décision ?"
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           required
+          rows={20}
           value={decisions.paragraph_impact}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -105,14 +107,15 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
             }))
           }
         />
-        <label className="createDecisionForm__label" htmlFor="section3">
+        <label className="updateDecisionForm__label" htmlFor="section3">
           Bénéfices :
         </label>
         <textarea
           id="section3"
           name="section3"
           placeholder="Quels sont les bénéfices pour Make Sense ?"
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
+          rows={20}
           value={decisions.paragraph_benefits}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -121,14 +124,14 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
             }))
           }
         />
-        <label className="createDecisionForm__label" htmlFor="section4">
+        <label className="updateDecisionForm__label" htmlFor="section4">
           Risques potentiels :
         </label>
         <textarea
           id="section4"
           name="section4"
           placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={decisions.paragraph_risks}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -137,14 +140,14 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
             }))
           }
         />
-        <label className="createDecisionForm__label" htmlFor="section5">
+        <label className="updateDecisionForm__label" htmlFor="section5">
           Première décision :
         </label>
         <textarea
           id="section5"
           name="section5"
           placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={decisions.paragraph_first_decision}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({
@@ -153,14 +156,14 @@ function UpdateCreateDecisionFormContent({ decisions, setDecisions }) {
             }))
           }
         />
-        <label className="createDecisionForm__label" htmlFor="section6">
+        <label className="updateDecisionForm__label" htmlFor="section6">
           Décision définitive :
         </label>
         <textarea
           id="section6"
           name="section6"
           placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
-          className="createDecisionForm__input"
+          className="updateDecisionForm__input"
           value={decisions.paragraph_finale_decision}
           onChange={(e) =>
             setDecisions((prevDecisions) => ({

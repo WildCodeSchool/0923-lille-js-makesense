@@ -103,4 +103,17 @@
     width: auto;
     height: auto;
   }
+  .decision__beans {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .descriptionBox__header__right--writer {
+    padding-bottom: 0;
+  }
+  .descriptionBox__header__right--title {
+    font-size: 1.3rem;
+  }
+  .descriptionBox__header {
+    padding-bottom: 0;
+  }
 }

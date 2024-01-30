@@ -1,42 +1,47 @@
 @import "../../variables";
 
-.createDecision__main {
+.updateDecision__main {
   display: flex;
   gap: 2%;
   margin-inline: 2%;
-  margin-top: 15vh;
+  margin-top: 9vh;
 }
 
-@media (max-width: 700px) {
-  .createDecision__main {
-    display: flex;
-    flex-direction: column;
-  }
-  .createDecisionForm__content--decision {
-    width: auto;
-    height: auto;
-  }
-  .createDecisionForm__content {
-    overflow: auto;
-  }
-  .createDecisionForm__button {
-    margin-block: 4%;
-    cursor: pointer;
-  }
+.updateDecisionForm__content {
+  @include box;
+  margin-block-start: 2%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: $background;
 }
 
-.createDecisionForm__content {
-  flex-grow: 3;
-}
-
-.createDecision__aside {
+.updateDecision__aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
 }
 
-.createDecisionForm__button {
+.updateDecisionForm__button {
   @include buttons;
   font-size: larger;
+}
+
+@media (max-width: 700px) {
+  .updateDecision__main {
+    display: flex;
+    flex-direction: column;
+  }
+  .updateDecisionForm__content--decision {
+    width: auto;
+    height: auto;
+  }
+  .updateDecisionForm__content {
+    overflow: auto;
+  }
+  .updateDecisionForm__button {
+    margin-block: 4%;
+    cursor: pointer;
+  }
 }

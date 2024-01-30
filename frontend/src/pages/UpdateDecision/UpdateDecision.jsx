@@ -8,15 +8,22 @@ import { useDecisionContext } from "../../contexts/decisionContext";
 
 function UpdateDecision() {
   const { decisionId } = useDecisionContext();
+  const [updateDecisionFormExperts, setUpdateDecisionFormExperts] = useState(
+    {}
+  );
+  const [updateDecisionFormImpacted, setUpdateDecisionFormImpacted] = useState(
+    {}
+  );
   const { decisions, setDecisions } = useDecisionContext();
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/${decisionId}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
       .then((data) => setDecisions(data))
       .catch((error) => console.error(error));
   }, []);
 
   const [updatedParagraph, setUpdateParagraph] = useState();
+
   useEffect(() => {
     setUpdateParagraph([
       {
@@ -38,11 +45,7 @@ function UpdateDecision() {
   }, [decisions]);
 
   const handleUpdateDecision = () => {
-    const apiEndpoint = `${
-      import.meta.env.VITE_BACKEND_URL
-    }/api/decision/update`;
-
-    fetch(apiEndpoint, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -51,30 +54,50 @@ function UpdateDecision() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.info("Mise à jour réussie :", data);
+        console.info("Updated", data);
         setDecisions(updatedParagraph[1]);
       })
       .catch((error) => {
-        console.error("Erreur lors de la mise à jour :", error);
+        console.error("Error during update", error);
+      });
+    fetch(
+      `${
+        import.meta.env.VITE_BACKEND_URL
+      }/api/decision/${decisionId}/create/assigned`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          experts: updateDecisionFormExperts,
+          impacted: updateDecisionFormImpacted,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => console.info("Assigned created", data))
+      .catch((error) => {
+        console.error("Error during assignment", error);
       });
   };
 
   return (
-    <main className="createDecision__main">
-      {decisions && (
-        <UpdateCreateDecisionFormContent
-          decisions={decisions}
-          setDecisions={setDecisions}
+    <main className="updateDecision__main">
+      <UpdateCreateDecisionFormContent
+        decisions={decisions}
+        setDecisions={setDecisions}
+      />
+      <aside className="updateDecision__aside">
+        <UpdateCreateDecisionFormExperts
+          setUpdateDecisionFormExperts={setUpdateDecisionFormExperts}
         />
-      )}
-      <aside className="createDecision__aside">
-        <UpdateCreateDecisionFormExperts />
-        <UpdateCreateDecisionFormImpacted />
+        <UpdateCreateDecisionFormImpacted
+          setUpdateDecisionFormImpacted={setUpdateDecisionFormImpacted}
+        />
         <Link
           to="/decision"
           onClick={handleUpdateDecision}
           type="button"
-          className="createDecisionForm__button"
+          className="updateDecisionForm__button"
         >
           Mettre à jour la décision
         </Link>

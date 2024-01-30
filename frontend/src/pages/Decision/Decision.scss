@@ -8,6 +8,14 @@
     background-color: $secondary-background;
   }
 }
+
+.decision__header {
+  display: flex;
+  width: 50vw;
+  margin-block-end: 1vh;
+  justify-content: space-between;
+  align-items: center;
+}
 .decision__page--body {
   display: flex;
   align-items: center;
@@ -28,19 +36,18 @@
   display: none;
 }
 
-.progress_edit {
-  display: flex;
-  flex-direction: row-reverse;
+.decision__edit {
+  @include buttons;
 }
 
 @media screen and (max-width: 700px) {
   .decision__page--header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
+    & * {
+      width: 100%;
+    }
   }
   .decision__page--body {
-    display: flex;
     flex-direction: column;
   }
   .hidden {
@@ -48,17 +55,11 @@
   }
   .commentLink__button {
     display: revert;
-    text-align: center;
-    font-family: bold;
-    padding-inline: 1vw;
-    height: 6vh;
     width: 85vw;
-    border-radius: 15px;
-    background-color: $primary-dark;
-    color: white;
     margin-block: 1.5vh;
-    font-size: clamp(22px, 3vw, 1.5rem);
-    cursor: pointer;
+    @include buttons;
+    font-size: large;
+    background-color: $primary-dark;
   }
   .openAndClose__date {
     margin-top: 2vh;

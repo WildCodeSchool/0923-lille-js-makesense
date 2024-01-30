@@ -1,10 +1,10 @@
 @import "../../variables";
+
 @keyframes LogoAnimation {
   0% {
     transform: translateY(0vw);
     scale: 4;
   }
-
   50% {
   }
 
@@ -49,12 +49,12 @@
   }
 }
 .login__form {
-  animation: FormAnimation 7s linear forwards;
+  animation: FormAnimation 2s linear forwards;
   width: 14rem;
   margin-top: 1rem;
 }
 .login__logo {
-  animation: LogoAnimation 5s linear forwards;
+  animation: LogoAnimation 1.5s linear forwards;
   width: 20rem;
   scale: 4;
   position: absolute;
@@ -72,4 +72,21 @@
   border-radius: 5px;
   margin-bottom: 1rem;
   background-color: $primary-light;
+}
+
+.login__error {
+  color: $tertiary-medium;
+  margin-block-start: 2%;
+}
+
+@media (max-width: 700px) {
+  .login__content {
+    background-image: url("../../assets/background-image-mobile.png");
+  }
+  .login__logo {
+    width: 80%;
+  }
+  .login__error {
+    font-size: 0.85rem;
+  }
 }

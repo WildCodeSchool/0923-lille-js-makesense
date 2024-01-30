@@ -1,11 +1,27 @@
 import "./UpdateCreateDecisionForm.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
 import { useDecisionContext } from "../../contexts/decisionContext";
 
-function UpdateCreateDecisionFormImpacted() {
+function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
   const { decisionId } = useDecisionContext();
 
   const [updateImpacted, setUpdateImpacted] = useState([]);
+
+  // List all users
+  const [users, setUsers] = useState([]);
+  // search users in input
+  const [searchUser, setSearchUser] = useState("");
+  // list expert users
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const expertRef = useRef();
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error("Error fetching user data", error));
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -15,37 +31,114 @@ function UpdateCreateDecisionFormImpacted() {
       .then((data) => setUpdateImpacted(data))
       .catch((error) => console.error(error));
   }, [decisionId]);
+
+  const handleInputChange = (e) => {
+    // read keyboard inputs to autocomplete based on users
+    setSearchUser(e.target.value);
+  };
+
+  // Add an impacted to the filtered users
+  const handleClick = () => {
+    // Search for the user corresponding the input
+    const newFilteredUser = users.find(
+      (user) =>
+        `${user.firstname} ${user.lastname} (${user.email})` ===
+        expertRef.current.value
+    );
+    // if there's a corresponding user, add it to the list
+    if (newFilteredUser) {
+      setFilteredUsers((prevFilteredUsers) => [
+        ...prevFilteredUsers,
+        newFilteredUser,
+      ]);
+      // update the impacted list sent to the parent
+      setUpdateDecisionFormImpacted(filteredUsers);
+      // Clear input after validation
+      setSearchUser("");
+    }
+  };
+
+  // Remove an impacted from the filtered list
+  const handleRemoveUser = (userId) => {
+    setFilteredUsers((prevFilteredUsers) =>
+      prevFilteredUsers.filter((user) => user.user_id !== userId)
+    );
+    // update the list sent to the parent
+    setUpdateDecisionFormImpacted(filteredUsers);
+  };
+
   return (
-    <article className="createDecisionForm__impacted">
-      <h2 className="createDecisionForm__titles">Impacté·e·s</h2>
-      <span className="createDecisionForm__content createDecisionForm__content--choiceBoxes">
-        <ul className="createDecisionForm__list">
-          {updateImpacted.map((updateImpact) => (
-            <li className="createDecisionForm__chosen">
+    <article className="updateDecisionForm__experts">
+      <h2 className="updateDecisionForm__titles">Expert·e·s</h2>
+      <span className="updateDecisionForm__content updateDecisionForm__content--choiceBoxes">
+        <ul className="updateDecisionForm__list">
+          {updateImpacted.map((user) => (
+            <li key={user.user_id} className="updateDecisionForm__chosen">
               <img
-                src={updateImpacted.picture}
-                alt="avatar de la personne impactée choisie"
-                className="createDecisionForm__chosen--avatar"
+                src={user.picture}
+                alt={`avatar de ${user.firstname} ${user.lastname}`}
+                className="updateDecisionForm__chosen--avatar"
               />
-              <p className="createDeicisionForm__chosen--fullname">
-                {updateImpact.firstname} {updateImpact.lastname}
+              <p className="updateDecisionForm__chosen--fullname">
+                {user.firstname} {user.lastname}
+              </p>
+            </li>
+          ))}
+          {filteredUsers.map((user) => (
+            <li key={user.user_id} className="updateDecisionForm__chosen">
+              <img
+                src={user.picture}
+                alt={`avatar de ${user.firstname} ${user.lastname}`}
+                className="updateDecisionForm__chosen--avatar"
+              />
+              <p className="updateDecisionForm__chosen--fullname">
+                {user.firstname} {user.lastname}
+                <button
+                  type="button"
+                  className="updateDecisionForm__chosen--remove"
+                  onClick={() => handleRemoveUser(user.user_id)}
+                >
+                  -
+                </button>
               </p>
             </li>
           ))}
         </ul>
-        <form className="createDecisionForm__search">
+        <section className="updateDecisionForm__search">
           <input
-            className="createDecisionForm__input"
+            className="updateDecisionForm__input"
             type="text"
-            placeholder="Rechercher impacté·e·s"
+            placeholder="Rechercher expert·e·s"
+            value={searchUser}
+            onChange={handleInputChange}
+            list="usersList"
+            ref={expertRef}
           />
-          <button className="createDecisionForm__submit" type="submit">
+          <datalist id="usersList">
+            {users.map((user) => (
+              <option
+                className="updateDecisionForm__search--options"
+                key={user.user_id}
+                aria-label="Noms"
+                value={`${user.firstname} ${user.lastname} (${user.email})`}
+              />
+            ))}
+          </datalist>
+          <button
+            className="updateDecisionForm__submit"
+            type="button"
+            onClick={handleClick}
+          >
             Choisir
           </button>
-        </form>
+        </section>
       </span>
     </article>
   );
 }
 
-export default UpdateCreateDecisionFormImpacted;
+UpdateDecisionFormImpacted.propTypes = {
+  setUpdateDecisionFormImpacted: PropTypes.func.isRequired,
+};
+
+export default UpdateDecisionFormImpacted;
