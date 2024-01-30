@@ -35,7 +35,7 @@ class CommentManager extends AbstractManager {
   // Execute the SQL SELECT query to retrieve a specific comment by the id of the decision to which it is associated
   async readByDecision(id) {
     const [rows] = await this.database.query(
-      `SELECT DATE_FORMAT(comment.comment_date_time,'%d %b. %y - %T') AS short_date, user.picture, user.firstname, user.lastname, assignment.role, comment.comment_content
+      `SELECT DATE_FORMAT(comment.comment_date_time,'%d %b. %y - %H:%m') AS short_date, user.picture, user.firstname, user.lastname, assignment.role, comment.comment_content
           FROM ${this.table}
           LEFT JOIN assignment ON comment.user_id = assignment.user_id
           INNER JOIN user ON comment.user_id = user.user_id
