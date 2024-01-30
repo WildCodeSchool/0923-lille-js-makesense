@@ -2,10 +2,12 @@ import "./Homepage.scss";
 import { useState, useEffect, useContext } from "react";
 import DecisionCard from "../../components/DecisionCard/DecisionCard";
 import { AuthContext } from "../../contexts/authContext";
+import { useDecisionContext } from "../../contexts/decisionContext";
 
 function HomepageUserDecisions() {
   const [relatedDecisions, setRelatedDecisions] = useState();
-
+  const { deleteDecision, setDeleteDecision, decisionId } =
+    useDecisionContext();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function HomepageUserDecisions() {
         setRelatedDecisions(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [decisionId, deleteDecision]);
 
   return (
     <>
@@ -29,6 +31,8 @@ function HomepageUserDecisions() {
               .toReversed()
               .map((card) => (
                 <DecisionCard
+                  deleteDecision={deleteDecision}
+                  setDeleteDecision={setDeleteDecision}
                   key={card.decision_id}
                   title={card.decision_title}
                   status={card.status}

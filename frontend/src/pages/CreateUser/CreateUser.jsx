@@ -1,7 +1,7 @@
-import { useRef, useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import "./CreateUser.scss";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
-import "./CreateUser.scss";
 
 function CreateUser() {
   const firstnameRef = useRef();
