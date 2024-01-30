@@ -198,6 +198,25 @@ const getCurrentDecisions = async (req, res, next) => {
   }
 };
 
+const deleteDecision = async (req, res, next) => {
+  try {
+    const { decisionId } = req.params;
+    const { userId } = req.params;
+
+    // Appel de votre méthode de suppression avec les deux IDs
+    const decisionDelete = await tables.decision.delete({
+      paragraph: { decision_id: decisionId },
+      current_user_id: userId,
+    });
+
+    // ... le reste du code reste inchangé
+    res.json(decisionDelete);
+  } catch (err) {
+    // Gérer les erreurs
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
@@ -216,5 +235,6 @@ module.exports = {
   getRelatedDecisions,
   getDecisionsCompleted,
   getCurrentDecisions,
+  deleteDecision,
   // destroy,
 };

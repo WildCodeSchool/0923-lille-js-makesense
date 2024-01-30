@@ -275,6 +275,21 @@ class DecisionManager extends AbstractManager {
     return { updateParagraph, updateDecision };
   }
 
+  async delete(decision) {
+    const [deleteDecision] = await this.database.query(
+      `DELETE paragraph, comment, assignment, decision
+FROM paragraph
+LEFT JOIN comment ON paragraph.decision_id = comment.decision_id
+LEFT JOIN assignment ON paragraph.decision_id = assignment.decision_id
+LEFT JOIN decision ON paragraph.decision_id = decision.decision_id
+WHERE paragraph.decision_id = ? 
+AND ? IN (SELECT user_id FROM admin);
+`,
+      [decision.paragraph.decision_id, decision.current_user_id]
+    );
+    return deleteDecision;
+  }
+
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an decision by its ID
 
