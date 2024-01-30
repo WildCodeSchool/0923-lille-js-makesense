@@ -95,11 +95,18 @@
   text-align: center;
 }
 
-@media screen and (max-width: 950px) {
+.createuser__title {
+  margin-top: 2%;
+}
+
+@media screen and (max-width: 700px) {
   .createuser__form {
-    width: 50%;
+    width: 100%;
   }
-  .createuser__button {
-    width: 30%;
+  .createuser__form--inputsBox {
+    width: auto;
+  }
+  .createuser__content {
+    padding-inline: 2%;
   }
 }

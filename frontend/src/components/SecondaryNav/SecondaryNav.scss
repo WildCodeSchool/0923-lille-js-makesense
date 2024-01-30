@@ -40,5 +40,10 @@
     border: dashed currentColor;
     border-width: 0 1px 0 1px;
     padding-inline: 2%;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
   }
 }

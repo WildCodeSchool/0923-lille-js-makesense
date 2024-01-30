@@ -43,7 +43,6 @@
   z-index: 1;
 }
 .visible {
-  margin-bottom: 1vh;
   border: 5px solid $primary-dark;
   background-color: $primary-medium;
 }
@@ -54,11 +53,14 @@
 .progressBar__status {
   font-weight: bold;
   text-align: center;
-  margin-top: 1vh;
 }
+
 @media screen and (max-width: 700px) {
   .progress__bar {
     width: 100%;
-    margin-block: 3vw;
+    margin-block: 1%;
+  }
+  .progressBar__status {
+    margin-block-end: 2%;
   }
 }
