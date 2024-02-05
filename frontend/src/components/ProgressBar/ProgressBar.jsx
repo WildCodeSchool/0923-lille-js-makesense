@@ -19,6 +19,13 @@ function ProgressBar({ status }) {
               alt="icône décision commencée"
             />
           </section>
+          <p
+            className={`progressBar__status ${
+              status !== "Décision commencée" && "name__hidden"
+            }`}
+          >
+            {status}
+          </p>
         </section>
         <section className="status">
           <section
@@ -34,6 +41,13 @@ function ProgressBar({ status }) {
               alt="icône décision prise"
             />
           </section>
+          <p
+            className={`progressBar__status ${
+              status !== "Première décision prise" && "name__hidden"
+            }`}
+          >
+            {status}
+          </p>
         </section>
         <section className="status">
           <section
@@ -49,6 +63,13 @@ function ProgressBar({ status }) {
               alt="icône décision définitive"
             />
           </section>
+          <p
+            className={`progressBar__status ${
+              status !== "Décision définitive" && "name__hidden"
+            }`}
+          >
+            {status}
+          </p>
         </section>
         <section className="status">
           <section
@@ -62,6 +83,13 @@ function ProgressBar({ status }) {
               alt="icône non aboutie"
             />
           </section>
+          <p
+            className={`progressBar__status ${
+              status !== "Décision non aboutie" && "name__hidden"
+            }`}
+          >
+            {status}
+          </p>
         </section>
         <section className="status">
           <section
@@ -77,9 +105,15 @@ function ProgressBar({ status }) {
               alt="icône décision terminé"
             />
           </section>
+          <p
+            className={`progressBar__status ${
+              status !== "Décision terminée" && "name__hidden"
+            }`}
+          >
+            {status}
+          </p>
         </section>
       </section>
-      <p className="progressBar__status">{status}</p>
     </section>
   );
 }
