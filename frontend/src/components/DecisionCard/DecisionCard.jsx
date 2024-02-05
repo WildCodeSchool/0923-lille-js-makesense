@@ -81,14 +81,15 @@ function DecisionCard({
         to="/decision"
       >
         <button type="button" className="decisionCard__container">
-          <button
+          <span
             onClick={handleDeleteClick}
             onKeyUp={() => setDecisionId(id)}
-            type="button"
+            role="button"
+            tabIndex="0"
             className={`delete_button ${isAdmin}`}
           >
             x
-          </button>
+          </span>
           <section className="title_delete">
             {/* Titles are too long for the small cards in homepage, only displaying the first 40 characters */}
             <h2>
