@@ -70,7 +70,8 @@ function DescriptionBox({
           </section>
           <section
             className={`descriptionBox__body--paragraphs ${
-              paragraphImpact === null && "disabled"
+              (paragraphImpact === null || paragraphImpact.trim() === "") &&
+              "disabled"
             }`}
           >
             <button
@@ -92,7 +93,8 @@ function DescriptionBox({
           </section>
           <section
             className={`descriptionBox__body--paragraphs ${
-              paragraphBenefits === null && "disabled"
+              (paragraphBenefits === null || paragraphBenefits.trim() === "") &&
+              "disabled"
             }`}
           >
             <button
@@ -114,7 +116,8 @@ function DescriptionBox({
           </section>
           <section
             className={`descriptionBox__body--paragraphs ${
-              paragraphRisks === null && "disabled"
+              (paragraphRisks === null || paragraphRisks.trim() === "") &&
+              "disabled"
             }`}
           >
             <button
@@ -136,7 +139,9 @@ function DescriptionBox({
           </section>
           <section
             className={`descriptionBox__body--paragraphs ${
-              paragraphFirstDecision === null && "disabled"
+              (paragraphFirstDecision === null ||
+                paragraphFirstDecision.trim() === "") &&
+              "disabled"
             }`}
           >
             <button
@@ -162,7 +167,9 @@ function DescriptionBox({
           </section>
           <section
             className={`descriptionBox__body--paragraphs ${
-              paragraphFinaleDecision === null && "disabled"
+              (paragraphFinaleDecision === null ||
+                paragraphFinaleDecision.trim() === "") &&
+              "disabled"
             }`}
           >
             <button
