@@ -97,7 +97,10 @@ function DecisionCard({
           </section>
           <p className="decisionCard__author">
             <img
-              src={picture}
+              src={
+                picture &&
+                `${import.meta.env.VITE_BACKEND_URL}/uploads/${picture}`
+              }
               alt="avatar de l'auteur"
               className="decisionCard__avatar"
             />
