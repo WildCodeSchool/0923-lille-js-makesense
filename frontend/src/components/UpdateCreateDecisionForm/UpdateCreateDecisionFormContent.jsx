@@ -185,18 +185,19 @@ function UpdateCreateDecisionFormContent({
 }
 
 UpdateCreateDecisionFormContent.propTypes = {
-  editedDecisions: PropTypes.shape({
-    decision_title: PropTypes.string.isRequired,
-    decision_delay: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    paragraph_benefits: PropTypes.string.isRequired,
-    paragraph_details: PropTypes.string.isRequired,
-    paragraph_finale_decision: PropTypes.string.isRequired,
-    paragraph_first_decision: PropTypes.string.isRequired,
-    paragraph_impact: PropTypes.string.isRequired,
-    paragraph_risks: PropTypes.string.isRequired,
-  }).isRequired,
+  editedDecisions: PropTypes.arrayOf(
+    PropTypes.shape({
+      decision_title: PropTypes.string.isRequired,
+      decision_delay: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      paragraph_benefits: PropTypes.string.isRequired,
+      paragraph_details: PropTypes.string.isRequired,
+      paragraph_finale_decision: PropTypes.string.isRequired,
+      paragraph_first_decision: PropTypes.string.isRequired,
+      paragraph_impact: PropTypes.string.isRequired,
+      paragraph_risks: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   setEditedDecisions: PropTypes.func.isRequired,
 };
-
 export default UpdateCreateDecisionFormContent;

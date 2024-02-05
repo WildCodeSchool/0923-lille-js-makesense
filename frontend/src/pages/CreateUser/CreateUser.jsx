@@ -142,8 +142,8 @@ function CreateUser() {
                   type="radio"
                   name="admin"
                   value="notAdmin"
-                  onClick={() => setIsAdmin(false)}
-                  checked
+                  onChange={() => setIsAdmin(false)}
+                  checked={!isAdmin}
                 />
                 Non
               </label>
@@ -153,7 +153,8 @@ function CreateUser() {
                   type="radio"
                   name="admin"
                   value="isAdmin"
-                  onClick={() => setIsAdmin(true)}
+                  onChange={() => setIsAdmin(true)}
+                  checked={isAdmin}
                 />
                 Oui
               </label>
