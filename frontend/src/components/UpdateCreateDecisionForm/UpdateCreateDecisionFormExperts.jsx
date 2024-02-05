@@ -38,7 +38,7 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
   };
 
   // Add an expert to the filtered users
-  const handleClick = () => {
+  const handleAddUser = () => {
     // Search for the user corresponding the input
     const newFilteredUser = users.find(
       (user) =>
@@ -51,12 +51,16 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // update the expert list sent to the parent
-      setUpdateDecisionFormExperts(filteredUsers);
-      // Clear input after validation
-      setSearchUser("");
     }
   };
+
+  // Wait for the newFiltteredUser to be added before updating the filteredUsers state
+  useEffect(() => {
+    // update the expert list sent to the parent
+    setUpdateDecisionFormExperts(filteredUsers);
+    // Clear input after validation
+    setSearchUser("");
+  }, [filteredUsers]);
 
   // Remove an expert from the filtered list
   const handleRemoveUser = (userId) => {
@@ -127,7 +131,7 @@ function UpdateDecisionFormExperts({ setUpdateDecisionFormExperts }) {
           <button
             className="updateDecisionForm__submit"
             type="button"
-            onClick={handleClick}
+            onClick={handleAddUser}
           >
             Choisir
           </button>
