@@ -38,5 +38,5 @@ export const useDecisionContext = () => {
 };
 
 DecisionProvider.propTypes = {
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.arrayOf([]).isRequired,
 };
