@@ -7,6 +7,7 @@ export function DecisionProvider({ children }) {
   const [decisionId, setDecisionId] = useState();
   const [decisions, setDecisions] = useState();
   const [deleteDecision, setDeleteDecision] = useState(false);
+  const [editedDecisions, setEditedDecisions] = useState();
 
   const decisionContext = useMemo(
     () => ({
@@ -16,6 +17,8 @@ export function DecisionProvider({ children }) {
       setDecisions,
       deleteDecision,
       setDeleteDecision,
+      editedDecisions,
+      setEditedDecisions,
     }),
     [
       decisionId,
@@ -24,6 +27,8 @@ export function DecisionProvider({ children }) {
       setDecisions,
       deleteDecision,
       setDeleteDecision,
+      editedDecisions,
+      setEditedDecisions,
     ]
   );
   return (
@@ -38,5 +43,9 @@ export const useDecisionContext = () => {
 };
 
 DecisionProvider.propTypes = {
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.shape({}),
+    PropTypes.node,
+  ]).isRequired,
 };
