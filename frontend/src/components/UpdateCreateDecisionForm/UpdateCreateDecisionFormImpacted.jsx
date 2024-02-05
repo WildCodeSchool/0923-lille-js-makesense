@@ -12,9 +12,9 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
   const [users, setUsers] = useState([]);
   // search users in input
   const [searchUser, setSearchUser] = useState("");
-  // list expert users
+  // list impacted users
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const expertRef = useRef();
+  const impactedRef = useRef();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
@@ -38,12 +38,12 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
   };
 
   // Add an impacted to the filtered users
-  const handleClick = () => {
+  const handleAddUser = () => {
     // Search for the user corresponding the input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
-        expertRef.current.value
+        impactedRef.current.value
     );
     // if there's a corresponding user, add it to the list
     if (newFilteredUser) {
@@ -51,12 +51,16 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // update the impacted list sent to the parent
-      setUpdateDecisionFormImpacted(filteredUsers);
-      // Clear input after validation
-      setSearchUser("");
     }
   };
+
+  // Wait for the newFiltteredUser to be added before updating the filteredUsers state
+  useEffect(() => {
+    // update the impacted list sent to the parent
+    setUpdateDecisionFormImpacted(filteredUsers);
+    // Clear input after validation
+    setSearchUser("");
+  }, [filteredUsers]);
 
   // Remove an impacted from the filtered list
   const handleRemoveUser = (userId) => {
@@ -69,7 +73,7 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
 
   return (
     <article className="updateDecisionForm__experts">
-      <h2 className="updateDecisionForm__titles">Expert·e·s</h2>
+      <h2 className="updateDecisionForm__titles">Impacté·e·s</h2>
       <span className="updateDecisionForm__content updateDecisionForm__content--choiceBoxes">
         <ul className="updateDecisionForm__list">
           {updateImpacted.map((user) => (
@@ -108,11 +112,11 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
           <input
             className="updateDecisionForm__input"
             type="text"
-            placeholder="Rechercher expert·e·s"
+            placeholder="Rechercher impacté·e·s"
             value={searchUser}
             onChange={handleInputChange}
             list="usersList"
-            ref={expertRef}
+            ref={impactedRef}
           />
           <datalist id="usersList">
             {users.map((user) => (
@@ -127,7 +131,7 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
           <button
             className="updateDecisionForm__submit"
             type="button"
-            onClick={handleClick}
+            onClick={handleAddUser}
           >
             Choisir
           </button>
