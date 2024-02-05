@@ -9,7 +9,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
   const [searchUser, setSearchUser] = useState("");
   // list impacted users
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const expertRef = useRef();
+  const impactedRef = useRef();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
@@ -27,12 +27,12 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
   };
 
   // Add an impacted to the filtered users
-  const handleClick = () => {
-    // search for the user corresponding the input
+  const handleAddUser = () => {
+    // Search for the user corresponding the input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
-        expertRef.current.value
+        impactedRef.current.value
     );
     // if there's a corresponding user, add it to the list
     if (newFilteredUser) {
@@ -40,12 +40,16 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // update the impacted list sent to the parent
-      setCreateDecisionFormImpacted(filteredUsers);
-      // Clear the input after validation
-      setSearchUser("");
     }
   };
+
+  // Wait for the newFilteredUser to be added before updating the filteredUsers state
+  useEffect(() => {
+    // update the expert list sent to the parent
+    setCreateDecisionFormImpacted(filteredUsers);
+    // Clear input after validation
+    setSearchUser("");
+  }, [filteredUsers]);
 
   // Remove a user from the filtered user list
   const handleRemoveUser = (userId) => {
@@ -89,7 +93,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
             value={searchUser}
             onChange={handleInputChange}
             list="users-list"
-            ref={expertRef}
+            ref={impactedRef}
           />
           <datalist id="users-list">
             {users.map((user) => (
@@ -103,7 +107,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
           <button
             className="createDecisionForm__submit"
             type="button"
-            onClick={handleClick}
+            onClick={handleAddUser}
           >
             Choisir
           </button>
