@@ -3,8 +3,16 @@ const express = require("express");
 const router = express.Router();
 
 /* ************************************************************************* */
+/* Upload pictures with multer */
+
+/* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
+const userControllers = require("./controllers/userControllers");
+const { upload } = require("./services/uploadMiddleware");
+// Upload image
+router.put("/picture/user/:id", upload, userControllers.updatePicture);
+
 // hashing password middleware
 const { hashPassword } = require("./services/auth");
 
@@ -15,7 +23,6 @@ router.post("/login", authControllers.login);
 
 // USER ROUTES
 // Import Controller
-const userControllers = require("./controllers/userControllers");
 // Route to get a list of users
 router.get("/user", userControllers.browse);
 // Route to get a specific user by ID
@@ -25,7 +32,6 @@ router.get("/user/role/:id", userControllers.readByRole);
 // Route to add a new user
 router.post("/user/create", hashPassword, userControllers.add);
 // Route to update a user's picture
-router.put("/user/picture/:id", userControllers.updatePicture);
 
 // DECISION ROUTES
 // Import Controller
