@@ -17,7 +17,6 @@
   },
   "plugins": ["react", "import"],
   "rules": {
-    "no-alert": "off",
     "no-console": "off",
     "no-restricted-syntax": [
       "error",

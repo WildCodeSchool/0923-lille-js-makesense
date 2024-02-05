@@ -36,12 +36,10 @@ function Nav() {
         }
         const result = await response.json();
 
-        // Affiche l'image sur la page
+        // Display image on page
         setImage(result);
       } catch (err) {
         console.error("Upload error", err);
-        // Affiche un message d'erreur à l'utilisateur
-        alert("Une erreur s'est produite lors du téléchargement de l'image.");
       }
     } else {
       console.info("No image selected");
