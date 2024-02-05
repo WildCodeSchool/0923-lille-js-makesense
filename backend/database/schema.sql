@@ -4,7 +4,7 @@ CREATE TABLE user (
   firstname VARCHAR(100) NOT NULL,
   email VARCHAR(255) NOT NULL,
   location VARCHAR(255) NOT NULL,
-  picture VARCHAR(255) NOT NULL DEFAULT 'https://placehold.co/100x100'
+  picture VARCHAR(255) NOT NULL DEFAULT 'user.png'
 );
 
 CREATE TABLE authentication (
