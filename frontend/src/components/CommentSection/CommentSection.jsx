@@ -107,7 +107,16 @@ function CommentSection({ comment, setComment, decisionId, user }) {
 export default CommentSection;
 
 CommentSection.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    admin_id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    firstname: PropTypes.string.isRequired,
+    hashed_password: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    user_id: PropTypes.number.isRequired,
+  }).isRequired,
   decisionId: PropTypes.number.isRequired,
   comment: PropTypes.string.isRequired,
   setComment: PropTypes.func.isRequired,

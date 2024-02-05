@@ -14,11 +14,11 @@ function UpdateDecision() {
   const [updateDecisionFormImpacted, setUpdateDecisionFormImpacted] = useState(
     {}
   );
-  const { decisions, setDecisions } = useDecisionContext();
+  const { editedDecisions, setEditedDecisions } = useDecisionContext();
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
-      .then((data) => setDecisions(data))
+      .then((data) => setEditedDecisions(data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -27,22 +27,22 @@ function UpdateDecision() {
   useEffect(() => {
     setUpdateParagraph([
       {
-        paragraph_details: decisions.paragraph_details,
-        paragraph_impact: decisions.paragraph_impact,
-        paragraph_benefits: decisions.paragraph_benefits,
-        paragraph_risks: decisions.paragraph_risks,
-        paragraph_first_decision: decisions.paragraph_first_decision,
-        paragraph_finale_decision: decisions.paragraph_finale_decision,
+        paragraph_details: editedDecisions.paragraph_details,
+        paragraph_impact: editedDecisions.paragraph_impact,
+        paragraph_benefits: editedDecisions.paragraph_benefits,
+        paragraph_risks: editedDecisions.paragraph_risks,
+        paragraph_first_decision: editedDecisions.paragraph_first_decision,
+        paragraph_finale_decision: editedDecisions.paragraph_finale_decision,
         decision_id: decisionId,
       },
       {
-        status: decisions.status,
-        decision_delay: decisions.decision_delay,
-        decision_title: decisions.decision_title,
+        status: editedDecisions.status,
+        decision_delay: editedDecisions.decision_delay,
+        decision_title: editedDecisions.decision_title,
         decision_id: decisionId,
       },
     ]);
-  }, [decisions]);
+  }, [editedDecisions]);
 
   const handleUpdateDecision = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decision/update`, {
@@ -55,7 +55,7 @@ function UpdateDecision() {
       .then((response) => response.json())
       .then((data) => {
         console.info("Updated", data);
-        setDecisions(updatedParagraph[1]);
+        setEditedDecisions(updatedParagraph[1]);
       })
       .catch((error) => {
         console.error("Error during update", error);
@@ -83,8 +83,8 @@ function UpdateDecision() {
   return (
     <main className="updateDecision__main">
       <UpdateCreateDecisionFormContent
-        decisions={decisions}
-        setDecisions={setDecisions}
+        editedDecisions={editedDecisions}
+        setEditedDecisions={setEditedDecisions}
       />
       <aside className="updateDecision__aside">
         <UpdateCreateDecisionFormExperts

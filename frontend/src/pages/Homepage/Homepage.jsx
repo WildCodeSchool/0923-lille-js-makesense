@@ -8,7 +8,8 @@ import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
 function Homepage() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { setDecisions, decisionId, deleteDecision } = useDecisionContext();
+  const { setDecisions, decisionId, deleteDecision, setEditedDecisions } =
+    useDecisionContext();
   const [decisionsHome, setDecisionsHome] = useState();
 
   useEffect(() => {
@@ -16,6 +17,7 @@ function Homepage() {
       .then((response) => response.json())
       .then((data) => {
         setDecisionsHome(data);
+        setEditedDecisions(data);
         setDecisions(data);
       })
       .catch((error) => console.error(error));
