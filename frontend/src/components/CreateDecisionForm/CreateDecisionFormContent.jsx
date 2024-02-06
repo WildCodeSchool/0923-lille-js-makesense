@@ -103,10 +103,11 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
       <textarea
         id="section5"
         name="section5"
-        placeholder="/!\ Nécessite un premier cycle de réflexion avec vos experts et impactés."
+        placeholder="⚠️ Nécessite un premier cycle de réflexion avec vos experts et impactés."
         rows="10"
         className="createDecisionForm__input"
         ref={paragraphFirstDecisionRef}
+        disabled
       />
       <label className="createDecisionForm__label" htmlFor="section6">
         Décision définitive :
@@ -114,10 +115,11 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
       <textarea
         id="section6"
         name="section6"
-        placeholder="/!\ Nécessite deux cycles de réflexion avec vos experts et impactés."
+        placeholder="⚠️ Nécessite deux cycles de réflexion avec vos experts et impactés."
         rows="10"
         className="createDecisionForm__input"
         ref={paragraphFinaleDecisionRef}
+        disabled
       />
     </article>
   );
