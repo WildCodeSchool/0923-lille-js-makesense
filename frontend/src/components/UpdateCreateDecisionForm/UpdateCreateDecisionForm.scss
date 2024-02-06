@@ -10,6 +10,10 @@
   & * {
     background-color: $background;
   }
+  & textarea {
+    min-height: 200px;
+    overflow-y: auto;
+  }
 }
 
 .updateDecisionForm__content--choiceBoxes {

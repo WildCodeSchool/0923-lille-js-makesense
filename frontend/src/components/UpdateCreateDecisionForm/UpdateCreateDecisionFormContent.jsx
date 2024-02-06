@@ -86,7 +86,6 @@ function UpdateCreateDecisionFormContent({
             placeholder="Expliquez l'idée derrière votre proposition."
             className="updateDecisionForm__input"
             required
-            rows={10}
             value={editedDecisions.paragraph_details}
             onChange={(e) =>
               setEditedDecisions((prevEditedDecisions) => ({
@@ -105,7 +104,6 @@ function UpdateCreateDecisionFormContent({
             placeholder="En quoi Make Sense sera impacté par cette décision ?"
             className="updateDecisionForm__input"
             required
-            rows={10}
             value={editedDecisions.paragraph_impact}
             onChange={(e) =>
               setEditedDecisions((prevEditedDecisions) => ({
@@ -122,7 +120,6 @@ function UpdateCreateDecisionFormContent({
             name="section3"
             placeholder="Quels sont les bénéfices pour Make Sense ?"
             className="updateDecisionForm__input"
-            rows={10}
             value={editedDecisions.paragraph_benefits}
             onChange={(e) =>
               setEditedDecisions((prevEditedDecisions) => ({
@@ -139,7 +136,6 @@ function UpdateCreateDecisionFormContent({
             name="section4"
             placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
             className="updateDecisionForm__input"
-            rows={10}
             value={editedDecisions.paragraph_risks}
             onChange={(e) =>
               setEditedDecisions((prevEditedDecisions) => ({
@@ -156,7 +152,6 @@ function UpdateCreateDecisionFormContent({
             name="section5"
             placeholder="/!\ Nécéssite un premier cycle de réflexion avec vos experts et impactés."
             className="updateDecisionForm__input"
-            rows={10}
             value={editedDecisions.paragraph_first_decision}
             onChange={(e) =>
               setEditedDecisions((prevEditedDecisions) => ({
@@ -173,7 +168,6 @@ function UpdateCreateDecisionFormContent({
             name="section6"
             placeholder="/!\ Nécéssite deux cycles de réflexion avec vos experts et impactés."
             className="updateDecisionForm__input"
-            rows={10}
             value={editedDecisions.paragraph_finale_decision}
             onChange={(e) =>
               setEditedDecisions((prevEditedDecisions) => ({
