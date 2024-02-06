@@ -92,18 +92,23 @@ class DecisionManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT decision.*, 
-      user.firstname, user.lastname, user.location, user.picture,
-      paragraph.*,
+      `SELECT decision.decision_id, DATE_FORMAT(decision_date, "%d %M %Y") AS french_date, decision.decision_delay, decision.status, decision_title, decision.user_id, user.firstname, user.lastname, user.location, user.picture, paragraph.*, 
       COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
       WHERE decision.decision_id = ?
-      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;`,
+      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;
+      `,
       [id]
     );
+    // Format the date in French on the server side
+    if (rows[0]) {
+      const frenchDate = new Date(rows[0].french_date);
+      const options = { day: "numeric", month: "long", year: "numeric" };
+      rows[0].french_date = frenchDate.toLocaleDateString("fr-FR", options);
+    }
     // Return the first row of the result, which represents the decision
     return rows[0];
   }

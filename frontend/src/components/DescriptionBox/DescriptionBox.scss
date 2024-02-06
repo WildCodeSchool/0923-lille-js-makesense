@@ -70,6 +70,7 @@
 .descriptionBox__body--text {
   font-size: clamp(12px, 2vw, 1.2rem);
   background-color: $secondary-background;
+  word-break: normal;
 }
 .dividing__line {
   margin-block: 1vh;

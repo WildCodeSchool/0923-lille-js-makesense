@@ -49,19 +49,12 @@ function Decision() {
       .catch((error) => console.error(error));
   }, [decisions, editedDecisions]);
 
-  const datetime = new Date(decision.decision_date);
-  const formattedDate = datetime.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-
   return (
     <main className="decision__page">
       <header className="decision__page--header">
         <section className="decision__header">
           <h2 className="openAndClose__date">
-            Date d'ouverture: {formattedDate} <br />
+            Date d'ouverture: {decision.french_date} <br />
             Date de clôture: {decision.decision_delay}
           </h2>
           {user[0].user_id === decision.user_id ? (
