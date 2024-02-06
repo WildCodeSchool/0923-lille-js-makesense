@@ -59,7 +59,9 @@ function CommentSection({ comment, setComment, decisionId, user }) {
             >
               <img
                 className="commentSection__comment--avatar"
-                src={com.picture}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  com.picture
+                }`}
                 alt="avatar"
               />
               <section className="commentSection__comment--box">
