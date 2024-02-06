@@ -68,12 +68,12 @@ function UpdateCreateDecisionFormContent({
               <option value="Première décision prise">
                 Première décision prise
               </option>
-              <option value="Décision définitive">Décision définitive</option>
-              <option value="Décision non aboutie">Décision non aboutie</option>
-              <option value="Décision terminée">Décision terminée</option>
               <option value="Conflit sur la décision">
                 Conflit sur la décision
               </option>
+              <option value="Décision définitive">Décision définitive</option>
+              <option value="Décision non aboutie">Décision non aboutie</option>
+              <option value="Décision terminée">Décision terminée</option>
             </select>
           </label>
 
