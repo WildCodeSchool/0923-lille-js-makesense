@@ -34,8 +34,8 @@ function Decision() {
       <header className="decision__page--header">
         <section className="decision__header">
           <h2 className="openAndClose__date">
-            Date d'ouverture: {decision.french_date} <br />
-            Date de clôture: {decision.decision_delay}
+            <strong>Date d'ouverture:</strong> {decision.french_date} <br />
+            <strong>Date de clôture:</strong> {decision.decision_delay}
           </h2>
           {user[0].user_id === decision.user_id ? (
             <Link to="/decision/update" className="decision__edit">
