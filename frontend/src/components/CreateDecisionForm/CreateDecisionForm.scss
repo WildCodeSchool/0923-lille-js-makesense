@@ -90,6 +90,8 @@
   & textarea {
     background-color: $secondary-background;
     border-radius: 5px;
+    min-height: 200px;
+    overflow-y: auto;
     resize: none;
     scrollbar-width: thin;
     scrollbar-color: currentColor rgb($primary-medium, 0.5);
