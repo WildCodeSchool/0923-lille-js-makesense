@@ -65,7 +65,9 @@ function CreateDecisionFormExperts({ setCreateDecisionFormExperts }) {
           {filteredUsers.map((user) => (
             <li key={user.user_id} className="createDecisionForm__chosen">
               <img
-                src={user.picture}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  user.picture
+                }`}
                 alt={`avatar de ${user.firstname} ${user.lastname}`}
                 className="createDecisionForm__chosen--avatar"
               />

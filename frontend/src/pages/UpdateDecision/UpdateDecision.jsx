@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import UpdateCreateDecisionFormImpacted from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormImpacted";
 import UpdateCreateDecisionFormExperts from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormExperts";
 import UpdateCreateDecisionFormContent from "../../components/UpdateCreateDecisionForm/UpdateCreateDecisionFormContent";
 import "./UpdateDecision.scss";
 import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 
 function UpdateDecision() {
-  const { decisionId } = useDecisionContext();
+  const navigate = useNavigate();
   const [updateDecisionFormExperts, setUpdateDecisionFormExperts] = useState(
     {}
   );
   const [updateDecisionFormImpacted, setUpdateDecisionFormImpacted] = useState(
     {}
   );
-  const { editedDecisions, setEditedDecisions } = useDecisionContext();
+  const [updatedParagraph, setUpdateParagraph] = useState();
+  const { decisionId, editedDecisions, setEditedDecisions } =
+    useDecisionContext();
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/${decisionId}`)
       .then((response) => response.json())
@@ -22,7 +27,11 @@ function UpdateDecision() {
       .catch((error) => console.error(error));
   }, []);
 
-  const [updatedParagraph, setUpdateParagraph] = useState();
+  useEffect(() => {
+    if (!user[0].user_id) {
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     setUpdateParagraph([
