@@ -79,7 +79,9 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
           {updateImpacted.map((user) => (
             <li key={user.user_id} className="updateDecisionForm__chosen">
               <img
-                src={user.picture}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  user.picture
+                }`}
                 alt={`avatar de ${user.firstname} ${user.lastname}`}
                 className="updateDecisionForm__chosen--avatar"
               />
@@ -91,7 +93,9 @@ function UpdateDecisionFormImpacted({ setUpdateDecisionFormImpacted }) {
           {filteredUsers.map((user) => (
             <li key={user.user_id} className="updateDecisionForm__chosen">
               <img
-                src={user.picture}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  user.picture
+                }`}
                 alt={`avatar de ${user.firstname} ${user.lastname}`}
                 className="updateDecisionForm__chosen--avatar"
               />
