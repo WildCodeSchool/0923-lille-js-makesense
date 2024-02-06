@@ -59,7 +59,6 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         name="section1"
         placeholder="Expliquez l'idée derrière votre proposition."
         className="createDecisionForm__input"
-        rows="10"
         required
         ref={paragraphDetailsRef}
       />
@@ -71,7 +70,6 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         name="section2"
         placeholder="En quoi Make Sense sera impacté par cette décision ?"
         className="createDecisionForm__input"
-        rows="10"
         required
         ref={paragraphImpactRef}
       />
@@ -82,7 +80,6 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         id="section3"
         name="section3"
         placeholder="Quels sont les bénéfices pour Make Sense ?"
-        rows="10"
         className="createDecisionForm__input"
         ref={paragraphBenefitsRef}
       />
@@ -93,7 +90,6 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         id="section4"
         name="section4"
         placeholder="Quels sont les risques encourus par Make Sense vis à vis de cette décision ?"
-        rows="10"
         className="createDecisionForm__input"
         ref={paragraphRisksRef}
       />
@@ -104,7 +100,6 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         id="section5"
         name="section5"
         placeholder="⚠️ Nécessite un premier cycle de réflexion avec vos experts et impactés."
-        rows="10"
         className="createDecisionForm__input"
         ref={paragraphFirstDecisionRef}
         disabled
@@ -116,7 +111,6 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
         id="section6"
         name="section6"
         placeholder="⚠️ Nécessite deux cycles de réflexion avec vos experts et impactés."
-        rows="10"
         className="createDecisionForm__input"
         ref={paragraphFinaleDecisionRef}
         disabled
