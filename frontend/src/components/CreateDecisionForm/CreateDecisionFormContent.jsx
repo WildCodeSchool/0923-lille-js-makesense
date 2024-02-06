@@ -47,7 +47,7 @@ function CreateDecisionFormContent({ setCreateDecisionFormContent }) {
           <option value="Court terme (deux semaines)">
             Court terme (deux semaines)
           </option>
-          <option value="Moyen terme (Un mois)">Moyen terme (Un mois)</option>
+          <option value="Moyen terme (un mois)">Moyen terme (un mois)</option>
           <option value="Long terme (deux mois)">Long terme (deux mois)</option>
         </select>
       </label>

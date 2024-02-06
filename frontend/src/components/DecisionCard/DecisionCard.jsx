@@ -91,9 +91,9 @@ function DecisionCard({
             x
           </span>
           <section className="title_delete">
-            {/* Titles are too long for the small cards in homepage, only displaying the first 37 characters */}
-            <h2>
-              {title.length >= 40 ? `${title.substring(0, 37)} (...)` : title}
+            {/* Titles are too long for the small cards in homepage, only displaying the first 40 characters */}
+            <h2 className="decisionCard__title">
+              {title.length >= 40 ? `${title.substring(0, 40)} (...)` : title}
             </h2>
           </section>
           <p className="decisionCard__author">
