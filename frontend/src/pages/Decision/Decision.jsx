@@ -12,32 +12,12 @@ function Decision() {
   const [comment, setComment] = useState("");
   const { decisions, decisionId, editedDecisions } = useDecisionContext();
   const [writeComment, setWriteComment] = useState();
-  const [decision, setDecision] = useState({
-    decision_date: "--",
-    decision_delay: "--",
-    decision_id: 0,
-    decision_title: "--",
-    firstname: "--",
-    lastname: "--",
-    location: "--",
-    nb_comments: 0,
-    paragraph_benefits: "--",
-    paragraph_decision: "--",
-    paragraph_details: "--",
-    paragraph_finale_decision: "--",
-    paragraph_first_decision: "--",
-    paragraph_id: 0,
-    paragraph_impact: "--",
-    paragraph_risks: "--",
-    picture: "http://placekitten.com/200/311",
-    status: "--",
-    user_id: 0,
-  });
+  const [decision, setDecision] = useState({});
   const navigate = useNavigate();
 
   // Redirect unconnected users
   useEffect(() => {
-    if (user[0].user_id === 0) {
+    if (!user[0].user_id) {
       navigate("/");
     }
   }, []);
@@ -54,8 +34,8 @@ function Decision() {
       <header className="decision__page--header">
         <section className="decision__header">
           <h2 className="openAndClose__date">
-            Date d'ouverture: {decision.french_date} <br />
-            Date de clôture: {decision.decision_delay}
+            <strong>Date d'ouverture:</strong> {decision.french_date} <br />
+            <strong>Date de clôture:</strong> {decision.decision_delay}
           </h2>
           {user[0].user_id === decision.user_id ? (
             <Link to="/decision/update" className="decision__edit">

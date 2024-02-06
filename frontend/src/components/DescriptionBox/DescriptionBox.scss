@@ -23,15 +23,15 @@
 }
 .descriptionBox__header {
   display: flex;
-  padding-bottom: 3vh;
+  padding-bottom: 2vh;
 }
 .descriptionBox__header--avatar {
   @include avatar;
   margin-top: 2vh;
-  margin-inline: 1vw;
+  margin-inline-end: 1vw;
 }
 .descriptionBox__header--right {
-  flex-grow: 2;
+  width: 82%;
 }
 .descriptionBox__header__right--title {
   word-break: normal;

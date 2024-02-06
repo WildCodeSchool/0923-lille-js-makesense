@@ -18,10 +18,10 @@ function CreateUser() {
   // This page is only accessible to admins
   // Redirect unconnected users
   useEffect(() => {
-    if (!user[0].admin_id) {
-      navigate("/homepage/decisions/all");
-    } else if (user.user_id === 0) {
+    if (!user[0].user_id) {
       navigate("/");
+    } else if (!user[0].admin_id) {
+      navigate("/homepage/decisions/all");
     }
   }, []);
   // Form Submission Manager

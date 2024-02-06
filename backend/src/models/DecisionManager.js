@@ -149,7 +149,7 @@ class DecisionManager extends AbstractManager {
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie"
+      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
       GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
     );
 

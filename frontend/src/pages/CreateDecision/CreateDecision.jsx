@@ -24,7 +24,7 @@ function CreateDecision() {
 
   // Redirect unconnected users
   useEffect(() => {
-    if (user[0].user_id === 0) {
+    if (!user[0].user_id) {
       navigate("/");
     }
   }, []);
