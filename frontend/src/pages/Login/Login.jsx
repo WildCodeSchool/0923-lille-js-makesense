@@ -1,24 +1,23 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 
 function Login() {
-  // Références pour les champs email et mot de passe
+  // Ref for mail and password
   const emailRef = useRef();
   const passwordRef = useRef();
+  const [loginError, setLoginError] = useState();
 
   const { setUser } = useContext(AuthContext);
 
-  // Hook pour la navigation
+  // Navigation hook
   const navigate = useNavigate();
 
-  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
@@ -30,19 +29,15 @@ function Login() {
           }),
         }
       );
-      // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         const user = await response.json();
-
         setUser(user);
-
-        navigate("/homepage");
+        navigate("/homepage/decisions/all");
       } else {
-        // Log des détails de la réponse en cas d'échec
+        setLoginError("⛔ Erreur dans votre mail ou mot de passe. ⛔");
         console.info(response);
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
     }
   };
@@ -77,6 +72,16 @@ function Login() {
           Se Connecter
         </button>
       </form>
+      <p className="login__error">{loginError}</p>
+      {loginError ? (
+        <a
+          className="bubble__help"
+          title="Une erreur ? Contactez l'administrateur."
+          href="mailto:vincent.rssx59@gmail.com"
+        >
+          Contacter un administrateur
+        </a>
+      ) : null}
     </main>
   );
 }

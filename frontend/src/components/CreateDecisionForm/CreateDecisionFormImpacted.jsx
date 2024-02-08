@@ -3,13 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
-  // liste de tous les users
+  // List all users
   const [users, setUsers] = useState([]);
-  // recherche des users dans l'input
+  // search users in input
   const [searchUser, setSearchUser] = useState("");
-  // liste des users impactés
+  // list impacted users
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const expertRef = useRef();
+  const impactedRef = useRef();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
@@ -22,37 +22,41 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
   }, []);
 
   const handleInputChange = (e) => {
-    // Lis les inputs clavier pour créer un auto-complete basé sur [users]
+    // Read keyboard inputs to autocomplete based on user
     setSearchUser(e.target.value);
   };
 
-  // Ajoute un expert à la liste filtrée
-  const handleClick = () => {
-    // cherche le user qui correspond à l'input
+  // Add an impacted to the filtered users
+  const handleAddUser = () => {
+    // Search for the user corresponding the input
     const newFilteredUser = users.find(
       (user) =>
         `${user.firstname} ${user.lastname} (${user.email})` ===
-        expertRef.current.value
+        impactedRef.current.value
     );
-    // si le user correspond, ajoute le user aux users filtrés
+    // if there's a corresponding user, add it to the list
     if (newFilteredUser) {
       setFilteredUsers((prevFilteredUsers) => [
         ...prevFilteredUsers,
         newFilteredUser,
       ]);
-      // met à jour la liste des impactés envoyés au parent
-      setCreateDecisionFormImpacted(filteredUsers);
-      // Vide l'input après validation
-      setSearchUser("");
     }
   };
 
-  // Enlève un expert de la liste filtrée
+  // Wait for the newFilteredUser to be added before updating the filteredUsers state
+  useEffect(() => {
+    // update the expert list sent to the parent
+    setCreateDecisionFormImpacted(filteredUsers);
+    // Clear input after validation
+    setSearchUser("");
+  }, [filteredUsers]);
+
+  // Remove a user from the filtered user list
   const handleRemoveUser = (userId) => {
     setFilteredUsers((prevFilteredUsers) =>
       prevFilteredUsers.filter((user) => user.user_id !== userId)
     );
-    // met à jour la liste des impactés envoyés au parent
+    // update the list sent to the parent
     setCreateDecisionFormImpacted(filteredUsers);
   };
 
@@ -64,7 +68,9 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
           {filteredUsers.map((user) => (
             <li key={user.user_id} className="createDecisionForm__chosen">
               <img
-                src={user.picture}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  user.picture
+                }`}
                 alt={`avatar de ${user.firstname} ${user.lastname}`}
                 className="createDecisionForm__chosen--avatar"
               />
@@ -75,7 +81,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
                   className="createDecisionForm__chosen--remove"
                   onClick={() => handleRemoveUser(user.user_id)}
                 >
-                  x
+                  -
                 </button>
               </p>
             </li>
@@ -89,7 +95,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
             value={searchUser}
             onChange={handleInputChange}
             list="users-list"
-            ref={expertRef}
+            ref={impactedRef}
           />
           <datalist id="users-list">
             {users.map((user) => (
@@ -103,7 +109,7 @@ function CreateDecisionFormImpacted({ setCreateDecisionFormImpacted }) {
           <button
             className="createDecisionForm__submit"
             type="button"
-            onClick={handleClick}
+            onClick={handleAddUser}
           >
             Choisir
           </button>

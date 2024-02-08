@@ -1,5 +1,35 @@
 @import "../../variables";
 
+@keyframes LogoAnimation {
+  0% {
+    transform: translateY(0vw);
+    scale: 4;
+  }
+  50% {
+  }
+
+  100% {
+    transform: translateY(-5.5vh) translateX(0vw) scale(0.3);
+  }
+}
+
+@keyframes FormAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .login__content {
   font-weight: bold;
   color: $primary-dark;
@@ -19,11 +49,15 @@
   }
 }
 .login__form {
+  animation: FormAnimation 2s linear forwards;
   width: 14rem;
   margin-top: 1rem;
 }
 .login__logo {
+  animation: LogoAnimation 1.5s linear forwards;
   width: 20rem;
+  scale: 4;
+  position: absolute;
 }
 
 .login__button {
@@ -39,8 +73,20 @@
   margin-bottom: 1rem;
   background-color: $primary-light;
 }
-@media screen and (max-width: 700px) {
-  .login__button {
-    width: 30%;
+
+.login__error {
+  color: $tertiary-medium;
+  margin-block-start: 2%;
+}
+
+@media (max-width: 700px) {
+  .login__content {
+    background-image: url("../../assets/background-image-mobile.png");
+  }
+  .login__logo {
+    width: 80%;
+  }
+  .login__error {
+    font-size: 0.85rem;
   }
 }

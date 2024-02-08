@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Profile.scss";
 
 function Profile({ handleMoveBubble, showProfile, user }) {
+  const handleLogout = () => {
+    window.location.reload();
+    useNavigate("/");
+  };
+
   return (
     showProfile && (
       <nav className="bubble__menu" onMouseLeave={handleMoveBubble}>
@@ -17,14 +22,13 @@ function Profile({ handleMoveBubble, showProfile, user }) {
               className="bubble__help"
               title="Une erreur ? Contactez l'administrateur."
               href="mailto:vincent.rssx59@gmail.com"
-              onClick={handleMoveBubble}
             >
-              ?
+              Contacter un administrateur
             </a>
           </li>
           <li className="bubble__logout">
             <hr className="bubble__line" />
-            <Link to="/" className="bubble__link">
+            <Link onClick={handleLogout} to="/" className="bubble__link">
               Déconnexion
             </Link>
           </li>

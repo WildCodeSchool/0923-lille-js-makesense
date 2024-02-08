@@ -1,21 +1,34 @@
+import { Link } from "react-router-dom";
 import "./SecondaryNav.scss";
 
 function SecondaryNav() {
   return (
     <nav className="secondaryNav__nav">
       <ul className="secondaryNav__links">
-        <a href="*" className="secondaryNav__links--first">
+        <Link
+          to="/homepage/decisions/current"
+          className="secondaryNav__links--first"
+        >
           Décisions en cours
-        </a>
-        <a href="*" className="secondaryNav__links--second">
+        </Link>
+        <Link
+          to="/homepage/decisions/late"
+          className="secondaryNav__links--second"
+        >
           Décisions en retard
-        </a>
-        <a href="*" className="secondaryNav__links--third">
+        </Link>
+        <Link
+          to="/homepage/decisions/user"
+          className="secondaryNav__links--third"
+        >
           Vos décisions
-        </a>
-        <a href="*" className="secondaryNav__links--third">
+        </Link>
+        <Link
+          to="/homepage/decisions/finished"
+          className="secondaryNav__links--fourth"
+        >
           Décisions prises
-        </a>
+        </Link>
       </ul>
       <img
         src={`${import.meta.env.VITE_BACKEND_URL}/images/ban-bottom.png`}

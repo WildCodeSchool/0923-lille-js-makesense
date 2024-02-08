@@ -51,21 +51,20 @@ const readByRole = async (req, res, next) => {
 };
 
 // The E of BREAD - Edit (Update) operation
-const updatePicture = async (req, res, next) => {
+const updatePicture = async (req, res) => {
   try {
-    const id = parseInt(req.params.id, 10);
-    const avatar = `${req.protocol}://${req.get("host")}/public/upload/${
-      req.body.avatar
-    }`;
-    const user = await tables.user.updatePicture(id, avatar);
-    if (user == null) {
+    const userId = req.params.id;
+    // Use req.uploadedImage to access uploaded image details
+    const picture = req.body.uploadImage;
+    const result = await tables.user.updatePicture(picture, userId);
+    if (result == null) {
       res.sendStatus(404);
     } else {
-      res.json(user);
+      const userImage = await tables.user.read(userId);
+      res.json(userImage.picture);
     }
-  } catch (err) {
-    // Pass any errors to the error-handling middleware
-    next(err);
+  } catch (error) {
+    res.status(500).json({ status: error });
   }
 };
 

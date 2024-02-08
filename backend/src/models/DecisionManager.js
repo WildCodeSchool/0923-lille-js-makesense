@@ -57,23 +57,58 @@ class DecisionManager extends AbstractManager {
     }
   }
 
+  async addAssigned(decisionId, assigned) {
+    try {
+      // Map to create a promise for each new expert user
+      const expertPromises = assigned.experts.map(async (expert) => {
+        await this.database.query(
+          `INSERT INTO assignment (date, role, decision_id, user_id) VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"), "Expert", ?, ?);`,
+          [decisionId, expert.user_id]
+        );
+      });
+      // Map to create a promise for each new impacted user
+      const impactedPromises = assigned.impacted.map(async (impacted) => {
+        await this.database.query(
+          `INSERT INTO assignment (date, role, decision_id, user_id) VALUES (DATE_FORMAT(NOW(), "%Y-%m-%d"), "Impacté", ?, ?);`,
+          [decisionId, impacted.user_id]
+        );
+      });
+      // Wait for all promises to be resolved
+      // Promise.all is a JS method that takes an array of promises as argument, returns a new promise and resolves it in a new array
+      // Spread operator allows the promises to get concatenated into the same argument array, without, there'd be two arrays
+      const resultAssignment = await Promise.all([
+        ...expertPromises,
+        ...impactedPromises,
+      ]);
+
+      return resultAssignment.insertId;
+    } catch (error) {
+      return error;
+    }
+  }
+
   // The Rs of CRUD - Read operations
 
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific decision by its ID
     const [rows] = await this.database.query(
-      `SELECT decision.*, 
-      user.firstname, user.lastname, user.location, user.picture,
-      paragraph.*,
+      `SELECT decision.decision_id, DATE_FORMAT(decision_date, "%d %M %Y") AS french_date, decision.decision_delay, decision.status, decision_title, decision.user_id, user.firstname, user.lastname, user.location, user.picture, paragraph.*, 
       COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
       WHERE decision.decision_id = ?
-      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;`,
+      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;
+      `,
       [id]
     );
+    // Format the date in French on the server side
+    if (rows[0]) {
+      const frenchDate = new Date(rows[0].french_date);
+      const options = { day: "numeric", month: "long", year: "numeric" };
+      rows[0].french_date = frenchDate.toLocaleDateString("fr-FR", options);
+    }
     // Return the first row of the result, which represents the decision
     return rows[0];
   }
@@ -81,22 +116,50 @@ class DecisionManager extends AbstractManager {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all decisions from the decision table
     const [rows] = await this.database
-      .query(`SELECT decision.decision_id, decision.decision_title, decision.status, 
-      user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      .query(`SELECT decision.*, paragraph.*, user.*, COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN paragraph ON decision.decision_id = paragraph.decision_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      GROUP BY decision.decision_id, decision.decision_title, decision.status, 
-      user.firstname, user.lastname, user.picture, user.location;`);
+      GROUP BY decision.decision_id, paragraph.paragraph_id, user.user_id;`);
 
     // Return the array of decisions
     return rows;
   }
 
-  async readAllPending() {
-    // Execute the SQL SELECT query to retrieve all pending decisions from the decision table
+  async readAllLate() {
+    // Execute the SQL SELECT query to retrieve all late decisions from the decision table
     const [rows] = await this.database.query(
-      `SELECT decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM decision
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status IN ("Décision commencée", "Première décision prise", "Conflit sur la décision")
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location
+      HAVING nb_comments = 0;`
+    );
+
+    // Return the array of decisions
+    return rows;
+  }
+
+  async getDecisionsCompleted() {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.status = "Décision terminée" OR decision.status = "Décision non aboutie" OR decision.status = "Décision définitive"
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
+    );
+
+    // Return Result
+    return rows;
+  }
+
+  async getCurrentDecisions() {
+    const [rows] = await this.database.query(
+      `SELECT decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, COUNT(comment.comment_id) AS nb_comments
       FROM ${this.table}
       JOIN user ON decision.user_id = user.user_id
       LEFT JOIN comment ON decision.decision_id = comment.decision_id
@@ -104,7 +167,7 @@ class DecisionManager extends AbstractManager {
       GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location;`
     );
 
-    // Return the array of decisions
+    // Return result
     return rows;
   }
 
@@ -120,13 +183,27 @@ class DecisionManager extends AbstractManager {
     return rows[0];
   }
 
-  // Implement logic to retrieve experts and impacts for a given decision
-  async getExpertsAndImpactes(decisionId) {
+  // Implement logic to retrieve experts for a given decision
+  async getExperts(decisionId) {
     const [rows] = await this.database.query(
       `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
-     FROM assignment
-     JOIN user ON assignment.user_id = user.user_id
-     WHERE assignment.decision_id = ?`,
+        FROM assignment
+        JOIN user ON assignment.user_id = user.user_id
+        WHERE assignment.decision_id = ? AND assignment.role = "Expert"`,
+      [decisionId]
+    );
+
+    return rows;
+  }
+
+  // Implement logic to retrieve Impacted for a given decision
+
+  async getImpacted(decisionId) {
+    const [rows] = await this.database.query(
+      `SELECT user.user_id, user.firstname, user.lastname, user.picture, user.location, assignment.role
+        FROM assignment
+        JOIN user ON assignment.user_id = user.user_id
+        WHERE assignment.decision_id = ? AND assignment.role = "Impacté"`,
       [decisionId]
     );
 
@@ -137,22 +214,18 @@ class DecisionManager extends AbstractManager {
   async getRelatedDecisions(userId) {
     const [rows] = await this.database.query(
       `SELECT
-      decision.decision_id,
-      decision.decision_title,
-      decision.status,
-      user.firstname AS author_firstname,
-      user.lastname AS author_lastname,
-      user.picture AS author_picture,
-      user.location,
-      COUNT(comment.comment_id) AS nb_comments
-    FROM ${this.table}
-    JOIN user ON decision.user_id = user.user_id
-    LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
-    LEFT JOIN comment ON decision.decision_id = comment.decision_id
-    WHERE user.user_id = ?
-       OR assignment.user_id = ?
-       OR comment.user_id = ? 
-    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location`,
+      decision.decision_id, decision.decision_title, decision.status,
+      user.firstname, user.lastname, user.picture, user.location,
+      assignment.role,
+      COUNT(DISTINCT comment.comment_id) AS nb_comments
+      FROM ${this.table}
+      JOIN user ON decision.user_id = user.user_id
+      LEFT JOIN assignment ON decision.decision_id = assignment.decision_id AND assignment.user_id = ?
+      LEFT JOIN comment ON decision.decision_id = comment.decision_id
+      WHERE decision.user_id = ?
+      OR assignment.user_id IS NOT NULL
+      OR comment.user_id IS NOT NULL
+      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, assignment.role;`,
       [userId, userId, userId]
     );
 
@@ -170,7 +243,6 @@ class DecisionManager extends AbstractManager {
     paragraph_benefits = ?,
     paragraph_risks = ?,
     paragraph_first_decision = ?,
-    paragraph_decision = ?,
     paragraph_finale_decision = ?
     WHERE decision_id = ?
     `,
@@ -180,7 +252,6 @@ class DecisionManager extends AbstractManager {
         decision[0].paragraph_benefits,
         decision[0].paragraph_risks,
         decision[0].paragraph_first_decision,
-        decision[0].paragraph_decision,
         decision[0].paragraph_finale_decision,
         decision[0].decision_id,
       ]
@@ -190,10 +261,9 @@ class DecisionManager extends AbstractManager {
       `
     UPDATE decision
     SET status = ?,
-    decision_delay=?,
+    decision_delay= ?,
     decision_title = ?
     WHERE decision_id = ?
-   
     `,
       [
         decision[1].status,
@@ -204,6 +274,21 @@ class DecisionManager extends AbstractManager {
     );
 
     return { updateParagraph, updateDecision };
+  }
+
+  async delete(decision) {
+    const [deleteDecision] = await this.database.query(
+      `DELETE paragraph, comment, assignment, decision
+FROM paragraph
+LEFT JOIN comment ON paragraph.decision_id = comment.decision_id
+LEFT JOIN assignment ON paragraph.decision_id = assignment.decision_id
+LEFT JOIN decision ON paragraph.decision_id = decision.decision_id
+WHERE paragraph.decision_id = ? 
+AND ? IN (SELECT user_id FROM admin);
+`,
+      [decision.paragraph.decision_id, decision.current_user_id]
+    );
+    return deleteDecision;
   }
 
   // The D of CRUD - Delete operation

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Nav.scss";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import Profile from "../Profile/Profile";
 import { AuthContext } from "../../contexts/authContext";
 
@@ -9,24 +9,40 @@ function Nav() {
 
   const [showProfile, setShowProfile] = useState(false);
   const [isAdmin, setIsAdmin] = useState(null);
-  const [previewImage, setPreviewImage] = useState(user[0].picture);
+  const [image, setImage] = useState(user[0].picture);
 
-  // 1. upload the image in front and read it as data to preview it
-  const handleAvatarUpload = (event) => {
-    const img = event.target.files[0];
+  const fileInputRef = useRef();
 
-    if (img) {
-      // FileReader is part of the JS File API and allows to read uploaded files stored on the user's computer
-      // its result comes as "result"
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        // reads the result and stores it in a variable
-        const imageDataUrl = e.target.result;
-        // Set the preview image
-        setPreviewImage(imageDataUrl);
-      };
-      // Read the content of the file as Data URL through the readAsDataURL FileReader method
-      reader.readAsDataURL(img);
+  const submitImage = async () => {
+    const imageName = fileInputRef.current.files[0];
+
+    if (fileInputRef.current.files.length > 0) {
+      const formData = new FormData();
+      formData.append("picture", imageName);
+
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/picture/user/${
+            user[0].user_id
+          }`,
+          {
+            method: "PUT",
+            body: formData,
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+
+        // Display image on page
+        setImage(result);
+      } catch (err) {
+        console.error("Upload error", err);
+      }
+    } else {
+      console.info("No image selected");
     }
   };
 
@@ -42,10 +58,9 @@ function Nav() {
   const handleMoveBubble = () => {
     setShowProfile(!showProfile);
   };
-
   return (
     <nav className="nav__nav">
-      <Link to="/homepage" className="nav__logo">
+      <Link to="/homepage/decisions/all" className="nav__logo">
         <img
           className="nav__logo--img"
           src={`${
@@ -71,24 +86,30 @@ function Nav() {
             </Link>
           </li>
         </ul>
-        <img
-          className="nav__avatar--img"
-          alt="user avatar"
-          src={!previewImage ? user[0].picture : previewImage}
-          role="presentation"
-        />
-        <img
-          src={`${import.meta.env.VITE_BACKEND_URL}/images/user-pen.png`}
-          alt="logo éditer"
-          className="nav__avatar--edit"
-        />
-        <input
-          type="file"
-          accept=".png, .jpg, .jpeg"
-          className="nav__avatar--input"
-          onMouseEnter={handleMoveBubble}
-          onChange={handleAvatarUpload}
-        />
+        <form>
+          <img
+            className="nav__avatar--img"
+            alt="avatar"
+            src={
+              image && `${import.meta.env.VITE_BACKEND_URL}/uploads/${image}`
+            }
+            role="presentation"
+          />
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/user-pen.png`}
+            alt="logo éditer"
+            className="nav__avatar--edit"
+          />
+          <input
+            ref={fileInputRef}
+            id="imageInput"
+            type="file"
+            accept="image/*"
+            className="nav__avatar--input"
+            onMouseEnter={handleMoveBubble}
+            onChange={submitImage}
+          />
+        </form>
       </ul>
       <Profile
         handleMoveBubble={handleMoveBubble}

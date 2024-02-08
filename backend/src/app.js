@@ -1,7 +1,6 @@
 // Load the express module to create a web application
 
 const express = require("express");
-const path = require("path");
 
 const app = express();
 
@@ -50,7 +49,7 @@ app.use(
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
 app.use(express.json());
-// app.use(express.urlencoded());
+app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
 
@@ -101,18 +100,19 @@ app.use("/api", router);
 // To enable production configuration:
 // 1. Uncomment the lines related to serving static files and redirecting unhandled requests.
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your frontend's build artifacts are located.
-
+// app.use(express.static("uploads"));
 app.use(express.static("public"));
+const reactBuildPath = `${__dirname}/../../frontend/dist`;
 
-app.use("*", (req, res) => {
-  if (req.originalUrl.includes("assets")) {
-    res.sendFile(
-      path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
-    );
-  } else {
-    res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
-  }
-});
+// Serve react resources
+
+app.use(express.static(reactBuildPath));
+
+// Redirect unhandled requests to the react index file
+
+// app.get("*", (req, res) => {
+//   res.sendFile(`${reactBuildPath}/index.html`);
+// });
 
 /* ************************************************************************* */
 

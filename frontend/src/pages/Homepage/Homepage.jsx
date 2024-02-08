@@ -1,40 +1,38 @@
 import "./Homepage.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useDecisionContext } from "../../contexts/decisionContext";
+import { AuthContext } from "../../contexts/authContext";
 import SecondaryNav from "../../components/SecondaryNav/SecondaryNav";
-import DecisionCard from "../../components/DecisionCard/DecisionCard";
 
 function Homepage() {
-  const [decisions, setDecisions] = useState();
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { setDecisions, decisionId, deleteDecision, setEditedDecisions } =
+    useDecisionContext();
+  const [decisionsHome, setDecisionsHome] = useState();
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/decisions/all`)
       .then((response) => response.json())
-      .then((data) => setDecisions(data))
+      .then((data) => {
+        setDecisionsHome(data);
+        setEditedDecisions(data);
+        setDecisions(data);
+      })
       .catch((error) => console.error(error));
+  }, [decisionId, deleteDecision]);
+
+  useEffect(() => {
+    if (!user[0].user_id) {
+      navigate("/");
+    }
   }, []);
 
   return (
     <>
       <SecondaryNav />
-      <h1 className="homepage__title">Décisions en cours</h1>
-      <main className="homepage__main">
-        {decisions
-          ? decisions
-              .toReversed()
-              .map((card) => (
-                <DecisionCard
-                  key={card.decision_id}
-                  title={card.decision_title}
-                  status={card.status}
-                  authorFirstname={card.firstname}
-                  authorLastname={card.lastname}
-                  location={card.location}
-                  comments={card.nb_comments}
-                  picture={card.picture}
-                  id={card.decision_id}
-                />
-              ))
-          : "Loading"}
-      </main>
+      <Outlet decisionsHome={decisionsHome} />
     </>
   );
 }

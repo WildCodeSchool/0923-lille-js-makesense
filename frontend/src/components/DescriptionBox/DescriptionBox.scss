@@ -23,15 +23,15 @@
 }
 .descriptionBox__header {
   display: flex;
-  padding-bottom: 3vh;
+  padding-bottom: 2vh;
 }
 .descriptionBox__header--avatar {
   @include avatar;
   margin-top: 2vh;
-  margin-inline: 1vw;
+  margin-inline-end: 1vw;
 }
 .descriptionBox__header--right {
-  flex-grow: 2;
+  width: 82%;
 }
 .descriptionBox__header__right--title {
   word-break: normal;
@@ -60,13 +60,17 @@
   @include statusButtons;
   background-color: $comment-bg;
 }
-.descriptionBox__body--paragraphs {
+.descriptionBox__body {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  padding-top: 2vh;
+  min-height: 50vh;
 }
 .descriptionBox__body--text {
-  font-size: clamp(12px, 2vw, 1.2rem);
+  font-size: clamp(18px, 2vw, 1.2rem);
   background-color: $secondary-background;
+  word-break: normal;
 }
 .dividing__line {
   margin-block: 1vh;
@@ -78,7 +82,6 @@
 }
 .expanded {
   @include textBox;
-
   padding-block: 1vh;
   margin-inline-end: 1%;
   background-color: $secondary-background;
@@ -86,6 +89,9 @@
 .collapsed {
   display: none;
   background-color: $secondary-background;
+}
+.disabled {
+  display: none;
 }
 
 @media screen and (max-width: 700px) {
@@ -97,5 +103,18 @@
     overflow: hidden;
     width: auto;
     height: auto;
+  }
+  .decision__beans {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .descriptionBox__header__right--writer {
+    padding-bottom: 0;
+  }
+  .descriptionBox__header__right--title {
+    font-size: 1.3rem;
+  }
+  .descriptionBox__header {
+    padding-bottom: 0;
   }
 }

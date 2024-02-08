@@ -2,10 +2,10 @@
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
-const browsePending = async (req, res, next) => {
+const browseLate = async (req, res, next) => {
   try {
     // Fetch all decisions from the database
-    const decisions = await tables.decision.readAllPending();
+    const decisions = await tables.decision.readAllLate();
 
     // Respond with the decisions in JSON format
     res.json(decisions);
@@ -84,10 +84,22 @@ const updatePicture = async (req, res, next) => {
 // The A of BREAD - Add (Create) operation
 const createDecision = async (req, res, next) => {
   const decision = req.body;
-
   try {
     // Insert the decision into the database
     const insertId = await tables.decision.create(decision);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// The A of BREAD - Add (Create) operation
+const createAssigned = async (req, res, next) => {
+  const assigned = req.body;
+  const decisionId = parseInt(req.params.id, 10);
+  try {
+    // Insert the decision into the database
+    const insertId = await tables.decision.addAssigned(decisionId, assigned);
     res.status(201).json({ insertId });
   } catch (err) {
     next(err);
@@ -110,23 +122,39 @@ const updateDecision = async (req, res, next) => {
   }
 };
 
-// Experts and Impactes
-const getExpertsAndImpactes = async (req, res, next) => {
+// Experts
+const getExperts = async (req, res, next) => {
   try {
     const decisionId = req.params.id;
 
-    // Call your decision manager's method to retrieve the experts and impacted
-    const expertsAndImpactes = await tables.decision.getExpertsAndImpactes(
-      decisionId
-    );
+    // Call your decision manager's method to retrieve the experts
+    const experts = await tables.decision.getExperts(decisionId);
 
-    // Respond with experts and impacted in JSON format
-    res.json(expertsAndImpactes);
+    // Respond with experts in JSON format
+    res.json(experts);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
   }
 };
+
+// Impacted
+
+const getImpacted = async (req, res, next) => {
+  try {
+    const decisionId = req.params.id;
+
+    // Call your decision manager's method to retrieve the impacted
+    const impacted = await tables.decision.getImpacted(decisionId);
+
+    // Respond with impacted in JSON format
+    res.json(impacted);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 // filter decisions linked to a user
 const getRelatedDecisions = async (req, res, next) => {
   try {
@@ -143,19 +171,70 @@ const getRelatedDecisions = async (req, res, next) => {
   }
 };
 
+// all completed decision for user
+const getDecisionsCompleted = async (req, res, next) => {
+  try {
+    // Fetch all decisionsCompleted from the database
+    const decisionsCompleted = await tables.decision.getDecisionsCompleted();
+
+    // Respond with the decisionsCompleted in JSON format
+    res.json(decisionsCompleted);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const getCurrentDecisions = async (req, res, next) => {
+  try {
+    // Fetch all currentDecisions from the database
+    const currentDecisions = await tables.decision.getCurrentDecisions();
+
+    // Respond with the currentDecisions in JSON format
+    res.json(currentDecisions);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const deleteDecision = async (req, res, next) => {
+  try {
+    const { decisionId } = req.params;
+    const { userId } = req.params;
+
+    // Appel de votre méthode de suppression avec les deux IDs
+    const decisionDelete = await tables.decision.delete({
+      paragraph: { decision_id: decisionId },
+      current_user_id: userId,
+    });
+
+    // ... le reste du code reste inchangé
+    res.json(decisionDelete);
+  } catch (err) {
+    // Gérer les erreurs
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
 // Ready to export the controller functions
 module.exports = {
   browse,
-  browsePending,
+  browseLate,
   read,
   readByRole,
   updatePicture,
   createDecision,
+  createAssigned,
   updateDecision,
-  getExpertsAndImpactes,
+  getExperts,
+  getImpacted,
   getRelatedDecisions,
+  getDecisionsCompleted,
+  getCurrentDecisions,
+  deleteDecision,
   // destroy,
 };

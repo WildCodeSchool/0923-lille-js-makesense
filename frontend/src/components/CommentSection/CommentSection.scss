@@ -52,6 +52,7 @@
   display: flex;
   word-break: normal;
   margin-block: 1vh;
+  width: 83%;
   background-color: $secondary-background;
   & * {
     background-color: $secondary-background;
@@ -59,8 +60,8 @@
 }
 .commentSection__comment--avatar {
   @include avatar;
-  height: 6vh;
-  width: auto;
+  height: 4rem;
+  width: 4rem;
   border-width: 3px;
   margin-block: 1vh;
 }

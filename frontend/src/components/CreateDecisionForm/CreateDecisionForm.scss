@@ -5,7 +5,6 @@
   margin-block-start: 2%;
   display: flex;
   flex-direction: column;
-  @include scroll;
   overflow-x: hidden;
   background-color: $background;
   & * {
@@ -14,13 +13,18 @@
 }
 
 .createDecisionForm__content--choiceBoxes {
-  min-height: 30vh;
+  height: 30vh;
   justify-content: space-between;
 }
 
 .createDecisionForm__titles {
   text-align: center;
   padding-block: 1%;
+}
+
+.createDecisionForm__list {
+  @include scroll;
+  height: 100%;
 }
 
 .createDecisionForm__chosen {
@@ -69,6 +73,7 @@
     all: unset;
     background-color: $background;
     padding: 2%;
+    width: 100%;
   }
   & button {
     @include buttons;
@@ -78,12 +83,32 @@
 }
 
 .createDecisionForm__content--decision {
+  @include scroll;
   padding: 1%;
   height: 85vh;
   width: 40vw;
   & textarea {
     background-color: $secondary-background;
     border-radius: 5px;
+    min-height: 200px;
+    overflow-y: auto;
+    resize: none;
+    scrollbar-width: thin;
+    scrollbar-color: currentColor rgb($primary-medium, 0.5);
+
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb($primary-medium, 0.5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: currentColor;
+      border-radius: 20px;
+      border: 3px solid rgb($primary-medium, 0.5);
+    }
   }
   & textarea:focus,
   input:focus {
@@ -113,4 +138,9 @@
     background-color: $secondary-background;
     border-radius: 5px;
   }
+}
+
+.createDecisionForm__label input,
+.createDecisionForm__status select {
+  margin-inline-start: 1vw;
 }
