@@ -214,18 +214,22 @@ class DecisionManager extends AbstractManager {
   async getRelatedDecisions(userId) {
     const [rows] = await this.database.query(
       `SELECT
-      decision.decision_id, decision.decision_title, decision.status,
-      user.firstname, user.lastname, user.picture, user.location,
-      assignment.role,
+      decision.decision_id,
+      decision.decision_title,
+      decision.status,
+      user.firstname,
+      user.lastname,
+      user.picture,
+      user.location,
       COUNT(DISTINCT comment.comment_id) AS nb_comments
-      FROM ${this.table}
-      JOIN user ON decision.user_id = user.user_id
-      LEFT JOIN assignment ON decision.decision_id = assignment.decision_id AND assignment.user_id = ?
-      LEFT JOIN comment ON decision.decision_id = comment.decision_id
-      WHERE decision.user_id = ?
-      OR assignment.user_id IS NOT NULL
-      OR comment.user_id IS NOT NULL
-      GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location, assignment.role;`,
+    FROM ${this.table}
+    JOIN user ON decision.user_id = user.user_id
+    LEFT JOIN assignment ON decision.decision_id = assignment.decision_id
+    LEFT JOIN comment ON decision.decision_id = comment.decision_id
+    WHERE user.user_id = ?
+      OR assignment.user_id = ?
+      OR comment.user_id = ? 
+    GROUP BY decision.decision_id, decision.decision_title, decision.status, user.firstname, user.lastname, user.picture, user.location`,
       [userId, userId, userId]
     );
 
